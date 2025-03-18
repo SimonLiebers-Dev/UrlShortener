@@ -1,0 +1,38 @@
+﻿@page "/"
+
+@attribute [Authorize]
+
+@using Microsoft.AspNetCore.Authorization
+@using UrlShortener.App.Frontend.Business
+
+@inject IAuthService AuthService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager Navigation
+
+<AuthorizeView>
+    <Authorized>
+        <h1>User:</h1>
+        @{
+            var claims = context.User.Claims;
+
+            foreach (var claim in claims)
+            {
+                <p>@claim.Type - @claim.Value</p>
+            }
+        }
+        <button @onclick="Logout">Logout</button>
+    </Authorized>
+    <NotAuthorized>
+        <p>You are not authorized to view this content.</p>
+        <button @onclick="Logout">Logout</button>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private async Task Logout()
+    {
+        ((AppAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();
+        await AuthService.Logout();
+        Navigation.NavigateTo("/", true);
+    }
+}

@@ -39,6 +39,19 @@ namespace UrlShortener.App.Backend
                     };
                 });
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost", policy =>
+                {
+                    options.AddPolicy("AllowAnyOrigin", policy =>
+                    {
+                        policy.AllowAnyOrigin() // Allows requests from any origin
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
+                });
+            });
+
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
@@ -49,7 +62,10 @@ namespace UrlShortener.App.Backend
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+                app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowAnyOrigin");
 
             app.UseHttpsRedirection();
 

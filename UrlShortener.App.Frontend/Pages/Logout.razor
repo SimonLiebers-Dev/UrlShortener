@@ -1,0 +1,15 @@
+﻿@page "/logout"
+@using UrlShortener.App.Frontend.Business
+
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<h3>Logging out...</h3>
+
+@code {
+    protected override void OnInitialized()
+    {
+        ((AppAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();
+        Navigation.NavigateTo("/login", true);
+    }
+}
