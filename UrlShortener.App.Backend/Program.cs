@@ -19,8 +19,11 @@ namespace UrlShortener.App.Backend
                 options.UseSqlite("Data Source=urlshortener.db")
             );
 
-            // Add jwt token generatir
+            // Add jwt token generator
             builder.Services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
+
+            // Add url shortener service
+            builder.Services.AddScoped<IMappingsService, MappingsService>();
 
             // Add JWT authentication
             var key = Encoding.UTF8.GetBytes(jwtKey);

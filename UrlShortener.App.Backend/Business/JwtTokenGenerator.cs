@@ -12,7 +12,11 @@ namespace UrlShortener.App.Backend.Business
             var key = Encoding.UTF8.GetBytes(Config["JwtSettings:SecretKey"]);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity([new Claim(ClaimTypes.Email, email)]),
+                Subject = new ClaimsIdentity(
+                [
+                    new(ClaimTypes.Email, email),
+                    new(ClaimTypes.Name, email)
+                ]),
                 Expires = DateTime.UtcNow.AddHours(1),
                 Issuer = Config["JwtSettings:Issuer"],
                 Audience = Config["JwtSettings:Audience"],

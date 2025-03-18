@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using UrlShortener.App.Shared.Models;
+using UrlShortener.App.Shared.DTO;
 
 namespace UrlShortener.App.Frontend.Business
 {
@@ -12,7 +12,7 @@ namespace UrlShortener.App.Frontend.Business
             if (!response.IsSuccessStatusCode)
                 return null;
 
-            var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
+            var result = await response.Content.ReadFromJsonAsync<LoginResponseDTO>();
             if (result != null)
             {
                 await LocalStorageService.SetItemAsync("authToken", result.Token);
