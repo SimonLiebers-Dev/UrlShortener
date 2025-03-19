@@ -1,0 +1,2 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SimonLiebers-Dev_UrlShortener&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=SimonLiebers-Dev_UrlShortener)
+[![Pipeline](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/workflow.yml/badge.svg?branch=main)](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/workflow.yml)
