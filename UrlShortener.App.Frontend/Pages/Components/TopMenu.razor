@@ -1,0 +1,46 @@
+﻿@using UrlShortener.App.Frontend.Business
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
+
+<Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.White" Shadow="Shadow.Default" ThemeContrast="ThemeContrast.Light">
+    <BarBrand>
+        <BarItem>
+            <BarLink To="">
+                SQS - UrlShortener
+            </BarLink>
+        </BarItem>
+    </BarBrand>
+    <BarMenu>
+        <BarStart>
+            <BarItem>
+                <BarLink To="/">Home</BarLink>
+            </BarItem>
+            <BarItem>
+                <BarLink To="/dashboard">Dashboard</BarLink>
+            </BarItem>
+        </BarStart>
+        <BarEnd>
+            <BarItem>
+                <Button Color="Color.Link" Target="Target.Blank" To="https://github.com/SimonLiebers-Dev/UrlShortener">GitHub</Button>
+            </BarItem>
+            <BarItem>
+                <Button Color="Color.Primary" Outline Clicked="Logout">
+                    Logout
+                </Button>
+            </BarItem>
+        </BarEnd>
+    </BarMenu>
+</Bar>
+
+@code {
+    private bool topbarVisible = false;
+
+    private async Task Logout()
+    {
+        ((AppAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();
+        await AuthService.Logout();
+        NavigationManager.NavigateTo("/", true);
+    }
+}

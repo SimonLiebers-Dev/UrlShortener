@@ -1,4 +1,4 @@
-﻿@page "/login"
+﻿@page "/register"
 
 @layout RootLayout
 
@@ -14,7 +14,7 @@
         <Card Margin="Margin.Is4.OnY">
             <div class="card-inner">
                 <CardHeader Padding="Padding.Is0">
-                    <CardTitle>Login</CardTitle>
+                    <CardTitle>Register</CardTitle>
                 </CardHeader>
                 <CardBody Padding="Padding.Is0">
                     <Validations @ref="validations" Mode="ValidationMode.Auto" ValidateOnLoad="false">
@@ -22,7 +22,7 @@
                             <Field>
                                 <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Email address</FieldLabel>
                                 <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                    <TextEdit @bind-Text="LoginEmail" Placeholder="Enter email">
+                                    <TextEdit @bind-Text="RegisterEmail" Placeholder="Enter email">
                                         <Feedback>
                                             <ValidationError>Enter a valid email</ValidationError>
                                         </Feedback>
@@ -34,9 +34,22 @@
                             <Field>
                                 <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Password</FieldLabel>
                                 <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                    <TextEdit Role="TextRole.Password" Placeholder="Password" @bind-Text="@LoginPassword">
+                                    <TextEdit Role="TextRole.Password" Placeholder="Password" @bind-Text="@RegisterPassword">
                                         <Feedback>
-                                            <ValidationError>Enter a password</ValidationError>
+                                            <ValidationError>Password must be at least 6 characters long</ValidationError>
+                                        </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validation>
+                        <Validation Validator="@ValidatePasswordRetype">
+                            <Field>
+                                <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Retype Password</FieldLabel>
+                                <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+
+                                    <TextEdit Role="TextRole.Password" Placeholder="Retype password">
+                                        <Feedback>
+                                            <ValidationError>Password does not match</ValidationError>
                                         </Feedback>
                                     </TextEdit>
                                 </FieldBody>
@@ -46,13 +59,13 @@
                     <div class="btn-wrapper">
                         <Button Style="flex: 1 0 0; justify-content: center;"
                         Color="Color.Primary"
-                        Clicked="LoginUser">
-                            Login
+                        Clicked="RegisterUser">
+                            Register
                         </Button>
                         <Button Style="flex: 1 0 0; justify-content: center;"
                         Color="Color.Secondary"
-                        Clicked="ToRegister">
-                            Register
+                        Clicked="ToLogin">
+                            Login
                         </Button>
                     </div>
                 </CardBody>
@@ -64,39 +77,56 @@
 @code {
     Validations? validations;
 
-    private string LoginEmail = string.Empty;
-    private string LoginPassword = string.Empty;
+    private string RegisterEmail = string.Empty;
+    private string RegisterPassword = string.Empty;
 
-    private async Task LoginUser()
+    private async Task RegisterUser()
     {
         if (validations == null)
             return;
 
         var valid = await validations.ValidateAll();
-        if (!valid){
+        if (!valid)
             return;
-        }
 
-        string? token = await AuthService.Login(LoginEmail, LoginPassword);
-        if (token != null)
+        bool success = await AuthService.Register(RegisterEmail, RegisterPassword);
+        if (success)
         {
-            ((AppAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsAuthenticated(token);
-            Navigation.NavigateTo("/");
-            await NotificationService.Success("Successfully logged in");
+            RegisterEmail = string.Empty;
+            RegisterPassword = string.Empty;
         }
         else
         {
-            await NotificationService.Error("Email address or password wrong");
+            await NotificationService.Error("Something went wrong. Please try again later.");
         }
     }
 
     private void ValidatePassword(ValidatorEventArgs e)
     {
-        e.Status = Convert.ToString(e.Value)?.Length > 0 ? ValidationStatus.Success : ValidationStatus.Error;
+        e.Status = Convert.ToString(e.Value)?.Length >= 6 ? ValidationStatus.Success : ValidationStatus.Error;
     }
 
-    private void ToRegister()
+    private void ValidatePasswordRetype(ValidatorEventArgs e)
     {
-        Navigation.NavigateTo("/register");
+        var retypedPassword = Convert.ToString(e.Value);
+
+        if (retypedPassword?.Length < 6)
+        {
+            e.Status = ValidationStatus.Error;
+            e.ErrorText = "Password must be at least 6 characters long!";
+        }
+        else if (retypedPassword != RegisterPassword)
+        {
+            e.Status = ValidationStatus.Error;
+        }
+        else
+        {
+            e.Status = ValidationStatus.Success;
+        }
+    }
+
+    private void ToLogin()
+    {
+        Navigation.NavigateTo("/login");
     }
 }

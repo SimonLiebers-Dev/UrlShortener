@@ -1,3 +1,16 @@
-﻿@inherits LayoutComponentBase
+﻿@using UrlShortener.App.Frontend.Pages.Components
 
-@Body
+@inherits LayoutComponentBase
+
+@layout RootLayout
+
+<Layout Sider>
+    <Layout>
+        <LayoutHeader Fixed>
+            <TopMenu />
+        </LayoutHeader>
+        <LayoutContent Padding="Padding.Is4.OnX">
+            @Body
+        </LayoutContent>
+    </Layout>
+</Layout>

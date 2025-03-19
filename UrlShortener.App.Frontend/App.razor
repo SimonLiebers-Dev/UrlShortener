@@ -1,4 +1,5 @@
-﻿@using UrlShortener.App.Frontend.Pages.Components
+﻿@using Blazorise.Components
+@using UrlShortener.App.Frontend.Pages.Components
 
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(App).Assembly">
@@ -24,3 +25,5 @@
         </NotFound>
     </Router>
 </CascadingAuthenticationState>
+
+<NotificationProvider />
