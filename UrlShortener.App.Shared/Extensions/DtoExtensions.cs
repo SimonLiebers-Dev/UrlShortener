@@ -12,6 +12,7 @@ namespace UrlShortener.App.Shared.Extensions
             {
                 Id = urlMapping.Id,
                 LongUrl = urlMapping.LongUrl,
+                Name = urlMapping.Name,
                 ShortUrl = $"{httpRequest.Scheme}://{httpRequest.Host}/{urlMapping.Path}",
                 CreatedAt = urlMapping.CreatedAt,
                 User = urlMapping.User,
