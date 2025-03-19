@@ -1,0 +1,42 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build Backend
+      run: dotnet build UrlShortener.App.Backend/UrlShortener.App.Backend.csproj --configuration Release --no-restore
+
+    - name: Test Backend
+      run: dotnet test UrlShortener.App.Backend.Tests/UrlShortener.App.Backend.Tests.csproj --configuration Release --no-build --logger trx --results-directory TestResults
+
+    - name: Build Frontend
+      run: dotnet build UrlShortener.App.Frontend/UrlShortener.App.Frontend.csproj --configuration Release --no-restore
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4.6.2
+      with:
+          name: test-results
+          path: TestResults/*.trx
