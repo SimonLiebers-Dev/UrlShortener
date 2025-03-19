@@ -36,6 +36,10 @@ jobs:
       uses: SonarSource/sonarqube-scan-action@v5.0.0
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        args: >
+          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
 
     - name: Build Frontend
       run: dotnet build UrlShortener.App.Frontend/UrlShortener.App.Frontend.csproj --configuration Release --no-restore
