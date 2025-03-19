@@ -15,22 +15,38 @@
 
 <div>
     <label>Email:</label>
-    <input @bind="Email" type="email" required />
+    <input @bind="LoginEmail" type="email" required />
 </div>
 <div>
     <label>Password:</label>
-    <input @bind="Password" type="password" required />
+    <input @bind="LoginPassword" type="password" required />
 </div>
 <button @onclick="LoginUser">Login</button>
 
+<h3>Register</h3>
+
+<div>
+    <label>Email:</label>
+    <input @bind="RegisterEmail" type="email" required />
+</div>
+<div>
+    <label>Password:</label>
+    <input @bind="RegisterPassword" type="password" required />
+</div>
+<button @onclick="RegisterUser">Register</button>
+
 @code {
-    private string Email = string.Empty;
-    private string Password = string.Empty;
     private string ErrorMessage = string.Empty;
+
+    private string LoginEmail = string.Empty;
+    private string LoginPassword = string.Empty;
+
+    private string RegisterEmail = string.Empty;
+    private string RegisterPassword = string.Empty;
 
     private async Task LoginUser()
     {
-        string? token = await AuthService.Login(Email, Password);
+        string? token = await AuthService.Login(LoginEmail, LoginPassword);
         if (token != null)
         {
             ((AppAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsAuthenticated(token);
@@ -39,6 +55,20 @@
         else
         {
             ErrorMessage = "Invalid email or password.";
+        }
+    }
+
+    private async Task RegisterUser()
+    {
+        bool success = await AuthService.Register(RegisterEmail, RegisterPassword);
+        if (success)
+        {
+            RegisterEmail = string.Empty;
+            RegisterPassword = string.Empty;
+        }
+        else
+        {
+            ErrorMessage = "Registration error";
         }
     }
 }

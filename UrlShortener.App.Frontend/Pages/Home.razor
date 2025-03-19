@@ -4,8 +4,10 @@
 
 @using Microsoft.AspNetCore.Authorization
 @using UrlShortener.App.Frontend.Business
+@using UrlShortener.App.Shared.DTO
 
 @inject IAuthService AuthService
+@inject IMappingsService MappingsService
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager Navigation
 
@@ -14,21 +16,63 @@
         <h1>User:</h1>
         @{
             var claims = context.User.Claims;
+        }
 
-            foreach (var claim in claims)
-            {
-                <p>@claim.Type - @claim.Value</p>
-            }
+        @foreach (var claim in claims)
+        {
+            <p>@claim.Type - @claim.Value</p>
         }
         <button @onclick="Logout">Logout</button>
+
+        <h1>Mappings:</h1>
+        @foreach (var mapping in urlMappings)
+        {
+            <div style="display: flex; flex-direction: column;">
+                <a href="@mapping.ShortUrl">@mapping.LongUrl - @mapping.ShortUrl</a>
+
+                <h2>Clicks:</h2>
+                @foreach (var click in mapping.RedirectLogs)
+                {
+                    <span>@click.UserAgent - @click.Latitude - @click.Longitude</span>
+                }
+            </div>
+        }
+
+        <h1>Create Mapping:</h1>
+        <input @bind="longUrl" />
+        <button @onclick="CreateMapping">CreateMapping</button>
+
     </Authorized>
     <NotAuthorized>
         <p>You are not authorized to view this content.</p>
-        <button @onclick="Logout">Logout</button>
     </NotAuthorized>
 </AuthorizeView>
 
 @code {
+    private List<UrlMappingDTO> urlMappings = [];
+    private string longUrl = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        await ReloadMappings();
+    }
+
+    private async Task ReloadMappings()
+    {
+        urlMappings = await MappingsService.GetMappings() ?? [];
+        this.StateHasChanged();
+    }
+
+    private async Task CreateMapping()
+    {
+        var shortUrl = await MappingsService.CreateMapping(longUrl);
+        if (shortUrl == null)
+            return; // Error
+
+        await ReloadMappings();
+    }
+
     private async Task Logout()
     {
         ((AppAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();

@@ -11,8 +11,8 @@ using UrlShortener.App.Backend;
 namespace UrlShortener.App.Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250319143010_AddRedirectTracking")]
-    partial class AddRedirectTracking
+    [Migration("20250319154405_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,20 +30,18 @@ namespace UrlShortener.App.Backend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IpAddress")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Latitude")
+                    b.Property<double?>("Latitude")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("Longitude")
+                    b.Property<double?>("Longitude")
                         .HasColumnType("REAL");
 
                     b.Property<int>("UrlMappingId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserAgent")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

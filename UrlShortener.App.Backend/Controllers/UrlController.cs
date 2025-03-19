@@ -10,17 +10,17 @@ namespace UrlShortener.App.Backend.Controllers
     public class UrlController(IMappingsService MappingsService) : ControllerBase
     {
         [HttpPost("create")]
-        public async Task<IActionResult> CreateMapping([FromBody] ShortenRequestDTO shortenRequest)
+        public async Task<IActionResult> CreateMapping([FromBody] CreateMappingRequestDTO createMappingRequest)
         {
-            if (string.IsNullOrEmpty(shortenRequest.LongUrl))
+            if (string.IsNullOrEmpty(createMappingRequest.LongUrl))
                 return BadRequest("URL cannot be empty");
 
-            var urlMapping = await MappingsService.CreateMapping(shortenRequest.LongUrl, User.Identity?.Name);
+            var urlMapping = await MappingsService.CreateMapping(createMappingRequest.LongUrl, User.Identity?.Name);
 
             if (urlMapping == null)
                 return BadRequest("URL could not be shortened");
 
-            return Ok(new ShortenResponseDTO
+            return Ok(new CreateMappingResponseDTO
             {
                 ShortUrl = $"{Request.Scheme}://{Request.Host}/{urlMapping.Path}"
             });

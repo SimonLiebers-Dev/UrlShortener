@@ -1,6 +1,6 @@
 ﻿namespace UrlShortener.App.Shared.DTO
 {
-    public class ShortenResponseDTO
+    public class CreateMappingResponseDTO
     {
         public string ShortUrl { get; set; } = string.Empty;
     }

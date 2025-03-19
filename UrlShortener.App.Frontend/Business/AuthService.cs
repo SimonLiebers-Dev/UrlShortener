@@ -25,5 +25,11 @@ namespace UrlShortener.App.Frontend.Business
         {
             await LocalStorageService.RemoveItemAsync("authToken");
         }
+
+        public async Task<bool> Register(string email, string password)
+        {
+            var response = await HttpClient.PostAsJsonAsync("api/auth/register", new { Email = email, Password = password });
+            return response.IsSuccessStatusCode;
+        }
     }
 }

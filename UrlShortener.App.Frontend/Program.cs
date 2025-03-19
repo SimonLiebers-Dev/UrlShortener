@@ -15,6 +15,7 @@ public class Program
 
         builder.Services.AddScoped<IAuthService, AuthService>();
         builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
+        builder.Services.AddScoped<IMappingsService, MappingsService>();
 
         builder.Services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();
         builder.Services.AddAuthorizationCore();
