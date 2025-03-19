@@ -30,7 +30,7 @@ jobs:
       run: dotnet build UrlShortener.App.Backend/UrlShortener.App.Backend.csproj --configuration Release --no-restore
 
     - name: Test Backend
-      run: dotnet test UrlShortener.App.Backend.Tests/UrlShortener.App.Backend.Tests.csproj --configuration Release --no-build --results-directory TestResults
+      run: dotnet test UrlShortener.App.Backend.Tests/UrlShortener.App.Backend.Tests.csproj
 
     - name: Build Frontend
       run: dotnet build UrlShortener.App.Frontend/UrlShortener.App.Frontend.csproj --configuration Release --no-restore
