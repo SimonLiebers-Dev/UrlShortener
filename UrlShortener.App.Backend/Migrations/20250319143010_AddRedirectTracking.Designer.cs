@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UrlShortener.App.Backend;
 
@@ -10,9 +11,11 @@ using UrlShortener.App.Backend;
 namespace UrlShortener.App.Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250319143010_AddRedirectTracking")]
+    partial class AddRedirectTracking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.3");
@@ -27,18 +30,20 @@ namespace UrlShortener.App.Backend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("IpAddress")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double?>("Latitude")
+                    b.Property<double>("Latitude")
                         .HasColumnType("REAL");
 
-                    b.Property<double?>("Longitude")
+                    b.Property<double>("Longitude")
                         .HasColumnType("REAL");
 
                     b.Property<int>("UrlMappingId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("UserAgent")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

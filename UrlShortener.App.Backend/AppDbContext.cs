@@ -7,12 +7,19 @@ namespace UrlShortener.App.Backend
     {
         public DbSet<User> Users { get; set; }
         public DbSet<UrlMapping> UrlMappings { get; set; }
+        public DbSet<RedirectLog> RedirectLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Email)
-                .IsUnique(); // E-Mail must be unique
+                .IsUnique();
+
+            modelBuilder.Entity<RedirectLog>()
+                .HasOne(log => log.UrlMapping)
+                .WithMany(mapping => mapping.RedirectLogs)
+                .HasForeignKey(log => log.UrlMappingId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

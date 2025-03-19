@@ -7,5 +7,6 @@
         public string ShortUrl { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public string? User { get; set; }
+        public List<RedirectLogDTO> RedirectLogs { get; set; } = [];
     }
 }

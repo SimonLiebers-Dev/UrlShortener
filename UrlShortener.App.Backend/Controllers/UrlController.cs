@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UrlShortener.App.Backend.Business;
 using UrlShortener.App.Shared.DTO;
+using UrlShortener.App.Shared.Extensions;
 
 namespace UrlShortener.App.Backend.Controllers
 {
@@ -12,18 +13,17 @@ namespace UrlShortener.App.Backend.Controllers
         public async Task<IActionResult> CreateMapping([FromBody] ShortenRequestDTO shortenRequest)
         {
             if (string.IsNullOrEmpty(shortenRequest.LongUrl))
-            {
                 return BadRequest("URL cannot be empty");
-            }
 
             var urlMapping = await MappingsService.CreateMapping(shortenRequest.LongUrl, User.Identity?.Name);
 
             if (urlMapping == null)
-            {
                 return BadRequest("URL could not be shortened");
-            }
 
-            return Ok(new ShortenResponseDTO { ShortUrl = $"{Request.Scheme}://{Request.Host}/{urlMapping.Path}" });
+            return Ok(new ShortenResponseDTO
+            {
+                ShortUrl = $"{Request.Scheme}://{Request.Host}/{urlMapping.Path}"
+            });
         }
 
         [HttpGet("mappings")]
@@ -38,14 +38,7 @@ namespace UrlShortener.App.Backend.Controllers
             if (userMappings == null)
                 return NotFound("No mappings found");
 
-            return Ok(userMappings.Select(m => new UrlMappingDTO()
-            {
-                Id = m.Id,
-                LongUrl = m.LongUrl,
-                ShortUrl = $"{Request.Scheme}://{Request.Host}/{m.Path}",
-                CreatedAt = m.CreatedAt,
-                User = m.User
-            }));
+            return Ok(userMappings.Select(m => m.ToDTO(Request)));
         }
     }
 }

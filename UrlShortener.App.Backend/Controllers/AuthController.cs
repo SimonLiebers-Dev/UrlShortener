@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UrlShortener.App.Backend.Business;
 using UrlShortener.App.Backend.Utils;
+using UrlShortener.App.Shared.DTO;
 using UrlShortener.App.Shared.Models;
 
 namespace UrlShortener.App.Backend.Controllers
@@ -23,7 +24,10 @@ namespace UrlShortener.App.Backend.Controllers
                 return Unauthorized("Invalid email or password");
 
             var token = JwtTokenGenerator.GenerateToken(user.Email);
-            return Ok(new { Token = token });
+            return Ok(new LoginResponseDTO()
+            {
+                Token = token
+            });
         }
 
         [HttpPost("register")]

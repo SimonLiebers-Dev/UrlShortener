@@ -44,12 +44,15 @@ namespace UrlShortener.App.Backend.Business
                 // Check if the generated string already exists
             } while (await GetMappingByPath(result) != null);
 
-            return result;  
+            return result;
         }
 
         public async Task<List<UrlMapping>?> GetMappingsByUser(string email)
         {
-            return await DbContext.UrlMappings.Where(m => m.User != null && m.User.Equals(email)).ToListAsync();
+            return await DbContext.UrlMappings
+                .Where(m => m.User != null && m.User.Equals(email))
+                .Include(m => m.RedirectLogs) 
+                .ToListAsync();
         }
     }
 }

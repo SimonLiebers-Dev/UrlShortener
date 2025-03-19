@@ -25,6 +25,9 @@ namespace UrlShortener.App.Backend
             // Add url shortener service
             builder.Services.AddScoped<IMappingsService, MappingsService>();
 
+            // Add redirect log service
+            builder.Services.AddScoped<IRedirectLogService, RedirectLogService>();
+
             // Add JWT authentication
             var key = Encoding.UTF8.GetBytes(jwtKey);
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
