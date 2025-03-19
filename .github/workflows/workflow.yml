@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: Build and Test
 
 on:
@@ -10,29 +7,46 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  setup:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-        
-    - name: Restore dependencies
-      run: dotnet restore
-      
+
+  build_backend:
+    runs-on: ubuntu-latest
+    needs: setup  # Ensures that the setup job runs first
+
+    steps:
+    - name: Restore dependencies (Backend)
+      run: dotnet restore UrlShortener.App.Backend/UrlShortener.App.Backend.csproj
+
     - name: Build Backend
       run: dotnet build UrlShortener.App.Backend/UrlShortener.App.Backend.csproj --configuration Release --no-restore
 
     - name: Test Backend
       run: dotnet test UrlShortener.App.Backend.Tests/UrlShortener.App.Backend.Tests.csproj
 
-    - name: Analyze Backend
+  build_frontend:
+    runs-on: ubuntu-latest
+    needs: setup  # Ensures that the setup job runs first
+
+    steps:
+    - name: Build Frontend
+      run: dotnet build UrlShortener.App.Frontend/UrlShortener.App.Frontend.csproj --configuration Release --no-restore
+
+  analyze:
+    runs-on: ubuntu-latest
+    needs: [build_backend, build_frontend]  # Ensure this job runs after both build jobs
+
+    steps:
+    - name: Analyze with SonarQube
       uses: SonarSource/sonarqube-scan-action@v5.0.0
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -40,6 +54,3 @@ jobs:
         args: >
           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-
-    - name: Build Frontend
-      run: dotnet build UrlShortener.App.Frontend/UrlShortener.App.Frontend.csproj --configuration Release --no-restore
