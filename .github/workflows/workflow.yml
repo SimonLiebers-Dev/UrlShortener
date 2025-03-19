@@ -32,5 +32,10 @@ jobs:
     - name: Test Backend
       run: dotnet test UrlShortener.App.Backend.Tests/UrlShortener.App.Backend.Tests.csproj
 
+    - name: Analyze Backend
+      uses: SonarSource/sonarqube-scan-action@v5.0.0
+      with:
+        projectBaseDir: UrlShortener.App.Backend
+
     - name: Build Frontend
       run: dotnet build UrlShortener.App.Frontend/UrlShortener.App.Frontend.csproj --configuration Release --no-restore
