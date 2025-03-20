@@ -12,12 +12,11 @@ namespace UrlShortener.App.Backend
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            var jwtKey = builder.Configuration["JwtSettings:SecretKey"];
-
-            // Add db connection
+            // Add Db connection
+            string connectionString = builder.Configuration.GetConnectionString("MsSql")!;
             builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlite("Data Source=urlshortener.db")
-            );
+                    options.UseSqlServer(connectionString)
+                    );
 
             // Add jwt token generator
             builder.Services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
@@ -32,7 +31,7 @@ namespace UrlShortener.App.Backend
             builder.Services.AddHttpClient<IIpLookupService, IpLookupService>();
 
             // Add JWT authentication
-            var key = Encoding.UTF8.GetBytes(jwtKey);
+            var key = Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]!);
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -48,6 +47,7 @@ namespace UrlShortener.App.Backend
                     };
                 });
 
+            // Allow all origins for development, change when in production
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowLocalhost", policy =>
@@ -61,26 +61,45 @@ namespace UrlShortener.App.Backend
                 });
             });
 
+            // Add controllers
             builder.Services.AddControllers();
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+            // Add swagger documentation
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            // Add openapi documentation
             builder.Services.AddOpenApi();
 
             var app = builder.Build();
+
+            var serviceScopyFactory = app.Services.GetService<IServiceScopeFactory>();
+            using (var serviceScope = serviceScopyFactory?.CreateScope())
+            {
+                var context = serviceScope?.ServiceProvider.GetRequiredService<AppDbContext>();
+                context?.Database.Migrate();
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
                 app.UseDeveloperExceptionPage();
+
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
+            // Allow any origin
             app.UseCors("AllowAnyOrigin");
 
             app.UseHttpsRedirection();
 
+            // Add authentication and authorization
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // Map controllers
             app.MapControllers();
 
             app.Run();

@@ -1,9 +1,10 @@
-﻿using UrlShortener.App.Shared.Models;
+﻿using UrlShortener.App.Backend.Models;
+using UrlShortener.App.Shared.Models;
 
 namespace UrlShortener.App.Backend.Business
 {
     public interface IRedirectLogService
     {
-        Task LogRedirectAsync(UrlMapping urlMapping, string? ipAddress, string? userAgent, double? latitude, double? longitude);
+        Task LogRedirectAsync(UrlMapping urlMapping, IpApiResponse? ipApiResponse, string? ipAddress, string? userAgent);
     }
 }

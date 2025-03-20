@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  mssql-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=VeryGoodPassword!
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    networks:
+      - urlshortener-network  
+
+  urlshortener-backend:
+    build:
+      context: .
+      dockerfile: UrlShortener.App.Backend/Dockerfile
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__MsSql=Server=mssql-db;Database=urlshortener;User=sa;Password=VeryGoodPassword!;TrustServerCertificate=true
+    networks:
+      - urlshortener-network
+    depends_on:
+      - mssql-db
+
+  urlshortener-frontend:
+    build:
+      context: .
+      dockerfile: UrlShortener.App.Frontend/Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - urlshortener-network
+    depends_on:
+      - urlshortener-backend
+  
+networks:
+  urlshortener-network:
+    driver: bridge
+
+volumes:
+  mssql-data:
+    driver: local

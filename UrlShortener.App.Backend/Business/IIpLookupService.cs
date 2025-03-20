@@ -4,6 +4,6 @@ namespace UrlShortener.App.Backend.Business
 {
     public interface IIpLookupService
     {
-        Task<IpApiResponse?> GetDataAsync(string ip);
+        Task<IpApiResponse?> GetDataAsync(string? ip);
     }
 }

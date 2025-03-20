@@ -28,7 +28,7 @@ public class Program
         builder.Services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();
         builder.Services.AddAuthorizationCore();
 
-        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5241/") });
+        builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:8080/") });
 
         await builder.Build().RunAsync();
     }

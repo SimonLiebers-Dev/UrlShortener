@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 using UrlShortener.App.Backend.Business;
 
 namespace UrlShortener.App.Backend.Controllers
@@ -15,15 +17,21 @@ namespace UrlShortener.App.Backend.Controllers
             if (urlMapping == null)
                 return NotFound();
 
-            var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+            var ipAddress = HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+            // Fallback to default remote ip
+            if (string.IsNullOrEmpty(ipAddress))
+            {
+                ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+            }
+
             var userAgent = HttpContext.Request.Headers.UserAgent.ToString();
 
             // Google ip for testing
-            ipAddress = "2a00:1450:4016:80a::2003";
+            //ipAddress = "2a00:1450:4016:80a::2003";
             var ipData = await IpLookupService.GetDataAsync(ipAddress);
 
             // TODO: Fetch location
-            await RedirectLogService.LogRedirectAsync(urlMapping, ipAddress, userAgent, ipData?.Lat, ipData?.Lon);
+            await RedirectLogService.LogRedirectAsync(urlMapping, ipData, ipAddress, userAgent);
 
             return Redirect(urlMapping.LongUrl);
         }
