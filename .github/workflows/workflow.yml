@@ -7,58 +7,36 @@ on:
     branches: [ "main" ]
 
 jobs:
-  checkout:
+  build:
+    name: Build, Test, Analyze
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
 
-  setup-dotnet:
-    runs-on: ubuntu-latest
-    needs: checkout
     steps:
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 9.0.x
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build Backend
+      run: dotnet build UrlShortener.App.Backend/UrlShortener.App.Backend.csproj --configuration Release --no-restore
 
-  restore-dependencies:
-    runs-on: ubuntu-latest
-    needs: setup-dotnet
-    steps:
-      - name: Restore dependencies
-        run: dotnet restore
+    - name: Test Backend
+      run: dotnet test UrlShortener.App.Backend.Tests/UrlShortener.App.Backend.Tests.csproj
+          
+    - name: Build Frontend
+      run: dotnet build UrlShortener.App.Frontend/UrlShortener.App.Frontend.csproj --configuration Release --no-restore
 
-  build-backend:
-    runs-on: ubuntu-latest
-    needs: restore-dependencies
-    steps:
-      - name: Build Backend
-        run: dotnet build UrlShortener.App.Backend/UrlShortener.App.Backend.csproj --configuration Release --no-restore
-
-  test-backend:
-    runs-on: ubuntu-latest
-    needs: build-backend
-    steps:
-      - name: Test Backend
-        run: dotnet test UrlShortener.App.Backend.Tests/UrlShortener.App.Backend.Tests.csproj
-
-  build-frontend:
-    runs-on: ubuntu-latest
-    needs: restore-dependencies
-    steps:
-      - name: Build Frontend
-        run: dotnet build UrlShortener.App.Frontend/UrlShortener.App.Frontend.csproj --configuration Release --no-restore
-
-  analyze-sonarqube:
-    runs-on: ubuntu-latest
-    needs: [build-backend, build-frontend]
-    steps:
-      - name: Analyze with SonarQube
-        uses: SonarSource/sonarqube-scan-action@v5.0.0
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+    - name: Analyze with SonarQube
+      uses: SonarSource/sonarqube-scan-action@v5.0.0
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        args: >
+          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
