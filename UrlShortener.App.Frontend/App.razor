@@ -1,5 +1,8 @@
 ﻿@using Blazorise.Components
+@using UrlShortener.App.Frontend.Business
 @using UrlShortener.App.Frontend.Pages.Components
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <CascadingAuthenticationState>
     <Router AppAssembly="@typeof(App).Assembly">
@@ -27,3 +30,10 @@
 </CascadingAuthenticationState>
 
 <NotificationProvider />
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await AuthenticationStateProvider.GetAuthenticationStateAsync();
+    }
+}

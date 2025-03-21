@@ -7,7 +7,7 @@ namespace UrlShortener.App.Backend.Controllers
 {
     [Route("/")]
     [ApiController]
-    public class RedirectController(IMappingsService MappingsService, IRedirectLogService RedirectLogService, IIpLookupService IpLookupService) : ControllerBase
+    public class RedirectController(IMappingsService MappingsService, IRedirectLogService RedirectLogService, IUserAgentService UserAgentService) : ControllerBase
     {
         [HttpGet("{path}")]
         public async Task<IActionResult> RedirectToLongUrl(string path)
@@ -18,20 +18,16 @@ namespace UrlShortener.App.Backend.Controllers
                 return NotFound();
 
             var ipAddress = HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+
             // Fallback to default remote ip
             if (string.IsNullOrEmpty(ipAddress))
-            {
                 ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
-            }
 
             var userAgent = HttpContext.Request.Headers.UserAgent.ToString();
-
-            // Google ip for testing
-            //ipAddress = "2a00:1450:4016:80a::2003";
-            var ipData = await IpLookupService.GetDataAsync(ipAddress);
+            var userAgentData = await UserAgentService.GetUserAgentAsync(userAgent);
 
             // TODO: Fetch location
-            await RedirectLogService.LogRedirectAsync(urlMapping, ipData, ipAddress, userAgent);
+            await RedirectLogService.LogRedirectAsync(urlMapping, userAgentData, ipAddress, userAgent);
 
             return Redirect(urlMapping.LongUrl);
         }

@@ -5,24 +5,24 @@ namespace UrlShortener.App.Backend.Business
 {
     public class RedirectLogService(AppDbContext DbContext) : IRedirectLogService
     {
-        public async Task LogRedirectAsync(UrlMapping urlMapping, IpApiResponse? ipApiResponse, string? ipAddress, string? userAgent)
+        public async Task LogRedirectAsync(UrlMapping urlMapping, UserAgentApiResponse? userAgentApiResponse, string? ipAddress, string? userAgent)
         {
             var redirectLog = new RedirectLog
             {
                 UrlMappingId = urlMapping.Id,
-                AccessedAt = DateTime.UtcNow,
                 IpAddress = ipAddress,
                 UserAgent = userAgent,
-                Latitude = ipApiResponse?.Lat,
-                Longitude = ipApiResponse?.Lon,
-                Country = ipApiResponse?.Country,
-                CountryCode = ipApiResponse?.CountryCode,
-                Region = ipApiResponse?.Region,
-                RegionName = ipApiResponse?.RegionName,
-                City = ipApiResponse?.City,
-                Zip = ipApiResponse?.Zip,
-                Timezone = ipApiResponse?.Timezone,
-                Isp = ipApiResponse?.Isp
+                AccessedAt = DateTime.UtcNow,
+                BrowserFamily = userAgentApiResponse?.BrowserFamily,
+                ClientEngine = userAgentApiResponse?.Client?.Engine,
+                ClientName = userAgentApiResponse?.Client?.Name,
+                ClientType = userAgentApiResponse?.Client?.Type,
+                DeviceBrand = userAgentApiResponse?.Device?.Brand,
+                DeviceModel = userAgentApiResponse?.Device?.Model,
+                DeviceType = userAgentApiResponse?.Device?.Type,
+                OsName = userAgentApiResponse?.Os?.Name,
+                OsVersion = userAgentApiResponse?.Os?.Version,
+                OsFamily = userAgentApiResponse?.OsFamily
             };
 
             DbContext.RedirectLogs.Add(redirectLog);

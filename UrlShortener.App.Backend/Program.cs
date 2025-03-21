@@ -27,8 +27,8 @@ namespace UrlShortener.App.Backend
             // Add redirect log service
             builder.Services.AddScoped<IRedirectLogService, RedirectLogService>();
 
-            // Add ip lookup service
-            builder.Services.AddHttpClient<IIpLookupService, IpLookupService>();
+            // Add user agent service
+            builder.Services.AddHttpClient<IUserAgentService, UserAgentService>();
 
             // Add JWT authentication
             var key = Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]!);

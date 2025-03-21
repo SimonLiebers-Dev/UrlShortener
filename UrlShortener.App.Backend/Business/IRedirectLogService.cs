@@ -5,6 +5,6 @@ namespace UrlShortener.App.Backend.Business
 {
     public interface IRedirectLogService
     {
-        Task LogRedirectAsync(UrlMapping urlMapping, IpApiResponse? ipApiResponse, string? ipAddress, string? userAgent);
+        Task LogRedirectAsync(UrlMapping urlMapping, UserAgentApiResponse? userAgentApiResponse, string? ipAddress, string? userAgent);
     }
 }

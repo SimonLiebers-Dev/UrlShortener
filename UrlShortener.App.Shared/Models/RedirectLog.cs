@@ -6,17 +6,17 @@
         public int UrlMappingId { get; set; }
         public UrlMapping UrlMapping { get; set; } = null!;
         public string? IpAddress { get; set; }
-        public double? Latitude { get; set; }
-        public double? Longitude { get; set; }
         public string? UserAgent { get; set; }
         public DateTime AccessedAt { get; set; } = DateTime.UtcNow;
-        public string? Country { get; set; }
-        public string? CountryCode { get; set; }
-        public string? Region { get; set; }
-        public string? RegionName { get; set; }
-        public string? City { get; set; }
-        public string? Zip { get; set; }
-        public string? Timezone { get; set; }
-        public string? Isp { get; set; }
+        public string? BrowserFamily { get; set; }
+        public string? ClientEngine { get; set; }
+        public string? ClientName { get; set; }
+        public string? ClientType { get; set; }
+        public string? DeviceBrand { get; set; }
+        public string? DeviceModel { get; set; }
+        public string? DeviceType { get; set; }
+        public string? OsName { get; set; }
+        public string? OsVersion { get; set; }
+        public string? OsFamily { get; set; }
     }
 }

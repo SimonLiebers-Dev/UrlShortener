@@ -8,19 +8,11 @@
     <BarBrand>
         <BarItem>
             <BarLink To="">
-                SQS - UrlShortener
+                <Heading Size="HeadingSize.Is3">SQS - UrlShortener</Heading>
             </BarLink>
         </BarItem>
     </BarBrand>
     <BarMenu>
-        <BarStart>
-            <BarItem>
-                <BarLink To="/">Home</BarLink>
-            </BarItem>
-            <BarItem>
-                <BarLink To="/dashboard">Dashboard</BarLink>
-            </BarItem>
-        </BarStart>
         <BarEnd>
             <BarItem>
                 <Button Color="Color.Link" Target="Target.Blank" To="https://github.com/SimonLiebers-Dev/UrlShortener">GitHub</Button>
@@ -39,8 +31,10 @@
 
     private async Task Logout()
     {
-        ((AppAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();
-        await AuthService.Logout();
+        // Remove token 
+        await ((AppAuthenticationStateProvider)AuthenticationStateProvider).TriggerLogoutAsync();
+
+        // Navigate to home
         NavigationManager.NavigateTo("/", true);
     }
 }

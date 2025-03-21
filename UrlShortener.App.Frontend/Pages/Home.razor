@@ -11,63 +11,120 @@
 @inject INotificationService NotificationService
 @inject NavigationManager NavigationManager
 
-<div class="cards-wrapper">
-    <div class="cards-stack">
-        @if (userStats != null)
-        {
-            <Card>
-                <CardBody>
-                    <CardTitle Size="4">Stats</CardTitle>
-                    <Span>Clicks: @userStats.Clicks</Span>
-                    <Span>Mappings: @userStats.Mappings</Span>
-                </CardBody>
-            </Card>
-        }
-        <Card>
+<PageTitle>UrlShortener</PageTitle>
+
+@if (isLoading)
+{
+
+}
+else
+{
+    if (userStats != null)
+    {
+        <Card Class="p-4 mt-4">
             <CardBody>
-                <CardTitle Size="4">Create url</CardTitle>
-                <Validations @ref="validations" Mode="ValidationMode.Auto" ValidateOnLoad="false">
-                    <Validation Validator="@ValidateName">
-                        <Field>
-                            <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Name</FieldLabel>
-                            <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                <TextEdit @bind-Text="name" Placeholder="Enter name">
-                                    <Feedback>
-                                        <ValidationError>Enter a name</ValidationError>
-                                    </Feedback>
-                                </TextEdit>
-                            </FieldBody>
-                        </Field>
-                    </Validation>
-                    <Validation Validator="@ValidateUrl">
-                        <Field>
-                            <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Long url</FieldLabel>
-                            <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                <TextEdit Placeholder="Long url" @bind-Text="@longUrl">
-                                    <Feedback>
-                                        <ValidationError>Enter a valid url starting with https/http</ValidationError>
-                                    </Feedback>
-                                </TextEdit>
-                            </FieldBody>
-                        </Field>
-                    </Validation>
-                </Validations>
-                <div class="btn-wrapper">
-                    <Button Style="flex: 1 0 0; justify-content: center;"
-                            Color="Color.Primary"
-                            Clicked="CreateMapping">
-                        Generate Short Url
-                    </Button>
-                </div>
+                <CardTitle Size="4">
+                    Statistics
+                </CardTitle>
+                <Row>
+                    <Column Class="text-center">
+                        <Icon Name="IconName.Link" IconSize="IconSize.Large" />
+                        <Heading Size="HeadingSize.Is5" TextColor="TextColor.Dark">Active URLs</Heading>
+                        <Paragraph TextSize="TextSize.Large">@userStats.Mappings</Paragraph>
+                    </Column>
+                    <Column Class="text-center">
+                        <Icon Name="IconName.Mouse" IconSize="IconSize.Large" />
+                        <Heading Size="HeadingSize.Is5" TextColor="TextColor.Dark">Total Clicks</Heading>
+                        <Paragraph TextSize="TextSize.Large">@userStats.Clicks</Paragraph>
+                    </Column>
+                </Row>
             </CardBody>
         </Card>
-    </div>
-</div>
+    }
+    <Card Class="p-4 mt-4">
+        <CardBody>
+            <CardTitle Size="4">
+                Create URL
+            </CardTitle>
+            <Validations @ref="validations" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+                <Validation Validator="@ValidateName">
+                    <Field>
+                        <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Name</FieldLabel>
+                        <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                            <TextEdit @bind-Text="name" Placeholder="Enter name">
+                                <Feedback>
+                                    <ValidationError>Enter a name</ValidationError>
+                                </Feedback>
+                            </TextEdit>
+                        </FieldBody>
+                    </Field>
+                </Validation>
+                <Validation Validator="@ValidateUrl">
+                    <Field>
+                        <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Long url</FieldLabel>
+                        <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                            <TextEdit Placeholder="Long url" @bind-Text="@longUrl">
+                                <Feedback>
+                                    <ValidationError>Enter a valid url starting with https/http</ValidationError>
+                                </Feedback>
+                            </TextEdit>
+                        </FieldBody>
+                    </Field>
+                </Validation>
+            </Validations>
+            <Button Color="Color.Primary"
+            Clicked="CreateMapping">
+                Generate Short URL
+            </Button>
+        </CardBody>
+    </Card>
+
+    <Card Class="p-4 mt-4">
+        <CardBody>
+            <CardTitle Size="4">
+                Active URLs
+            </CardTitle>
+            <Row>
+                @foreach (var mapping in userMappings)
+                {
+                    <Column Class="md-4">
+                        <Card Class="mb-3">
+                            <CardBody>
+                                <Heading Size="HeadingSize.Is5">@mapping.Name</Heading>
+                                <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                    <Strong Style="white-space: nowrap;">Short URL:</Strong>
+                                    <a href="@mapping.ShortUrl" class="truncate">@mapping.ShortUrl</a>
+                                </Row>
+                                <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                    <Strong Style="white-space: nowrap;">Original URL:</Strong>
+                                    <a href="@mapping.LongUrl" class="truncate">@mapping.LongUrl</a>
+                                </Row>
+                                <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                    <Strong Style="white-space: nowrap;">Created:</Strong>
+                                    <Text>@mapping.CreatedAt.ToString("dd.MM.yyyy")</Text>
+                                </Row>
+                                <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                    <Strong Style="white-space: nowrap;">Clicks:</Strong>
+                                    <Text>@mapping.RedirectLogs.Count</Text>
+                                </Row>
+                                <Button Color="Color.Primary" Margin="Margin.Is2.FromTop">
+                                    Details <Icon Class="ml-1" Name="IconName.ArrowRight" />
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    </Column>
+                }
+            </Row>
+        </CardBody>
+    </Card>
+}
 
 @code {
-    Validations? validations;
+    private bool isLoading = true;
+    private Validations? validations;
 
     private UserStatsDTO? userStats;
+    private List<UrlMappingDTO> userMappings = [];
 
     private string longUrl = string.Empty;
     private string name = string.Empty;
@@ -76,12 +133,19 @@
     {
         await base.OnInitializedAsync();
 
-        await ReloadUserStats();
+        await ReloadData();
     }
 
-    private async Task ReloadUserStats()
+    private async Task ReloadData()
     {
+        isLoading = true;
+        this.StateHasChanged();
+
         userStats = await MappingsService.GetStats();
+        userMappings = await MappingsService.GetMappings() ?? [];
+        userMappings.OrderByDescending(m => m.CreatedAt);
+
+        isLoading = false;
         this.StateHasChanged();
     }
 
@@ -101,8 +165,7 @@
             }
 
             await NotificationService.Success("Successfully created url");
-            await ReloadUserStats();
-            NavigationManager.NavigateTo("/dashboard");
+            await ReloadData();
         }
     }
 

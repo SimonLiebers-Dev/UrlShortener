@@ -26,18 +26,18 @@ namespace UrlShortener.App.Shared.Extensions
             {
                 Id = redirectLog.Id,
                 IpAddress = redirectLog.IpAddress,
-                Latitude = redirectLog.Latitude,
-                Longitude = redirectLog.Longitude,
                 UserAgent = redirectLog.UserAgent,
                 AccessedAt = redirectLog.AccessedAt,
-                Country = redirectLog.Country,
-                CountryCode = redirectLog.CountryCode,
-                Region = redirectLog.Region,
-                RegionName = redirectLog.RegionName,
-                City = redirectLog.City,
-                Zip = redirectLog.Zip,
-                Timezone = redirectLog.Timezone,
-                Isp = redirectLog.Isp
+                BrowserFamily = redirectLog.BrowserFamily,
+                ClientEngine = redirectLog.ClientEngine,
+                ClientName = redirectLog.ClientName,
+                ClientType = redirectLog.ClientType,
+                DeviceBrand = redirectLog.DeviceBrand,
+                DeviceModel = redirectLog.DeviceModel,
+                DeviceType = redirectLog.DeviceType,
+                OsName = redirectLog.OsName,
+                OsVersion = redirectLog.OsVersion,
+                OsFamily = redirectLog.OsFamily
             };
         }
     }

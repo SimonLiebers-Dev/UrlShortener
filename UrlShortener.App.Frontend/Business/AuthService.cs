@@ -3,7 +3,7 @@ using UrlShortener.App.Shared.DTO;
 
 namespace UrlShortener.App.Frontend.Business
 {
-    public class AuthService(ILocalStorageService LocalStorageService, HttpClient HttpClient) : IAuthService
+    public class AuthService(HttpClient HttpClient) : IAuthService
     {
         public async Task<string?> Login(string email, string password)
         {
@@ -13,23 +13,16 @@ namespace UrlShortener.App.Frontend.Business
                 return null;
 
             var result = await response.Content.ReadFromJsonAsync<LoginResponseDTO>();
-            if (result != null)
-            {
-                await LocalStorageService.SetItemAsync("authToken", result.Token);
-                return result.Token;
-            }
-            return null;
+            return result?.Token;
         }
 
-        public async Task Logout()
-        {
-            await LocalStorageService.RemoveItemAsync("authToken");
-        }
-
-        public async Task<bool> Register(string email, string password)
+        public async Task<RegisterResponseDTO?> Register(string email, string password)
         {
             var response = await HttpClient.PostAsJsonAsync("api/auth/register", new { Email = email, Password = password });
-            return response.IsSuccessStatusCode;
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            return await response.Content.ReadFromJsonAsync<RegisterResponseDTO>();
         }
     }
 }

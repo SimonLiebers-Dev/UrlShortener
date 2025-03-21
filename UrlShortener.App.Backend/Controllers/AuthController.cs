@@ -34,10 +34,10 @@ namespace UrlShortener.App.Backend.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
-                return BadRequest("E-Mail and Passwort are required");
+                return Ok(new RegisterResponseDTO() { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });
 
             if (await DbContext.Users.AnyAsync(u => u.Email == request.Email))
-                return Conflict("A user with this E-Mail already exists");
+                return Ok(new RegisterResponseDTO() { Success = false, ErrorType = RegisterErrorType.EmailAlreadyExists });
 
             string salt = PasswordUtils.GenerateSalt();
             string hashedPassword = PasswordUtils.HashPassword(request.Password, salt);
@@ -52,7 +52,7 @@ namespace UrlShortener.App.Backend.Controllers
             DbContext.Users.Add(newUser);
             await DbContext.SaveChangesAsync();
 
-            return Ok("User successfully registered");
+            return Ok(new RegisterResponseDTO());
         }
     }
 }

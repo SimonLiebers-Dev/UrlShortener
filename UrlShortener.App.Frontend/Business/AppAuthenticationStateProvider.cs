@@ -19,9 +19,7 @@ namespace UrlShortener.App.Frontend.Business
                 HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             }
 
-            var user = new ClaimsPrincipal(identity);
-            var state = new AuthenticationState(user);
-            return state;
+            return new AuthenticationState(new ClaimsPrincipal(identity));
         }
 
         private static IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
@@ -36,21 +34,15 @@ namespace UrlShortener.App.Frontend.Business
             return keyValuePairs.Select(k => new Claim(k.Key, k.Value.ToString() ?? string.Empty));
         }
 
-        public void MarkUserAsAuthenticated(string token)
+        public async Task TriggerLoginAsync(string token)
         {
-            var claimsIdentity = new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt");
-            var user = new ClaimsPrincipal(claimsIdentity);
-            var state = new AuthenticationState(user);
-
+            await LocalStorageService.SetItemAsync("authToken", token);
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
 
-        public void MarkUserAsLoggedOut()
+        public async Task TriggerLogoutAsync()
         {
-            HttpClient.DefaultRequestHeaders.Authorization = null;
-            var anonymous = new ClaimsPrincipal(new ClaimsIdentity());
-            var state = new AuthenticationState(anonymous);
-
+            await LocalStorageService.RemoveItemAsync("authToken");
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
     }
