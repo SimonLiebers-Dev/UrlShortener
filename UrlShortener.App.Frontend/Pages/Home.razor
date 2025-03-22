@@ -143,7 +143,7 @@ else
 
         userStats = await MappingsService.GetStats();
         userMappings = await MappingsService.GetMappings() ?? [];
-        userMappings.OrderByDescending(m => m.CreatedAt);
+        userMappings = userMappings.OrderByDescending(m => m.CreatedAt).ToList();
 
         isLoading = false;
         this.StateHasChanged();
