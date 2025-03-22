@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Pr
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		docker-compose.yml = docker-compose.yml
+		sonar-project.properties = sonar-project.properties
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShortener.App.Frontend", "UrlShortener.App.Frontend\UrlShortener.App.Frontend.csproj", "{3DC1323C-AB57-499C-A6DA-9FAB5F8AA01F}"

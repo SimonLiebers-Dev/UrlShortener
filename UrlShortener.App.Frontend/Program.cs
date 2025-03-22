@@ -8,7 +8,7 @@ using UrlShortener.App.Frontend.Business;
 
 namespace UrlShortener.App.Frontend;
 
-public class Program
+public static class Program
 {
     public static async Task Main(string[] args)
     {
@@ -24,6 +24,7 @@ public class Program
         builder.Services.AddScoped<IAuthService, AuthService>();
         builder.Services.AddScoped<ILocalStorageService, LocalStorageService>();
         builder.Services.AddScoped<IMappingsService, MappingsService>();
+        builder.Services.AddScoped<TimeProvider, BrowserTimeProvider>();
 
         builder.Services.AddScoped<AuthenticationStateProvider, AppAuthenticationStateProvider>();
         builder.Services.AddAuthorizationCore();

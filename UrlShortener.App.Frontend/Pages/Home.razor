@@ -5,11 +5,12 @@
 @using Microsoft.AspNetCore.Authorization
 @using System.Text.RegularExpressions
 @using UrlShortener.App.Frontend.Business
-@using UrlShortener.App.Shared.DTO
+@using UrlShortener.App.Shared.Dto
 
 @inject IMappingsService MappingsService
 @inject INotificationService NotificationService
 @inject NavigationManager NavigationManager
+@inject TimeProvider TimeProvider
 
 <PageTitle>UrlShortener</PageTitle>
 
@@ -73,7 +74,7 @@ else
                 </Validation>
             </Validations>
             <Button Color="Color.Primary"
-            Clicked="CreateMapping">
+                    Clicked="CreateMapping">
                 Generate Short URL
             </Button>
         </CardBody>
@@ -93,15 +94,15 @@ else
                                 <Heading Size="HeadingSize.Is5">@mapping.Name</Heading>
                                 <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
                                     <Strong Style="white-space: nowrap;">Short URL:</Strong>
-                                    <a href="@mapping.ShortUrl" class="truncate">@mapping.ShortUrl</a>
+                                    <Anchor To="@mapping.ShortUrl" Class="truncate" Target="Target.Blank">@mapping.ShortUrl</Anchor>
                                 </Row>
                                 <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
                                     <Strong Style="white-space: nowrap;">Original URL:</Strong>
-                                    <a href="@mapping.LongUrl" class="truncate">@mapping.LongUrl</a>
+                                    <Anchor To="@mapping.ShortUrl" Class="truncate" Target="Target.Blank">@mapping.LongUrl</Anchor>
                                 </Row>
                                 <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
                                     <Strong Style="white-space: nowrap;">Created:</Strong>
-                                    <Text>@mapping.CreatedAt.ToString("dd.MM.yyyy")</Text>
+                                    <Text>@GetMappingCreatedTime(mapping)</Text>
                                 </Row>
                                 <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
                                     <Strong Style="white-space: nowrap;">Clicks:</Strong>
@@ -109,6 +110,9 @@ else
                                 </Row>
                                 <Button Color="Color.Primary" Margin="Margin.Is2.FromTop">
                                     Details <Icon Class="ml-1" Name="IconName.ArrowRight" />
+                                </Button>
+                                <Button Color="Color.Secondary" Margin="Margin.Is2.FromTop" Clicked="() => DeleteMapping(mapping)">
+                                    Delete
                                 </Button>
                             </CardBody>
                         </Card>
@@ -123,8 +127,8 @@ else
     private bool isLoading = true;
     private Validations? validations;
 
-    private UserStatsDTO? userStats;
-    private List<UrlMappingDTO> userMappings = [];
+    private UserStatsDto? userStats;
+    private List<UrlMappingDto> userMappings = [];
 
     private string longUrl = string.Empty;
     private string name = string.Empty;
@@ -164,6 +168,7 @@ else
                 return;
             }
 
+            ClearMappingInput();
             await NotificationService.Success("Successfully created url");
             await ReloadData();
         }
@@ -189,5 +194,26 @@ else
             bool isMatch = urlRegex.IsMatch(value);
             e.Status = isMatch ? ValidationStatus.Success : ValidationStatus.Error;
         }
+    }
+
+    private string GetMappingCreatedTime(UrlMappingDto mapping)
+    {
+        var localDt = TimeProvider.ToLocalDateTime(mapping.CreatedAt);
+        return localDt.ToString("dd.MM.yyyy HH:mm:ss");
+    }
+
+    private void ClearMappingInput()
+    {
+        longUrl = string.Empty;
+        name = string.Empty;
+    }
+
+    private async Task DeleteMapping(UrlMappingDto mapping)
+    {
+        var success = await MappingsService.DeleteMapping(mapping);
+        if (success)
+            await ReloadData();
+        else
+            await NotificationService.Error("Url could not be deleted. Please try again later.");
     }
 }

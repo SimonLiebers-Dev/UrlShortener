@@ -1,16 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UrlShortener.App.Backend.Business;
-using UrlShortener.App.Shared.DTO;
+using UrlShortener.App.Shared.Dto;
 using UrlShortener.App.Shared.Extensions;
 
 namespace UrlShortener.App.Backend.Controllers
 {
-    [Route("api/mappings")]
     [ApiController]
+    [Route("api/mappings")]
+    [Authorize]
     public class MappingsController(IMappingsService MappingsService) : ControllerBase
     {
         [HttpPost("create")]
-        public async Task<IActionResult> CreateMapping([FromBody] CreateMappingRequestDTO createMappingRequest)
+        public async Task<IActionResult> CreateMapping([FromBody] CreateMappingRequestDto createMappingRequest)
         {
             if (string.IsNullOrEmpty(createMappingRequest.LongUrl))
                 return BadRequest("URL cannot be empty");
@@ -20,7 +22,7 @@ namespace UrlShortener.App.Backend.Controllers
             if (urlMapping == null)
                 return BadRequest("URL could not be shortened");
 
-            return Ok(new CreateMappingResponseDTO
+            return Ok(new CreateMappingResponseDto
             {
                 ShortUrl = $"{Request.Scheme}://{Request.Host}/{urlMapping.Path}"
             });
@@ -38,7 +40,22 @@ namespace UrlShortener.App.Backend.Controllers
             if (userMappings == null)
                 return NotFound("No mappings found");
 
-            return Ok(userMappings.Select(m => m.ToDTO(Request)));
+            return Ok(userMappings.Select(m => m.ToDto(Request)));
+        }
+
+        [HttpDelete("{mappingId}")]
+        public async Task<IActionResult> DeleteMapping(int mappingId)
+        {
+            var email = User.Identity?.Name;
+            if (email == null)
+                return NotFound("User not found");
+
+            bool success = await MappingsService.DeleteMapping(email, mappingId);
+
+            if (!success)
+                return BadRequest("Something went wrong");
+
+            return Ok("Successfully deleted");
         }
 
         [HttpGet("stats")]
@@ -51,9 +68,9 @@ namespace UrlShortener.App.Backend.Controllers
             var userMappings = await MappingsService.GetMappingsByUser(email);
 
             if (userMappings == null)
-                return Ok(new UserStatsDTO());
+                return Ok(new UserStatsDto());
 
-            return Ok(new UserStatsDTO()
+            return Ok(new UserStatsDto()
             {
                 Clicks = userMappings.SelectMany(s => s.RedirectLogs).Count(),
                 Mappings = userMappings.Count

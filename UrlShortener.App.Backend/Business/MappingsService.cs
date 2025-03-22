@@ -8,9 +8,7 @@ namespace UrlShortener.App.Backend.Business
         private readonly Random Random = new();
         public async Task<UrlMapping?> GetMappingByPath(string path)
         {
-            var mappings = await DbContext.UrlMappings.ToListAsync();
-            var found = await DbContext.UrlMappings.FirstOrDefaultAsync(u => u.Path.Equals(path));
-            return found;
+            return await DbContext.UrlMappings.FirstOrDefaultAsync(u => u.Path.Equals(path));
         }
 
         public async Task<UrlMapping?> CreateMapping(string longUrl, string? name = null, string? email = null)
@@ -52,8 +50,22 @@ namespace UrlShortener.App.Backend.Business
         {
             return await DbContext.UrlMappings
                 .Where(m => m.User != null && m.User.Equals(email))
-                .Include(m => m.RedirectLogs) 
+                .Include(m => m.RedirectLogs)
                 .ToListAsync();
+        }
+
+        public async Task<bool> DeleteMapping(string email, int mappingId)
+        {
+            var urlMapping = await DbContext.UrlMappings
+                .FirstOrDefaultAsync(m => m.User != null && m.User.Equals(email) && m.Id == mappingId);
+
+            if (urlMapping == null)
+                return false;
+
+            DbContext.UrlMappings.Remove(urlMapping);
+            await DbContext.SaveChangesAsync();
+
+            return true;
         }
     }
 }

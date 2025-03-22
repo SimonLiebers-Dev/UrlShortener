@@ -1,6 +1,6 @@
-﻿namespace UrlShortener.App.Shared.DTO
+﻿namespace UrlShortener.App.Shared.Dto
 {
-    public class UrlMappingDTO
+    public class UrlMappingDto
     {
         public int Id { get; set; }
         public string LongUrl { get; set; } = string.Empty;
@@ -8,6 +8,6 @@
         public string ShortUrl { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public string? User { get; set; }
-        public List<RedirectLogDTO> RedirectLogs { get; set; } = [];
+        public List<RedirectLogDto> RedirectLogs { get; set; } = [];
     }
 }

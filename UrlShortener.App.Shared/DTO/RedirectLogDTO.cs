@@ -1,6 +1,6 @@
-﻿namespace UrlShortener.App.Shared.DTO
+﻿namespace UrlShortener.App.Shared.Dto
 {
-    public class RedirectLogDTO
+    public class RedirectLogDto
     {
         public int Id { get; set; }
         public string? IpAddress { get; set; }

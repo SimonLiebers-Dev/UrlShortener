@@ -1,6 +1,6 @@
-﻿namespace UrlShortener.App.Shared.DTO
+﻿namespace UrlShortener.App.Shared.Dto
 {
-    public class RegisterResponseDTO
+    public class RegisterResponseDto
     {
         public bool Success { get; set; } = true;
         public RegisterErrorType ErrorType { get; set; } = RegisterErrorType.None;

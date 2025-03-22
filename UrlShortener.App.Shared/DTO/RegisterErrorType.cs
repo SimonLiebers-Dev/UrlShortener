@@ -1,4 +1,4 @@
-﻿namespace UrlShortener.App.Shared.DTO
+﻿namespace UrlShortener.App.Shared.Dto
 {
     public enum RegisterErrorType
     {

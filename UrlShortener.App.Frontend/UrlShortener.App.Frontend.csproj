@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\.dockerignore" Link=".dockerignore">
+      <DependentUpon>$(DockerDefaultDockerfile)</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Blazorise.Components" Version="1.7.5" />
     <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.7.5" />
     <PackageReference Include="Blazorise.Tailwind" Version="1.7.5" />

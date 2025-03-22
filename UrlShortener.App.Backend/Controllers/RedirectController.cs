@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
 using UrlShortener.App.Backend.Business;
 
 namespace UrlShortener.App.Backend.Controllers
 {
-    [Route("/")]
     [ApiController]
+    [Route("/")]
+    [AllowAnonymous]
     public class RedirectController(IMappingsService MappingsService, IRedirectLogService RedirectLogService, IUserAgentService UserAgentService) : ControllerBase
     {
         [HttpGet("{path}")]
@@ -26,7 +26,6 @@ namespace UrlShortener.App.Backend.Controllers
             var userAgent = HttpContext.Request.Headers.UserAgent.ToString();
             var userAgentData = await UserAgentService.GetUserAgentAsync(userAgent);
 
-            // TODO: Fetch location
             await RedirectLogService.LogRedirectAsync(urlMapping, userAgentData, ipAddress, userAgent);
 
             return Redirect(urlMapping.LongUrl);

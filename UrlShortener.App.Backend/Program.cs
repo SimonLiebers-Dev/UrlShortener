@@ -6,7 +6,7 @@ using UrlShortener.App.Backend.Business;
 
 namespace UrlShortener.App.Backend
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {

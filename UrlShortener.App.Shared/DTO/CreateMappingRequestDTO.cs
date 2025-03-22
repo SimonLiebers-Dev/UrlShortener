@@ -1,6 +1,6 @@
-﻿namespace UrlShortener.App.Shared.DTO
+﻿namespace UrlShortener.App.Shared.Dto
 {
-    public class CreateMappingRequestDTO
+    public class CreateMappingRequestDto
     {
         public string LongUrl { get; set; } = string.Empty;
         public string? Name { get; set; } = string.Empty;

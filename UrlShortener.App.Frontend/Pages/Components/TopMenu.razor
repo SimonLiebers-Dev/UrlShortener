@@ -31,10 +31,7 @@
 
     private async Task Logout()
     {
-        // Remove token 
         await ((AppAuthenticationStateProvider)AuthenticationStateProvider).TriggerLogoutAsync();
-
-        // Navigate to home
-        NavigationManager.NavigateTo("/", true);
+        NavigationManager.NavigateTo("/login", true);
     }
 }

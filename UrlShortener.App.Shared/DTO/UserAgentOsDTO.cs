@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace UrlShortener.App.Shared.DTO
+namespace UrlShortener.App.Shared.Dto
 {
-    public class UserAgentOsDTO
+    public class UserAgentOsDto
     {
         [JsonPropertyName("name")]
         public string Name { get; set; } = string.Empty;

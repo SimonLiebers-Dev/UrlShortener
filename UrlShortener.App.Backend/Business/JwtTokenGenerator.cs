@@ -9,7 +9,13 @@ namespace UrlShortener.App.Backend.Business
     {
         public string GenerateToken(string email)
         {
-            var key = Encoding.UTF8.GetBytes(Config["JwtSettings:SecretKey"]);
+            var secretKey = Config["JwtSettings:SecretKey"];
+            if (string.IsNullOrEmpty(secretKey))
+            {
+                throw new InvalidOperationException("The JWT secret key is missing in the configuration.");
+            }
+
+            var key = Encoding.UTF8.GetBytes(secretKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(

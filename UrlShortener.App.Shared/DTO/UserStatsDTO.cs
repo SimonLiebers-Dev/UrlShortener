@@ -1,6 +1,6 @@
-﻿namespace UrlShortener.App.Shared.DTO
+﻿namespace UrlShortener.App.Shared.Dto
 {
-    public class UserStatsDTO
+    public class UserStatsDto
     {
         public int Clicks { get; set; } = 0;
         public int Mappings { get; set; } = 0;

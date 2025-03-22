@@ -1,6 +1,6 @@
-﻿namespace UrlShortener.App.Shared.DTO
+﻿namespace UrlShortener.App.Shared.Dto
 {
-    public class LoginResponseDTO
+    public class LoginResponseDto
     {
         public string Token { get; set; } = string.Empty;
     }

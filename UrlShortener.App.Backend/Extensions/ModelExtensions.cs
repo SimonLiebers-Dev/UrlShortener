@@ -1,25 +1,25 @@
 ﻿using UrlShortener.App.Backend.Models;
-using UrlShortener.App.Shared.DTO;
+using UrlShortener.App.Shared.Dto;
 
 namespace UrlShortener.App.Backend.Extensions
 {
     public static class ModelExtensions
     {
-        public static UserAgentInfoDTO ToDTO(this UserAgentApiResponse userAgentResponse)
+        public static UserAgentInfoDto ToDto(this UserAgentApiResponse userAgentResponse)
         {
-            return new UserAgentInfoDTO()
+            return new UserAgentInfoDto()
             {
                 BrowserFamily = userAgentResponse.BrowserFamily,
-                Client = userAgentResponse.Client?.ToDTO(),
-                Device = userAgentResponse.Device?.ToDTO(),
-                Os = userAgentResponse.Os?.ToDTO(),
+                Client = userAgentResponse.Client?.ToDto(),
+                Device = userAgentResponse.Device?.ToDto(),
+                Os = userAgentResponse.Os?.ToDto(),
                 OsFamily = userAgentResponse.OsFamily
             };
         }
 
-        public static UserAgentClientDTO ToDTO(this UserAgentClient userAgentClient)
+        public static UserAgentClientDto ToDto(this UserAgentClient userAgentClient)
         {
-            return new UserAgentClientDTO()
+            return new UserAgentClientDto()
             {
                 Engine = userAgentClient.Engine,
                 EngineVersion = userAgentClient.EngineVersion,
@@ -29,9 +29,9 @@ namespace UrlShortener.App.Backend.Extensions
             };
         }
 
-        public static UserAgentDeviceDTO ToDTO(this UserAgentDevice userAgentDevice)
+        public static UserAgentDeviceDto ToDto(this UserAgentDevice userAgentDevice)
         {
-            return new UserAgentDeviceDTO()
+            return new UserAgentDeviceDto()
             {
                 Brand = userAgentDevice.Brand,
                 Model = userAgentDevice.Model,
@@ -39,9 +39,9 @@ namespace UrlShortener.App.Backend.Extensions
             };
         }
 
-        public static UserAgentOsDTO ToDTO(this UserAgentOs userAgentOs)
+        public static UserAgentOsDto ToDto(this UserAgentOs userAgentOs)
         {
-            return new UserAgentOsDTO()
+            return new UserAgentOsDto()
             {
                 Name = userAgentOs.Name,
                 Platform = userAgentOs.Platform,

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UrlShortener.App.Backend.Business;
 using UrlShortener.App.Backend.Utils;
-using UrlShortener.App.Shared.DTO;
+using UrlShortener.App.Shared.Dto;
 using UrlShortener.App.Shared.Models;
 
 namespace UrlShortener.App.Backend.Controllers
@@ -24,7 +24,7 @@ namespace UrlShortener.App.Backend.Controllers
                 return Unauthorized("Invalid email or password");
 
             var token = JwtTokenGenerator.GenerateToken(user.Email);
-            return Ok(new LoginResponseDTO()
+            return Ok(new LoginResponseDto()
             {
                 Token = token
             });
@@ -34,10 +34,10 @@ namespace UrlShortener.App.Backend.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
-                return Ok(new RegisterResponseDTO() { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });
+                return Ok(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });
 
             if (await DbContext.Users.AnyAsync(u => u.Email == request.Email))
-                return Ok(new RegisterResponseDTO() { Success = false, ErrorType = RegisterErrorType.EmailAlreadyExists });
+                return Ok(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.EmailAlreadyExists });
 
             string salt = PasswordUtils.GenerateSalt();
             string hashedPassword = PasswordUtils.HashPassword(request.Password, salt);
@@ -52,7 +52,7 @@ namespace UrlShortener.App.Backend.Controllers
             DbContext.Users.Add(newUser);
             await DbContext.SaveChangesAsync();
 
-            return Ok(new RegisterResponseDTO());
+            return Ok(new RegisterResponseDto());
         }
     }
 }

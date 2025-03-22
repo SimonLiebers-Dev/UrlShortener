@@ -1,5 +1,5 @@
 ﻿using System.Net.Http.Json;
-using UrlShortener.App.Shared.DTO;
+using UrlShortener.App.Shared.Dto;
 
 namespace UrlShortener.App.Frontend.Business
 {
@@ -12,17 +12,17 @@ namespace UrlShortener.App.Frontend.Business
             if (!response.IsSuccessStatusCode)
                 return null;
 
-            var result = await response.Content.ReadFromJsonAsync<LoginResponseDTO>();
+            var result = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
             return result?.Token;
         }
 
-        public async Task<RegisterResponseDTO?> Register(string email, string password)
+        public async Task<RegisterResponseDto?> Register(string email, string password)
         {
             var response = await HttpClient.PostAsJsonAsync("api/auth/register", new { Email = email, Password = password });
             if (!response.IsSuccessStatusCode)
                 return null;
 
-            return await response.Content.ReadFromJsonAsync<RegisterResponseDTO>();
+            return await response.Content.ReadFromJsonAsync<RegisterResponseDto>();
         }
     }
 }
