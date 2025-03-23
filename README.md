@@ -7,7 +7,7 @@ A URL shortener service with user authentication, URL mapping, and redirect trac
 ## Features
 - User Authentication: Register and log in to the service using JWT tokens.
 - URL Shortening: Create custom short URLs and map them to long URLs.
-- Redirect Tracking: Track user interactions with short URLs including IP, geolocation, and user agent.
+- Redirect Tracking: Track user interactions with short URLs including IP and user agent.
 - SonarQube Integration: Code quality analysis with SonarQube.
 
 ## Technologies
@@ -22,7 +22,6 @@ A URL shortener service with user authentication, URL mapping, and redirect trac
 
 ### Prerequisites
 - Docker
-- .NET SDK
 
 ### Running the Application
 
