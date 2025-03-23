@@ -3,8 +3,13 @@ using UrlShortener.App.Shared.Models;
 
 namespace UrlShortener.App.Backend.Business
 {
+    /// <summary>
+    /// Service for logging redirects.
+    /// </summary>
+    /// <param name="DbContext"></param>
     internal class RedirectLogService(AppDbContext DbContext) : IRedirectLogService
     {
+        /// <inheritdoc />
         public async Task LogRedirectAsync(UrlMapping urlMapping, UserAgentApiResponse? userAgentApiResponse, string? ipAddress, string? userAgent)
         {
             var redirectLog = new RedirectLog

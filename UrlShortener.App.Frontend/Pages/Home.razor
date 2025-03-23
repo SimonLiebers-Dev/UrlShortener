@@ -5,22 +5,19 @@
 @using Microsoft.AspNetCore.Authorization
 @using System.Text.RegularExpressions
 @using UrlShortener.App.Frontend.Business
+@using UrlShortener.App.Frontend.Pages.Components
 @using UrlShortener.App.Shared.Dto
 
 @inject IMappingsService MappingsService
 @inject INotificationService NotificationService
+@inject IMessageService MessageService
 @inject NavigationManager NavigationManager
 @inject TimeProvider TimeProvider
 
 <PageTitle>UrlShortener</PageTitle>
 
-@if (isLoading)
-{
-
-}
-else
-{
-    if (userStats != null)
+<LoadingIndicator @ref="loadingIndicator">
+    @if (userStats != null)
     {
         <Card Class="p-4 mt-4">
             <CardBody>
@@ -108,7 +105,7 @@ else
                                     <Strong Style="white-space: nowrap;">Clicks:</Strong>
                                     <Text>@mapping.RedirectLogs.Count</Text>
                                 </Row>
-                                <Button Color="Color.Primary" Margin="Margin.Is2.FromTop">
+                                <Button Color="Color.Primary" Margin="Margin.Is2.FromTop" Clicked="() => SelectMapping(mapping)">
                                     Details <Icon Class="ml-1" Name="IconName.ArrowRight" />
                                 </Button>
                                 <Button Color="Color.Secondary" Margin="Margin.Is2.FromTop" Clicked="() => DeleteMapping(mapping)">
@@ -121,11 +118,13 @@ else
             </Row>
         </CardBody>
     </Card>
-}
+</LoadingIndicator>
+
+<MappingDetailsModal @bind-UrlMapping="@selectedUrlMapping" />
 
 @code {
-    private bool isLoading = true;
     private Validations? validations;
+    private LoadingIndicator? loadingIndicator;
 
     private UserStatsDto? userStats;
     private List<UrlMappingDto> userMappings = [];
@@ -133,24 +132,26 @@ else
     private string longUrl = string.Empty;
     private string name = string.Empty;
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
+    private UrlMappingDto? selectedUrlMapping;
 
-        await ReloadData();
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await ReloadData();
     }
 
     private async Task ReloadData()
     {
-        isLoading = true;
-        this.StateHasChanged();
+        if (loadingIndicator == null)
+            return;
+
+        await loadingIndicator.Show();
 
         userStats = await MappingsService.GetStats();
         userMappings = await MappingsService.GetMappings() ?? [];
         userMappings = userMappings.OrderByDescending(m => m.CreatedAt).ToList();
 
-        isLoading = false;
-        this.StateHasChanged();
+        await loadingIndicator.Hide();
     }
 
     private async Task CreateMapping()
@@ -210,10 +211,20 @@ else
 
     private async Task DeleteMapping(UrlMappingDto mapping)
     {
+        var confirm = await MessageService.Confirm("Are you sure?", $"Delete url: {mapping.Name}");
+        if (!confirm)
+            return;
+
         var success = await MappingsService.DeleteMapping(mapping);
         if (success)
             await ReloadData();
         else
             await NotificationService.Error("Url could not be deleted. Please try again later.");
+    }
+
+    private void SelectMapping(UrlMappingDto mapping)
+    {
+        selectedUrlMapping = mapping;
+        this.StateHasChanged();
     }
 }

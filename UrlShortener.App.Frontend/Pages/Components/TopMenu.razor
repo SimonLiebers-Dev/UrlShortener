@@ -2,6 +2,7 @@
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IAuthService AuthService
+@inject IMessageService MessageService
 @inject NavigationManager NavigationManager
 
 <Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.White" Shadow="Shadow.Default" ThemeContrast="ThemeContrast.Light">
@@ -31,7 +32,12 @@
 
     private async Task Logout()
     {
+        bool success = await MessageService.Confirm("Are you sure?", "Logout");
+
+        if (!success)
+            return;
+
         await ((AppAuthenticationStateProvider)AuthenticationStateProvider).TriggerLogoutAsync();
-        NavigationManager.NavigateTo("/login", true);
+        NavigationManager.NavigateTo("/login");
     }
 }

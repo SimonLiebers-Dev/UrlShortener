@@ -1,7 +1,12 @@
 ﻿namespace UrlShortener.App.Backend.Business
 {
-    internal interface IJwtTokenGenerator
+    public interface IJwtTokenGenerator
     {
+        /// <summary>
+        /// Generates a JWT token for the given email.
+        /// </summary>
+        /// <param name="email">Email</param>
+        /// <returns>JWT token</returns>
         public string GenerateToken(string email);
     }
 }

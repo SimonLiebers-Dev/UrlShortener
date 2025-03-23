@@ -2,7 +2,7 @@
 
 namespace UrlShortener.App.Backend.Models
 {
-    internal class UserAgentClient
+    public class UserAgentClient
     {
         [JsonPropertyName("engine")]
         public string Engine { get; set; } = string.Empty;

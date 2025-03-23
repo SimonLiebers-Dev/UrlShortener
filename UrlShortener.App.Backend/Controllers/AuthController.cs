@@ -10,8 +10,13 @@ namespace UrlShortener.App.Backend.Controllers
 {
     [Route("api/auth")]
     [ApiController]
-    internal class AuthController(IJwtTokenGenerator JwtTokenGenerator, AppDbContext DbContext) : ControllerBase
+    public class AuthController(IJwtTokenGenerator JwtTokenGenerator, AppDbContext DbContext) : ControllerBase
     {
+        /// <summary>
+        /// Login endpoint to authenticate a user and return a JWT token.
+        /// </summary>
+        /// <param name="request">The login request containing email and password.</param>
+        /// <returns>A JWT token if authentication is successful, otherwise an Unauthorized error.</returns>
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
@@ -30,6 +35,11 @@ namespace UrlShortener.App.Backend.Controllers
             });
         }
 
+        /// <summary>
+        /// Register a new user.
+        /// </summary>
+        /// <param name="request">The registration request containing email and password.</param>
+        /// <returns>Response indicating success or failure of registration.</returns>
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {

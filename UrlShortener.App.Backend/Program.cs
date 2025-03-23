@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 using UrlShortener.App.Backend.Business;
 
@@ -64,9 +65,8 @@ namespace UrlShortener.App.Backend
             // Add controllers
             builder.Services.AddControllers();
 
-            // Add swagger documentation
+            // Add endpoints
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
 
             // Add openapi documentation
             builder.Services.AddOpenApi();
@@ -85,9 +85,6 @@ namespace UrlShortener.App.Backend
             {
                 app.MapOpenApi();
                 app.UseDeveloperExceptionPage();
-
-                app.UseSwagger();
-                app.UseSwaggerUI();
             }
 
             // Allow any origin

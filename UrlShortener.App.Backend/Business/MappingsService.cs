@@ -3,14 +3,21 @@ using UrlShortener.App.Shared.Models;
 
 namespace UrlShortener.App.Backend.Business
 {
+    /// <summary>
+    /// Service for managing URL mappings.
+    /// </summary>
+    /// <param name="DbContext">AppDbContext</param>
     internal class MappingsService(AppDbContext DbContext) : IMappingsService
     {
         private readonly Random Random = new();
+
+        /// <inheritdoc />
         public async Task<UrlMapping?> GetMappingByPath(string path)
         {
             return await DbContext.UrlMappings.FirstOrDefaultAsync(u => u.Path.Equals(path));
         }
 
+        /// <inheritdoc />
         public async Task<UrlMapping?> CreateMapping(string longUrl, string name, string email)
         {
             var path = await GetUniqueRandomStringAsync();
@@ -30,6 +37,7 @@ namespace UrlShortener.App.Backend.Business
             return urlMapping;
         }
 
+        /// <inheritdoc />
         private async Task<string> GetUniqueRandomStringAsync()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -46,6 +54,7 @@ namespace UrlShortener.App.Backend.Business
             return result;
         }
 
+        /// <inheritdoc />
         public async Task<List<UrlMapping>?> GetMappingsByUser(string email)
         {
             return await DbContext.UrlMappings
@@ -54,6 +63,7 @@ namespace UrlShortener.App.Backend.Business
                 .ToListAsync();
         }
 
+        /// <inheritdoc />
         public async Task<bool> DeleteMapping(string email, int mappingId)
         {
             var urlMapping = await DbContext.UrlMappings

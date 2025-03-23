@@ -5,8 +5,13 @@ using System.Text;
 
 namespace UrlShortener.App.Backend.Business
 {
+    /// <summary>
+    /// Jwt token generator
+    /// </summary>
+    /// <param name="Config">Config</param>
     internal class JwtTokenGenerator(IConfiguration Config) : IJwtTokenGenerator
     {
+        /// <inheritdoc />
         public string GenerateToken(string email)
         {
             var secretKey = Config["JwtSettings:SecretKey"];
