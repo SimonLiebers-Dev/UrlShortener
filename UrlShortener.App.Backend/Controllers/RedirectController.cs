@@ -17,11 +17,7 @@ namespace UrlShortener.App.Backend.Controllers
             if (urlMapping == null)
                 return NotFound();
 
-            var ipAddress = HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
-
-            // Fallback to default remote ip
-            if (string.IsNullOrEmpty(ipAddress))
-                ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
+            var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();
 
             var userAgent = HttpContext.Request.Headers.UserAgent.ToString();
             var userAgentData = await UserAgentService.GetUserAgentAsync(userAgent);
