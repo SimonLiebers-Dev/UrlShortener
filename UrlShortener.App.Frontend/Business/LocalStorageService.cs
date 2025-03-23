@@ -2,7 +2,7 @@
 
 namespace UrlShortener.App.Frontend.Business
 {
-    public class LocalStorageService(IJSRuntime JsRuntime) : ILocalStorageService
+    internal class LocalStorageService(IJSRuntime JsRuntime) : ILocalStorageService
     {
         public async Task<string> GetItemAsync(string key)
         {

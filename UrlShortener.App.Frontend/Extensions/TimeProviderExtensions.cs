@@ -1,6 +1,6 @@
 ﻿namespace UrlShortener.App.Frontend.Extensions
 {
-    public static class TimeProviderExtensions
+    internal static class TimeProviderExtensions
     {
         public static DateTime ToLocalDateTime(this TimeProvider timeProvider, DateTime dateTime)
         {

@@ -6,7 +6,7 @@ using UrlShortener.App.Shared.Dto;
 
 namespace UrlShortener.App.Frontend.Business
 {
-    public class MappingsService(HttpClient HttpClient, AuthenticationStateProvider AuthenticationStateProvider, NavigationManager NavigationManager) : IMappingsService
+    internal class MappingsService(HttpClient HttpClient, AuthenticationStateProvider AuthenticationStateProvider, NavigationManager NavigationManager) : IMappingsService
     {
         public async Task<List<UrlMappingDto>?> GetMappings()
         {

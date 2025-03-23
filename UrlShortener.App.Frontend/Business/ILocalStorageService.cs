@@ -1,6 +1,6 @@
 ﻿namespace UrlShortener.App.Frontend.Business
 {
-    public interface ILocalStorageService
+    internal interface ILocalStorageService
     {
         Task SetItemAsync(string key, string value);
 
