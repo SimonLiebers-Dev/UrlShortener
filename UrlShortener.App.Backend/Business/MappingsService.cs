@@ -11,7 +11,7 @@ namespace UrlShortener.App.Backend.Business
             return await DbContext.UrlMappings.FirstOrDefaultAsync(u => u.Path.Equals(path));
         }
 
-        public async Task<UrlMapping?> CreateMapping(string longUrl, string? name = null, string? email = null)
+        public async Task<UrlMapping?> CreateMapping(string longUrl, string name, string email)
         {
             var path = await GetUniqueRandomStringAsync();
 
@@ -24,7 +24,7 @@ namespace UrlShortener.App.Backend.Business
                 Name = name
             };
 
-            DbContext.UrlMappings.Add(urlMapping);
+            await DbContext.UrlMappings.AddAsync(urlMapping);
             await DbContext.SaveChangesAsync();
 
             return urlMapping;

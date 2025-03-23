@@ -32,7 +32,7 @@ jobs:
       run: dotnet build UrlShortener.App.Frontend/UrlShortener.App.Frontend.csproj --configuration Release --no-restore
 
     - name: Test App
-      run: dotnet test UrlShortener.App.Tests/UrlShortener.App.Tests.csproj
+      run: dotnet test UnitTest/UnitTest.csproj
 
     - name: Analyze App with SonarQube
       uses: SonarSource/sonarqube-scan-action@v5.0.0

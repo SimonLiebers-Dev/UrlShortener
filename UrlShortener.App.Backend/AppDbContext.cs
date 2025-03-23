@@ -5,9 +5,9 @@ namespace UrlShortener.App.Backend
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<UrlMapping> UrlMappings { get; set; }
-        public DbSet<RedirectLog> RedirectLogs { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UrlMapping> UrlMappings { get; set; }
+        public virtual DbSet<RedirectLog> RedirectLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
