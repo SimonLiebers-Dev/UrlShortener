@@ -15,7 +15,7 @@ namespace UrlShortener.App.Backend.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
-            var user = DbContext.Users.FirstOrDefault(u => u.Email == request.Email);
+            var user = DbContext.Users.SingleOrDefault(u => u.Email == request.Email);
             if (user == null)
                 return Unauthorized("Invalid email or password");
 

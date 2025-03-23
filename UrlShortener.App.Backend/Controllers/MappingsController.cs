@@ -11,13 +11,22 @@ namespace UrlShortener.App.Backend.Controllers
     [Authorize]
     internal class MappingsController(IMappingsService MappingsService) : ControllerBase
     {
+        private const string UserNotFoundMessage = "User not found";
+
         [HttpPost("create")]
         public async Task<IActionResult> CreateMapping([FromBody] CreateMappingRequestDto createMappingRequest)
         {
+            var email = User.Identity?.Name;
+            if (email == null)
+                return NotFound(UserNotFoundMessage);
+
             if (string.IsNullOrEmpty(createMappingRequest.LongUrl))
                 return BadRequest("URL cannot be empty");
 
-            var urlMapping = await MappingsService.CreateMapping(createMappingRequest.LongUrl, createMappingRequest.Name, User.Identity?.Name);
+            if (string.IsNullOrEmpty(createMappingRequest.Name))
+                return BadRequest("Name cannot be empty");
+
+            var urlMapping = await MappingsService.CreateMapping(createMappingRequest.LongUrl, createMappingRequest.Name, email);
 
             if (urlMapping == null)
                 return BadRequest("URL could not be shortened");
@@ -33,7 +42,7 @@ namespace UrlShortener.App.Backend.Controllers
         {
             var email = User.Identity?.Name;
             if (email == null)
-                return NotFound("User not found");
+                return NotFound(UserNotFoundMessage);
 
             var userMappings = await MappingsService.GetMappingsByUser(email);
 
@@ -48,7 +57,7 @@ namespace UrlShortener.App.Backend.Controllers
         {
             var email = User.Identity?.Name;
             if (email == null)
-                return NotFound("User not found");
+                return NotFound(UserNotFoundMessage);
 
             bool success = await MappingsService.DeleteMapping(email, mappingId);
 
@@ -63,7 +72,7 @@ namespace UrlShortener.App.Backend.Controllers
         {
             var email = User.Identity?.Name;
             if (email == null)
-                return NotFound("User not found");
+                return NotFound(UserNotFoundMessage);
 
             var userMappings = await MappingsService.GetMappingsByUser(email);
 
