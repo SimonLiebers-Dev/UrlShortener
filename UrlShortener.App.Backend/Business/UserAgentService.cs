@@ -2,7 +2,7 @@
 
 namespace UrlShortener.App.Backend.Business
 {
-    public class UserAgentService(HttpClient httpClient) : IUserAgentService
+    internal class UserAgentService(HttpClient httpClient) : IUserAgentService
     {
         public async Task<UserAgentApiResponse?> GetUserAgentAsync(string userAgent)
         {

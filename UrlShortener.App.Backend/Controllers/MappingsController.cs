@@ -9,7 +9,7 @@ namespace UrlShortener.App.Backend.Controllers
     [ApiController]
     [Route("api/mappings")]
     [Authorize]
-    public class MappingsController(IMappingsService MappingsService) : ControllerBase
+    internal class MappingsController(IMappingsService MappingsService) : ControllerBase
     {
         [HttpPost("create")]
         public async Task<IActionResult> CreateMapping([FromBody] CreateMappingRequestDto createMappingRequest)

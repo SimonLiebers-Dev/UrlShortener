@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UrlShortener.App.Backend.Business
 {
-    public class JwtTokenGenerator(IConfiguration Config) : IJwtTokenGenerator
+    internal class JwtTokenGenerator(IConfiguration Config) : IJwtTokenGenerator
     {
         public string GenerateToken(string email)
         {

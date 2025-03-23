@@ -3,7 +3,7 @@ using UrlShortener.App.Shared.Dto;
 
 namespace UrlShortener.App.Frontend.Business
 {
-    public class AuthService(HttpClient HttpClient) : IAuthService
+    internal class AuthService(HttpClient HttpClient) : IAuthService
     {
         public async Task<string?> Login(string email, string password)
         {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.WebUtilities;
 
 namespace UrlShortener.App.Frontend.Business
 {
-    public class AppAuthenticationStateProvider(ILocalStorageService LocalStorageService, HttpClient HttpClient) : AuthenticationStateProvider
+    internal class AppAuthenticationStateProvider(ILocalStorageService LocalStorageService, HttpClient HttpClient) : AuthenticationStateProvider
     {
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {

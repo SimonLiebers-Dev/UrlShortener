@@ -1,6 +1,6 @@
 ﻿namespace UrlShortener.App.Backend.Business
 {
-    public interface IJwtTokenGenerator
+    internal interface IJwtTokenGenerator
     {
         public string GenerateToken(string email);
     }

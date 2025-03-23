@@ -12,11 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Pr
 		.gitignore = .gitignore
 		docker-compose.yml = docker-compose.yml
 		sonar-project.properties = sonar-project.properties
+		.github\workflows\workflow.yml = .github\workflows\workflow.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShortener.App.Frontend", "UrlShortener.App.Frontend\UrlShortener.App.Frontend.csproj", "{3DC1323C-AB57-499C-A6DA-9FAB5F8AA01F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShortener.App.Backend.Tests", "UrlShortener.App.Backend.Tests\UrlShortener.App.Backend.Tests.csproj", "{F2C462FD-D198-4368-9B94-0C66DE98832F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShortener.App.Tests", "UrlShortener.App.Tests\UrlShortener.App.Tests.csproj", "{0C18A3B2-B85F-4102-21E8-BB22019E413B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,10 +37,10 @@ Global
 		{3DC1323C-AB57-499C-A6DA-9FAB5F8AA01F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DC1323C-AB57-499C-A6DA-9FAB5F8AA01F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DC1323C-AB57-499C-A6DA-9FAB5F8AA01F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2C462FD-D198-4368-9B94-0C66DE98832F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2C462FD-D198-4368-9B94-0C66DE98832F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2C462FD-D198-4368-9B94-0C66DE98832F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2C462FD-D198-4368-9B94-0C66DE98832F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C18A3B2-B85F-4102-21E8-BB22019E413B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C18A3B2-B85F-4102-21E8-BB22019E413B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C18A3B2-B85F-4102-21E8-BB22019E413B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C18A3B2-B85F-4102-21E8-BB22019E413B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace UrlShortener.App.Backend.Utils
 {
-    public static class PasswordUtils
+    internal static class PasswordUtils
     {
         public static string GenerateSalt()
         {

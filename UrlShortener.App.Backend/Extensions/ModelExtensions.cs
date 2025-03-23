@@ -3,7 +3,7 @@ using UrlShortener.App.Shared.Dto;
 
 namespace UrlShortener.App.Backend.Extensions
 {
-    public static class ModelExtensions
+    internal static class ModelExtensions
     {
         public static UserAgentInfoDto ToDto(this UserAgentApiResponse userAgentResponse)
         {

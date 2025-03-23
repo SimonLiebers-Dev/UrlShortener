@@ -10,7 +10,7 @@ namespace UrlShortener.App.Backend.Controllers
 {
     [Route("api/auth")]
     [ApiController]
-    public class AuthController(IJwtTokenGenerator JwtTokenGenerator, AppDbContext DbContext) : ControllerBase
+    internal class AuthController(IJwtTokenGenerator JwtTokenGenerator, AppDbContext DbContext) : ControllerBase
     {
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)

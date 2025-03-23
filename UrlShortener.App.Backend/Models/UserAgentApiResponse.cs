@@ -2,7 +2,7 @@
 
 namespace UrlShortener.App.Backend.Models
 {
-    public class UserAgentApiResponse
+    internal class UserAgentApiResponse
     {
         [JsonPropertyName("browser_family")]
         public string BrowserFamily { get; set; } = string.Empty;

@@ -2,7 +2,7 @@
 
 namespace UrlShortener.App.Backend.Business
 {
-    public interface IMappingsService
+    internal interface IMappingsService
     {
         Task<UrlMapping?> CreateMapping(string longUrl, string? name = null, string? email = null);
         Task<UrlMapping?> GetMappingByPath(string path);

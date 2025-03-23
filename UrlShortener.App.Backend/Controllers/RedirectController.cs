@@ -7,7 +7,7 @@ namespace UrlShortener.App.Backend.Controllers
     [ApiController]
     [Route("/")]
     [AllowAnonymous]
-    public class RedirectController(IMappingsService MappingsService, IRedirectLogService RedirectLogService, IUserAgentService UserAgentService) : ControllerBase
+    internal class RedirectController(IMappingsService MappingsService, IRedirectLogService RedirectLogService, IUserAgentService UserAgentService) : ControllerBase
     {
         [HttpGet("{path}")]
         public async Task<IActionResult> RedirectToLongUrl(string path)

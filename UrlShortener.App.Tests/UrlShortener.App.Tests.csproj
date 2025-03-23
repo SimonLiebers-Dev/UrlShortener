@@ -17,6 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UrlShortener.App.Backend\UrlShortener.App.Backend.csproj" />
+    <ProjectReference Include="..\UrlShortener.App.Frontend\UrlShortener.App.Frontend.csproj" />
+    <ProjectReference Include="..\UrlShortener.App.Shared\UrlShortener.App.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 

@@ -3,7 +3,7 @@ using UrlShortener.App.Shared.Models;
 
 namespace UrlShortener.App.Backend.Business
 {
-    public class MappingsService(AppDbContext DbContext) : IMappingsService
+    internal class MappingsService(AppDbContext DbContext) : IMappingsService
     {
         private readonly Random Random = new();
         public async Task<UrlMapping?> GetMappingByPath(string path)
