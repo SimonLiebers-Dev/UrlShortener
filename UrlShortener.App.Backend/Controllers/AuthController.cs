@@ -44,10 +44,10 @@ namespace UrlShortener.App.Backend.Controllers
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
-                return Ok(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });
+                return BadRequest(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });
 
             if (await DbContext.Users.AnyAsync(u => u.Email == request.Email))
-                return Ok(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.EmailAlreadyExists });
+                return Conflict(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.EmailAlreadyExists });
 
             string salt = PasswordUtils.GenerateSalt();
             string hashedPassword = PasswordUtils.HashPassword(request.Password, salt);

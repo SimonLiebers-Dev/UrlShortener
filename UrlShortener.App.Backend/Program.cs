@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -7,7 +8,7 @@ using UrlShortener.App.Backend.Business;
 
 namespace UrlShortener.App.Backend
 {
-    public static class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
@@ -77,7 +78,10 @@ namespace UrlShortener.App.Backend
             using (var serviceScope = serviceScopyFactory?.CreateScope())
             {
                 var context = serviceScope?.ServiceProvider.GetRequiredService<AppDbContext>();
-                context?.Database.Migrate();
+                var databaseProvider = context?.Database.ProviderName;
+
+                if (databaseProvider != "Microsoft.EntityFrameworkCore.InMemory")
+                    context?.Database.Migrate();
             }
 
             // Configure the HTTP request pipeline.
