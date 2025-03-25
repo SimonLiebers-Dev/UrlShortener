@@ -10,7 +10,7 @@ using UrlShortener.App.Shared.Dto;
 using UrlShortener.App.Shared.Models;
 using Microsoft.AspNetCore.Http;
 
-namespace UnitTest.Backend.Controller
+namespace UrlShortener.Test.Backend.Unit.Controller
 {
     [TestFixture]
     public class AuthControllerTests

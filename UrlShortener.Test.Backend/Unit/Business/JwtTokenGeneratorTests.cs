@@ -5,7 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using UrlShortener.App.Backend.Business;
 
-namespace UnitTest.Backend.Business
+namespace UrlShortener.Test.Backend.Unit.Business
 {
     [TestFixture]
     public class JwtTokenGeneratorTests

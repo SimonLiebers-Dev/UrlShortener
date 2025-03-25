@@ -7,7 +7,7 @@ using UrlShortener.App.Backend.Controllers;
 using UrlShortener.App.Backend.Models;
 using UrlShortener.App.Shared.Models;
 
-namespace UnitTest.Backend.Controller
+namespace UrlShortener.Test.Backend.Unit.Controller
 {
     [TestFixture]
     public class RedirectControllerTests

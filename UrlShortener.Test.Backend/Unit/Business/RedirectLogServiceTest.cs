@@ -4,7 +4,7 @@ using UrlShortener.App.Backend.Models;
 using UrlShortener.App.Backend;
 using UrlShortener.App.Shared.Models;
 
-namespace UnitTest.Backend.Business
+namespace UrlShortener.Test.Backend.Unit.Business
 {
     [TestFixture]
     public class RedirectLogServiceTests

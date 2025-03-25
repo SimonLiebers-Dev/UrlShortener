@@ -2,7 +2,7 @@
 using UrlShortener.App.Backend.Business;
 using UrlShortener.App.Backend;
 
-namespace UnitTest.Backend.Business
+namespace UrlShortener.Test.Backend.Unit.Business
 {
     [TestFixture]
     public class MappingsServiceTests

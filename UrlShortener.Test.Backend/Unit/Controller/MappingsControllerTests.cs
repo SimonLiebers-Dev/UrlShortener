@@ -9,7 +9,7 @@ using UrlShortener.App.Backend.Controllers;
 using UrlShortener.App.Shared.Dto;
 using UrlShortener.App.Shared.Models;
 
-namespace UnitTest.Backend.Controller
+namespace UrlShortener.Test.Backend.Unit.Controller
 {
     [TestFixture]
     public class MappingsControllerTests
