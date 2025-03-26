@@ -8,7 +8,7 @@ using UrlShortener.App.Frontend.Business;
 
 namespace UrlShortener.App.Frontend;
 
-public static class Program
+public class Program
 {
     public static async Task Main(string[] args)
     {

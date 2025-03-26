@@ -13,64 +13,65 @@ using UrlShortener.App.Shared.Models;
 namespace UrlShortener.Test.Backend.Integration.Controllers
 {
     [TestFixture]
-    public class RedirectControllerTests : WebApplicationFactory<Program>
+    public class RedirectControllerTests
     {
         private HttpClient _httpClient;
         private Mock<IUserAgentService> _userAgentService;
-
-        protected override void ConfigureWebHost(IWebHostBuilder builder)
-        {
-            builder.UseEnvironment("Testing");
-
-            builder.ConfigureServices(services =>
-            {
-                services.AddEntityFrameworkInMemoryDatabase();
-
-                var provider = services
-                    .AddEntityFrameworkInMemoryDatabase()
-                    .BuildServiceProvider();
-
-                services.AddDbContext<AppDbContext>(options =>
-                {
-                    options.UseInMemoryDatabase("InMemoryDbForTesting");
-                    options.UseInternalServiceProvider(provider);
-                });
-
-                services.RemoveAll<IUserAgentService>();
-
-                _userAgentService = new Mock<IUserAgentService>();
-                services.AddScoped(_ => _userAgentService.Object);
-
-                var sp = services.BuildServiceProvider();
-
-                using var scope = sp.CreateScope();
-
-                var scopedServices = scope.ServiceProvider;
-                var db = scopedServices.GetRequiredService<AppDbContext>();
-
-                db.Database.EnsureCreated();
-
-                var testMapping = new UrlMapping()
-                {
-                    LongUrl = "https://test.com/",
-                    Name = "Test",
-                    Path = "ValidPath",
-                    CreatedAt = DateTime.UtcNow,
-                    User = "test@gmail.com",
-                    RedirectLogs = []
-                };
-                db.UrlMappings.Add(testMapping);
-
-                db.SaveChanges();
-            });
-        }
+        private WebApplicationFactory<Program> _webApplicationFactory;
 
         [SetUp]
         public void Setup()
         {
             _userAgentService = new Mock<IUserAgentService>();
-            
-            _httpClient = CreateClient(new WebApplicationFactoryClientOptions
+            _userAgentService.Setup(s => s.GetUserAgentAsync(It.IsAny<string>())).ReturnsAsync(new UserAgentApiResponse());
+
+            _webApplicationFactory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+            {
+                builder.UseEnvironment("Testing");
+
+                builder.ConfigureServices(services =>
+                {
+                    services.AddEntityFrameworkInMemoryDatabase();
+
+                    var provider = services
+                        .AddEntityFrameworkInMemoryDatabase()
+                        .BuildServiceProvider();
+
+                    services.AddDbContext<AppDbContext>(options =>
+                    {
+                        options.UseInMemoryDatabase("InMemoryDbForTesting");
+                        options.UseInternalServiceProvider(provider);
+                    });
+
+                    // Remove UserAgentService and add mocked one to prevent real api from beeing called
+                    services.RemoveAll<IUserAgentService>();
+                    services.AddScoped(_ => _userAgentService.Object);
+
+                    var sp = services.BuildServiceProvider();
+
+                    using var scope = sp.CreateScope();
+
+                    var scopedServices = scope.ServiceProvider;
+                    var db = scopedServices.GetRequiredService<AppDbContext>();
+
+                    db.Database.EnsureCreated();
+
+                    var testMapping = new UrlMapping()
+                    {
+                        LongUrl = "https://test.com/",
+                        Name = "Test",
+                        Path = "ValidPath",
+                        CreatedAt = DateTime.UtcNow,
+                        User = "test@gmail.com",
+                        RedirectLogs = []
+                    };
+                    db.UrlMappings.Add(testMapping);
+
+                    db.SaveChanges();
+                });
+            });            
+
+            _httpClient = _webApplicationFactory.CreateClient(new WebApplicationFactoryClientOptions
             {
                 AllowAutoRedirect = false
             });
@@ -89,15 +90,19 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
         [Test]
         public async Task RedirectToLongUrl_ValidPath_ReturnsRedirect()
         {
-            // Arrange 
-            _userAgentService.Setup(s => s.GetUserAgentAsync(It.IsAny<string>())).ReturnsAsync(new UserAgentApiResponse());
-
             // Act
             var response = await _httpClient.GetAsync("ValidPath");
 
             // Assert
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Redirect));
             _userAgentService.Verify(s => s.GetUserAgentAsync(It.IsAny<string>()), Times.Once);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _webApplicationFactory.Dispose();
+            _httpClient.Dispose();
         }
     }
 }

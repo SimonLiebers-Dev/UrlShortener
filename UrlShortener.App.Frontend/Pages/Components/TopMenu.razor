@@ -5,7 +5,8 @@
 @inject IMessageService MessageService
 @inject NavigationManager NavigationManager
 
-<Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.White" Shadow="Shadow.Default" ThemeContrast="ThemeContrast.Light">
+<Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.White"
+    Shadow="Shadow.Default" ThemeContrast="ThemeContrast.Light">
     <BarBrand>
         <BarItem>
             <BarLink To="">
@@ -16,7 +17,9 @@
     <BarMenu>
         <BarEnd>
             <BarItem>
-                <Button Color="Color.Link" Target="Target.Blank" To="https://github.com/SimonLiebers-Dev/UrlShortener">GitHub</Button>
+                <Button Color="Color.Link" Target="Target.Blank" To="https://github.com/SimonLiebers-Dev/UrlShortener">
+                    GitHub
+                </Button>
             </BarItem>
             <BarItem>
                 <Button Color="Color.Primary" Outline Clicked="Logout">

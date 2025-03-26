@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.IO;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -15,60 +16,65 @@ using UrlShortener.App.Shared.Models;
 namespace UrlShortener.Test.Backend.Integration.Controllers
 {
     [TestFixture]
-    public class MappingsControllerTests : WebApplicationFactory<Program>
+    public class MappingsControllerTests
     {
         private HttpClient _httpClient;
-        protected override void ConfigureWebHost(IWebHostBuilder builder)
-        {
-            builder.UseEnvironment("Testing");
-
-            builder.ConfigureServices(services =>
-            {
-                services.AddEntityFrameworkInMemoryDatabase();
-
-                var provider = services
-                    .AddEntityFrameworkInMemoryDatabase()
-                    .BuildServiceProvider();
-
-                services.AddDbContext<AppDbContext>(options =>
-                {
-                    options.UseInMemoryDatabase("InMemoryDbForTesting");
-                    options.UseInternalServiceProvider(provider);
-                });
-
-                var sp = services.BuildServiceProvider();
-
-                using var scope = sp.CreateScope();
-
-                var scopedServices = scope.ServiceProvider;
-                var db = scopedServices.GetRequiredService<AppDbContext>();
-
-                db.Database.EnsureCreated();
-
-                var passwordSalt = PasswordUtils.GenerateSalt();
-                var testUser1 = new User()
-                {
-                    Email = "test@test.com",
-                    PasswordHash = PasswordUtils.HashPassword("TestPassword", passwordSalt),
-                    Salt = passwordSalt
-                };
-                var testUser2 = new User()
-                {
-                    Email = "empty@test.com",
-                    PasswordHash = PasswordUtils.HashPassword("TestPassword", passwordSalt),
-                    Salt = passwordSalt
-                };
-                db.Users.Add(testUser1);
-                db.Users.Add(testUser2);
-
-                db.SaveChanges();
-            });
-        }
+        private WebApplicationFactory<Program> _webApplicationFactory;
 
         [SetUp]
         public void Setup()
         {
-            _httpClient = CreateClient();
+            _webApplicationFactory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+            {
+                builder.UseEnvironment("Testing");
+
+                builder.ConfigureServices(services =>
+                {
+                    services.AddEntityFrameworkInMemoryDatabase();
+
+                    var provider = services
+                        .AddEntityFrameworkInMemoryDatabase()
+                        .BuildServiceProvider();
+
+                    services.AddDbContext<AppDbContext>(options =>
+                    {
+                        options.UseInMemoryDatabase("InMemoryDbForTesting");
+                        options.UseInternalServiceProvider(provider);
+                    });
+
+                    var sp = services.BuildServiceProvider();
+
+                    using var scope = sp.CreateScope();
+
+                    var scopedServices = scope.ServiceProvider;
+                    var db = scopedServices.GetRequiredService<AppDbContext>();
+
+                    db.Database.EnsureCreated();
+
+                    var passwordSalt = PasswordUtils.GenerateSalt();
+                    var testUser = new User()
+                    {
+                        Email = "test@test.com",
+                        PasswordHash = PasswordUtils.HashPassword("TestPassword", passwordSalt),
+                        Salt = passwordSalt
+                    };
+                    db.Users.Add(testUser);
+
+                    var urlMapping = new UrlMapping
+                    {
+                        LongUrl = "LongUrl",
+                        Path = "Path",
+                        CreatedAt = DateTime.UtcNow,
+                        User = "test@test.com",
+                        Name = "TestMapping"
+                    };
+                    db.UrlMappings.Add(urlMapping);
+
+                    db.SaveChanges();
+                });
+            });
+
+            _httpClient = _webApplicationFactory.CreateClient();
         }
 
         [Test]
@@ -250,6 +256,13 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
             // Act
             var response = await _httpClient.PostAsJsonAsync("api/mappings/create", createMappingRequest);
             await response.Content.ReadFromJsonAsync<CreateMappingResponseDto>();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _webApplicationFactory.Dispose();
+            _httpClient.Dispose();
         }
 
         private async Task<LoginResponseDto?> LoginAsync(string email = "test@test.com", string password = "TestPassword")

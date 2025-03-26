@@ -14,53 +14,54 @@ using System.Net;
 namespace UrlShortener.Test.Backend.Integration.Controllers
 {
     [TestFixture]
-    public class AuthControllerTests : WebApplicationFactory<Program>
+    public class AuthControllerTests
     {
         private HttpClient _httpClient;
-        protected override void ConfigureWebHost(IWebHostBuilder builder)
-        {
-            builder.UseEnvironment("Testing");
-
-            builder.ConfigureServices(services =>
-            {
-                services.AddEntityFrameworkInMemoryDatabase();
-
-                var provider = services
-                    .AddEntityFrameworkInMemoryDatabase()
-                    .BuildServiceProvider();
-
-                services.AddDbContext<AppDbContext>(options =>
-                {
-                    options.UseInMemoryDatabase("InMemoryDbForTesting");
-                    options.UseInternalServiceProvider(provider);
-                });
-
-                var sp = services.BuildServiceProvider();
-
-                using var scope = sp.CreateScope();
-
-                var scopedServices = scope.ServiceProvider;
-                var db = scopedServices.GetRequiredService<AppDbContext>();
-
-                db.Database.EnsureCreated();
-
-                var passwordSalt = PasswordUtils.GenerateSalt();
-                var testUser = new User()
-                {
-                    Email = "test@gmail.com",
-                    PasswordHash = PasswordUtils.HashPassword("TestPassword", passwordSalt),
-                    Salt = passwordSalt
-                };
-
-                db.Users.Add(testUser);
-                db.SaveChanges();
-            });
-        }
+        private WebApplicationFactory<Program> _webApplicationFactory;
 
         [SetUp]
         public void Setup()
         {
-            _httpClient = CreateClient();
+            _webApplicationFactory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+            {
+                builder.UseEnvironment("Testing");
+
+                builder.ConfigureServices(services =>
+                {
+                    services.AddEntityFrameworkInMemoryDatabase();
+
+                    var provider = services
+                        .AddEntityFrameworkInMemoryDatabase()
+                        .BuildServiceProvider();
+
+                    services.AddDbContext<AppDbContext>(options =>
+                    {
+                        options.UseInMemoryDatabase("InMemoryDbForTesting");
+                        options.UseInternalServiceProvider(provider);
+                    });
+
+                    var sp = services.BuildServiceProvider();
+
+                    using var scope = sp.CreateScope();
+
+                    var scopedServices = scope.ServiceProvider;
+                    var db = scopedServices.GetRequiredService<AppDbContext>();
+
+                    db.Database.EnsureCreated();
+
+                    var passwordSalt = PasswordUtils.GenerateSalt();
+                    var testUser = new User()
+                    {
+                        Email = "test@gmail.com",
+                        PasswordHash = PasswordUtils.HashPassword("TestPassword", passwordSalt),
+                        Salt = passwordSalt
+                    };
+
+                    db.Users.Add(testUser);
+                    db.SaveChanges();
+                });
+            });
+            _httpClient = _webApplicationFactory.CreateClient();
         }
 
         [Test]
@@ -160,6 +161,13 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Success, Is.False);
             Assert.That(result.ErrorType, Is.EqualTo(RegisterErrorType.EmailAlreadyExists));
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _webApplicationFactory.Dispose();
+            _httpClient.Dispose();
         }
     }
 }

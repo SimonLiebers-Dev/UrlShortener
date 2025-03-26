@@ -4,13 +4,8 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="..\.dockerignore" Link=".dockerignore">
-			<DependentUpon>$(DockerDefaultDockerfile)</DependentUpon>
-		</None>
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Blazorise.Components" Version="1.7.5" />
@@ -29,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="UrlShortener.Test.Frontend;DynamicProxyGenAssembly2" />
+		<InternalsVisibleTo Include="UrlShortener.Test.Frontend;UrlShortener.Test.End2End;DynamicProxyGenAssembly2" />
 	</ItemGroup>
 
 </Project>
