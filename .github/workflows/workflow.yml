@@ -29,7 +29,7 @@ jobs:
       run: dotnet build UrlShortener.App.Backend/UrlShortener.App.Backend.csproj --configuration Release --no-restore
           
     - name: Build Frontend
-      run: dotnet build UrlShortener.App.Blazor/UrlShortener.App.Blazor/UrlShortener.App.Frontend.csproj --configuration Release --no-restore
+      run: dotnet build UrlShortener.App.Blazor/UrlShortener.App.Blazor/UrlShortener.App.Blazor.csproj --configuration Release --no-restore
 
     - name: Test Backend
       run: dotnet test UrlShortener.Test.Backend/UrlShortener.Test.Backend.csproj
