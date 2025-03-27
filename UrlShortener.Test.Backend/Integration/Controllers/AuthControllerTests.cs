@@ -68,7 +68,7 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
         public async Task Login_ValidCredentials_ReturnsOkWithToken()
         {
             // Arrange
-            var loginRequest = new LoginRequest
+            var loginRequest = new LoginRequestDto
             {
                 Email = "test@gmail.com",
                 Password = "TestPassword"
@@ -87,7 +87,7 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
         public async Task Login_InvalidEmail_ReturnsUnauthorized()
         {
             // Arrange
-            var loginRequest = new LoginRequest
+            var loginRequest = new LoginRequestDto
             {
                 Email = "nonexistentuser@example.com",
                 Password = "WrongPassword"

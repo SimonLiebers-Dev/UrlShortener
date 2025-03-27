@@ -10,13 +10,18 @@ namespace UrlShortener.App.Backend
     {
         public static void Main(string[] args)
         {
+            var app = CreateWebApplication(args);
+            app.Run();
+        }
+
+        private static WebApplication CreateWebApplication(string[] args)
+        {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add Db connection
             string connectionString = builder.Configuration.GetConnectionString("MsSql")!;
             builder.Services.AddDbContext<AppDbContext>(options =>
-                    options.UseSqlServer(connectionString)
-                    );
+                    options.UseSqlServer(connectionString));
 
             // Add jwt token generator
             builder.Services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
@@ -101,7 +106,7 @@ namespace UrlShortener.App.Backend
             // Map controllers
             app.MapControllers();
 
-            app.Run();
+            return app;
         }
     }
 }

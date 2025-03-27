@@ -18,7 +18,7 @@ namespace UrlShortener.App.Backend.Controllers
         /// <param name="request">The login request containing email and password.</param>
         /// <returns>A JWT token if authentication is successful, otherwise an Unauthorized error.</returns>
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequest request)
+        public IActionResult Login([FromBody] LoginRequestDto request)
         {
             var user = DbContext.Users.SingleOrDefault(u => u.Email == request.Email);
             if (user == null)

@@ -27,7 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="UrlShortener.Test.Backend;UrlShortener.Test.End2End;DynamicProxyGenAssembly2" />
+		<InternalsVisibleTo Include="UrlShortener.Test.Backend;UrlShortener.Test.E2E;DynamicProxyGenAssembly2" />
 	</ItemGroup>
 
 </Project>

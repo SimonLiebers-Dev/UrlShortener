@@ -267,7 +267,7 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
 
         private async Task<LoginResponseDto?> LoginAsync(string email = "test@test.com", string password = "TestPassword")
         {
-            var loginRequest = new LoginRequest
+            var loginRequest = new LoginRequestDto
             {
                 Email = email,
                 Password = password

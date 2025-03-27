@@ -21,7 +21,7 @@
                             <Field>
                                 <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Email address</FieldLabel>
                                 <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                    <TextEdit @bind-Text="LoginEmail" Placeholder="Enter email">
+                                    <TextEdit @bind-Text="LoginEmail" Placeholder="Enter email" id="login-email-input">
                                         <Feedback>
                                             <ValidationError>Enter a valid email</ValidationError>
                                         </Feedback>
@@ -33,7 +33,7 @@
                             <Field>
                                 <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Password</FieldLabel>
                                 <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                    <TextEdit Role="TextRole.Password" Placeholder="Password" @bind-Text="@LoginPassword">
+                                    <TextEdit Role="TextRole.Password" Placeholder="Password" @bind-Text="@LoginPassword" id="login-password-input">
                                         <Feedback>
                                             <ValidationError>Enter a password</ValidationError>
                                         </Feedback>
@@ -46,12 +46,14 @@
                         <Button Style="flex: 1 0 0; justify-content: center;"
                                 Color="Color.Primary"
                                 Clicked="LoginUser"
-                                Loading="@LoginLoading">
+                                Loading="@LoginLoading"
+                                id="login-btn">
                             Login
                         </Button>
                         <Button Style="flex: 1 0 0; justify-content: center;"
                                 Color="Color.Secondary"
-                                Clicked="ToRegister">
+                                Clicked="ToRegister"
+                                id="register-btn">
                             Register
                         </Button>
                     </div>
