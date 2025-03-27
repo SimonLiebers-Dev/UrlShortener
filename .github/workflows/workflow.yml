@@ -22,7 +22,7 @@ jobs:
       with:
         dotnet-version: 9.0.x
         
-    - name: Restore Backend dependencies
+    - name: Restore dependencies
       run: dotnet restore UrlShortener.App.Backend/UrlShortener.App.Backend.csproj
       
     - name: Build Backend
@@ -31,7 +31,6 @@ jobs:
   build-frontend:
     name: Build Frontend
     runs-on: ubuntu-latest
-    needs: build-backend
 
     steps:
     - name: Checkout
@@ -44,7 +43,7 @@ jobs:
       with:
         dotnet-version: 9.0.x
         
-    - name: Restore Frontend dependencies
+    - name: Restore dependencies
       run: dotnet restore UrlShortener.App.Blazor/UrlShortener.App.Blazor/UrlShortener.App.Blazor.csproj
 
     - name: Build Frontend
