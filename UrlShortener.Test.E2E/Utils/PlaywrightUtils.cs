@@ -7,9 +7,6 @@ namespace UrlShortener.Test.E2E.Utils
     {
         public static async Task<IPlaywrightTest> GetPlaywrightTestAsync(bool headless = true)
         {
-            if (IsRunningInCI())
-                headless = false;
-
             var builder = PlaywrightTestBuilder.Create()
                 // Tells that we run a local host.
                 .WithLocalHost(localHostBuilder =>
@@ -49,12 +46,6 @@ namespace UrlShortener.Test.E2E.Utils
                 });
 
             return await builder.BuildAsync();
-        }
-
-        private static bool IsRunningInCI()
-        {
-            // Check for common CI environment variables
-            return Environment.GetEnvironmentVariable("CI") != null;
         }
     }
 }

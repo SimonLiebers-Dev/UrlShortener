@@ -6,10 +6,12 @@ namespace UrlShortener.Test.E2E
     [TestFixture]
     public class PageTest1
     {
+        private const bool runHeadless = true;
+
         [Test]
         public async Task Test()
         {
-            var test = await PlaywrightUtils.GetPlaywrightTestAsync(false);
+            var test = await PlaywrightUtils.GetPlaywrightTestAsync(runHeadless);
 
             await test.GotoPageAsync(string.Empty, async page =>
             {
