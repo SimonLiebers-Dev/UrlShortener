@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build, Test, Analyze
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    name: Build, Test, Analyze
+  build-backend:
+    name: Build Backend
     runs-on: ubuntu-latest
 
     steps:
@@ -22,25 +22,110 @@ jobs:
       with:
         dotnet-version: 9.0.x
         
-    - name: Restore dependencies
-      run: dotnet restore
+    - name: Restore Backend dependencies
+      run: dotnet restore UrlShortener.App.Backend/UrlShortener.App.Backend.csproj
       
     - name: Build Backend
       run: dotnet build UrlShortener.App.Backend/UrlShortener.App.Backend.csproj --configuration Release --no-restore
-          
+
+  build-frontend:
+    name: Build Frontend
+    runs-on: ubuntu-latest
+    needs: build-backend
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+        
+    - name: Restore Frontend dependencies
+      run: dotnet restore UrlShortener.App.Blazor/UrlShortener.App.Blazor/UrlShortener.App.Blazor.csproj
+
     - name: Build Frontend
       run: dotnet build UrlShortener.App.Blazor/UrlShortener.App.Blazor/UrlShortener.App.Blazor.csproj --configuration Release --no-restore
+
+  test-backend:
+    name: Test Backend
+    runs-on: ubuntu-latest
+    needs: build-backend
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
 
     - name: Test Backend
       run: dotnet test UrlShortener.Test.Backend/UrlShortener.Test.Backend.csproj
 
+  test-frontend:
+    name: Test Frontend
+    runs-on: ubuntu-latest
+    needs: build-frontend
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+
     - name: Test Frontend
       run: dotnet test UrlShortener.Test.Frontend/UrlShortener.Test.Frontend.csproj
+
+  test-e2e:
+    name: Test End2End
+    runs-on: ubuntu-latest
+    needs:
+      - test-backend
+      - test-frontend
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
 
     - name: Test End2End
       run: dotnet test UrlShortener.Test.E2E/UrlShortener.Test.E2E.csproj
 
-    - name: Analyze App with SonarQube
+  analyze:
+    name: Analyze App with SonarQube
+    runs-on: ubuntu-latest
+    needs: test-e2e
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Analyze with SonarQube
       uses: SonarSource/sonarqube-scan-action@v5.0.0
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
