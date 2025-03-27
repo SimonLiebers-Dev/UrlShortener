@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using UrlShortener.App.Blazor.Client.Business
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IAuthService AuthService
+@inject IMessageService MessageService
+@inject NavigationManager NavigationManager
+
+<Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.White"
+Shadow="Shadow.Default" ThemeContrast="ThemeContrast.Light">
+    <BarBrand>
+        <BarItem>
+            <BarLink To="">
+                <Heading Size="HeadingSize.Is3">SQS - UrlShortener</Heading>
+            </BarLink>
+        </BarItem>
+    </BarBrand>
+    <BarMenu>
+        <BarEnd>
+            <BarItem>
+                <Button Style="margin-right: 12px;" Color="Color.Link" Type="ButtonType.Link" Target="Target.Blank" To="https://github.com/SimonLiebers-Dev/UrlShortener">
+                    GitHub
+                </Button>
+            </BarItem>
+            <BarItem>
+                <Button Color="Color.Primary" Outline Clicked="Logout">
+                    Logout
+                </Button>
+            </BarItem>
+        </BarEnd>
+    </BarMenu>
+</Bar>
+
+@code {
+    private bool topbarVisible = false;
+
+    private async Task Logout()
+    {
+        bool success = await MessageService.Confirm("Are you sure?", "Logout");
+
+        if (!success)
+            return;
+
+        await ((AppAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();
+        NavigationManager.NavigateTo("/auth", true);
+    }
+}

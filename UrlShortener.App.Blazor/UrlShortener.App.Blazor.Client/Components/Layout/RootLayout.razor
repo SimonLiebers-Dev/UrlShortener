@@ -1,0 +1,59 @@
+﻿@using Blazorise.LoadingIndicator
+@using Blazorise.Localization
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Globalization
+@using UrlShortener.App.Blazor.Client.Business
+
+@inherits LayoutComponentBase
+
+@inject IJSRuntime JsRuntime
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+@inject ITextLocalizerService LocalizationService
+
+@if (!loading)
+{
+    @Body
+}
+else
+{
+    <LoadingIndicator @bind-Visible="loading" Style="height: 100vh; width: 100vw;" />
+}
+
+@code {
+    private bool loading = true;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        LocalizationService.ChangeLanguage("en-US");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var authStateProvider = ((AppAuthenticationStateProvider)AuthenticationStateProvider);
+
+            // Get token from session
+            var token = await JsRuntime.InvokeAsync<string>("sessionStorage.getItem", "authToken");
+
+            // Set token
+            await authStateProvider.TryMarkUserAsAuthenticated(token);
+
+            // Get auth state
+            var authState = await authStateProvider.GetAuthenticationStateAsync();
+            var isAuthenticated = authState.User.Identity?.IsAuthenticated ?? false;
+            if (!isAuthenticated)
+            {
+                NavigationManager.NavigateTo("/auth");
+            }
+
+            await Task.Delay(200);
+
+            loading = false;
+            this.StateHasChanged();
+        }
+    }
+}

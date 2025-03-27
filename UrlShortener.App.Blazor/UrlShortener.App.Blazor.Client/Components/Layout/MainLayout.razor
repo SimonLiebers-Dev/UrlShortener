@@ -1,0 +1,16 @@
+﻿@using UrlShortener.App.Blazor.Client.Components.General
+
+@inherits LayoutComponentBase
+
+@layout RootLayout
+
+<Layout Sider>
+    <Layout>
+        <LayoutHeader Fixed>
+            <TopMenu />
+        </LayoutHeader>
+        <LayoutContent Padding="Padding.Is4">
+            @Body
+        </LayoutContent>
+    </Layout>
+</Layout>

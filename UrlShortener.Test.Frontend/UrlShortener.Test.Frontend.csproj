@@ -29,8 +29,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\UrlShortener.App.Frontend\UrlShortener.App.Frontend.csproj" />
+		<ProjectReference Include="..\UrlShortener.App.Blazor\UrlShortener.App.Blazor\UrlShortener.App.Blazor.csproj" />
 		<ProjectReference Include="..\UrlShortener.App.Shared\UrlShortener.App.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Unit\Business\" />
 	</ItemGroup>
 
 </Project>

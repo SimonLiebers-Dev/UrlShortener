@@ -32,9 +32,13 @@ services:
   urlshortener-frontend:
     build:
       context: .
-      dockerfile: UrlShortener.App.Frontend/Dockerfile
+      dockerfile: UrlShortener.App.Blazor/UrlShortener.App.Blazor/Dockerfile
     ports:
-      - "80:80"
+      - "1010:8080"
+      - "1011:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Backend__BaseUrl=https://localhost:8081
     networks:
       - urlshortener-network
     depends_on:

@@ -1,0 +1,100 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using UrlShortener.App.Blazor.Client.Business
+
+@inject IAuthService AuthService
+@inject INotificationService NotificationService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+<PageTitle>Login</PageTitle>
+
+<div class="card-wrapper">
+    <div class="card-outer-wrapper">
+        <Card Margin="Margin.Is4.OnY">
+            <div class="card-inner">
+                <CardHeader Padding="Padding.Is0">
+                    <CardTitle>Login</CardTitle>
+                </CardHeader>
+                <CardBody Padding="Padding.Is0">
+                    <Validations @ref="validations" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+                        <Validation Validator="@ValidationRule.IsEmail">
+                            <Field>
+                                <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Email address</FieldLabel>
+                                <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                    <TextEdit @bind-Text="LoginEmail" Placeholder="Enter email">
+                                        <Feedback>
+                                            <ValidationError>Enter a valid email</ValidationError>
+                                        </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validation>
+                        <Validation Validator="@ValidatePassword">
+                            <Field>
+                                <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Password</FieldLabel>
+                                <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                    <TextEdit Role="TextRole.Password" Placeholder="Password" @bind-Text="@LoginPassword">
+                                        <Feedback>
+                                            <ValidationError>Enter a password</ValidationError>
+                                        </Feedback>
+                                    </TextEdit>
+                                </FieldBody>
+                            </Field>
+                        </Validation>
+                    </Validations>
+                    <div class="btn-wrapper">
+                        <Button Style="flex: 1 0 0; justify-content: center;"
+                                Color="Color.Primary"
+                                Clicked="LoginUser"
+                                Loading="@LoginLoading">
+                            Login
+                        </Button>
+                        <Button Style="flex: 1 0 0; justify-content: center;"
+                                Color="Color.Secondary"
+                                Clicked="ToRegister">
+                            Register
+                        </Button>
+                    </div>
+                </CardBody>
+            </div>
+        </Card>
+    </div>
+</div>
+
+@code {
+    private Validations? validations;
+
+    private string LoginEmail = string.Empty;
+    private string LoginPassword = string.Empty;
+
+    private bool LoginLoading = false;
+
+    private async Task LoginUser()
+    {
+        if (validations == null)
+            return;
+
+        // Validate input fields
+        var valid = await validations.ValidateAll();
+        if (!valid)
+        {
+            return;
+        }
+
+        LoginLoading = true;
+
+        await AuthService.LoginAsync(LoginEmail, LoginPassword);
+
+        LoginLoading = false;
+    }
+
+    private void ValidatePassword(ValidatorEventArgs e)
+    {
+        e.Status = Convert.ToString(e.Value)?.Length > 0 ? ValidationStatus.Success : ValidationStatus.Error;
+    }
+
+    private void ToRegister()
+    {
+        NavigationManager.NavigateTo(NavigationManager.GetUriWithQueryParameter("type", "register"));
+    }
+}

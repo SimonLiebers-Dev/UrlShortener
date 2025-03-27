@@ -1,0 +1,232 @@
+﻿@page "/"
+
+@using Blazorise.LoadingIndicator
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Text.RegularExpressions
+@using UrlShortener.App.Blazor.Client.Business
+@using UrlShortener.App.Blazor.Client.Components.General
+@using UrlShortener.App.Shared.Dto
+
+@inject IMappingsService MappingsService
+@inject INotificationService NotificationService
+@inject IMessageService MessageService
+@inject NavigationManager NavigationManager
+@inject TimeProvider TimeProvider
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<PageTitle>UrlShortener</PageTitle>
+
+<AuthorizeView>
+    <LoadingIndicator @ref="loadingIndicator">
+        @if (userStats != null)
+        {
+            <Card Class="p-4 mt-4">
+                <CardBody>
+                    <CardTitle Size="4">
+                        Statistics
+                    </CardTitle>
+                    <Row>
+                        <Column Class="text-center">
+                            <Icon Name="IconName.Link" IconSize="IconSize.Large" />
+                            <Heading Size="HeadingSize.Is5" TextColor="TextColor.Dark">Active URLs</Heading>
+                            <Paragraph TextSize="TextSize.Large">@userStats.Mappings</Paragraph>
+                        </Column>
+                        <Column Class="text-center">
+                            <Icon Name="IconName.Mouse" IconSize="IconSize.Large" />
+                            <Heading Size="HeadingSize.Is5" TextColor="TextColor.Dark">Total Clicks</Heading>
+                            <Paragraph TextSize="TextSize.Large">@userStats.Clicks</Paragraph>
+                        </Column>
+                    </Row>
+                </CardBody>
+            </Card>
+        }
+        <Card Class="p-4 mt-4">
+            <CardBody>
+                <CardTitle Size="4">
+                    Create URL
+                </CardTitle>
+                <Validations @ref="validations" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+                    <Validation Validator="@ValidateName">
+                        <Field>
+                            <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Name</FieldLabel>
+                            <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                <TextEdit @bind-Text="name" Placeholder="Enter name">
+                                    <Feedback>
+                                        <ValidationError>Enter a name</ValidationError>
+                                    </Feedback>
+                                </TextEdit>
+                            </FieldBody>
+                        </Field>
+                    </Validation>
+                    <Validation Validator="@ValidateUrl">
+                        <Field>
+                            <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Long url</FieldLabel>
+                            <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                                <TextEdit Placeholder="Long url" @bind-Text="@longUrl">
+                                    <Feedback>
+                                        <ValidationError>Enter a valid url starting with https/http</ValidationError>
+                                    </Feedback>
+                                </TextEdit>
+                            </FieldBody>
+                        </Field>
+                    </Validation>
+                </Validations>
+                <Button Color="Color.Primary"
+                        Clicked="CreateMapping">
+                    Generate Short URL
+                </Button>
+            </CardBody>
+        </Card>
+
+        <Card Class="p-4 mt-4">
+            <CardBody>
+                <CardTitle Size="4">
+                    Active URLs
+                </CardTitle>
+                <Row>
+                    @foreach (var mapping in userMappings)
+                    {
+                        <Column Class="md-4">
+                            <Card Class="mb-3">
+                                <CardBody>
+                                    <Heading Size="HeadingSize.Is5">@mapping.Name</Heading>
+                                    <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                        <Strong Style="white-space: nowrap;">Short URL:</Strong>
+                                        <Anchor To="@mapping.ShortUrl" Class="truncate" Target="Target.Blank">@mapping.ShortUrl</Anchor>
+                                    </Row>
+                                    <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                        <Strong Style="white-space: nowrap;">Original URL:</Strong>
+                                        <Anchor To="@mapping.ShortUrl" Class="truncate" Target="Target.Blank">@mapping.LongUrl</Anchor>
+                                    </Row>
+                                    <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                        <Strong Style="white-space: nowrap;">Created:</Strong>
+                                        <Text>@GetMappingCreatedTime(mapping)</Text>
+                                    </Row>
+                                    <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                        <Strong Style="white-space: nowrap;">Clicks:</Strong>
+                                        <Text>@mapping.RedirectLogs.Count</Text>
+                                    </Row>
+                                    <Button Color="Color.Primary" Margin="Margin.Is2.FromTop" Clicked="() => SelectMapping(mapping)">
+                                        Details <Icon Class="ml-1" Name="IconName.ArrowRight" />
+                                    </Button>
+                                    <Button Color="Color.Secondary" Margin="Margin.Is2.FromTop" Clicked="() => DeleteMapping(mapping)">
+                                        Delete
+                                    </Button>
+                                </CardBody>
+                            </Card>
+                        </Column>
+                    }
+                </Row>
+            </CardBody>
+        </Card>
+    </LoadingIndicator>
+
+    <MappingDetailsModal @bind-UrlMapping="@selectedUrlMapping" />
+</AuthorizeView>
+
+@code {
+    private Validations? validations;
+    private LoadingIndicator? loadingIndicator;
+
+    private UserStatsDto? userStats;
+    private List<UrlMappingDto> userMappings = [];
+
+    private string longUrl = string.Empty;
+    private string name = string.Empty;
+
+    private UrlMappingDto? selectedUrlMapping;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await ReloadData();
+    }
+
+    private async Task ReloadData()
+    {
+        if (loadingIndicator == null)
+            return;
+
+        await loadingIndicator.Show();
+
+        userStats = await MappingsService.GetStats();
+        userMappings = await MappingsService.GetMappings() ?? [];
+        userMappings = userMappings.OrderByDescending(m => m.CreatedAt).ToList();
+
+        await loadingIndicator.Hide();
+    }
+
+    private async Task CreateMapping()
+    {
+        if (validations == null)
+            return;
+
+        var valid = await validations.ValidateAll();
+        if (valid)
+        {
+            var shortUrl = await MappingsService.CreateMapping(longUrl, name);
+            if (shortUrl == null)
+            {
+                await NotificationService.Error("Short url could not be generated. Please try again later.");
+                return;
+            }
+
+            ClearMappingInput();
+            await NotificationService.Success("Successfully created url");
+            await ReloadData();
+        }
+    }
+
+    private void ValidateName(ValidatorEventArgs e)
+    {
+        e.Status = Convert.ToString(e.Value)?.Length > 0 ? ValidationStatus.Success : ValidationStatus.Error;
+    }
+
+    private void ValidateUrl(ValidatorEventArgs e)
+    {
+        string pattern = @"^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$";
+        var value = Convert.ToString(e.Value);
+
+        if (value == null)
+        {
+            e.Status = ValidationStatus.Error;
+        }
+        else
+        {
+            Regex urlRegex = new Regex(pattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            bool isMatch = urlRegex.IsMatch(value);
+            e.Status = isMatch ? ValidationStatus.Success : ValidationStatus.Error;
+        }
+    }
+
+    private string GetMappingCreatedTime(UrlMappingDto mapping)
+    {
+        var localDt = TimeProvider.ToLocalDateTime(mapping.CreatedAt);
+        return localDt.ToString("dd.MM.yyyy HH:mm:ss");
+    }
+
+    private void ClearMappingInput()
+    {
+        longUrl = string.Empty;
+        name = string.Empty;
+    }
+
+    private async Task DeleteMapping(UrlMappingDto mapping)
+    {
+        var confirm = await MessageService.Confirm("Are you sure?", $"Delete url: {mapping.Name}");
+        if (!confirm)
+            return;
+
+        var success = await MappingsService.DeleteMapping(mapping);
+        if (success)
+            await ReloadData();
+        else
+            await NotificationService.Error("Url could not be deleted. Please try again later.");
+    }
+
+    private void SelectMapping(UrlMappingDto mapping)
+    {
+        selectedUrlMapping = mapping;
+        this.StateHasChanged();
+    }
+}
