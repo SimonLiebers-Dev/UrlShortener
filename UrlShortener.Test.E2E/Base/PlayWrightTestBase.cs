@@ -64,6 +64,13 @@ namespace UrlShortener.Test.E2E.Base
                         })
                         .UseHttps();
                 });
+
+            backendBuilder = backendBuilder
+                .WithPlaywrightOptions(opt =>
+                {
+                    opt.Headless = true; // Backend always headless
+                });
+
             BackendTest = await backendBuilder.BuildAsync();
 
             var builder = PlaywrightTestBuilder.Create()
