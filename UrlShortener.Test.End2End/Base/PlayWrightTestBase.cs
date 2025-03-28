@@ -13,20 +13,21 @@ namespace UrlShortener.Test.End2End.Base
     {
         protected IPlaywrightTest FrontendTest;
         protected IPlaywrightTest BackendTest;
-        protected virtual bool Headless => false;
+        protected virtual bool Headless => true;
 
         [SetUp]
         public async Task Setup()
         {
+            Console.WriteLine($"GITHUB_ACTIONS: {Environment.GetEnvironmentVariable("GITHUB_ACTIONS")}");
+            Console.WriteLine($"CI: {Environment.GetEnvironmentVariable("CI")}");
+
             var backendBuilder = PlaywrightTestBuilder.Create()
-                // Tells that we run a local host.
                 .WithLocalHost(localHostBuilder =>
                 {
                     localHostBuilder
                         .UseApplication<Program>()
                         .UseWebHostBuilder(webHostBuilder =>
                         {
-                            // Specify some service mocks
                             webHostBuilder.ConfigureServices(services =>
                             {
                                 services.AddEntityFrameworkInMemoryDatabase();
