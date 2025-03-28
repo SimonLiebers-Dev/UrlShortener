@@ -3,15 +3,15 @@ using Microsoft.EntityFrameworkCore;
 using UrlShortener.App.Backend;
 using Microsoft.Extensions.DependencyInjection;
 using UrlShortener.App.Shared.Models;
-using UrlShortener.App.Backend.Utils;
 using UrlShortener.App.Blazor.Client.Business;
 using UrlShortener.App.Blazor.Client.Api;
+using UrlShortener.App.Backend.Utils;
 
-namespace UrlShortener.Test.E2E.Base
+namespace UrlShortener.Test.End2End.Base
 {
     public class PlayWrightTestBase
     {
-        protected IPlaywrightTest PlayWrightTest;
+        protected IPlaywrightTest FrontendTest;
         protected IPlaywrightTest BackendTest;
         protected virtual bool Headless => false;
 
@@ -61,14 +61,7 @@ namespace UrlShortener.Test.E2E.Base
                                 db.Users.Add(testUser);
                                 db.SaveChanges();
                             });
-                        })
-                        .UseHttps();
-                });
-
-            backendBuilder = backendBuilder
-                .WithPlaywrightOptions(opt =>
-                {
-                    opt.Headless = true; // Backend always headless
+                        });
                 });
 
             BackendTest = await backendBuilder.BuildAsync();
@@ -91,8 +84,7 @@ namespace UrlShortener.Test.E2E.Base
                                     client.BaseAddress = new Uri(BackendTest.Url);
                                 });
                             });
-                        })
-                        .UseHttps();
+                        });
                 });
 
             builder = builder
@@ -105,14 +97,14 @@ namespace UrlShortener.Test.E2E.Base
                     opt.ViewportSize = new Microsoft.Playwright.ViewportSize() { Width = 800, Height = 500 };
                 });
 
-            PlayWrightTest = await builder.BuildAsync();
+            FrontendTest = await builder.BuildAsync();
         }
 
         [TearDown]
         public async Task TearDown()
         {
             await BackendTest.DisposeAsync();
-            await PlayWrightTest.DisposeAsync();
+            await FrontendTest.DisposeAsync();
         }
     }
 }

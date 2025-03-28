@@ -1,17 +1,16 @@
-﻿using UrlShortener.Test.E2E.Base;
+﻿using UrlShortener.Test.End2End.Base;
 
-namespace UrlShortener.Test.E2E.Tests
+namespace UrlShortener.Test.End2End.Tests
 {
-    [Parallelizable(ParallelScope.Self)]
     [TestFixture]
     public class LoginTest : PlayWrightTestBase
     {
-        protected override bool Headless => true;
+        protected override bool Headless => false;
 
         [Test]
         public async Task Test()
         {
-            await PlayWrightTest.GotoPageAsync(string.Empty, async page =>
+            await FrontendTest.GotoPageAsync(string.Empty, async page =>
             {
                 var body = page.Locator("body");
                 await body.WaitForAsync();

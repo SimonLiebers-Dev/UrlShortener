@@ -106,7 +106,7 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Test End2End
-      run: dotnet test UrlShortener.Test.E2E/UrlShortener.Test.E2E.csproj
+      run: dotnet test UrlShortener.Test.End2End/UrlShortener.Test.End2End.csproj
 
   analyze:
     name: Analyze App with SonarQube
