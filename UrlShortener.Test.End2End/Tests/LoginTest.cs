@@ -5,8 +5,6 @@ namespace UrlShortener.Test.End2End.Tests
     [TestFixture]
     public class LoginTest : PlayWrightTestBase
     {
-        protected override bool Headless => true;
-
         [Test]
         public async Task Test()
         {

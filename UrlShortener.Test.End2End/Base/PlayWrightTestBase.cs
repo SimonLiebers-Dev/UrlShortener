@@ -13,13 +13,15 @@ namespace UrlShortener.Test.End2End.Base
     {
         protected IPlaywrightTest FrontendTest;
         protected IPlaywrightTest BackendTest;
-        protected virtual bool Headless => true;
+        protected virtual bool Headless => false;
 
         [SetUp]
         public async Task Setup()
         {
-            Console.WriteLine($"GITHUB_ACTIONS: {Environment.GetEnvironmentVariable("GITHUB_ACTIONS")}");
-            Console.WriteLine($"CI: {Environment.GetEnvironmentVariable("CI")}");
+            bool runHeadless = Headless;
+
+            if (IsRunningInCI())
+                runHeadless = true;
 
             var backendBuilder = PlaywrightTestBuilder.Create()
                 .WithLocalHost(localHostBuilder =>
@@ -91,7 +93,7 @@ namespace UrlShortener.Test.End2End.Base
             builder = builder
                 .WithPlaywrightOptions(opt =>
                 {
-                    opt.Headless = Headless;
+                    opt.Headless = runHeadless;
                 })
                 .WithPlaywrightNewContextOptions(opt =>
                 {
@@ -106,6 +108,14 @@ namespace UrlShortener.Test.End2End.Base
         {
             await BackendTest.DisposeAsync();
             await FrontendTest.DisposeAsync();
+        }
+
+        private static bool IsRunningInCI()
+        {
+            bool isGitHubActions = bool.TryParse(Environment.GetEnvironmentVariable("GITHUB_ACTIONS"), out bool githubAction) && githubAction;
+            bool isCI = bool.TryParse(Environment.GetEnvironmentVariable("GITHUB_ACTIONS"), out bool ci) && ci;
+
+            return isGitHubActions || isCI;
         }
     }
 }
