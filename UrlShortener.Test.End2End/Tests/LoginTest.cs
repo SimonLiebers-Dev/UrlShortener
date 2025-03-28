@@ -6,7 +6,7 @@ namespace UrlShortener.Test.End2End.Tests
     public class LoginTest : PlayWrightTestBase
     {
         [Test]
-        public async Task Test()
+        public async Task Login_ValidCredentials_RedirectToHome()
         {
             await FrontendTest.GotoPageAsync(string.Empty, async page =>
             {

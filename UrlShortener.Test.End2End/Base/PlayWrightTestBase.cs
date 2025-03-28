@@ -9,20 +9,18 @@ using UrlShortener.App.Backend.Utils;
 
 namespace UrlShortener.Test.End2End.Base
 {
+    [NonParallelizable]
     public class PlayWrightTestBase
     {
         protected IPlaywrightTest FrontendTest;
         protected IPlaywrightTest BackendTest;
         protected virtual bool Headless => false;
+        private bool RunHeadless => IsRunningInCI() ? true : Headless;
 
-        [SetUp]
-        public async Task Setup()
+        [OneTimeSetUp]
+        public virtual async Task OneTimeSetup()
         {
-            bool runHeadless = Headless;
-
-            if (IsRunningInCI())
-                runHeadless = true;
-
+            // Create and run backend
             var backendBuilder = PlaywrightTestBuilder.Create()
                 .WithLocalHost(localHostBuilder =>
                 {
@@ -64,12 +62,24 @@ namespace UrlShortener.Test.End2End.Base
                                 db.Users.Add(testUser);
                                 db.SaveChanges();
                             });
-                        });
+                        })
+                        .UseHttps(false);
                 });
 
-            BackendTest = await backendBuilder.BuildAsync();
+            backendBuilder = backendBuilder
+                .WithPlaywrightOptions(opt =>
+                {
+                    opt.Headless = true; // Backend always headless
+                });
 
-            var builder = PlaywrightTestBuilder.Create()
+            BackendTest = await backendBuilder
+                .BuildAsync()
+                .ConfigureAwait(true);
+
+            Console.WriteLine($"Backend running on: {BackendTest.Url}");
+
+            // Create and run frontend
+            var frontendBuilder = PlaywrightTestBuilder.Create()
                 .WithLocalHost(localHostBuilder =>
                 {
                     localHostBuilder
@@ -87,24 +97,30 @@ namespace UrlShortener.Test.End2End.Base
                                     client.BaseAddress = new Uri(BackendTest.Url);
                                 });
                             });
-                        });
+                        })
+                        .UseHttps(false);
                 });
 
-            builder = builder
+            frontendBuilder = frontendBuilder
                 .WithPlaywrightOptions(opt =>
                 {
-                    opt.Headless = runHeadless;
+                    opt.Headless = RunHeadless;
                 })
                 .WithPlaywrightNewContextOptions(opt =>
                 {
                     opt.ViewportSize = new Microsoft.Playwright.ViewportSize() { Width = 800, Height = 500 };
                 });
 
-            FrontendTest = await builder.BuildAsync();
+
+            FrontendTest = await frontendBuilder
+                .BuildAsync(Browser.Chromium, Devices.DesktopChrome)
+                .ConfigureAwait(true);
+
+            Console.WriteLine($"Frontend running on: {FrontendTest.Url}");
         }
 
-        [TearDown]
-        public async Task TearDown()
+        [OneTimeTearDown]
+        public virtual async Task OneTimeTearDown()
         {
             await BackendTest.DisposeAsync();
             await FrontendTest.DisposeAsync();
