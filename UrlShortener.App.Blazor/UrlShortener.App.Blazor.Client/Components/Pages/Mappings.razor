@@ -50,7 +50,7 @@
                         <Field>
                             <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Name</FieldLabel>
                             <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                <TextEdit @bind-Text="name" Placeholder="Enter name">
+                                <TextEdit @bind-Text="name" Placeholder="Enter name" id="mapping-name-input">
                                     <Feedback>
                                         <ValidationError>Enter a name</ValidationError>
                                     </Feedback>
@@ -62,7 +62,7 @@
                         <Field>
                             <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Long url</FieldLabel>
                             <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                <TextEdit Placeholder="Long url" @bind-Text="@longUrl">
+                                <TextEdit Placeholder="Long url" @bind-Text="@longUrl" id="mapping-url-input">
                                     <Feedback>
                                         <ValidationError>Enter a valid url starting with https/http</ValidationError>
                                     </Feedback>
@@ -72,7 +72,8 @@
                     </Validation>
                 </Validations>
                 <Button Color="Color.Primary"
-                        Clicked="CreateMapping">
+                        Clicked="CreateMapping"
+                        id="create-mapping-btn">
                     Generate Short URL
                 </Button>
             </CardBody>
@@ -83,11 +84,11 @@
                 <CardTitle Size="4">
                     Active URLs
                 </CardTitle>
-                <Row>
+                <Row id="mappings-wrapper">
                     @foreach (var mapping in userMappings)
                     {
                         <Column Class="md-4">
-                            <Card Class="mb-3">
+                            <Card Class="mb-3 mapping-card">
                                 <CardBody>
                                     <Heading Size="HeadingSize.Is5">@mapping.Name</Heading>
                                     <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
@@ -106,10 +107,10 @@
                                         <Strong Style="white-space: nowrap;">Clicks:</Strong>
                                         <Text>@mapping.RedirectLogs.Count</Text>
                                     </Row>
-                                    <Button Color="Color.Primary" Margin="Margin.Is2.FromTop" Clicked="() => SelectMapping(mapping)">
+                                    <Button Color="Color.Primary" Margin="Margin.Is2.FromTop" Clicked="() => SelectMapping(mapping)" Class="mapping-details-btn">
                                         Details <Icon Class="ml-1" Name="IconName.ArrowRight" />
                                     </Button>
-                                    <Button Color="Color.Secondary" Margin="Margin.Is2.FromTop" Clicked="() => DeleteMapping(mapping)">
+                                    <Button Color="Color.Secondary" Margin="Margin.Is2.FromTop" Clicked="() => DeleteMapping(mapping)" Class="mapping-delete-btn">
                                         Delete
                                     </Button>
                                 </CardBody>

@@ -7,7 +7,7 @@
 @inject NavigationManager NavigationManager
 
 <Bar @bind-Visible="@topbarVisible" Breakpoint="Breakpoint.Desktop" Background="Background.White"
-Shadow="Shadow.Default" ThemeContrast="ThemeContrast.Light">
+     Shadow="Shadow.Default" ThemeContrast="ThemeContrast.Light">
     <BarBrand>
         <BarItem>
             <BarLink To="">
@@ -23,7 +23,7 @@ Shadow="Shadow.Default" ThemeContrast="ThemeContrast.Light">
                 </Button>
             </BarItem>
             <BarItem>
-                <Button Color="Color.Primary" Outline Clicked="Logout">
+                <Button Color="Color.Primary" Outline Clicked="Logout" id="logout-btn">
                     Logout
                 </Button>
             </BarItem>

@@ -9,7 +9,7 @@
 
 <PageTitle>Register</PageTitle>
 
-<div class="card-wrapper">
+<div class="card-wrapper" id="register-form">
     <div class="card-outer-wrapper">
         <Card Margin="Margin.Is4.OnY">
             <div class="card-inner">
@@ -22,7 +22,7 @@
                             <Field>
                                 <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Email address</FieldLabel>
                                 <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                    <TextEdit @bind-Text="RegisterEmail" Placeholder="Enter email">
+                                    <TextEdit @bind-Text="RegisterEmail" Placeholder="Enter email" id="register-email-input">
                                         <Feedback>
                                             <ValidationError>Enter a valid email</ValidationError>
                                         </Feedback>
@@ -34,7 +34,7 @@
                             <Field>
                                 <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Password</FieldLabel>
                                 <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
-                                    <TextEdit Role="TextRole.Password" Placeholder="Password" @bind-Text="@RegisterPassword">
+                                    <TextEdit Role="TextRole.Password" Placeholder="Password" @bind-Text="@RegisterPassword" id="register-password-input-1">
                                         <Feedback>
                                             <ValidationError>Password must be at least 6 characters long</ValidationError>
                                         </Feedback>
@@ -47,7 +47,7 @@
                                 <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Retype Password</FieldLabel>
                                 <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
 
-                                    <TextEdit Role="TextRole.Password" Placeholder="Retype password">
+                                    <TextEdit Role="TextRole.Password" Placeholder="Retype password" id="register-password-input-2">
                                         <Feedback>
                                             <ValidationError>Password does not match</ValidationError>
                                         </Feedback>
@@ -58,13 +58,15 @@
                     </Validations>
                     <div class="btn-wrapper">
                         <Button Style="flex: 1 0 0; justify-content: center;"
-                        Color="Color.Primary"
-                        Clicked="RegisterUser">
+                                Color="Color.Primary"
+                                Clicked="RegisterUser"
+                                id="register-btn">
                             Register
                         </Button>
                         <Button Style="flex: 1 0 0; justify-content: center;"
-                        Color="Color.Secondary"
-                        Clicked="ToLogin">
+                                Color="Color.Secondary"
+                                Clicked="ToLogin"
+                                id="login-btn">
                             Login
                         </Button>
                     </div>
@@ -92,27 +94,6 @@
 
         // Register user
         await AuthService.RegisterAsync(RegisterEmail, RegisterPassword);
-
-        // if (response == null)
-        // {
-        //     await NotificationService.Error("Something went wrong. Please try again later.");
-        //     return;
-        // }
-
-        // // Navigate to login on success, otherwise display notification
-        // if (response.Success)
-        //     ToLogin();
-        // else
-        // {
-        //     if (response.ErrorType == RegisterErrorType.EmailAlreadyExists)
-        //     {
-        //         await NotificationService.Error("Email already exists.");
-        //     }
-        //     else if (response.ErrorType == RegisterErrorType.MissingEmailOrPassword)
-        //     {
-        //         await NotificationService.Error("Please provide email and password.");
-        //     }
-        // }
     }
 
     private void ValidatePassword(ValidatorEventArgs e)

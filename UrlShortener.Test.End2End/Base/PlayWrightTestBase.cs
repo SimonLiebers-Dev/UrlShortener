@@ -5,17 +5,19 @@ using Microsoft.Extensions.DependencyInjection;
 using UrlShortener.App.Shared.Models;
 using UrlShortener.App.Blazor.Client.Business;
 using UrlShortener.App.Blazor.Client.Api;
-using UrlShortener.App.Backend.Utils;
+using UrlShortener.Test.End2End.Data;
 
 namespace UrlShortener.Test.End2End.Base
 {
     [NonParallelizable]
     public class PlayWrightTestBase
     {
+        private bool RunHeadless => IsRunningInCI() ? true : Headless;
+
         protected IPlaywrightTest FrontendTest;
         protected IPlaywrightTest BackendTest;
         protected virtual bool Headless => false;
-        private bool RunHeadless => IsRunningInCI() ? true : Headless;
+        protected virtual List<User> TestUsers => TestData.GetDefaultTestUsers();
 
         [OneTimeSetUp]
         public virtual async Task OneTimeSetup()
@@ -51,15 +53,7 @@ namespace UrlShortener.Test.End2End.Base
 
                                 db.Database.EnsureCreated();
 
-                                var passwordSalt = PasswordUtils.GenerateSalt();
-                                var testUser = new User()
-                                {
-                                    Email = "test@gmail.com",
-                                    PasswordHash = PasswordUtils.HashPassword("TestPassword", passwordSalt),
-                                    Salt = passwordSalt
-                                };
-
-                                db.Users.Add(testUser);
+                                db.Users.AddRange(TestUsers);
                                 db.SaveChanges();
                             });
                         })
@@ -108,7 +102,7 @@ namespace UrlShortener.Test.End2End.Base
                 })
                 .WithPlaywrightNewContextOptions(opt =>
                 {
-                    opt.ViewportSize = new Microsoft.Playwright.ViewportSize() { Width = 800, Height = 500 };
+                    opt.ViewportSize = new Microsoft.Playwright.ViewportSize() { Width = 1600, Height = 1600 };
                 });
 
 

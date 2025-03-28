@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using UrlShortener.App.Blazor.Client.Api;
+using UrlShortener.App.Shared.Dto;
 
 namespace UrlShortener.App.Blazor.Client.Business
 {
@@ -22,7 +23,7 @@ namespace UrlShortener.App.Blazor.Client.Business
                     await NotificationService.Error("Email address or password wrong");
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 await NotificationService.Error("Authentication service not available. Try again later.");
             }
@@ -32,7 +33,29 @@ namespace UrlShortener.App.Blazor.Client.Business
         {
             try
             {
-                var success = await AuthApi.Register(username, password);
+                var response = await AuthApi.Register(username, password);
+                if (response != null)
+                {
+                    if (response.Success)
+                    {
+                        NavigationManager.NavigateTo("/", true);
+                    }
+                    else
+                    {
+                        if (response.ErrorType == RegisterErrorType.EmailAlreadyExists)
+                        {
+                            await NotificationService.Error("Email already exists.");
+                        }
+                        else if (response.ErrorType == RegisterErrorType.MissingEmailOrPassword)
+                        {
+                            await NotificationService.Error("Please provide email and password.");
+                        }
+                    }
+                }
+                else
+                {
+                    await NotificationService.Error("Authentication service not available. Try again later.");
+                }
             }
             catch
             {
