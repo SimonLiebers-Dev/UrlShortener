@@ -19,7 +19,15 @@ namespace UrlShortener.App.Blazor.Client.Api
         public async Task<RegisterResponseDto?> Register(string email, string password)
         {
             var response = await HttpClient.PostAsJsonAsync("api/auth/register", new { Email = email, Password = password });
-            return await response.Content.ReadFromJsonAsync<RegisterResponseDto>();
+
+            try
+            {
+                return await response.Content.ReadFromJsonAsync<RegisterResponseDto>();
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

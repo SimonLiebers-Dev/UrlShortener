@@ -17,6 +17,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="bunit" Version="1.34.0" />
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.7.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
 		<PackageReference Include="coverlet.collector" Version="6.0.0">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,15 +27,12 @@
 		<PackageReference Include="NUnit" Version="4.2.2" />
 		<PackageReference Include="NUnit.Analyzers" Version="4.4.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.7.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\UrlShortener.App.Blazor\UrlShortener.App.Blazor\UrlShortener.App.Blazor.csproj" />
 		<ProjectReference Include="..\UrlShortener.App.Shared\UrlShortener.App.Shared.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Unit\Business\" />
 	</ItemGroup>
 
 </Project>
