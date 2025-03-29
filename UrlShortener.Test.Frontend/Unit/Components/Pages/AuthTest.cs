@@ -12,7 +12,7 @@ namespace UrlShortener.Test.Frontend.Unit.Components.Pages
     [TestFixture]
     public class AuthTest : TestContext
     {
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             var mockAuthService = new Mock<IAuthService>();
