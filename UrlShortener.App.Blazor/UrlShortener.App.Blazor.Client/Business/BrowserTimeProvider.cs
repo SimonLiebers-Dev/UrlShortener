@@ -11,7 +11,7 @@
 
         internal bool IsLocalTimeZoneSet => _browserLocalTimeZone != null;
 
-        public void SetBrowserTimeZone(string timeZone)
+        public virtual void SetBrowserTimeZone(string timeZone)
         {
             if (!TimeZoneInfo.TryFindSystemTimeZoneById(timeZone, out var timeZoneInfo))
             {

@@ -4,13 +4,14 @@ using Blazorise.Tailwind;
 using Microsoft.AspNetCore.Components;
 using Moq;
 using UrlShortener.App.Blazor.Client.Business;
+using UrlShortener.App.Blazor.Client.Components.Form;
 using UrlShortener.App.Blazor.Client.Components.Pages;
 using TestContext = Bunit.TestContext;
 
 namespace UrlShortener.Test.Frontend.Unit.Components.Pages
 {
     [TestFixture]
-    public class AuthTest : TestContext
+    public class AuthPageTests : TestContext
     {
         [OneTimeSetUp]
         public void SetUp()
@@ -33,12 +34,12 @@ namespace UrlShortener.Test.Frontend.Unit.Components.Pages
         {
             // Arrange
             var navigationManager = Services.GetRequiredService<NavigationManager>();
-            var component = RenderComponent<Auth>();
+            var component = RenderComponent<AuthPage>();
 
             // Act
             var uri = navigationManager.GetUriWithQueryParameter("type", "login");
             navigationManager.NavigateTo(uri);
-            var loginForm = component.FindComponent<Login>();
+            var loginForm = component.FindComponent<LoginForm>();
 
             // Assert
             Assert.That(loginForm, Is.Not.Null);
@@ -49,12 +50,12 @@ namespace UrlShortener.Test.Frontend.Unit.Components.Pages
         {
             // Arrange
             var navigationManager = Services.GetRequiredService<NavigationManager>();
-            var component = RenderComponent<Auth>();
+            var component = RenderComponent<AuthPage>();
 
             // Act
             var uri = navigationManager.GetUriWithQueryParameter("type", "register");
             navigationManager.NavigateTo(uri);
-            var registerForm = component.FindComponent<Register>();
+            var registerForm = component.FindComponent<RegisterForm>();
 
             // Assert
             Assert.That(registerForm, Is.Not.Null);
@@ -65,7 +66,7 @@ namespace UrlShortener.Test.Frontend.Unit.Components.Pages
         {
             // Arrange
             var navigationManager = Services.GetRequiredService<NavigationManager>();
-            var component = RenderComponent<Auth>();
+            var component = RenderComponent<AuthPage>();
 
             // Act 
             var uri = navigationManager.GetUriWithQueryParameter("type", "invalidType");

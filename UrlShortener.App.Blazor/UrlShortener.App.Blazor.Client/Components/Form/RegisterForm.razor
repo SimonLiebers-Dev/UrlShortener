@@ -1,0 +1,114 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using UrlShortener.App.Blazor.Client.Business
+@using UrlShortener.App.Shared.Dto
+
+@inject IAuthService AuthService
+@inject INotificationService NotificationService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+<PageTitle>Register</PageTitle>
+
+<Validations @ref="validations" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+    <Validation Validator="@ValidationRule.IsEmail">
+        <Field>
+            <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Email address</FieldLabel>
+            <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                <TextEdit @bind-Text="RegisterEmail" Placeholder="Enter email" id="register-email-input">
+                    <Feedback>
+                        <ValidationError>Enter a valid email</ValidationError>
+                    </Feedback>
+                </TextEdit>
+            </FieldBody>
+        </Field>
+    </Validation>
+    <Validation Validator="@ValidatePassword">
+        <Field>
+            <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Password</FieldLabel>
+            <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+                <TextEdit Role="TextRole.Password" Placeholder="Password" @bind-Text="@RegisterPassword" id="register-password-input-1">
+                    <Feedback>
+                        <ValidationError>Password must be at least 6 characters long</ValidationError>
+                    </Feedback>
+                </TextEdit>
+            </FieldBody>
+        </Field>
+    </Validation>
+    <Validation Validator="@ValidatePasswordRetype">
+        <Field>
+            <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Retype Password</FieldLabel>
+            <FieldBody Padding="Padding.Is0" ColumnSize="ColumnSize.IsFull.OnTablet.Is9.OnDesktop">
+
+                <TextEdit Role="TextRole.Password" Placeholder="Retype password" id="register-password-input-2">
+                    <Feedback>
+                        <ValidationError>Password does not match</ValidationError>
+                    </Feedback>
+                </TextEdit>
+            </FieldBody>
+        </Field>
+    </Validation>
+</Validations>
+<div class="btn-wrapper">
+    <Button Style="flex: 1 0 0; justify-content: center;"
+            Color="Color.Primary"
+            Clicked="RegisterUser"
+            id="register-btn">
+        Register
+    </Button>
+    <Button Style="flex: 1 0 0; justify-content: center;"
+            Color="Color.Secondary"
+            Clicked="ToLogin"
+            id="login-btn">
+        Login
+    </Button>
+</div>
+
+@code {
+    private Validations? validations;
+
+    private string RegisterEmail = string.Empty;
+    private string RegisterPassword = string.Empty;
+
+    private async Task RegisterUser()
+    {
+        if (validations == null)
+            return;
+
+        //Validate all inputs
+        var valid = await validations.ValidateAll();
+        if (!valid)
+            return;
+
+        // Register user
+        await AuthService.RegisterAsync(RegisterEmail, RegisterPassword);
+    }
+
+    private void ValidatePassword(ValidatorEventArgs e)
+    {
+        e.Status = Convert.ToString(e.Value)?.Length >= 6 ? ValidationStatus.Success : ValidationStatus.Error;
+    }
+
+    private void ValidatePasswordRetype(ValidatorEventArgs e)
+    {
+        var retypedPassword = Convert.ToString(e.Value);
+
+        if (retypedPassword?.Length < 6)
+        {
+            e.Status = ValidationStatus.Error;
+            e.ErrorText = "Password must be at least 6 characters long!";
+        }
+        else if (retypedPassword != RegisterPassword)
+        {
+            e.Status = ValidationStatus.Error;
+        }
+        else
+        {
+            e.Status = ValidationStatus.Success;
+        }
+    }
+
+    private void ToLogin()
+    {
+        NavigationManager.NavigateTo(NavigationManager.GetUriWithQueryParameter("type", "login"));
+    }
+}

@@ -34,7 +34,7 @@
 @code {
     private bool topbarVisible = false;
 
-    private async Task Logout()
+    public async Task Logout()
     {
         bool success = await MessageService.Confirm("Are you sure?", "Logout");
 

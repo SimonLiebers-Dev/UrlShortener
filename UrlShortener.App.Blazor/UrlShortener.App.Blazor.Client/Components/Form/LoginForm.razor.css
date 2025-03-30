@@ -1,0 +1,6 @@
+﻿.btn-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 12px;
+    padding-top: 8px;
+}

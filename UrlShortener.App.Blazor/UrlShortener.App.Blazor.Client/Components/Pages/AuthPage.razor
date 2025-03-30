@@ -1,0 +1,77 @@
+﻿@page "/auth"
+
+@using UrlShortener.App.Blazor.Client.Components.Form
+
+@layout RootLayout
+
+@inject NavigationManager NavigationManager
+
+@if (AuthType != null)
+{
+    <div class="card-wrapper" id="@GetFormId()">
+        <div class="card-outer-wrapper">
+            <Card Margin="Margin.Is4.OnY">
+                <div class="card-inner">
+                    <CardHeader Padding="Padding.Is0">
+                        <CardTitle>@GetFormTitle()</CardTitle>
+                    </CardHeader>
+                    <CardBody Padding="Padding.Is0">
+                        @if (AuthType.Equals("login", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            <LoginForm />
+                        }
+                        else if (AuthType.Equals("register", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            <RegisterForm />
+                        }
+                    </CardBody>
+                </div>
+            </Card>
+        </div>
+    </div>
+}
+
+@code {
+    [SupplyParameterFromQuery(Name = "type")]
+    public string? AuthType { get; set; } = "login";
+
+    private readonly string[] _validAuthTypes = new string[] { "login", "register" };
+    private readonly string _defaultAuthType = "login";
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (!_validAuthTypes.Contains(AuthType, StringComparer.InvariantCultureIgnoreCase))
+        {
+            SetAuthType(_defaultAuthType);
+        }
+    }
+
+    private void SetAuthType(string type)
+    {
+        NavigationManager.NavigateTo(NavigationManager.GetUriWithQueryParameter("type", type));
+    }
+
+    private string GetFormTitle()
+    {
+        if (AuthType == "login")
+            return "Login";
+
+        if (AuthType == "register")
+            return "Register";
+
+        return string.Empty;
+    }
+
+    private string GetFormId()
+    {
+        if (AuthType == "login")
+            return "login-form";
+
+        if (AuthType == "register")
+            return "register-form";
+
+        return string.Empty;
+    }
+}

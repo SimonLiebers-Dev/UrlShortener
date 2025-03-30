@@ -6,7 +6,7 @@
     <ModalContent Centered>
         @if (UrlMapping != null)
         {
-            <ModalHeader>
+            <ModalHeader id="mapping-details-modal-header">
                 <Column>
                     <Heading Size="HeadingSize.Is5">@UrlMapping.Name</Heading>
                     <Anchor To="@UrlMapping.ShortUrl" Class="truncate" Target="Target.Blank">@UrlMapping.ShortUrl</Anchor>
@@ -43,7 +43,11 @@
                 </Table>
             </ModalBody>
             <ModalFooter>
-                <Button Color="Color.Secondary" Clicked="@HideModal">Close</Button>
+                <Button Color="Color.Secondary"
+                        Clicked="@HideModal"
+                        id="mapping-details-modal-btn-close">
+                    Close
+                </Button>
             </ModalFooter>
         }
     </ModalContent>
