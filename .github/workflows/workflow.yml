@@ -164,7 +164,7 @@ jobs:
       run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
     - name: Merge Coverage Reports
-      run: reportgenerator -reports:"coverage/*.opencover.xml" -targetdir:"coverage/merged" -reporttypes:SonarQube
+      run: reportgenerator -reports:"**/coverage.opencover.xml" -targetdir:"coverage/merged" -reporttypes:SonarQube
 
     - name: Install SonarScanner
       run: dotnet tool install --global dotnet-sonarscanner
@@ -177,4 +177,4 @@ jobs:
         args: >
           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-          -Dsonar.coverageReportPaths=**/coverage.sonarqube.xml
+          -Dsonar.coverageReportPaths=coverage/merged/coverage.sonarqube.xml
