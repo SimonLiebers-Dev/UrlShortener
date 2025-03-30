@@ -160,11 +160,14 @@ jobs:
         name: e2e-coverage
         path: coverage
 
-    - name: Install Coverlet Console
-      run: dotnet tool install --global coverlet.console
+    - name: Install ReportGenerator
+      run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
     - name: Merge Coverage Reports
-      run: coverlet merge coverage/**/*.opencover.xml --output coverage/merged/opencover.xml
+      run: reportgenerator -reports:"coverage/*.opencover.xml" -targetdir:"coverage/merged" -reporttypes:SonarQube
+
+    - name: Install SonarScanner
+      run: dotnet tool install --global dotnet-sonarscanner
 
     - name: Analyze with SonarQube
       uses: SonarSource/sonarqube-scan-action@v5.0.0
@@ -174,4 +177,4 @@ jobs:
         args: >
           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-          -Dsonar.coverageReportPaths=coverage/merged/opencover.xml
+          -Dsonar.coverageReportPaths=**/coverage.sonarqube.xml
