@@ -72,7 +72,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: backend-coverage
-        path: '**/coverage.cobertura.xml'
+        path: '**/coverage.opencover.xml'
 
   test-frontend:
     name: Test Frontend
@@ -97,7 +97,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: frontend-coverage
-        path: '**/coverage.cobertura.xml'
+        path: '**/coverage.opencover.xml'
 
   test-e2e:
     name: Test End2End
@@ -124,7 +124,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: e2e-coverage
-        path: '**/coverage.cobertura.xml'
+        path: '**/coverage.opencover.xml'
 
   analyze:
     name: Analyze App with SonarQube
