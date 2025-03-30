@@ -66,7 +66,13 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Test Backend
-      run: dotnet test UrlShortener.Test.Backend/UrlShortener.Test.Backend.csproj
+      run: dotnet test UrlShortener.Test.Backend/UrlShortener.Test.Backend.csproj --collect:"XPlat Code Coverage" --settings UrlShortener.Test.Backend/coverlet.runsettings
+
+    - name: Upload Coverage
+      uses: actions/upload-artifact@v4
+      with:
+        name: backend-coverage
+        path: **/coverage.cobertura.xml
 
   test-frontend:
     name: Test Frontend
@@ -85,7 +91,13 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Test Frontend
-      run: dotnet test UrlShortener.Test.Frontend/UrlShortener.Test.Frontend.csproj
+      run: dotnet test UrlShortener.Test.Frontend/UrlShortener.Test.Frontend.csproj --collect:"XPlat Code Coverage" --settings UrlShortener.Test.Frontend/coverlet.runsettings
+
+    - name: Upload Coverage
+      uses: actions/upload-artifact@v4
+      with:
+        name: frontend-coverage
+        path: **/coverage.cobertura.xml
 
   test-e2e:
     name: Test End2End
@@ -106,7 +118,13 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Test End2End
-      run: dotnet test UrlShortener.Test.End2End/UrlShortener.Test.End2End.csproj
+      run: dotnet test UrlShortener.Test.End2End/UrlShortener.Test.End2End.csproj --collect:"XPlat Code Coverage" --settings UrlShortener.Test.End2End/coverlet.runsettings
+
+    - name: Upload Coverage
+      uses: actions/upload-artifact@v4
+      with:
+        name: e2e-coverage
+        path: **/coverage.cobertura.xml
 
   analyze:
     name: Analyze App with SonarQube
