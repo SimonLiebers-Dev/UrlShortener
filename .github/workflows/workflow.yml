@@ -164,7 +164,7 @@ jobs:
       run: dotnet tool install --global dotnet-reportgenerator-globaltool
 
     - name: Merge Coverage Reports
-      run: reportgenerator -reports:"coverage/*.opencover.xml" -targetdir:"coverage/merged" -reporttypes:OpenCover
+      run: reportgenerator -reports:"**/*.opencover.xml" -targetdir:"coverage/merged" -reporttypes:OpenCover
 
     - name: Analyze with SonarQube
       uses: SonarSource/sonarqube-scan-action@v5.0.0
