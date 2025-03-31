@@ -50,9 +50,11 @@ jobs:
       run: dotnet build UrlShortener.App.Blazor/UrlShortener.App.Blazor/UrlShortener.App.Blazor.csproj --configuration Release --no-restore
 
   test-backend:
-    name: Test Backend
+    name: Test Application
     runs-on: ubuntu-latest
-    needs: build-backend
+    needs: 
+        - build-backend
+        - build-frontend
 
     steps:
     - name: Checkout
@@ -65,100 +67,17 @@ jobs:
       with:
         dotnet-version: 9.0.x
 
-    - name: Test Backend
-      run: dotnet test UrlShortener.Test.Backend/UrlShortener.Test.Backend.csproj --collect:"XPlat Code Coverage" --settings UrlShortener.Test.Backend/coverlet.runsettings
+    - name: Setup .NET Coverage
+      run: dotnet tool install --global dotnet-coverage
 
-    - name: Upload Coverage
-      uses: actions/upload-artifact@v4
-      with:
-        name: backend-coverage
-        path: '**/coverage.opencover.xml'
+    - name: Setup SonarScanner
+      run: dotnet tool install --global dotnet-sonarscanner
 
-  test-frontend:
-    name: Test Frontend
-    runs-on: ubuntu-latest
-    needs: build-frontend
+    - name: Start SonarScanner
+      run: dotnet sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /o:"${{ secrets.SONAR_ORGANIZATION }}" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+    - name: Run Tests
+      run: dotnet build --no-incremental && dotnet-coverage collect 'dotnet test' -f XML -o 'coverage.xml'
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
-
-    - name: Test Frontend
-      run: dotnet test UrlShortener.Test.Frontend/UrlShortener.Test.Frontend.csproj --collect:"XPlat Code Coverage" --settings UrlShortener.Test.Frontend/coverlet.runsettings
-
-    - name: Upload Coverage
-      uses: actions/upload-artifact@v4
-      with:
-        name: frontend-coverage
-        path: '**/coverage.opencover.xml'
-
-  test-e2e:
-    name: Test End2End
-    runs-on: ubuntu-latest
-    needs:
-      - test-backend
-      - test-frontend
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
-
-    - name: Test End2End
-      run: dotnet test UrlShortener.Test.End2End/UrlShortener.Test.End2End.csproj --collect:"XPlat Code Coverage" --settings UrlShortener.Test.End2End/coverlet.runsettings
-
-    - name: Upload Coverage
-      uses: actions/upload-artifact@v4
-      with:
-        name: e2e-coverage
-        path: '**/coverage.opencover.xml'
-
-  analyze:
-    name: Analyze App with SonarQube
-    runs-on: ubuntu-latest
-    needs:
-      - test-backend
-      - test-frontend
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
-    - name: Download Frontend Coverage
-      uses: actions/download-artifact@v4
-      with:
-        name: frontend-coverage
-        path: coverage
-
-    - name: Download Backend Coverage
-      uses: actions/download-artifact@v4
-      with:
-        name: backend-coverage
-        path: coverage
-
-    - name: Analyze with SonarQube
-      uses: highbyte/sonarscan-dotnet@v2.4.2
-      env:
-         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      with:
-        sonarProjectKey: ${{ secrets.SONAR_PROJECT_KEY }}
-        sonarProjectName:  UrlShortener
-        sonarOrganization: ${{ secrets.SONAR_ORGANIZATION }}
-        sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.verbose=true
-        dotnetBuildArguments: --no-incremental -p:DeterministicSourcePaths=true
-        dotnetDisableTests: true
+    - name: Stop SonarScanner
+      run: dotnet sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
