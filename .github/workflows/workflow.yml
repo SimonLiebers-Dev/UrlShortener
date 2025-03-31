@@ -129,7 +129,9 @@ jobs:
   analyze:
     name: Analyze App with SonarQube
     runs-on: ubuntu-latest
-    needs: test-e2e
+    needs:
+      - test-backend
+      - test-frontend
 
     steps:
     - name: Checkout
