@@ -160,6 +160,8 @@ jobs:
 
     - name: Analyze with SonarQube
       uses: highbyte/sonarscan-dotnet@v2.4.2
+      env:
+         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
         sonarProjectKey: ${{ secrets.SONAR_PROJECT_KEY }}
         sonarProjectName:  UrlShortener
