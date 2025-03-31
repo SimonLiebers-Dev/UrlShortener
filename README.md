@@ -11,9 +11,9 @@ A URL shortener service with user authentication, URL mapping, and redirect trac
 - SonarQube Integration: Code quality analysis with SonarQube.
 
 ## Technologies
-- Backend: .NET 6/7, ASP.NET Core, Entity Framework Core
-- Frontend: Blazor WebAssembly
-- Database: SQL Server (or your preferred DB)
+- Backend: .NET 9, ASP.NET Core, Entity Framework Core
+- Frontend: Blazor Web App (Hosted)
+- Database: SQL Server 
 - Authentication: JWT
 - Code Quality: SonarQube
 - Containerization: Docker
@@ -33,7 +33,7 @@ A URL shortener service with user authentication, URL mapping, and redirect trac
    docker-compose up --build
    ```
 
-   This will start both the frontend and backend services. You can access the app at [http://localhost:80](http://localhost:80) (or your configured port).
+   This will start both the frontend and backend services. You can access the app at [http://localhost:1010](http://localhost:1010) (or your configured port).
 
 ### Stopping the Application
 
