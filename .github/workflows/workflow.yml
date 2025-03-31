@@ -159,5 +159,5 @@ jobs:
         sonarProjectKey: ${{ secrets.SONAR_PROJECT_KEY }}
         sonarProjectName:  UrlShortener
         sonarOrganization: ${{ secrets.SONAR_ORGANIZATION }}
-        sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.verbose=true
+        sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml" /d:sonar.verbose=true /d:sonar.sources=UrlShortener
         dotnetDisableTests: true
