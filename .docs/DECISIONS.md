@@ -5,8 +5,7 @@
 **Date**: 2025-03-18
 
 ### Decision:
-We have decided to implement the URL shortener ourselves, rather than relying on an external service. We store all shortened URLs in our own database and allow users to create and manage URLs.
-
+I have decided to implement the URL shortener myself, rather than relying on an external service. I store all shortened URLs in my own database and allow users to create and manage URLs.
 ### Justification:
 - Full control over URL management and data.
 - Ability to integrate additional features like URL tracking and analytics.
@@ -25,7 +24,7 @@ We have decided to implement the URL shortener ourselves, rather than relying on
 **Date**: 2025-03-18
 
 ### Decision:
-We are using JSON Web Tokens (JWT) for user authentication and authorization. The token is stored in the user's browser local storage and sent with every request to the backend.
+I am using JSON Web Tokens (JWT) for user authentication and authorization. The token is stored in the user's browser local storage and sent with every request to the backend.
 
 ### Justification:
 - JWTs are lightweight and efficient.
@@ -45,7 +44,7 @@ We are using JSON Web Tokens (JWT) for user authentication and authorization. Th
 **Date**: 2025-03-19
 
 ### Decision:
-We are using SQL Server (Microsoft SQL Server) for the backend, as it integrates well with .NET Core and is required for handling transactions and complex queries for URL data and user information.
+I am using SQL Server (Microsoft SQL Server) for the backend, as it integrates well with .NET Core and is required for handling transactions and complex queries for URL data and user information.
 
 ### Justification:
 - SQL Server is robust, supports ACID transactions, and offers excellent performance.
@@ -64,7 +63,7 @@ We are using SQL Server (Microsoft SQL Server) for the backend, as it integrates
 **Date**: 2025-03-19
 
 ### Decision:
-We are using Blazor WebAssembly for the frontend, as it provides a powerful way to write interactive web applications in C# and benefit from code reuse between frontend and backend.
+I am using Blazor WebAssembly for the frontend, as it provides a powerful way to write interactive web applications in C# and benefit from code reuse between frontend and backend.
 
 ### Justification:
 - C# code can be used on both the frontend and backend, simplifying development.
@@ -77,20 +76,3 @@ We are using Blazor WebAssembly for the frontend, as it provides a powerful way 
     - **Disadvantages**: Requires JavaScript development, less tight integration with the backend.
 
 ---
-
-## ADR 5: Choice of Containerization Technology
-**Status**: Decided  
-**Date**: 2025-03-20
-
-### Decision:
-We are using Docker for containerizing the application. Docker Compose will be used for orchestrating the backend, frontend, and database.
-
-### Justification:
-- Docker allows for easy deployment and management of microservices and ensures consistency between development, test, and production environments.
-- Docker Compose simplifies the environment setup by defining services, networks, and volumes.
-- Ideal for use in CI/CD pipelines and for testing the application in different environments.
-
-### Alternatives:
-- Use of Kubernetes for orchestration.
-    - **Advantages**: Scalable, well-suited for large applications and microservices.
-    - **Disadvantages**: Complexity in setup and management, high learning curve.
