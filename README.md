@@ -5,18 +5,17 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SimonLiebers-Dev_UrlShortener&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=SimonLiebers-Dev_UrlShortener)
 [![Pipeline](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/workflow.yml/badge.svg?branch=main)](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/workflow.yml)
 
-A URL shortener service with user authentication, URL mapping, and redirect tracking.
+This is a custom URL shortener built with Blazor WebAssembly and ASP.NET Core. It allows users to shorten URLs and track usage.
 
 ## Features
-- User Authentication: Register and log in to the service using JWT tokens.
-- URL Shortening: Create custom short URLs and map them to long URLs.
-- Redirect Tracking: Track user interactions with short URLs including IP and user agent.
-- SonarQube Integration: Code quality analysis with SonarQube.
+- User Authentication: User registration and login system with JWT authentication.
+- URL Shortening: Generate short URLs from long links.
+- Redirect Tracking: Track the number of clicks for each short link. Capture visitor details from user agent.
 
-## Technologies
+## Tech Stack
 - Backend: .NET 9, ASP.NET Core, Entity Framework Core
 - Frontend: Blazor Web App (Hosted)
-- Database: SQL Server 
+- Database: Microsoft SQL Server 
 - Authentication: JWT
 - Code Quality: SonarQube
 - Containerization: Docker
@@ -45,3 +44,6 @@ To stop the services:
 ```bash
 docker-compose down
 ```
+
+## License
+MIT License
