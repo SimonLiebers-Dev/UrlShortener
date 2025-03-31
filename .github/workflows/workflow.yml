@@ -137,11 +137,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    # - name: Setup .NET
-    #   uses: actions/setup-dotnet@v4
-    #   with:
-    #     dotnet-version: 9.0.x
-
     - name: Download Frontend Coverage
       uses: actions/download-artifact@v4
       with:
@@ -160,14 +155,8 @@ jobs:
         name: e2e-coverage
         path: coverage
 
-    - name: Install ReportGenerator
-      run: dotnet tool install --global dotnet-reportgenerator-globaltool
-
-    - name: Merge Coverage Reports
-      run: reportgenerator -reports:"**/coverage.opencover.xml" -targetdir:"coverage/merged" -reporttypes:SonarQube
-
-    - name: Install SonarScanner
-      run: dotnet tool install --global dotnet-sonarscanner
+    - name: Find Coverage Files
+      run: echo "COVERAGE_FILES=$(find coverage -name '**/coverage.opencover.xml' | paste -sd, -)" >> $GITHUB_ENV
 
     - name: Analyze with SonarQube
       uses: SonarSource/sonarqube-scan-action@v5.0.0
@@ -177,4 +166,4 @@ jobs:
         args: >
           -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
           -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-          -Dsonar.cs.opencover.reportsPaths=coverage/merged/SonarQube.xml
+          -Dsonar.cs.opencover.reportsPaths="$COVERAGE_FILES"
