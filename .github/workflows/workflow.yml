@@ -151,15 +151,6 @@ jobs:
         name: backend-coverage
         path: coverage
 
-    - name: Download E2E Coverage
-      uses: actions/download-artifact@v4
-      with:
-        name: e2e-coverage
-        path: coverage
-
-    - name: Find Coverage Files
-      run: echo "COVERAGE_FILES=$(find coverage -name '**/coverage.opencover.xml' | paste -sd, -)" >> $GITHUB_ENV
-
     - name: Analyze with SonarQube
       uses: highbyte/sonarscan-dotnet@v2.4.2
       env:
