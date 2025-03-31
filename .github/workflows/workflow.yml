@@ -159,11 +159,10 @@ jobs:
       run: echo "COVERAGE_FILES=$(find coverage -name '**/coverage.opencover.xml' | paste -sd, -)" >> $GITHUB_ENV
 
     - name: Analyze with SonarQube
-      uses: SonarSource/sonarqube-scan-action@v5.0.0
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      uses: highbyte/sonarscan-dotnet@v2.4.2
       with:
-        args: >
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-          -Dsonar.cs.opencover.reportsPaths="$COVERAGE_FILES"
+        sonarProjectKey: ${{ secrets.SONAR_PROJECT_KEY }}
+        sonarProjectName:  UrlShortener
+        sonarOrganization: ${{ secrets.SONAR_ORGANIZATION }}
+        sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/coverage.opencover.xml"
+        dotnetDisableTests: true
