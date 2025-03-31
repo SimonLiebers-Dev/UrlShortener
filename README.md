@@ -1,5 +1,8 @@
 # UrlShortener
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SimonLiebers-Dev_UrlShortener&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=SimonLiebers-Dev_UrlShortener)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=SimonLiebers-Dev_UrlShortener&metric=coverage)](https://sonarcloud.io/summary/new_code?id=SimonLiebers-Dev_UrlShortener)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=SimonLiebers-Dev_UrlShortener&metric=bugs)](https://sonarcloud.io/summary/new_code?id=SimonLiebers-Dev_UrlShortener)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SimonLiebers-Dev_UrlShortener&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=SimonLiebers-Dev_UrlShortener)
 [![Pipeline](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/workflow.yml/badge.svg?branch=main)](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/workflow.yml)
 
 A URL shortener service with user authentication, URL mapping, and redirect tracking.
