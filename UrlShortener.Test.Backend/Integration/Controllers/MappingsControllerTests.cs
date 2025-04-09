@@ -95,8 +95,11 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
             var result = await response.Content.ReadFromJsonAsync<CreateMappingResponseDto>();
 
             // Assert
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.That(result, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+                Assert.That(result, Is.Not.Null);
+            });
             Assert.That(result.ShortUrl, Is.Not.Empty);
         }
 
@@ -169,8 +172,11 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
             var result = await response.Content.ReadFromJsonAsync<List<UrlMappingDto>>();
 
             // Assert
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.That(result, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+                Assert.That(result, Is.Not.Null);
+            });
             Assert.That(result, Has.Count.EqualTo(1));
         }
 
@@ -231,8 +237,12 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
             var response = await _httpClient.GetAsync("api/mappings/stats");
             var result = await response.Content.ReadFromJsonAsync<UserStatsDto>();
 
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.That(result, Is.Not.Null);
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+                Assert.That(result, Is.Not.Null);
+            });
         }
 
         [Test]

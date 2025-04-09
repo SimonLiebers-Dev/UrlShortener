@@ -11,7 +11,7 @@ namespace UrlShortener.Test.Backend.Unit.Business
     public class JwtTokenGeneratorTests
     {
         private Mock<IConfiguration> _mockConfig;
-        private IJwtTokenGenerator _tokenGenerator;
+        private JwtTokenGenerator _tokenGenerator;
         private string _secretKey = string.Empty;
 
         [SetUp]
