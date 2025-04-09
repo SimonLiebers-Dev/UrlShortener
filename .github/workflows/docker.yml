@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  OWNER: ${{ github.repository_owner }}
+  OWNER: simonliebers-dev
   GHCR_REGISTRY: ghcr.io
 
 jobs:
