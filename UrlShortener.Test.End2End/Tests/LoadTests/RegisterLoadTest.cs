@@ -8,7 +8,7 @@ using UrlShortener.Test.End2End.Data;
 namespace UrlShortener.Test.End2End.Tests.LoadTests
 {
     [TestFixture]
-    public class RegisterLoadTest : PlayWrightBackendTestBase
+    public class RegisterLoadTest : PlayWrightFullTestBase
     {
         private HttpClient _httpClient;
 
