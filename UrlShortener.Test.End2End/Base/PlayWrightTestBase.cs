@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using UrlShortener.App.Shared.Models;
 using UrlShortener.App.Blazor.Client.Business;
 using UrlShortener.App.Blazor.Client.Api;
-using UrlShortener.Test.End2End.Data;
 
 namespace UrlShortener.Test.End2End.Base
 {

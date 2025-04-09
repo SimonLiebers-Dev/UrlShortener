@@ -13,7 +13,7 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
         private HttpClient _httpClient;
         protected override List<User> TestUsers => TestData.GetDefaultTestUsers();
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             _httpClient = new HttpClient()
@@ -54,7 +54,7 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
             });
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             _httpClient.Dispose();

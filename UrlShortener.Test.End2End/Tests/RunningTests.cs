@@ -7,7 +7,7 @@ namespace UrlShortener.Test.End2End.Tests
     {
         private HttpClient _httpClient;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             _httpClient = new HttpClient()
@@ -30,12 +30,11 @@ namespace UrlShortener.Test.End2End.Tests
         [Test]
         public async Task Backend_UpAndRunning()
         {
-            _httpClient.BaseAddress = new Uri(BackendTest.Url);
             var response = await _httpClient.GetAsync("/api/health");
             Assert.That(response.IsSuccessStatusCode, Is.True);
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             _httpClient.Dispose();
