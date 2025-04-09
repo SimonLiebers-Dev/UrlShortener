@@ -8,6 +8,7 @@ using UrlShortener.App.Blazor.Client.Api;
 
 namespace UrlShortener.Test.End2End.Base
 {
+    [NonParallelizable]
     public class PlayWrightTestBase
     {
         /// <summary>
