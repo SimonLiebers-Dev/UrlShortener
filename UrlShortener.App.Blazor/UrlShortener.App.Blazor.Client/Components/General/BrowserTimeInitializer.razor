@@ -8,14 +8,8 @@
     {
         if (firstRender && TimeProvider is BrowserTimeProvider browserTimeProvider && !browserTimeProvider.IsLocalTimeZoneSet)
         {
-            try
-            {
-                var timeZone = await GetBrowserTimeZone();
-                browserTimeProvider.SetBrowserTimeZone(timeZone);
-            }
-            catch (JSDisconnectedException)
-            {
-            }
+            var timeZone = await GetBrowserTimeZone();
+            browserTimeProvider.SetBrowserTimeZone(timeZone);
         }
     }
 

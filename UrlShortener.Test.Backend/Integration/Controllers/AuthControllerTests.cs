@@ -78,8 +78,12 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
             var response = await _httpClient.PostAsJsonAsync("/api/auth/login", loginRequest);
             var result = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
 
-            Assert.That(response.IsSuccessStatusCode, Is.True);
-            Assert.That(result, Is.Not.Null);
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(response.IsSuccessStatusCode, Is.True);
+                Assert.That(result, Is.Not.Null);
+            });
             Assert.That(result.Token, Is.Not.Empty);
         }
 
@@ -97,8 +101,11 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
             var response = await _httpClient.PostAsJsonAsync("/api/auth/login", loginRequest);
 
             // Assert
-            Assert.That(response.IsSuccessStatusCode, Is.False);
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
+            Assert.Multiple(() =>
+            {
+                Assert.That(response.IsSuccessStatusCode, Is.False);
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
+            });
         }
 
         [Test]
@@ -116,8 +123,11 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
             var result = await response.Content.ReadFromJsonAsync<RegisterResponseDto>();
 
             // Assert
-            Assert.That(response.IsSuccessStatusCode, Is.True);
-            Assert.That(result, Is.Not.Null);
+            Assert.Multiple(() =>
+            {
+                Assert.That(response.IsSuccessStatusCode, Is.True);
+                Assert.That(result, Is.Not.Null);
+            });
             Assert.That(result.Success, Is.True);
         }
 
@@ -136,10 +146,16 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
             var result = await response.Content.ReadFromJsonAsync<RegisterResponseDto>();
 
             // Assert
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Success, Is.False);
-            Assert.That(result.ErrorType, Is.EqualTo(RegisterErrorType.MissingEmailOrPassword));
+            Assert.Multiple(() =>
+            {
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+                Assert.That(result, Is.Not.Null);
+            });
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Success, Is.False);
+                Assert.That(result.ErrorType, Is.EqualTo(RegisterErrorType.MissingEmailOrPassword));
+            });
         }
 
         [Test]
@@ -157,10 +173,16 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
             var result = await response.Content.ReadFromJsonAsync<RegisterResponseDto>();
 
             // Assert
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Conflict));
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.Success, Is.False);
-            Assert.That(result.ErrorType, Is.EqualTo(RegisterErrorType.EmailAlreadyExists));
+            Assert.Multiple(() =>
+            {
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Conflict));
+                Assert.That(result, Is.Not.Null);
+            });
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Success, Is.False);
+                Assert.That(result.ErrorType, Is.EqualTo(RegisterErrorType.EmailAlreadyExists));
+            });
         }
 
         [TearDown]

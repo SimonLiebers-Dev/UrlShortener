@@ -76,7 +76,7 @@
         LoginLoading = false;
     }
 
-    private void ValidatePassword(ValidatorEventArgs e)
+    private static void ValidatePassword(ValidatorEventArgs e)
     {
         e.Status = Convert.ToString(e.Value)?.Length > 0 ? ValidationStatus.Success : ValidationStatus.Error;
     }

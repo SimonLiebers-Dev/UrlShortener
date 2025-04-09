@@ -179,12 +179,12 @@
         }
     }
 
-    private void ValidateName(ValidatorEventArgs e)
+    private static void ValidateName(ValidatorEventArgs e)
     {
         e.Status = Convert.ToString(e.Value)?.Length > 0 ? ValidationStatus.Success : ValidationStatus.Error;
     }
 
-    private void ValidateUrl(ValidatorEventArgs e)
+    private static void ValidateUrl(ValidatorEventArgs e)
     {
         string pattern = @"^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$";
         var value = Convert.ToString(e.Value);

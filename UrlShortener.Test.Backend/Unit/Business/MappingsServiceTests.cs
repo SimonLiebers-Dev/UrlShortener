@@ -32,8 +32,11 @@ namespace UrlShortener.Test.Backend.Unit.Business
             var result = await _service.CreateMapping(longUrl, "Test", "user@example.com");
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(longUrl, Is.EqualTo(result.LongUrl));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result, Is.Not.Null);
+                Assert.That(longUrl, Is.EqualTo(result!.LongUrl));
+            });
         }
 
         [Test]
@@ -50,9 +53,12 @@ namespace UrlShortener.Test.Backend.Unit.Business
             var result = await _service.GetMappingByPath(mapping.Path);
 
             // Assert
-            Assert.That(result, Is.Not.Null);
-            Assert.That(mapping.Path, Is.EqualTo(result.Path));
-            Assert.That(longUrl, Is.EqualTo(result.LongUrl));
+            Assert.Multiple(() =>
+            {
+                Assert.That(result, Is.Not.Null);
+                Assert.That(mapping.Path, Is.EqualTo(result!.Path));
+                Assert.That(longUrl, Is.EqualTo(result.LongUrl));
+            });
         }
 
         [Test]

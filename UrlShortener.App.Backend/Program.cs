@@ -9,6 +9,8 @@ namespace UrlShortener.App.Backend
 {
     public class Program
     {
+        protected Program() { }
+
         public static void Main(string[] args)
         {
             var app = CreateWebApplication(args);

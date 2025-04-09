@@ -73,7 +73,7 @@ namespace UrlShortener.Test.Frontend.Unit.Components.Pages
             navigationManager.NavigateTo(uri);
 
             // Assert
-            Assert.That(navigationManager.Uri.Contains("type=login"));
+            Assert.That(navigationManager.Uri, Does.Contain("type=login"));
         }
     }
 }

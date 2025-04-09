@@ -83,7 +83,7 @@
         await AuthService.RegisterAsync(RegisterEmail, RegisterPassword);
     }
 
-    private void ValidatePassword(ValidatorEventArgs e)
+    private static void ValidatePassword(ValidatorEventArgs e)
     {
         e.Status = Convert.ToString(e.Value)?.Length >= 6 ? ValidationStatus.Success : ValidationStatus.Error;
     }
