@@ -5,7 +5,7 @@ using UrlShortener.Test.End2End.Data;
 namespace UrlShortener.Test.End2End.Tests
 {
     [TestFixture]
-    public class RegisterTest : PlayWrightTestBase
+    public class RegisterTest : PlayWrightFullTestBase
     {
         protected override List<User> TestUsers => [];
 

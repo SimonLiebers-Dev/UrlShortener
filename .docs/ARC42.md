@@ -21,13 +21,13 @@ This project is a custom URL shortener that allows users to shorten, manage, and
 - **Technology Stack**: Blazor WebAssembly (C#), ASP.NET Core (C#), Microsoft SQL Server.
 - **Authentication**: JWT-based authentication.
 - **Hosting**: Self-hosted or cloud deployment.
-- **Third-party APIs**: UserAgent API
+- **Third-party APIs**: [ApicAgent API](https://www.apicagent.com/)
 
 ---
 
 ## 3. System Scope and Context
 ### 3.1 Business Context
-The URL shortener enables users to shorten long URLs, track clicks, and manage their links securely. It is intended for both anonymous and registered users.
+The URL shortener enables users to shorten long URLs, track clicks, and manage their links securely.
 
 ### 3.2 Technical Context
 - **Frontend**: Blazor WebAssembly
@@ -41,7 +41,6 @@ The URL shortener enables users to shorten long URLs, track clicks, and manage t
 - **Microservices-oriented backend** for modularity.
 - **JWT authentication** for secure user management.
 - **Asynchronous operations** for performance optimization.
-- **Database indexing** for efficient query execution.
 
 ---
 
@@ -54,14 +53,14 @@ TODO: DIAGRAM
 - **Frontend**: UI using Blazor WebAssembly.
 - **Backend**: RESTful API in ASP.NET Core.
 - **Database**: Stores URL mappings, user data, analytics.
-- **APIs**: Used for URL security checks and QR code generation.
+- **APIs**: Used for parsing the user agent of the client.
 
 ---
 
 ## 6. Runtime View
 ### 6.1 Shortening a URL
 1. User enters a long URL.
-2. The backend validates the URL.
+2. The backend validates the request.
 3. A short URL is generated and stored in the database.
 4. The user receives the shortened link.
 
@@ -81,7 +80,6 @@ TODO: DIAGRAM
 
 ## 8. Cross-cutting Concepts
 - **Security**: JWT authentication, HTTPS, API security.
-- **Logging & Monitoring**: Centralized logging for tracking errors and usage.
 - **Error Handling**: Graceful error handling and user-friendly messages.
 
 ---
@@ -92,12 +90,14 @@ TODO: DIAGRAM
 - **ADR 3**: SQL Server chosen for structured data storage.
 - **ADR 4**: Blazor WebAssembly selected for frontend development.
 
+View [DECISIONS.md](DECISIONS.md) for more details.
+
 ---
 
 ## 10. Quality Requirements
-- **Performance**: Ensure fast redirections (<50ms).
-- **Security**: Prevent malicious link submissions.
-- **Reliability**: Ensure high uptime and redundancy.
+- **Performance**: Ensure fast redirections.
+- **Security**: Prevent access to users data.
+- **Reliability**: Ensure high uptime.
 
 ---
 

@@ -19,10 +19,10 @@ services:
       context: .
       dockerfile: UrlShortener.App.Backend/Dockerfile
     ports:
-      - "8080:8080"
-      - "8081:8081"
+      - "6060:6060"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:6060
       - ConnectionStrings__MsSql=Server=mssql-db;Database=urlshortener;User=sa;Password=VeryGoodPassword!;TrustServerCertificate=true
     networks:
       - urlshortener-network
@@ -38,7 +38,7 @@ services:
       - "1011:8081"
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
-      - Backend__BaseUrl=https://localhost:8081
+      - Backend__BaseUrl=http://urlshortener-backend:6060
     networks:
       - urlshortener-network
     depends_on:

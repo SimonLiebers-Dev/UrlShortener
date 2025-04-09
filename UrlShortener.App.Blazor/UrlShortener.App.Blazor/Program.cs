@@ -26,6 +26,7 @@ public class Program
             .AddTailwindProviders()
             .AddFontAwesomeIcons();
 
+        // Add cascading auth state
         builder.Services.AddCascadingAuthenticationState();
 
         // Register apis
@@ -38,7 +39,8 @@ public class Program
         builder.Services.AddScoped<TimeProvider, BrowserTimeProvider>();
 
         // Add http clients
-        var backendUrl = builder.Configuration.GetSection("Backend").GetSection("BaseUrl").Value ?? throw new InvalidOperationException("The backend base URL is not configured. Please set the 'Backend:BaseUrl' in the configuration.");
+        var backendSection = builder.Configuration.GetSection("Backend");
+        var backendUrl = backendSection.GetSection("BaseUrl").Value ?? throw new InvalidOperationException("The backend base URL is not configured. Please set the 'Backend:BaseUrl' in the configuration.");
 
         builder.Services.AddHttpClient<IAuthApi, AuthApi>().ConfigureHttpClient(client =>
         {
@@ -62,8 +64,6 @@ public class Program
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
-
-        app.UseHttpsRedirection();
 
         app.UseAntiforgery();
 

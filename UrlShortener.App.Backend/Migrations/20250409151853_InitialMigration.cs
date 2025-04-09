@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UrlShortener.App.Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,10 +51,18 @@ namespace UrlShortener.App.Backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UrlMappingId = table.Column<int>(type: "int", nullable: false),
                     IpAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Latitude = table.Column<double>(type: "float", nullable: true),
-                    Longitude = table.Column<double>(type: "float", nullable: true),
                     UserAgent = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AccessedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    AccessedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BrowserFamily = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClientEngine = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClientName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClientType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeviceBrand = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeviceModel = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeviceType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OsName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OsVersion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OsFamily = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

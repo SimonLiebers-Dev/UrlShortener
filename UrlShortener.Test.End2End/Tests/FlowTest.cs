@@ -5,7 +5,7 @@ using UrlShortener.Test.End2End.Data;
 namespace UrlShortener.Test.End2End.Tests
 {
     [TestFixture]
-    public class FlowTest : PlayWrightTestBase
+    public class FlowTest : PlayWrightFullTestBase
     {
         [Test]
         public async Task Login_Create_ShowDetails()

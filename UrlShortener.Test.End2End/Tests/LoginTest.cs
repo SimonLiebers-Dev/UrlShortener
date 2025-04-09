@@ -4,7 +4,7 @@ using UrlShortener.Test.End2End.Data;
 namespace UrlShortener.Test.End2End.Tests
 {
     [TestFixture]
-    public class LoginTest : PlayWrightTestBase
+    public class LoginTest : PlayWrightFullTestBase
     {
         [Test]
         public async Task Page_CanSwitchBetweenLoginAndRegister()

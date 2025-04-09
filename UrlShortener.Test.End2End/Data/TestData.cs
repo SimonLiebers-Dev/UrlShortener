@@ -17,5 +17,18 @@ namespace UrlShortener.Test.End2End.Data
 
             return [testUser];
         }
+
+        public static List<UrlMapping> GetDefaultTestUrlMappings()
+        {
+            var testUrlMapping = new UrlMapping()
+            {
+                CreatedAt = DateTime.UtcNow,
+                LongUrl = "https://google.com",
+                Path = "test",
+                Name = "Test",
+            };
+
+            return [testUrlMapping];
+        }
     }
 }

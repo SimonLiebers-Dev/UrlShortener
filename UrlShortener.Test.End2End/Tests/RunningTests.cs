@@ -3,7 +3,7 @@
 namespace UrlShortener.Test.End2End.Tests
 {
     [TestFixture]
-    public class RunningTests : PlayWrightTestBase
+    public class RunningTests : PlayWrightFullTestBase
     {
         private HttpClient _httpClient;
 

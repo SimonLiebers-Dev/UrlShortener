@@ -9,20 +9,46 @@ using UrlShortener.Test.End2End.Data;
 
 namespace UrlShortener.Test.End2End.Base
 {
-    [NonParallelizable]
     public class PlayWrightTestBase
     {
-        private bool RunHeadless => IsRunningInCI() ? true : Headless;
+        /// <summary>
+        /// Tests are always run headless when running in ci pipeline, otherwise Headless value is used
+        /// </summary>
+        protected bool RunHeadless => IsRunningInCI() ? true : Headless;
 
-        protected IPlaywrightTest FrontendTest;
-        protected IPlaywrightTest BackendTest;
+        /// <summary>
+        /// Define if test should be run in headless mode
+        /// </summary>
         protected virtual bool Headless => false;
-        protected virtual List<User> TestUsers => TestData.GetDefaultTestUsers();
 
-        [OneTimeSetUp]
-        public virtual async Task OneTimeSetup()
+        /// <summary>
+        /// Test users to be used in tests
+        /// </summary>
+        protected virtual List<User> TestUsers => [];
+
+        /// <summary>
+        /// Test mappings to be used in tests
+        /// </summary>
+        protected virtual List<UrlMapping> TestUrlMappings => [];
+
+        /// <summary>
+        /// Checks if the tests are running in a CI environment
+        /// </summary>
+        /// <returns></returns>
+        private static bool IsRunningInCI()
         {
-            // Create and run backend
+            bool isGitHubActions = bool.TryParse(Environment.GetEnvironmentVariable("GITHUB_ACTIONS"), out bool githubAction) && githubAction;
+            bool isCI = bool.TryParse(Environment.GetEnvironmentVariable("GITHUB_ACTIONS"), out bool ci) && ci;
+
+            return isGitHubActions || isCI;
+        }
+
+        /// <summary>
+        /// Create the backend test builder
+        /// </summary>
+        /// <returns>IPlaywrightTestBuilder?</returns>
+        protected IPlaywrightTestBuilder CreateBackendBuilder()
+        {
             var backendBuilder = PlaywrightTestBuilder.Create()
                 .WithLocalHost(localHostBuilder =>
                 {
@@ -54,6 +80,7 @@ namespace UrlShortener.Test.End2End.Base
                                 db.Database.EnsureCreated();
 
                                 db.Users.AddRange(TestUsers);
+                                db.UrlMappings.AddRange(TestUrlMappings);
                                 db.SaveChanges();
                             });
                         })
@@ -66,13 +93,16 @@ namespace UrlShortener.Test.End2End.Base
                     opt.Headless = true; // Backend always headless
                 });
 
-            BackendTest = await backendBuilder
-                .BuildAsync()
-                .ConfigureAwait(true);
+            return backendBuilder;
+        }
 
-            Console.WriteLine($"Backend running on: {BackendTest.Url}");
-
-            // Create and run frontend
+        /// <summary>
+        /// Create the frontend test builder
+        /// </summary>
+        /// <param name="backendTest">Backend test</param>
+        /// <returns>IPlaywrightTestBuilder?</returns>
+        protected IPlaywrightTestBuilder CreateFrontendBuilder(IPlaywrightTest backendTest)
+        {
             var frontendBuilder = PlaywrightTestBuilder.Create()
                 .WithLocalHost(localHostBuilder =>
                 {
@@ -84,11 +114,11 @@ namespace UrlShortener.Test.End2End.Base
                             {
                                 services.AddHttpClient<IAuthApi, AuthApi>().ConfigureHttpClient(client =>
                                 {
-                                    client.BaseAddress = new Uri(BackendTest.Url);
+                                    client.BaseAddress = new Uri(backendTest.Url);
                                 });
                                 services.AddHttpClient<IMappingsService, MappingsService>().ConfigureHttpClient(client =>
                                 {
-                                    client.BaseAddress = new Uri(BackendTest.Url);
+                                    client.BaseAddress = new Uri(backendTest.Url);
                                 });
                             });
                         })
@@ -105,27 +135,7 @@ namespace UrlShortener.Test.End2End.Base
                     opt.ViewportSize = new Microsoft.Playwright.ViewportSize() { Width = 1600, Height = 1600 };
                 });
 
-
-            FrontendTest = await frontendBuilder
-                .BuildAsync(Browser.Chromium, Devices.DesktopChrome)
-                .ConfigureAwait(true);
-
-            Console.WriteLine($"Frontend running on: {FrontendTest.Url}");
-        }
-
-        [OneTimeTearDown]
-        public virtual async Task OneTimeTearDown()
-        {
-            await BackendTest.DisposeAsync();
-            await FrontendTest.DisposeAsync();
-        }
-
-        private static bool IsRunningInCI()
-        {
-            bool isGitHubActions = bool.TryParse(Environment.GetEnvironmentVariable("GITHUB_ACTIONS"), out bool githubAction) && githubAction;
-            bool isCI = bool.TryParse(Environment.GetEnvironmentVariable("GITHUB_ACTIONS"), out bool ci) && ci;
-
-            return isGitHubActions || isCI;
+            return frontendBuilder;
         }
     }
 }

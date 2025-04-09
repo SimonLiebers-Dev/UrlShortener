@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using UrlShortener.App.Backend.Business;
+using UrlShortener.App.Backend.Middleware;
 
 namespace UrlShortener.App.Backend
 {
@@ -17,6 +18,10 @@ namespace UrlShortener.App.Backend
         private static WebApplication CreateWebApplication(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // Configure logging
+            builder.Logging.AddConsole();
+            builder.Logging.SetMinimumLevel(LogLevel.Information);
 
             // Add Db connection
             string connectionString = builder.Configuration.GetConnectionString("MsSql")!;
@@ -34,6 +39,9 @@ namespace UrlShortener.App.Backend
 
             // Add user agent service
             builder.Services.AddHttpClient<IUserAgentService, UserAgentService>();
+
+            // Add middleware
+            builder.Services.AddTransient<DelayMiddleware>();
 
             // Add JWT authentication
             var key = Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]!);
@@ -102,6 +110,9 @@ namespace UrlShortener.App.Backend
             // Add authentication and authorization
             app.UseAuthentication();
             app.UseAuthorization();
+
+            // Use middleware
+            app.UseMiddleware<DelayMiddleware>();
 
             // Map controllers
             app.MapControllers();

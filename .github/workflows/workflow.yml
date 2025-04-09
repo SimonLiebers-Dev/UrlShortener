@@ -1,4 +1,4 @@
-name: Build, Test, Analyze
+name: CI/CD
 
 on:
   push:
@@ -74,7 +74,12 @@ jobs:
       run: dotnet tool install --global dotnet-sonarscanner
 
     - name: Start SonarScanner
-      run: dotnet sonarscanner begin /k:"${{ secrets.SONAR_PROJECT_KEY }}" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /o:"${{ secrets.SONAR_ORGANIZATION }}" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+      run: dotnet sonarscanner begin \
+            /k:"${{ secrets.SONAR_PROJECT_KEY }}" \
+            /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
+            /o:"${{ secrets.SONAR_ORGANIZATION }}" \
+            /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+            /d:sonar.exclusions="**/Migrations/**,**/*.Designer.cs,**/*.g.cs,**/bin/**,**/obj/**,**/Dockerfile"
 
     - name: Run Tests
       run: dotnet build --no-incremental && dotnet-coverage collect 'dotnet test' -f XML -o 'coverage.xml'

@@ -45,7 +45,7 @@
                 <CardTitle Size="4">
                     Create URL
                 </CardTitle>
-                <Validations @ref="validations" Mode="ValidationMode.Auto" ValidateOnLoad="false">
+                <Validations @key="@validationsKey" @ref="validations" Mode="ValidationMode.Auto" ValidateOnLoad="false">
                     <Validation Validator="@ValidateName">
                         <Field>
                             <FieldLabel Padding="Padding.Is0" Style="white-space: nowrap;" RequiredIndicator ColumnSize="ColumnSize.IsFull.OnTablet.Is3.OnDesktop">Name</FieldLabel>
@@ -72,8 +72,8 @@
                     </Validation>
                 </Validations>
                 <Button Color="Color.Primary"
-                        Clicked="CreateMapping"
-                        id="create-mapping-btn">
+                Clicked="CreateMapping"
+                id="create-mapping-btn">
                     Generate Short URL
                 </Button>
             </CardBody>
@@ -126,6 +126,7 @@
 </AuthorizeView>
 
 @code {
+    private int validationsKey = 0;
     private Validations? validations;
     private LoadingIndicator? loadingIndicator;
 
@@ -210,6 +211,10 @@
     {
         longUrl = string.Empty;
         name = string.Empty;
+
+        validationsKey++;
+        validationsKey = validationsKey % 1000;
+        this.StateHasChanged();
     }
 
     private async Task DeleteMapping(UrlMappingDto mapping)

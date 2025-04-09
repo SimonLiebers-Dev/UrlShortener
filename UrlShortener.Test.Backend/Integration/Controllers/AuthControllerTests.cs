@@ -105,7 +105,7 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
         public async Task Register_ValidData_ReturnsOk()
         {
             // Arrange
-            var registerRequest = new RegisterRequest
+            var registerRequest = new RegisterRequestDto
             {
                 Email = "newuser@example.com",
                 Password = "NewUserPassword"
@@ -125,7 +125,7 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
         public async Task Register_MissingEmail_ReturnsError()
         {
             // Arrange
-            var registerRequest = new RegisterRequest
+            var registerRequest = new RegisterRequestDto
             {
                 Email = "",
                 Password = "NewUserPassword"
@@ -146,7 +146,7 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
         public async Task Register_EmailAlreadyExists_ReturnsError()
         {
             // Arrange
-            var registerRequest = new RegisterRequest
+            var registerRequest = new RegisterRequestDto
             {
                 Email = "test@gmail.com",
                 Password = "TestPassword"

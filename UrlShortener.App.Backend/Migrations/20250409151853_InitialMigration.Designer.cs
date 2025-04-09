@@ -12,8 +12,8 @@ using UrlShortener.App.Backend;
 namespace UrlShortener.App.Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250321161616_ChangeLogProperties")]
-    partial class ChangeLogProperties
+    [Migration("20250409151853_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

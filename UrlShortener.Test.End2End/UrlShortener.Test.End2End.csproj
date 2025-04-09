@@ -18,6 +18,8 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.3" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
 		<PackageReference Include="Microsoft.Playwright.NUnit" Version="1.45.1" />
+		<PackageReference Include="NBomber" Version="6.0.1" />
+		<PackageReference Include="NBomber.Http" Version="6.0.2" />
 		<PackageReference Include="NUnit" Version="4.2.2" />
 		<PackageReference Include="NUnit.Analyzers" Version="4.4.0" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />

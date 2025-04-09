@@ -38,7 +38,7 @@ namespace UrlShortener.App.Backend.Controllers
 
             return Ok(new CreateMappingResponseDto
             {
-                ShortUrl = $"{Request.Scheme}://{Request.Host}/{urlMapping.Path}"
+                ShortUrl = $"{Request.Scheme}://localhost:{Request.Host.Port}/{urlMapping.Path}"
             });
         }
 

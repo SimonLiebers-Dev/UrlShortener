@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using UrlShortener.App.Backend.Business;
 using UrlShortener.App.Backend.Utils;
 using UrlShortener.App.Shared.Dto;
@@ -41,9 +41,13 @@ namespace UrlShortener.App.Backend.Controllers
         /// <param name="request">The registration request containing email and password.</param>
         /// <returns>Response indicating success or failure of registration.</returns>
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
         {
             if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
+                return BadRequest(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });
+
+            var email = new EmailAddressAttribute();
+            if (!email.IsValid(request.Email))
                 return BadRequest(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });
 
             if (await DbContext.Users.AnyAsync(u => u.Email == request.Email))

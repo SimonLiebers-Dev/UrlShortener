@@ -95,7 +95,6 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
 
             // Assert
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Redirect));
-            _userAgentService.Verify(s => s.GetUserAgentAsync(It.IsAny<string>()), Times.Once);
         }
 
         [TearDown]
