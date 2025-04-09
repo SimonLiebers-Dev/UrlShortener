@@ -1,0 +1,53 @@
+name: Docker
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  OWNER: ${{ github.repository_owner }}
+  GHCR_REGISTRY: ghcr.io
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract version from Backend .csproj
+        id: version_backend
+        run: |
+          VERSION=$(grep -oPm1 "(?<=<Version>)[^<]+" UrlShortener.App.Backend/UrlShortener.App.Backend.csproj)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Extract version from Frontend .csproj
+        id: version_frontend
+        run: |
+          VERSION=$(grep -oPm1 "(?<=<Version>)[^<]+" UrlShortener.App.Blazor/UrlShortener.App.Blazor/UrlShortener.App.Blazor.csproj)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u $OWNER --password-stdin
+
+      - name: Build Backend Image
+        run: |
+          docker build -t ghcr.io/${{ env.OWNER }}/urlshortener-backend:${{ steps.version_backend.outputs.version }} -f UrlShortener.App.Backend/Dockerfile .
+          docker tag ghcr.io/${{ env.OWNER }}/urlshortener-backend:${{ steps.version_backend.outputs.version }} ghcr.io/${{ env.OWNER }}/urlshortener-backend:latest
+
+      - name: Build Frontend Image
+        run: |
+          docker build -t ghcr.io/${{ env.OWNER }}/urlshortener-frontend:${{ steps.version_frontend.outputs.version }} -f UrlShortener.App.Blazor/UrlShortener.App.Blazor/Dockerfile .
+          docker tag ghcr.io/${{ env.OWNER }}/urlshortener-frontend:${{ steps.version_frontend.outputs.version }} ghcr.io/${{ env.OWNER }}/urlshortener-frontend:latest
+
+      - name: Push Backend Images
+        run: |
+          docker push ghcr.io/${{ env.OWNER }}/urlshortener-backend:${{ steps.version_backend.outputs.version }}
+          docker push ghcr.io/${{ env.OWNER }}/urlshortener-backend:latest
+
+      - name: Push Frontend Images
+        run: |
+          docker push ghcr.io/${{ env.OWNER }}/urlshortener-frontend:${{ steps.version_frontend.outputs.version }}
+          docker push ghcr.io/${{ env.OWNER }}/urlshortener-frontend:latest
