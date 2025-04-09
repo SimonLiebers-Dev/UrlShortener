@@ -74,11 +74,12 @@ jobs:
       run: dotnet tool install --global dotnet-sonarscanner
 
     - name: Start SonarScanner
-      run: dotnet sonarscanner begin \
-            /k="${{ secrets.SONAR_PROJECT_KEY }}" \
+      run: |
+          dotnet sonarscanner begin \
+            /k:"${{ secrets.SONAR_PROJECT_KEY }}" \
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
-            /o="${{ secrets.SONAR_ORGANIZATION }}" \
-            /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+            /o:"${{ secrets.SONAR_ORGANIZATION }}" \
+            /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml \
             /d:sonar.exclusions="**/Migrations/**,**/*.Designer.cs,**/*.g.cs,**/bin/**,**/obj/**,**/Dockerfile"
 
     - name: Run Tests
