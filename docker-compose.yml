@@ -15,9 +15,8 @@ services:
       - urlshortener-network  
 
   urlshortener-backend:
-    build:
-      context: .
-      dockerfile: UrlShortener.App.Backend/Dockerfile
+    image: ghcr.io/simonliebers-dev/urlshortener-backend:1.0.0
+    container_name: backend
     ports:
       - "6060:6060"
     environment:
@@ -30,9 +29,8 @@ services:
       - mssql-db
 
   urlshortener-frontend:
-    build:
-      context: .
-      dockerfile: UrlShortener.App.Blazor/UrlShortener.App.Blazor/Dockerfile
+    image: ghcr.io/simonliebers-dev/urlshortener-frontend:1.0.0
+    container_name: frontend
     ports:
       - "1010:8080"
       - "1011:8081"
