@@ -42,7 +42,7 @@ Im Rahmen des Projekts galten folgende Einschränkungen und Rahmenbedingungen:
 
 - **Quellcodeverwaltung**: Als zentrales Repository für die Versionsverwaltung muss GitHub verwendet werden.
 
-## Kapitel 3. Kontext und Umfang
+## 3. Kontext und Umfang
 TODO: C4 Modelle
 
 ### Kontextdiagramm (Level 1)
@@ -84,7 +84,7 @@ Das System besteht aus drei Haupt-Containern:
     - Möglichkeit zur Erstellung neuer Kurz-URLs.
     - Anzeige der Analytics pro URL über modalen Dialog (inkl. Gerätedetails, Klickzähler etc.).
 
-## Kapitel 4. Lösungsstrategie
+## 4. Lösungsstrategie
 
 Für die Umsetzung der Anwendung wurde bewusst ein konsistenter Technologie-Stack auf Basis von .NET gewählt. Diese Entscheidung basiert auf mehreren Vorteilen:
 
@@ -96,7 +96,7 @@ Für die Umsetzung der Anwendung wurde bewusst ein konsistenter Technologie-Stac
 
 - **Schichtmodell**: Die Anwendung folgt einem klassischen Schichtenmodell, bei dem Präsentations-, Geschäftslogik- und Persistenzschicht klar voneinander getrennt sind. Dies erleichtert die Wartung und zukünftige Erweiterungen.
 
-## Kapitel 5. Baustein-Sicht 
+## 5. Baustein-Sicht 
 Die Anwendung ist in klar getrennte Projektbereiche unterteilt, die die verschiedenen Aufgaben und Verantwortlichkeiten innerhalb des Systems abbilden. Dabei wurde auf eine modulare und wiederverwendbare Struktur geachtet, die sowohl im Backend als auch im Frontend eine saubere Trennung von Zuständigkeiten ermöglicht.
 
 ### Gemeinsame Bausteine
@@ -125,7 +125,7 @@ Das Frontend besteht aus zwei Projekten:
     - **Components**: Wiederverwendbare UI-Komponenten wie Formulare, Tabellen oder Dialoge.
     - **Extensions**: Erweiterungsmethoden und Hilfsfunktionen für die UI oder Datenverarbeitung.
 
-## Kapitel 6. Runtime-Sicht
+## 6. Runtime-Sicht
 Die Runtime-Sicht beschreibt typische Abläufe innerhalb des Systems zur Laufzeit. Dabei werden die Interaktionen zwischen Nutzer, Frontend, Backend, Datenbank und externen APIs dargestellt. Im Folgenden werden zwei zentrale Szenarien der Anwendung beispielhaft beschrieben.
 
 ### Szenario 1: Nutzer erstellt eine neue Kurz-URL
@@ -148,7 +148,7 @@ Die Runtime-Sicht beschreibt typische Abläufe innerhalb des Systems zur Laufzei
 
 Beide Szenarien zeigen, wie die verschiedenen Systemkomponenten zusammenarbeiten, um Kernfunktionalitäten wie URL-Erstellung und Tracking performant und sicher umzusetzen.
 
-## Kapitel 7. Deployment-Sicht
+## 7. Deployment-Sicht
 Die Anwendung wird containerisiert ausgeliefert und über eine zentrale docker-compose-Konfiguration gestartet. Sie besteht aus zwei Hauptdiensten – Backend und Frontend – die jeweils in einem eigenen Docker-Container laufen. Beide Images werden automatisch via GitHub Actions gebaut und mit der jeweils aktuellen Version veröffentlicht.
 
 ### Containerisierung
@@ -181,7 +181,7 @@ docker-compose up --build
 
 Die Anwendung ist anschließend unter den definierten Ports erreichbar. Backend und Frontend laufen unabhängig, aber koordiniert im selben Container-Netzwerk.
 
-## Kapitel 8. Querschnittskonzepte
+## 8. Querschnittskonzepte
 
 ### Sicherheit
 Die Anwendung verwendet ein tokenbasiertes Authentifizierungssystem auf Basis von JWT (JSON Web Token). Nach erfolgreicher Registrierung oder Anmeldung erhält der Client ein signiertes Token, das bei allen nachfolgenden REST-Requests im HTTP-Header mitgesendet wird.
@@ -211,7 +211,7 @@ Dank Tailwind CSS konnten UI-Elemente wie Formulareingaben, Fehlermeldungen oder
 
 Das gesamte UI/UX-Design zielt darauf ab, die Nutzung der Anwendung auch für technisch weniger erfahrene Anwender:innen so einfach und angenehm wie möglich zu machen.
 
-## Kapitel 9. Architekturentscheidungen
+## 9. Architekturentscheidungen
 Die wichtigsten Entscheidungen mit Auswirkungen auf die Architektur wurden als architecture decision records (ADR) dokumentiert.
 
 ### ADR 1: Entscheidung für eigenen URL-Shortener
@@ -306,7 +306,7 @@ Ich habe mich für **Blazor Server** als Hosting-Modell entschieden. Die Logik w
     - **Vorteile**: Vollständig clientseitig, offlinefähig.
     - **Nachteile**: Logik im Browser einsehbar, längere Ladezeit.
 
-## Kapitel 10. Qualität
+## 10. Qualität
 ### Nicht-funktionale Qualitätsanforderungen nach ISO 25010
 
 #### Sicherheit
@@ -346,7 +346,7 @@ Die Anwendung läuft containerisiert über Docker und ist damit unabhängig vom 
 - **Zuverlässigkeit**:
 Das System erkennt fehlerhafte Eingaben und bietet dem Benutzer entsprechendes Feedback.
 
-## Kapitel 11. Qualitätssichernde Maßnahmen und Tests
+## 11. Qualitätssichernde Maßnahmen und Tests
 Die Qualität der Anwendung wurde durch verschiedene Testarten, automatisierte Analysen und CI sichergestellt. Der Fokus lag dabei sowohl auf funktionaler Korrektheit als auch auf nicht-funktionalen Aspekten wie Performance und Sicherheit.
 
 ### Unittests (Backend)

@@ -6,8 +6,8 @@ project = 'UrlShortener'
 copyright = '2025, Liebers'
 author = 'Simon Liebers'
 
-release = '0.2.7'
-version = '0.2.7'
+release = '0.2.8'
+version = '0.2.8'
 
 # -- General configuration
 
