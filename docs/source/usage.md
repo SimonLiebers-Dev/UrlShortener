@@ -15,7 +15,7 @@
 
    This will start both the frontend and backend services. You can access the app at [http://localhost:1010](http://localhost:1010) (or your configured port).
 
-### Stopping the Application
+## Stopping the Application
 
 To stop the services:
 

@@ -1,18 +1,15 @@
 # Dokumentation
 
->Dokumentation zur Projektarbeit im Fach "Software-Qualitätssicherung" an der TH Rosenheim (SoSe25) von Simon Liebers
+Dokumentation zur Projektarbeit im Fach "Software-Qualitätssicherung" an der TH Rosenheim (SoSe25) von Simon Liebers
 
 Der Aufbau dieser Dokumentation orientiert sich am offiziellen [Arc42-Template](https://docs.arc42.org/home/)
 
 ## Kapitel 0: Voraussetzungen
-Folgende Softwarevoraussetzungen müssen zum lokalen Testen der Anwendung gegegeben sein:
-- Node.js in der aktuellen LTS-Version
-- .NET 7
-- eine laufende PostgreSQL-Instanz
+TODO
 
 ## Kapitel 1: Einleitung
 ### Fachliche Anforderungen
-Die *PokemonApp* soll es dem Nutzer ermöglichen, Basisinformationen zu allen derzeit bekannten Pokemon zu erhalten. Nach Eingabe der individuellen Nummer eines Pokemon werden sein Name, sein Bild in Form eines Sprite sowie sein Typ bzw. Typen (sofern das Pokemon zwei Typen besitzt) angezeigt. Sind die jeweiligen Daten in der angebundenen SQL-Datenbank bereits vorhanden, werden sie direkt über eine entsprechende Datenbankabfrage gewonnen. Ansonsten erfolgt eine HTTP-REST Anfrage über die öffentlich verfügbare [PokeAPI](https://pokeapi.co/). Die erhaltenen Daten werden daraufhin in der Datenbank abgespeichert. Damit soll sichergestellt werden, dass im Falle des Nichtvorhandenseins der API dennoch ein Mindestmaß an positiver User Experience gegeben ist und bereits vorhandene Daten weiterhin abgerufen werden können.
+TODO
 
 ### Qualitätsziele
 TODO
