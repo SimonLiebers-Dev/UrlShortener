@@ -12,13 +12,19 @@ version = '0.2.1'
 # -- General configuration
 
 extensions = [
+    'myst_parser',
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
-    'myst_parser',
 ]
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'markdown',
+    '.md': 'markdown',
+}
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
