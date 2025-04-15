@@ -4,5 +4,5 @@
 :maxdepth: 2
 :caption: Contents:
 
-getting-started.md
-architecture.md
+usage.md
+docs.md
