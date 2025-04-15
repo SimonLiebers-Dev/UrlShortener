@@ -2,7 +2,7 @@
 
 ```{toctree}
 :maxdepth: 2
-:caption: Contents:
+:caption: Inhalte:
 
 usage.md
 docs.md

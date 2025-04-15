@@ -1,23 +1,23 @@
-# Usage
+# Verwendung
 
-## Prerequisites
+## Vorraussetzungen
 - Docker
 
 ## Running the Application
 
-1. Clone this repository.
-2. Ensure Docker is installed on your machine.
-3. Build and run the project using Docker Compose:
+1. Repository klonen.
+2. Stelle sicher, dass Docker auf deinem System installiert ist.
+3. Baue und starte das Projekt mit Docker Compose:
 
    ```bash
    docker-compose up --build
    ```
 
-   This will start both the frontend and backend services. You can access the app at [http://localhost:1010](http://localhost:1010) (or your configured port).
+   Dadurch werden sowohl der Frontend- als auch der Backend-Service gestartet. Du kannst die Anwendung unter [http://localhost:1010](http://localhost:1010) (oder dem von dir konfigurierten Port) aufrufen.
 
 ## Stopping the Application
 
-To stop the services:
+Um die Container zu stoppen:
 
 ```bash
 docker-compose down

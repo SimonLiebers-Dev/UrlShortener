@@ -4,10 +4,7 @@ Dokumentation zur Projektarbeit im Fach "Software-Qualitätssicherung" an der TH
 
 Der Aufbau dieser Dokumentation orientiert sich am offiziellen [Arc42-Template](https://docs.arc42.org/home/)
 
-## Kapitel 0: Voraussetzungen
-TODO
-
-## Kapitel 1: Einleitung
+## 1. Einleitung
 ### Fachliche Anforderungen
 TODO
 
@@ -17,11 +14,11 @@ TODO
 ### Stakeholder
 TODO
 
-## Kapitel 2: Beschränkungen
+## 2. Beschränkungen
 TODO
 
-## Kapitel 3: Kontext und Umfang
-TODO: C4 Modelle
+## Kapitel 3. Kontext und Umfang
+TODO.C4 Modelle
 
 ### Kontextdiagramm (Level 1)
 TODO
@@ -32,21 +29,21 @@ TODO
 ### Komponentendiagramm (Level 3)
 TODO
 
-## Kapitel 4: Lösungsstrategie
+## Kapitel 4. Lösungsstrategie
 
 ### Technische Entscheidungen
 TODO
 
-## Kapitel 5: Baustein-Sicht 
+## Kapitel 5. Baustein-Sicht 
 TODO
 
-## Kapitel 6: Runtime-Sicht
+## Kapitel 6. Runtime-Sicht
 TODO
 
-## Kapitel 7: Deployment-Sicht
+## Kapitel 7. Deployment-Sicht
 TODO
 
-## Kapitel 8: Querschnittskonzepte
+## Kapitel 8. Querschnittskonzepte
 
 ### Sicherheit
 TODO
@@ -57,18 +54,18 @@ TODO
 ### User Experience
 TODO
 
-## Kapitel 9: Architekturentscheidungen
+## Kapitel 9. Architekturentscheidungen
 ADRs
 
 |Sektion    |Beschreibung|
 |---        |---         |
-|Titel   |ADR 1: TODO   |
+|Titel   |ADR 1. TODO   |
 |Kontext   | - |
 |Entscheidung   | - |
 |Status   | - |
 |Konsequenzen   |  - |
 
-## Kapitel 10: Qualität
+## Kapitel 10. Qualität
 ### Nicht-funktionale Qualitätsanforderungen nach ISO 25010
 
 #### Sicherheit
@@ -80,22 +77,22 @@ TODO
 #### Wartbarkeit
 TODO
 
-- **Wartbarkeit und Erweiterbarkeit**: TODO
+- **Wartbarkeit und Erweiterbarkeit**. TODO
 
-- **Wirtschaftlichkeit**: TODO
+- **Wirtschaftlichkeit**. TODO
 
 #### Benutzbarkeit
-- **Benutzerfreundlichkeit**: TODO
+- **Benutzerfreundlichkeit**. TODO
 
 #### Kompatibilität
 
-- **Interoperabilität und Integration**: TODO
-- **Funktionale Eignung**: TODO
-- **Portabilität**: TODO
-- **Zuverlässigkeit**: TODO
+- **Interoperabilität und Integration**. TODO
+- **Funktionale Eignung**. TODO
+- **Portabilität**. TODO
+- **Zuverlässigkeit**. TODO
 
-## Kapitel 11: Qualitätssichernde Maßnahmen und Tests
-TODO: Pipeline
+## Kapitel 11.Qualitätssichernde Maßnahmen und Tests
+TODO.Pipeline
 
 ### Unittests (Backend)
 TODO
@@ -113,7 +110,7 @@ TODO
 TODO
 
 ### End2End-Tests
-TODO: PlayWright
+TODO.PlayWright
 
 ### Last-Tests
 TODO
