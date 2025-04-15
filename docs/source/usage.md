@@ -3,7 +3,7 @@
 ## Vorraussetzungen
 - Docker
 
-## Running the Application
+## Anwendung starten
 
 1. Repository klonen.
 2. Stelle sicher, dass Docker auf deinem System installiert ist.
@@ -15,7 +15,7 @@
 
    Dadurch werden sowohl der Frontend- als auch der Backend-Service gestartet. Du kannst die Anwendung unter [http://localhost:1010](http://localhost:1010) (oder dem von dir konfigurierten Port) aufrufen.
 
-## Stopping the Application
+## Anwendung stoppen
 
 Um die Container zu stoppen:
 
