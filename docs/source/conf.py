@@ -3,11 +3,11 @@
 # -- Project information
 
 project = 'UrlShortener'
-copyright = '2021, Liebers'
+copyright = '2025, Liebers'
 author = 'Simon Liebers'
 
-release = '0.2.2'
-version = '0.2.2'
+release = '0.2.3'
+version = '0.2.3'
 
 # -- General configuration
 
