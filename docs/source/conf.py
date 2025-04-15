@@ -7,7 +7,7 @@ copyright = '2021, Liebers'
 author = 'Simon Liebers'
 
 release = '0.2'
-version = '0.2.0'
+version = '0.2.1'
 
 # -- General configuration
 
@@ -17,6 +17,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
+    'myst_parser',
 ]
 
 intersphinx_mapping = {
