@@ -4,9 +4,9 @@ using UrlShortener.App.Shared.Models;
 namespace UrlShortener.App.Backend.Business
 {
     /// <summary>
-    /// Service for logging redirects.
+    /// Service for logging redirect events to the database.
+    /// Implements <see cref="IRedirectLogService"/>.
     /// </summary>
-    /// <param name="DbContext"></param>
     internal class RedirectLogService(AppDbContext DbContext) : IRedirectLogService
     {
         /// <inheritdoc />

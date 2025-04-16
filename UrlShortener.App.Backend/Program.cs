@@ -7,16 +7,32 @@ using UrlShortener.App.Backend.Middleware;
 
 namespace UrlShortener.App.Backend
 {
+    /// <summary>
+    /// Entry point of the URL shortener web application.
+    /// Configures services, middleware, authentication, and database migrations.
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Protected constructor to prevent instantiation.
+        /// </summary>
         protected Program() { }
 
+        /// <summary>
+        /// The main entry point of the application.
+        /// </summary>
+        /// <param name="args">Command-line arguments.</param>
         public static void Main(string[] args)
         {
             var app = CreateWebApplication(args);
             app.Run();
         }
 
+        /// <summary>
+        /// Configures and builds the web application, including services, authentication, middleware, and routing.
+        /// </summary>
+        /// <param name="args">Command-line arguments.</param>
+        /// <returns>The configured <see cref="WebApplication"/> instance.</returns>
         private static WebApplication CreateWebApplication(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);

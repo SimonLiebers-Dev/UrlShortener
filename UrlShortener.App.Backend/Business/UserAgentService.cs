@@ -3,9 +3,9 @@
 namespace UrlShortener.App.Backend.Business
 {
     /// <summary>
-    /// Service to retrieve detailed information about a user agent
+    /// Service for retrieving parsed user agent information using an external API.
+    /// Implements <see cref="IUserAgentService"/>.
     /// </summary>
-    /// <param name="httpClient">HttpClient</param>
     internal class UserAgentService(HttpClient httpClient) : IUserAgentService
     {
         /// <inheritdoc />

@@ -4,9 +4,8 @@ using UrlShortener.App.Shared.Models;
 namespace UrlShortener.App.Backend.Business
 {
     /// <summary>
-    /// Service for managing URL mappings.
+    /// Implementation of <see cref="IMappingsService"/> that manages URL mappings.
     /// </summary>
-    /// <param name="DbContext">AppDbContext</param>
     internal class MappingsService(AppDbContext DbContext) : IMappingsService
     {
         private readonly Random Random = new();

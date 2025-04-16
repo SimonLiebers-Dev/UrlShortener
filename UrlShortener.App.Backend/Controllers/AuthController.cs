@@ -8,15 +8,24 @@ using UrlShortener.App.Shared.Models;
 
 namespace UrlShortener.App.Backend.Controllers
 {
+    /// <summary>
+    /// Controller responsible for user authentication, including login and registration endpoints.
+    /// </summary>
+    /// <remarks>
+    /// Relies on <see cref="IJwtTokenGenerator"/> for JWT creation and <see cref="AppDbContext"/> for user persistence.
+    /// </remarks>
     [Route("api/auth")]
     [ApiController]
     public class AuthController(IJwtTokenGenerator JwtTokenGenerator, AppDbContext DbContext) : ControllerBase
     {
         /// <summary>
-        /// Login endpoint to authenticate a user and return a JWT token.
+        /// Authenticates a user and returns a JWT token if credentials are valid.
         /// </summary>
-        /// <param name="request">The login request containing email and password.</param>
-        /// <returns>A JWT token if authentication is successful, otherwise an Unauthorized error.</returns>
+        /// <param name="request">The login request containing the user's email and password.</param>
+        /// <returns>
+        /// <see cref="OkObjectResult"/> with a <see cref="LoginResponseDto"/> containing the JWT token,
+        /// or <see cref="UnauthorizedObjectResult"/> if the credentials are invalid.
+        /// </returns>
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequestDto request)
         {
@@ -36,10 +45,13 @@ namespace UrlShortener.App.Backend.Controllers
         }
 
         /// <summary>
-        /// Register a new user.
+        /// Registers a new user and stores their credentials securely.
         /// </summary>
-        /// <param name="request">The registration request containing email and password.</param>
-        /// <returns>Response indicating success or failure of registration.</returns>
+        /// <param name="request">The registration request containing the user's email and password.</param>
+        /// <returns>
+        /// <see cref="OkObjectResult"/> with a successful <see cref="RegisterResponseDto"/> if registration succeeds,
+        /// or a <see cref="BadRequestObjectResult"/> or <see cref="ConflictObjectResult"/> with an appropriate error.
+        /// </returns>
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
         {

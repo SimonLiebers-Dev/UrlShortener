@@ -7,10 +7,21 @@ using UrlShortener.App.Blazor.Client.Business;
 
 namespace UrlShortener.App.Blazor;
 
+/// <summary>
+/// Entry point for the Blazor Server application.
+/// Configures services, HTTP clients, authentication, and UI frameworks, and starts the web host.
+/// </summary>
 public class Program
 {
+    /// <summary>
+    /// Protected constructor to prevent instantiation.
+    /// </summary>
     protected Program() { }
 
+    /// <summary>
+    /// Configures and launches the Blazor Server application.
+    /// </summary>
+    /// <param name="args">Command-line arguments passed to the application.</param>
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);

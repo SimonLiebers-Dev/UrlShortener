@@ -1,14 +1,22 @@
 ﻿namespace UrlShortener.App.Backend.Middleware
 {
     /// <summary>
-    /// Middleware to introduce a delay for authentication requests.
+    /// Middleware that introduces an artificial delay for authentication-related requests to mitigate brute-force or timing attacks.
     /// </summary>
-    /// <param name="logger">Logger</param>
+    /// <remarks>
+    /// Applies a base delay of 500ms with up to 200ms of jitter to all requests targeting the <c>/api/auth</c> path.
+    /// </remarks>
     public class DelayMiddleware(ILogger<DelayMiddleware> logger) : IMiddleware
     {
         private readonly TimeSpan _minDelay = TimeSpan.FromMilliseconds(500);
         private readonly TimeSpan _maxJitter = TimeSpan.FromMilliseconds(200);
 
+        /// <summary>
+        /// Executes the middleware logic, adding a delay to requests under the <c>/api/auth</c> path.
+        /// </summary>
+        /// <param name="context">The current HTTP context.</param>
+        /// <param name="next">The delegate representing the next middleware in the pipeline.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             // Only delay auth requests

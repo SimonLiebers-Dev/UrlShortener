@@ -6,10 +6,20 @@ using System.Text.Json;
 
 namespace UrlShortener.App.Blazor.Client.Business
 {
+    /// <summary>
+    /// Provides the authentication state for the Blazor application using JWT stored in sessionStorage.
+    /// Inherits from <see cref="AuthenticationStateProvider"/>.
+    /// </summary>
     public class AppAuthenticationStateProvider(IJSRuntime JsRuntime) : AuthenticationStateProvider
     {
         private string? _token = null;
 
+        /// <summary>
+        /// Gets the current authentication state, including user claims if a valid JWT token is present.
+        /// </summary>
+        /// <returns>
+        /// A task that represents the asynchronous operation. The result contains the current <see cref="AuthenticationState"/>.
+        /// </returns>
         public override Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             if (!string.IsNullOrEmpty(_token))
@@ -23,11 +33,19 @@ namespace UrlShortener.App.Blazor.Client.Business
             }
         }
 
+        /// <summary>
+        /// Returns the current JWT token.
+        /// </summary>
+        /// <returns>The JWT token as a string, or <c>null</c> if not set.</returns>
         public string? GetToken()
         {
             return _token;
         }
 
+        /// <summary>
+        /// Sets the authentication token, persists it to sessionStorage, and notifies the application of the updated auth state.
+        /// </summary>
+        /// <param name="token">The JWT token to set.</param>
         public async Task TryMarkUserAsAuthenticated(string? token)
         {
             _token = token;
@@ -37,6 +55,9 @@ namespace UrlShortener.App.Blazor.Client.Business
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
 
+        /// <summary>
+        /// Clears the current authentication token, removes it from sessionStorage, and notifies the application of the logout.
+        /// </summary>
         public async Task MarkUserAsLoggedOut()
         {
             _token = null;
@@ -46,6 +67,11 @@ namespace UrlShortener.App.Blazor.Client.Business
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
 
+        /// <summary>
+        /// Parses a JWT token and extracts claims from its payload.
+        /// </summary>
+        /// <param name="jwt">The JWT token string.</param>
+        /// <returns>A collection of claims extracted from the token.</returns>
         private static IEnumerable<Claim> ParseClaimsFromJwt(string jwt)
         {
             var payload = jwt.Split('.')[1];

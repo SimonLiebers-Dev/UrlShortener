@@ -6,9 +6,8 @@ using System.Text;
 namespace UrlShortener.App.Backend.Business
 {
     /// <summary>
-    /// Jwt token generator
+    /// Implementation of <see cref="IJwtTokenGenerator"/> that generates JWT tokens using configuration settings.
     /// </summary>
-    /// <param name="Config">Config</param>
     internal class JwtTokenGenerator(IConfiguration Config) : IJwtTokenGenerator
     {
         /// <inheritdoc />

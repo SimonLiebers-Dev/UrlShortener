@@ -2,6 +2,9 @@
 
 namespace UrlShortener.App.Backend.Business
 {
+    /// <summary>
+    /// Service to manage URL mappings
+    /// </summary>
     public interface IMappingsService
     {
         /// <summary>

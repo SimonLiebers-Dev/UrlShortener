@@ -9,7 +9,7 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=SimonLiebers-Dev_UrlShortener&metric=bugs)](https://sonarcloud.io/summary/new_code?id=SimonLiebers-Dev_UrlShortener)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=SimonLiebers-Dev_UrlShortener&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=SimonLiebers-Dev_UrlShortener)
 
-**UrlShortener** ist ein selbst entwickeltes Tool zum kürzen von langen URLs mit integrierter Nutzerverwaltung und detailliertem Klick-Tracking. Die Anwendung ermöglicht registrierten Nutzer:innen, lange URLs zu verkürzen und deren Nutzung auszuwerten. Die Architektur basiert vollständig auf dem .NET-Ökosystem und ist für den produktiven Einsatz containerisiert.
+**UrlShortener** ist ein selbst entwickeltes Tool zum kürzen von langen URLs mit integrierter Nutzerverwaltung und detailliertem Klick-Tracking. Die AnwendunPg ermöglicht registrierten Nutzer:innen, lange URLs zu verkürzen und deren Nutzung auszuwerten. Die Architektur basiert vollständig auf dem .NET-Ökosystem und ist für den produktiven Einsatz containerisiert.
 
 📄 **Die vollständige Projektdokumentation ist verfügbar unter:**  
 👉 [https://simonliebers-dev.github.io/UrlShortener/](https://simonliebers-dev.github.io/UrlShortener/)

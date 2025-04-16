@@ -6,6 +6,10 @@ using UrlShortener.App.Shared.Extensions;
 
 namespace UrlShortener.App.Backend.Controllers
 {
+    /// <summary>
+    /// Controller responsible for managing URL mappings for authenticated users.
+    /// Allows users to create, retrieve, delete, and view statistics for their shortened URLs.
+    /// </summary>
     [ApiController]
     [Route("api/mappings")]
     [Authorize]
@@ -17,7 +21,10 @@ namespace UrlShortener.App.Backend.Controllers
         /// Creates a new URL mapping (shortens a URL).
         /// </summary>
         /// <param name="createMappingRequest">Request containing the long URL and a name for the mapping.</param>
-        /// <returns>The shortened URL.</returns>
+        /// <returns>
+        /// <see cref="OkObjectResult"/> with a <see cref="CreateMappingResponseDto"/> containing the shortened URL,
+        /// or <see cref="BadRequestObjectResult"/> if the input is invalid or creation fails.
+        /// </returns>
         [HttpPost("create")]
         public async Task<IActionResult> CreateMapping([FromBody] CreateMappingRequestDto createMappingRequest)
         {
@@ -45,7 +52,9 @@ namespace UrlShortener.App.Backend.Controllers
         /// <summary>
         /// Retrieves all URL mappings for the authenticated user.
         /// </summary>
-        /// <returns>A list of the user's URL mappings.</returns>
+        /// <returns>
+        /// <see cref="OkObjectResult"/> with a list of mappings, or <see cref="NotFoundObjectResult"/> if no mappings exist.
+        /// </returns>
         [HttpGet("all")]
         public async Task<IActionResult> GetMappings()
         {
@@ -62,10 +71,13 @@ namespace UrlShortener.App.Backend.Controllers
         }
 
         /// <summary>
-        /// Deletes a specific URL mapping.
+        /// Deletes a specific URL mapping by ID.
         /// </summary>
         /// <param name="mappingId">The ID of the mapping to delete.</param>
-        /// <returns>A success or failure message.</returns>
+        /// <returns>
+        /// <see cref="OkObjectResult"/> if the deletion is successful,
+        /// or <see cref="BadRequestObjectResult"/> if deletion fails.
+        /// </returns>
         [HttpDelete("{mappingId}")]
         public async Task<IActionResult> DeleteMapping(int mappingId)
         {
@@ -82,9 +94,11 @@ namespace UrlShortener.App.Backend.Controllers
         }
 
         /// <summary>
-        /// Retrieves user statistics, including total mappings and clicks.
+        /// Retrieves statistics for the authenticated user, such as total number of mappings and total clicks.
         /// </summary>
-        /// <returns>User statistics.</returns>
+        /// <returns>
+        /// <see cref="OkObjectResult"/> containing a <see cref="UserStatsDto"/> with the user's statistics.
+        /// </returns>
         [HttpGet("stats")]
         public async Task<IActionResult> GetStats()
         {
