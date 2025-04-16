@@ -44,8 +44,8 @@
       "_appTitle": "UrlShortener",
       "_enableSearch": true,
       "pdf": true,
-      "_appLogoPath": "../images/logo.png",
-      "_appFaviconPath": "../images/favicon.ico"
+      "_appLogoPath": "images/logo.png",
+      "_appFaviconPath": "images/favicon.ico"
     }
   }
 }
