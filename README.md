@@ -2,6 +2,7 @@
 
 [![CI/CD](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/workflow.yml/badge.svg?branch=main)](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/workflow.yml)
 [![Docker](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/docker.yml/badge.svg?branch=main)](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/docker.yml)
+[![Documentation](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/docs.yml)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SimonLiebers-Dev_UrlShortener&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=SimonLiebers-Dev_UrlShortener)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=SimonLiebers-Dev_UrlShortener&metric=coverage)](https://sonarcloud.io/summary/new_code?id=SimonLiebers-Dev_UrlShortener)
