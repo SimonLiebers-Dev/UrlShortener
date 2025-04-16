@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AuthService | UrlShortener ">
       
-      
+      <meta name="description" content="Implementation of  that handles authentication and registration logic. Coordinates API calls, authentication state updates, navigation, and user notifications.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Blazor_Client_Business_AuthService" data-uid="UrlShortener.App.Blazor.Client.Business.AuthService" class="text-break">
-Class AuthService  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AuthService.cs/#L9"><i class="bi bi-code-slash"></i></a>
+Class AuthService  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AuthService.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,9 @@ Class AuthService  <a class="header-action link-secondary" title="View source" h
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Blazor.Client.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Implementation of <a class="xref" href="UrlShortener.App.Blazor.Client.Business.IAuthService.html">IAuthService</a> that handles authentication and registration logic.
+Coordinates API calls, authentication state updates, navigation, and user notifications.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -152,6 +154,10 @@ Class AuthService  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <h2 id="UrlShortener_App_Blazor_Client_Business_AuthService_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Depends on <a class="xref" href="UrlShortener.App.Blazor.Client.Api.IAuthApi.html">IAuthApi</a> for backend communication, <span class="xref">Blazorise.INotificationService</span> for user feedback,
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstateprovider">AuthenticationStateProvider</a> for authentication state management, and <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.navigationmanager">NavigationManager</a> for routing.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -162,10 +168,12 @@ Class AuthService  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_AuthService__ctor_UrlShortener_App_Blazor_Client_Api_IAuthApi_Blazorise_INotificationService_Microsoft_AspNetCore_Components_Authorization_AuthenticationStateProvider_Microsoft_AspNetCore_Components_NavigationManager_" data-uid="UrlShortener.App.Blazor.Client.Business.AuthService.#ctor(UrlShortener.App.Blazor.Client.Api.IAuthApi,Blazorise.INotificationService,Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider,Microsoft.AspNetCore.Components.NavigationManager)">
   AuthService(IAuthApi, INotificationService, AuthenticationStateProvider, NavigationManager)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AuthService.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AuthService.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Implementation of <a class="xref" href="UrlShortener.App.Blazor.Client.Business.IAuthService.html">IAuthService</a> that handles authentication and registration logic.
+Coordinates API calls, authentication state updates, navigation, and user notifications.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -191,6 +199,10 @@ Class AuthService  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <h4 class="section" id="UrlShortener_App_Blazor_Client_Business_AuthService__ctor_UrlShortener_App_Blazor_Client_Api_IAuthApi_Blazorise_INotificationService_Microsoft_AspNetCore_Components_Authorization_AuthenticationStateProvider_Microsoft_AspNetCore_Components_NavigationManager__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Depends on <a class="xref" href="UrlShortener.App.Blazor.Client.Api.IAuthApi.html">IAuthApi</a> for backend communication, <span class="xref">Blazorise.INotificationService</span> for user feedback,
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstateprovider">AuthenticationStateProvider</a> for authentication state management, and <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.navigationmanager">NavigationManager</a> for routing.</p>
+</div>
 
 
 
@@ -203,10 +215,13 @@ Class AuthService  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_AuthService_LoginAsync_System_String_System_String_" data-uid="UrlShortener.App.Blazor.Client.Business.AuthService.LoginAsync(System.String,System.String)">
   LoginAsync(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AuthService.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AuthService.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Attempts to log in the user with the provided credentials.
+If successful, updates the authentication state and navigates to the home page.
+Otherwise, shows an error notification.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -216,9 +231,11 @@ Class AuthService  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>username</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The user's email or username.</p>
+</dd>
     <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The user's password.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -241,10 +258,13 @@ Class AuthService  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_AuthService_RegisterAsync_System_String_System_String_" data-uid="UrlShortener.App.Blazor.Client.Business.AuthService.RegisterAsync(System.String,System.String)">
   RegisterAsync(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AuthService.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AuthService.cs/#L54"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Attempts to register a new user with the provided credentials.
+On success, redirects to the home page.
+On failure, displays an appropriate error message.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -254,9 +274,11 @@ Class AuthService  <a class="header-action link-secondary" title="View source" h
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>username</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The user's email or username.</p>
+</dd>
     <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The user's password.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -279,7 +301,7 @@ Class AuthService  <a class="header-action link-secondary" title="View source" h
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AuthService.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AuthService.cs/#L17" class="edit-link">Edit this page</a>
         </div>
 
 

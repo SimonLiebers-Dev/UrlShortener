@@ -22,7 +22,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.AppDbContext",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.AppDbContext.yml\" sourcestartlinenumber=\"1\">Database context for the application.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -36,7 +36,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Business.IJwtTokenGenerator",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Business.IJwtTokenGenerator.yml\" sourcestartlinenumber=\"1\">Provides functionality for generating JSON Web Tokens (JWT).</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -50,7 +50,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Business.IMappingsService",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Business.IMappingsService.yml\" sourcestartlinenumber=\"1\">Service to manage URL mappings</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -64,7 +64,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Business.IRedirectLogService",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Business.IRedirectLogService.yml\" sourcestartlinenumber=\"1\">Provides functionality for logging redirect events for shortened URLs.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -78,7 +78,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Business.IUserAgentService",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Business.IUserAgentService.yml\" sourcestartlinenumber=\"1\">Provides functionality for retrieving and parsing user agent information from a user’s browser.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -106,7 +106,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Controllers.AuthController",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Controllers.AuthController.yml\" sourcestartlinenumber=\"1\">Controller responsible for user authentication, including login and registration endpoints.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -120,7 +120,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Controllers.HealthCheckController",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Controllers.HealthCheckController.yml\" sourcestartlinenumber=\"1\">Simple controller for checking the health status of the API.\nUseful for uptime monitoring and infrastructure health checks.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -134,7 +134,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Controllers.MappingsController",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Controllers.MappingsController.yml\" sourcestartlinenumber=\"1\">Controller responsible for managing URL mappings for authenticated users.\nAllows users to create, retrieve, delete, and view statistics for their shortened URLs.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -148,7 +148,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Controllers.RedirectController",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Controllers.RedirectController.yml\" sourcestartlinenumber=\"1\">Controller responsible for handling redirection from short URLs to their corresponding long URLs.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -176,7 +176,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Middleware.DelayMiddleware",
-      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Middleware.DelayMiddleware.yml\" sourcestartlinenumber=\"1\">Middleware to introduce a delay for authentication requests.</p>\n"
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Middleware.DelayMiddleware.yml\" sourcestartlinenumber=\"1\">Middleware that introduces an artificial delay for authentication-related requests to mitigate brute-force or timing attacks.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -232,7 +232,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Models.UserAgentApiResponse",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Models.UserAgentApiResponse.yml\" sourcestartlinenumber=\"1\">Represents parsed user agent information returned by an external user agent API.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -246,7 +246,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Models.UserAgentClient",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Models.UserAgentClient.yml\" sourcestartlinenumber=\"1\">Represents detailed information about the client software making the request,\nsuch as a browser or app, extracted from the user agent string.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -260,7 +260,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Models.UserAgentDevice",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Models.UserAgentDevice.yml\" sourcestartlinenumber=\"1\">Represents information about the physical device extracted from the user agent string.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -274,7 +274,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Models.UserAgentOs",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Models.UserAgentOs.yml\" sourcestartlinenumber=\"1\">Represents information about the operating system extracted from the user agent string.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -302,7 +302,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Backend.Program",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Program.yml\" sourcestartlinenumber=\"1\">Entry point of the URL shortener web application.\nConfigures services, middleware, authentication, and database migrations.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -330,7 +330,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Blazor.Client.Api.AuthApi",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Blazor.Client.Api.AuthApi.yml\" sourcestartlinenumber=\"1\">Implementation of <xref href=\"UrlShortener.App.Blazor.Client.Api.IAuthApi\" data-throw-if-not-resolved=\"false\"></xref> that communicates with the backend authentication API using <xref href=\"System.Net.Http.HttpClient\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -344,7 +344,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Blazor.Client.Api.IAuthApi",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Blazor.Client.Api.IAuthApi.yml\" sourcestartlinenumber=\"1\">Defines methods for communicating with the authentication API,\nsuch as logging in and registering users.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -372,7 +372,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider.yml\" sourcestartlinenumber=\"1\">Provides the authentication state for the Blazor application using JWT stored in sessionStorage.\nInherits from <xref href=\"Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -386,7 +386,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Blazor.Client.Business.AuthService",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Blazor.Client.Business.AuthService.yml\" sourcestartlinenumber=\"1\">Implementation of <xref href=\"UrlShortener.App.Blazor.Client.Business.IAuthService\" data-throw-if-not-resolved=\"false\"></xref> that handles authentication and registration logic.\nCoordinates API calls, authentication state updates, navigation, and user notifications.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -400,7 +400,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider.yml\" sourcestartlinenumber=\"1\">Provides time zone information based on the user's browser settings.\nInherits from <xref href=\"System.TimeProvider\" data-throw-if-not-resolved=\"false\"></xref> and overrides the local time zone with the one provided by the browser.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -414,7 +414,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Blazor.Client.Business.IAuthService",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Blazor.Client.Business.IAuthService.yml\" sourcestartlinenumber=\"1\">Defines authentication operations, such as logging in and registering users.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -428,7 +428,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Blazor.Client.Business.IMappingsService",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Blazor.Client.Business.IMappingsService.yml\" sourcestartlinenumber=\"1\">Defines operations related to URL mappings, such as creation, retrieval, deletion, and statistics.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -442,7 +442,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Blazor.Client.Business.MappingsService",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Blazor.Client.Business.MappingsService.yml\" sourcestartlinenumber=\"1\">Implementation of <xref href=\"UrlShortener.App.Blazor.Client.Business.IMappingsService\" data-throw-if-not-resolved=\"false\"></xref> that communicates with the backend to manage URL mappings.\nHandles creation, retrieval, deletion, and statistics via authenticated HTTP requests.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -470,7 +470,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Blazor.Client.Program",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Blazor.Client.Program.yml\" sourcestartlinenumber=\"1\">Entry point for the Blazor WebAssembly client application.\nSets up the host and launches the app in the browser.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -498,7 +498,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Blazor.Program",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Blazor.Program.yml\" sourcestartlinenumber=\"1\">Entry point for the Blazor Server application.\nConfigures services, HTTP clients, authentication, and UI frameworks, and starts the web host.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -526,7 +526,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.CreateMappingRequestDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.CreateMappingRequestDto.yml\" sourcestartlinenumber=\"1\">Represents the request payload for creating a new shortened URL mapping.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -540,7 +540,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.CreateMappingResponseDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.CreateMappingResponseDto.yml\" sourcestartlinenumber=\"1\">Represents the response returned after successfully creating a shortened URL mapping.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -554,7 +554,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.LoginRequestDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.LoginRequestDto.yml\" sourcestartlinenumber=\"1\">Represents the request payload for logging in a user.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -568,7 +568,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.LoginResponseDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.LoginResponseDto.yml\" sourcestartlinenumber=\"1\">Represents the response returned after a successful login request.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -582,7 +582,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.RedirectLogDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.RedirectLogDto.yml\" sourcestartlinenumber=\"1\">Represents a log entry for a URL redirection, including access metadata and client details.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -596,7 +596,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.RegisterErrorType",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.RegisterErrorType.yml\" sourcestartlinenumber=\"1\">Represents the possible error types that can occur during user registration.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -610,7 +610,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.RegisterRequestDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.RegisterRequestDto.yml\" sourcestartlinenumber=\"1\">Represents the request payload for registering a new user.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -624,7 +624,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.RegisterResponseDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.RegisterResponseDto.yml\" sourcestartlinenumber=\"1\">Represents the response returned after a user registration attempt.\nIndicates whether registration was successful and, if not, the type of error encountered.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -638,7 +638,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.UrlMappingDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.UrlMappingDto.yml\" sourcestartlinenumber=\"1\">Represents a shortened URL mapping along with its metadata and redirect logs.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -652,7 +652,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.UserAgentClientDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.UserAgentClientDto.yml\" sourcestartlinenumber=\"1\">Represents details about the client software (e.g., browser or app) extracted from a user agent string.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -666,7 +666,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.UserAgentDeviceDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.UserAgentDeviceDto.yml\" sourcestartlinenumber=\"1\">Represents information about the user's physical device, extracted from the user agent string.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -680,7 +680,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.UserAgentInfoDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.UserAgentInfoDto.yml\" sourcestartlinenumber=\"1\">Represents structured information about a user's environment, parsed from a user agent string.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -694,7 +694,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.UserAgentOsDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.UserAgentOsDto.yml\" sourcestartlinenumber=\"1\">Represents information about the operating system extracted from the user agent string.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -708,7 +708,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.UserStatsDto",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.UserStatsDto.yml\" sourcestartlinenumber=\"1\">Represents aggregated statistics for a user, including total clicks and total URL mappings.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -736,7 +736,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Extensions.DtoExtensions",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Extensions.DtoExtensions.yml\" sourcestartlinenumber=\"1\">Provides extension methods for converting entity models to their corresponding DTO representations.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -764,7 +764,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Models.RedirectLog",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Models.RedirectLog.yml\" sourcestartlinenumber=\"1\">Represents a log entry for a redirection event, including metadata about the request and client environment.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -778,7 +778,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Models.UrlMapping",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Models.UrlMapping.yml\" sourcestartlinenumber=\"1\">Represents a shortened URL mapping, including the original URL, its short path, metadata, and related redirect logs.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -792,7 +792,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Models.User",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Models.User.yml\" sourcestartlinenumber=\"1\">Represents a registered user in the system, including authentication credentials.</p>\n"
     },
     {
       "type": "ManagedReference",

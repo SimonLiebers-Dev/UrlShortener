@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class HealthCheckController | UrlShortener ">
       
-      
+      <meta name="description" content="Simple controller for checking the health status of the API. Useful for uptime monitoring and infrastructure health checks.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Backend_Controllers_HealthCheckController" data-uid="UrlShortener.App.Backend.Controllers.HealthCheckController" class="text-break">
-Class HealthCheckController  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/HealthCheckController.cs/#L5"><i class="bi bi-code-slash"></i></a>
+Class HealthCheckController  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/HealthCheckController.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,9 @@ Class HealthCheckController  <a class="header-action link-secondary" title="View
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Backend.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Simple controller for checking the health status of the API.
+Useful for uptime monitoring and infrastructure health checks.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -684,10 +686,11 @@ public class HealthCheckController : ControllerBase</code></pre>
 
   <h3 id="UrlShortener_App_Backend_Controllers_HealthCheckController_Get" data-uid="UrlShortener.App.Backend.Controllers.HealthCheckController.Get">
   Get()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/HealthCheckController.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/HealthCheckController.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns a basic health check response.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -699,7 +702,8 @@ public IActionResult Get()</code></pre>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.iactionresult">IActionResult</a></dt>
-    <dd></dd>
+    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.okobjectresult">OkObjectResult</a> containing the current status and a UTC timestamp.</p>
+</dd>
   </dl>
 
 
@@ -716,7 +720,7 @@ public IActionResult Get()</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/HealthCheckController.cs/#L5" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/HealthCheckController.cs/#L9" class="edit-link">Edit this page</a>
         </div>
 
 

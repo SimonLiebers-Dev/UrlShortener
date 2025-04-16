@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AuthController | UrlShortener ">
       
-      
+      <meta name="description" content="Controller responsible for user authentication, including login and registration endpoints.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Backend_Controllers_AuthController" data-uid="UrlShortener.App.Backend.Controllers.AuthController" class="text-break">
-Class AuthController  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L11"><i class="bi bi-code-slash"></i></a>
+Class AuthController  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class AuthController  <a class="header-action link-secondary" title="View source
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Backend.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Controller responsible for user authentication, including login and registration endpoints.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -674,6 +675,9 @@ public class AuthController : ControllerBase</code></pre>
 
 
 
+  <h2 id="UrlShortener_App_Backend_Controllers_AuthController_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Relies on <a class="xref" href="UrlShortener.App.Backend.Business.IJwtTokenGenerator.html">IJwtTokenGenerator</a> for JWT creation and <a class="xref" href="UrlShortener.App.Backend.AppDbContext.html">AppDbContext</a> for user persistence.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -684,10 +688,11 @@ public class AuthController : ControllerBase</code></pre>
 
   <h3 id="UrlShortener_App_Backend_Controllers_AuthController__ctor_UrlShortener_App_Backend_Business_IJwtTokenGenerator_UrlShortener_App_Backend_AppDbContext_" data-uid="UrlShortener.App.Backend.Controllers.AuthController.#ctor(UrlShortener.App.Backend.Business.IJwtTokenGenerator,UrlShortener.App.Backend.AppDbContext)">
   AuthController(IJwtTokenGenerator, AppDbContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Controller responsible for user authentication, including login and registration endpoints.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -709,6 +714,9 @@ public class AuthController : ControllerBase</code></pre>
 
 
 
+  <h4 class="section" id="UrlShortener_App_Backend_Controllers_AuthController__ctor_UrlShortener_App_Backend_Business_IJwtTokenGenerator_UrlShortener_App_Backend_AppDbContext__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Relies on <a class="xref" href="UrlShortener.App.Backend.Business.IJwtTokenGenerator.html">IJwtTokenGenerator</a> for JWT creation and <a class="xref" href="UrlShortener.App.Backend.AppDbContext.html">AppDbContext</a> for user persistence.</p>
+</div>
 
 
 
@@ -721,10 +729,10 @@ public class AuthController : ControllerBase</code></pre>
 
   <h3 id="UrlShortener_App_Backend_Controllers_AuthController_Login_UrlShortener_App_Shared_Dto_LoginRequestDto_" data-uid="UrlShortener.App.Backend.Controllers.AuthController.Login(UrlShortener.App.Shared.Dto.LoginRequestDto)">
   Login(LoginRequestDto)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Login endpoint to authenticate a user and return a JWT token.</p>
+  <div class="markdown level1 summary"><p>Authenticates a user and returns a JWT token if credentials are valid.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -736,14 +744,15 @@ public IActionResult Login(LoginRequestDto request)</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>request</code> <a class="xref" href="UrlShortener.App.Shared.Dto.LoginRequestDto.html">LoginRequestDto</a></dt>
-    <dd><p>The login request containing email and password.</p>
+    <dd><p>The login request containing the user's email and password.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.iactionresult">IActionResult</a></dt>
-    <dd><p>A JWT token if authentication is successful, otherwise an Unauthorized error.</p>
+    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.okobjectresult">OkObjectResult</a> with a <a class="xref" href="UrlShortener.App.Shared.Dto.LoginResponseDto.html">LoginResponseDto</a> containing the JWT token,
+or <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.unauthorizedobjectresult">UnauthorizedObjectResult</a> if the credentials are invalid.</p>
 </dd>
   </dl>
 
@@ -761,10 +770,10 @@ public IActionResult Login(LoginRequestDto request)</code></pre>
 
   <h3 id="UrlShortener_App_Backend_Controllers_AuthController_Register_UrlShortener_App_Shared_Dto_RegisterRequestDto_" data-uid="UrlShortener.App.Backend.Controllers.AuthController.Register(UrlShortener.App.Shared.Dto.RegisterRequestDto)">
   Register(RegisterRequestDto)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L55"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Register a new user.</p>
+  <div class="markdown level1 summary"><p>Registers a new user and stores their credentials securely.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -776,14 +785,15 @@ public Task&lt;IActionResult&gt; Register(RegisterRequestDto request)</code></pr
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>request</code> <a class="xref" href="UrlShortener.App.Shared.Dto.RegisterRequestDto.html">RegisterRequestDto</a></dt>
-    <dd><p>The registration request containing email and password.</p>
+    <dd><p>The registration request containing the user's email and password.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.iactionresult">IActionResult</a>&gt;</dt>
-    <dd><p>Response indicating success or failure of registration.</p>
+    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.okobjectresult">OkObjectResult</a> with a successful <a class="xref" href="UrlShortener.App.Shared.Dto.RegisterResponseDto.html">RegisterResponseDto</a> if registration succeeds,
+or a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.badrequestobjectresult">BadRequestObjectResult</a> or <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.conflictobjectresult">ConflictObjectResult</a> with an appropriate error.</p>
 </dd>
   </dl>
 
@@ -801,7 +811,7 @@ public Task&lt;IActionResult&gt; Register(RegisterRequestDto request)</code></pr
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L11" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L17" class="edit-link">Edit this page</a>
         </div>
 
 

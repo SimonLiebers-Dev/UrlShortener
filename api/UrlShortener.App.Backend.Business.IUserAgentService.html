@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IUserAgentService | UrlShortener ">
       
-      
+      <meta name="description" content="Provides functionality for retrieving and parsing user agent information from a user’s browser.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Backend_Business_IUserAgentService" data-uid="UrlShortener.App.Backend.Business.IUserAgentService" class="text-break">
-Interface IUserAgentService  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IUserAgentService.cs/#L5"><i class="bi bi-code-slash"></i></a>
+Interface IUserAgentService  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IUserAgentService.cs/#L8"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Interface IUserAgentService  <a class="header-action link-secondary" title="View
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Backend.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Provides functionality for retrieving and parsing user agent information from a user’s browser.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -124,10 +125,10 @@ Interface IUserAgentService  <a class="header-action link-secondary" title="View
 
   <h3 id="UrlShortener_App_Backend_Business_IUserAgentService_GetUserAgentAsync_System_String_" data-uid="UrlShortener.App.Backend.Business.IUserAgentService.GetUserAgentAsync(System.String)">
   GetUserAgentAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IUserAgentService.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IUserAgentService.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Get user agent information</p>
+  <div class="markdown level1 summary"><p>Retrieves and parses user agent data from the provided user agent string.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -138,14 +139,15 @@ Interface IUserAgentService  <a class="header-action link-secondary" title="View
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>userAgent</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>UserAgent string from the users browser</p>
+    <dd><p>The raw user agent string from the user's browser.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="UrlShortener.App.Backend.Models.UserAgentApiResponse.html">UserAgentApiResponse</a>&gt;</dt>
-    <dd><p>Parsed data</p>
+    <dd><p>A task that represents the asynchronous operation. The task result contains the parsed
+<a class="xref" href="UrlShortener.App.Backend.Models.UserAgentApiResponse.html">UserAgentApiResponse</a>, or <code>null</code> if parsing failed or no data was returned.</p>
 </dd>
   </dl>
 
@@ -163,7 +165,7 @@ Interface IUserAgentService  <a class="header-action link-secondary" title="View
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IUserAgentService.cs/#L5" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IUserAgentService.cs/#L8" class="edit-link">Edit this page</a>
         </div>
 
 

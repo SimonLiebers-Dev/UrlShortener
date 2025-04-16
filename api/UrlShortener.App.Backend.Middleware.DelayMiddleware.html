@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class DelayMiddleware | UrlShortener ">
       
-      <meta name="description" content="Middleware to introduce a delay for authentication requests.">
+      <meta name="description" content="Middleware that introduces an artificial delay for authentication-related requests to mitigate brute-force or timing attacks.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Backend_Middleware_DelayMiddleware" data-uid="UrlShortener.App.Backend.Middleware.DelayMiddleware" class="text-break">
-Class DelayMiddleware  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Middleware/DelayMiddleware.cs/#L7"><i class="bi bi-code-slash"></i></a>
+Class DelayMiddleware  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Middleware/DelayMiddleware.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class DelayMiddleware  <a class="header-action link-secondary" title="View sourc
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Backend.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Middleware to introduce a delay for authentication requests.</p>
+  <div class="markdown summary"><p>Middleware that introduces an artificial delay for authentication-related requests to mitigate brute-force or timing attacks.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -153,6 +153,9 @@ Class DelayMiddleware  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h2 id="UrlShortener_App_Backend_Middleware_DelayMiddleware_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Applies a base delay of 500ms with up to 200ms of jitter to all requests targeting the <code>/api/auth</code> path.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -163,10 +166,10 @@ Class DelayMiddleware  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="UrlShortener_App_Backend_Middleware_DelayMiddleware__ctor_Microsoft_Extensions_Logging_ILogger_UrlShortener_App_Backend_Middleware_DelayMiddleware__" data-uid="UrlShortener.App.Backend.Middleware.DelayMiddleware.#ctor(Microsoft.Extensions.Logging.ILogger{UrlShortener.App.Backend.Middleware.DelayMiddleware})">
   DelayMiddleware(ILogger&lt;DelayMiddleware&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Middleware/DelayMiddleware.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Middleware/DelayMiddleware.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Middleware to introduce a delay for authentication requests.</p>
+  <div class="markdown level1 summary"><p>Middleware that introduces an artificial delay for authentication-related requests to mitigate brute-force or timing attacks.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -177,8 +180,7 @@ Class DelayMiddleware  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="UrlShortener.App.Backend.Middleware.DelayMiddleware.html">DelayMiddleware</a>&gt;</dt>
-    <dd><p>Logger</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -188,6 +190,9 @@ Class DelayMiddleware  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h4 class="section" id="UrlShortener_App_Backend_Middleware_DelayMiddleware__ctor_Microsoft_Extensions_Logging_ILogger_UrlShortener_App_Backend_Middleware_DelayMiddleware___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Applies a base delay of 500ms with up to 200ms of jitter to all requests targeting the <code>/api/auth</code> path.</p>
+</div>
 
 
 
@@ -200,10 +205,10 @@ Class DelayMiddleware  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="UrlShortener_App_Backend_Middleware_DelayMiddleware_InvokeAsync_Microsoft_AspNetCore_Http_HttpContext_Microsoft_AspNetCore_Http_RequestDelegate_" data-uid="UrlShortener.App.Backend.Middleware.DelayMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)">
   InvokeAsync(HttpContext, RequestDelegate)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Middleware/DelayMiddleware.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Middleware/DelayMiddleware.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Request handling method.</p>
+  <div class="markdown level1 summary"><p>Executes the middleware logic, adding a delay to requests under the <code>/api/auth</code> path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -214,17 +219,17 @@ Class DelayMiddleware  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>context</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a></dt>
-    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.httpcontext">HttpContext</a> for the current request.</p>
+    <dd><p>The current HTTP context.</p>
 </dd>
     <dt><code>next</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.http.requestdelegate">RequestDelegate</a></dt>
-    <dd><p>The delegate representing the remaining middleware in the request pipeline.</p>
+    <dd><p>The delegate representing the next middleware in the pipeline.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd><p>A <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a> that represents the execution of this middleware.</p>
+    <dd><p>A task that represents the asynchronous operation.</p>
 </dd>
   </dl>
 
@@ -242,7 +247,7 @@ Class DelayMiddleware  <a class="header-action link-secondary" title="View sourc
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Middleware/DelayMiddleware.cs/#L7" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Middleware/DelayMiddleware.cs/#L9" class="edit-link">Edit this page</a>
         </div>
 
 

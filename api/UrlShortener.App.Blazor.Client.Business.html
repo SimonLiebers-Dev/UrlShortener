@@ -96,30 +96,40 @@ Classes
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider.html">AppAuthenticationStateProvider</a></dt>
-      <dd></dd>
+      <dd><p>Provides the authentication state for the Blazor application using JWT stored in sessionStorage.
+Inherits from <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstateprovider">AuthenticationStateProvider</a>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="UrlShortener.App.Blazor.Client.Business.AuthService.html">AuthService</a></dt>
-      <dd></dd>
+      <dd><p>Implementation of <a class="xref" href="UrlShortener.App.Blazor.Client.Business.IAuthService.html">IAuthService</a> that handles authentication and registration logic.
+Coordinates API calls, authentication state updates, navigation, and user notifications.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider.html">BrowserTimeProvider</a></dt>
-      <dd></dd>
+      <dd><p>Provides time zone information based on the user's browser settings.
+Inherits from <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeprovider">TimeProvider</a> and overrides the local time zone with the one provided by the browser.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="UrlShortener.App.Blazor.Client.Business.MappingsService.html">MappingsService</a></dt>
-      <dd></dd>
+      <dd><p>Implementation of <a class="xref" href="UrlShortener.App.Blazor.Client.Business.IMappingsService.html">IMappingsService</a> that communicates with the backend to manage URL mappings.
+Handles creation, retrieval, deletion, and statistics via authenticated HTTP requests.</p>
+</dd>
     </dl>
     <h3 id="interfaces">
 Interfaces
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="UrlShortener.App.Blazor.Client.Business.IAuthService.html">IAuthService</a></dt>
-      <dd></dd>
+      <dd><p>Defines authentication operations, such as logging in and registering users.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="UrlShortener.App.Blazor.Client.Business.IMappingsService.html">IMappingsService</a></dt>
-      <dd></dd>
+      <dd><p>Defines operations related to URL mappings, such as creation, retrieval, deletion, and statistics.</p>
+</dd>
     </dl>
 
 

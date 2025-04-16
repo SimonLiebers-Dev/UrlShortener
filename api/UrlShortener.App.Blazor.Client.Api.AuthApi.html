@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AuthApi | UrlShortener ">
       
-      
+      <meta name="description" content="Implementation of  that communicates with the backend authentication API using .">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Blazor_Client_Api_AuthApi" data-uid="UrlShortener.App.Blazor.Client.Api.AuthApi" class="text-break">
-Class AuthApi  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Api/AuthApi.cs/#L6"><i class="bi bi-code-slash"></i></a>
+Class AuthApi  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Api/AuthApi.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class AuthApi  <a class="header-action link-secondary" title="View source" href=
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Blazor.Client.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Implementation of <a class="xref" href="UrlShortener.App.Blazor.Client.Api.IAuthApi.html">IAuthApi</a> that communicates with the backend authentication API using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -162,10 +163,11 @@ Class AuthApi  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="UrlShortener_App_Blazor_Client_Api_AuthApi__ctor_System_Net_Http_HttpClient_" data-uid="UrlShortener.App.Blazor.Client.Api.AuthApi.#ctor(System.Net.Http.HttpClient)">
   AuthApi(HttpClient)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Api/AuthApi.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Api/AuthApi.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Implementation of <a class="xref" href="UrlShortener.App.Blazor.Client.Api.IAuthApi.html">IAuthApi</a> that communicates with the backend authentication API using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -197,10 +199,11 @@ Class AuthApi  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="UrlShortener_App_Blazor_Client_Api_AuthApi_Login_System_String_System_String_" data-uid="UrlShortener.App.Blazor.Client.Api.AuthApi.Login(System.String,System.String)">
   Login(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Api/AuthApi.cs/#L8"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Api/AuthApi.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sends a login request to the API with the specified email and password.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -210,15 +213,19 @@ Class AuthApi  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>email</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The user's email address.</p>
+</dd>
     <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The user's password.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>A task representing the asynchronous operation.
+The result contains a JWT token string if the login is successful; otherwise, <code>null</code>.</p>
+</dd>
   </dl>
 
 
@@ -235,10 +242,11 @@ Class AuthApi  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="UrlShortener_App_Blazor_Client_Api_AuthApi_Register_System_String_System_String_" data-uid="UrlShortener.App.Blazor.Client.Api.AuthApi.Register(System.String,System.String)">
   Register(string, string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Api/AuthApi.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Api/AuthApi.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sends a registration request to the API with the specified email and password.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -248,15 +256,19 @@ Class AuthApi  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>email</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The email address for the new user.</p>
+</dd>
     <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The password for the new user.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="UrlShortener.App.Shared.Dto.RegisterResponseDto.html">RegisterResponseDto</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>A task representing the asynchronous operation.
+The result contains a <a class="xref" href="UrlShortener.App.Shared.Dto.RegisterResponseDto.html">RegisterResponseDto</a> with the outcome of the registration, or <code>null</code> if parsing fails.</p>
+</dd>
   </dl>
 
 
@@ -273,7 +285,7 @@ Class AuthApi  <a class="header-action link-secondary" title="View source" href=
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Api/AuthApi.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Api/AuthApi.cs/#L9" class="edit-link">Edit this page</a>
         </div>
 
 

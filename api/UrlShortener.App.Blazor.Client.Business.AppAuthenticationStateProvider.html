@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AppAuthenticationStateProvider | UrlShortener ">
       
-      
+      <meta name="description" content="Provides the authentication state for the Blazor application using JWT stored in sessionStorage. Inherits from .">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Blazor_Client_Business_AppAuthenticationStateProvider" data-uid="UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider" class="text-break">
-Class AppAuthenticationStateProvider  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L9"><i class="bi bi-code-slash"></i></a>
+Class AppAuthenticationStateProvider  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,9 @@ Class AppAuthenticationStateProvider  <a class="header-action link-secondary" ti
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Blazor.Client.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Provides the authentication state for the Blazor application using JWT stored in sessionStorage.
+Inherits from <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstateprovider">AuthenticationStateProvider</a>.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -163,10 +165,12 @@ Class AppAuthenticationStateProvider  <a class="header-action link-secondary" ti
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_AppAuthenticationStateProvider__ctor_Microsoft_JSInterop_IJSRuntime_" data-uid="UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider.#ctor(Microsoft.JSInterop.IJSRuntime)">
   AppAuthenticationStateProvider(IJSRuntime)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Provides the authentication state for the Blazor application using JWT stored in sessionStorage.
+Inherits from <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstateprovider">AuthenticationStateProvider</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -198,10 +202,10 @@ Class AppAuthenticationStateProvider  <a class="header-action link-secondary" ti
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_AppAuthenticationStateProvider_GetAuthenticationStateAsync" data-uid="UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider.GetAuthenticationStateAsync">
   GetAuthenticationStateAsync()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Asynchronously gets an <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstate">AuthenticationState</a> that describes the current user.</p>
+  <div class="markdown level1 summary"><p>Gets the current authentication state, including user claims if a valid JWT token is present.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -213,7 +217,7 @@ Class AppAuthenticationStateProvider  <a class="header-action link-secondary" ti
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstate">AuthenticationState</a>&gt;</dt>
-    <dd><p>A task that, when resolved, gives an <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstate">AuthenticationState</a> instance that describes the current user.</p>
+    <dd><p>A task that represents the asynchronous operation. The result contains the current <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstate">AuthenticationState</a>.</p>
 </dd>
   </dl>
 
@@ -231,10 +235,11 @@ Class AppAuthenticationStateProvider  <a class="header-action link-secondary" ti
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_AppAuthenticationStateProvider_GetToken" data-uid="UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider.GetToken">
   GetToken()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Returns the current JWT token.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -245,7 +250,8 @@ Class AppAuthenticationStateProvider  <a class="header-action link-secondary" ti
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The JWT token as a string, or <code>null</code> if not set.</p>
+</dd>
   </dl>
 
 
@@ -262,10 +268,11 @@ Class AppAuthenticationStateProvider  <a class="header-action link-secondary" ti
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_AppAuthenticationStateProvider_MarkUserAsLoggedOut" data-uid="UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider.MarkUserAsLoggedOut">
   MarkUserAsLoggedOut()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Clears the current authentication token, removes it from sessionStorage, and notifies the application of the logout.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -293,10 +300,11 @@ Class AppAuthenticationStateProvider  <a class="header-action link-secondary" ti
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_AppAuthenticationStateProvider_TryMarkUserAsAuthenticated_System_String_" data-uid="UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider.TryMarkUserAsAuthenticated(System.String)">
   TryMarkUserAsAuthenticated(string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the authentication token, persists it to sessionStorage, and notifies the application of the updated auth state.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -306,7 +314,8 @@ Class AppAuthenticationStateProvider  <a class="header-action link-secondary" ti
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The JWT token to set.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -329,7 +338,7 @@ Class AppAuthenticationStateProvider  <a class="header-action link-secondary" ti
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/AppAuthenticationStateProvider.cs/#L13" class="edit-link">Edit this page</a>
         </div>
 
 

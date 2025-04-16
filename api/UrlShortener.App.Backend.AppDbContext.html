@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class AppDbContext | UrlShortener ">
       
-      
+      <meta name="description" content="Database context for the application.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Backend_AppDbContext" data-uid="UrlShortener.App.Backend.AppDbContext" class="text-break">
-Class AppDbContext  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L6"><i class="bi bi-code-slash"></i></a>
+Class AppDbContext  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class AppDbContext  <a class="header-action link-secondary" title="View source" 
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Backend.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Database context for the application.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -307,10 +308,11 @@ Class AppDbContext  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="UrlShortener_App_Backend_AppDbContext__ctor_Microsoft_EntityFrameworkCore_DbContextOptions_UrlShortener_App_Backend_AppDbContext__" data-uid="UrlShortener.App.Backend.AppDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{UrlShortener.App.Backend.AppDbContext})">
   AppDbContext(DbContextOptions&lt;AppDbContext&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Database context for the application.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -320,7 +322,8 @@ Class AppDbContext  <a class="header-action link-secondary" title="View source" 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>options</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontextoptions-1">DbContextOptions</a>&lt;<a class="xref" href="UrlShortener.App.Backend.AppDbContext.html">AppDbContext</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>The options for the database context.</p>
+</dd>
   </dl>
 
 
@@ -342,10 +345,12 @@ Class AppDbContext  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="UrlShortener_App_Backend_AppDbContext_RedirectLogs" data-uid="UrlShortener.App.Backend.AppDbContext.RedirectLogs">
   RedirectLogs
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the database table of redirect logs.
+Each <a class="xref" href="UrlShortener.App.Shared.Models.RedirectLog.html">RedirectLog</a> records information about a redirection event, including timestamp and IP address.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -373,10 +378,12 @@ Class AppDbContext  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="UrlShortener_App_Backend_AppDbContext_UrlMappings" data-uid="UrlShortener.App.Backend.AppDbContext.UrlMappings">
   UrlMappings
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the database table of URL mappings.
+Each <a class="xref" href="UrlShortener.App.Shared.Models.UrlMapping.html">UrlMapping</a> represents a shortened URL and its corresponding original URL with additional properties.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -404,10 +411,12 @@ Class AppDbContext  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="UrlShortener_App_Backend_AppDbContext_Users" data-uid="UrlShortener.App.Backend.AppDbContext.Users">
   Users
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L8"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets or sets the database table of users.
+Each <a class="xref" href="UrlShortener.App.Shared.Models.User.html">User</a> represents an individual user of the URL shortener system.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -439,12 +448,12 @@ Class AppDbContext  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="UrlShortener_App_Backend_AppDbContext_OnModelCreating_Microsoft_EntityFrameworkCore_ModelBuilder_" data-uid="UrlShortener.App.Backend.AppDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
   OnModelCreating(ModelBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Override this method to further configure the model that was discovered by convention from the entity types
-exposed in <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1">DbSet&lt;TEntity&gt;</a> properties on your derived context. The resulting model may be cached
-and re-used for subsequent instances of your derived context.</p>
+  <div class="markdown level1 summary"><p>Configures the entity relationships and constraints using the model builder.
+This method is called when the model for a derived context has been initialized,
+but before the model has been locked down and used to initialize the context.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -455,9 +464,7 @@ and re-used for subsequent instances of your derived context.</p>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>modelBuilder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.modelbuilder">ModelBuilder</a></dt>
-    <dd><p>The builder being used to construct the model for this context. Databases (and other extensions) typically
-define extension methods on this object that allow you to configure aspects of the model that are specific
-to a given database.</p>
+    <dd><p>The builder being used to construct the model for the context.</p>
 </dd>
   </dl>
 
@@ -468,16 +475,6 @@ to a given database.</p>
 
 
 
-  <h4 class="section" id="UrlShortener_App_Backend_AppDbContext_OnModelCreating_Microsoft_EntityFrameworkCore_ModelBuilder__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>
-    If a model is explicitly set on the options for this context (via <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontextoptionsbuilder.usemodel">UseModel(IModel)</a>)
-    then this method will not be run. However, it will still run when creating a compiled model.
-</p>
-<p>
-    See <a href="https://aka.ms/efcore-docs-modeling">Modeling entity types and relationships</a> for more information and
-    examples.
-</p>
-</div>
 
 
 
@@ -486,7 +483,7 @@ to a given database.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/AppDbContext.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
 

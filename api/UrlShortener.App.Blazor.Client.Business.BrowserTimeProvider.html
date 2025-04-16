@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class BrowserTimeProvider | UrlShortener ">
       
-      
+      <meta name="description" content="Provides time zone information based on the user&#39;s browser settings. Inherits from  and overrides the local time zone with the one provided by the browser.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Blazor_Client_Business_BrowserTimeProvider" data-uid="UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider" class="text-break">
-Class BrowserTimeProvider  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/BrowserTimeProvider.cs/#L3"><i class="bi bi-code-slash"></i></a>
+Class BrowserTimeProvider  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/BrowserTimeProvider.cs/#L7"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,9 @@ Class BrowserTimeProvider  <a class="header-action link-secondary" title="View s
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Blazor.Client.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Provides time zone information based on the user's browser settings.
+Inherits from <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeprovider">TimeProvider</a> and overrides the local time zone with the one provided by the browser.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -181,10 +183,10 @@ Class BrowserTimeProvider  <a class="header-action link-secondary" title="View s
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_BrowserTimeProvider_LocalTimeZone" data-uid="UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider.LocalTimeZone">
   LocalTimeZone
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/BrowserTimeProvider.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/BrowserTimeProvider.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timezoneinfo">TimeZoneInfo</a> object that represents the local time zone according to this <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeprovider">TimeProvider</a>'s notion of time.</p>
+  <div class="markdown level1 summary"><p>Gets the browser-provided local time zone if set; otherwise falls back to the base implementation.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -217,10 +219,12 @@ Class BrowserTimeProvider  <a class="header-action link-secondary" title="View s
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_BrowserTimeProvider_SetBrowserTimeZone_System_String_" data-uid="UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider.SetBrowserTimeZone(System.String)">
   SetBrowserTimeZone(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/BrowserTimeProvider.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/BrowserTimeProvider.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the local time zone based on the provided time zone ID (from the browser).
+If the time zone changes, the <a class="xref" href="UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider.html#UrlShortener_App_Blazor_Client_Business_BrowserTimeProvider_LocalTimeZoneChanged">LocalTimeZoneChanged</a> event is raised.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -251,10 +255,11 @@ Class BrowserTimeProvider  <a class="header-action link-secondary" title="View s
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_BrowserTimeProvider_LocalTimeZoneChanged" data-uid="UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider.LocalTimeZoneChanged">
   LocalTimeZoneChanged
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/BrowserTimeProvider.cs/#L7"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/BrowserTimeProvider.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Occurs when the local time zone is changed via <a class="xref" href="UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider.html#UrlShortener_App_Blazor_Client_Business_BrowserTimeProvider_SetBrowserTimeZone_System_String_">SetBrowserTimeZone(string)</a>.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -282,7 +287,7 @@ Class BrowserTimeProvider  <a class="header-action link-secondary" title="View s
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/BrowserTimeProvider.cs/#L3" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/BrowserTimeProvider.cs/#L7" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class RedirectController | UrlShortener ">
       
-      
+      <meta name="description" content="Controller responsible for handling redirection from short URLs to their corresponding long URLs.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Backend_Controllers_RedirectController" data-uid="UrlShortener.App.Backend.Controllers.RedirectController" class="text-break">
-Class RedirectController  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/RedirectController.cs/#L8"><i class="bi bi-code-slash"></i></a>
+Class RedirectController  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/RedirectController.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class RedirectController  <a class="header-action link-secondary" title="View so
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Backend.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Controller responsible for handling redirection from short URLs to their corresponding long URLs.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -675,6 +676,10 @@ public class RedirectController : ControllerBase</code></pre>
 
 
 
+  <h2 id="UrlShortener_App_Backend_Controllers_RedirectController_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>This controller is publicly accessible and does not require authentication.
+It also logs redirect metadata including IP address and user agent details.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -685,10 +690,11 @@ public class RedirectController : ControllerBase</code></pre>
 
   <h3 id="UrlShortener_App_Backend_Controllers_RedirectController__ctor_UrlShortener_App_Backend_Business_IMappingsService_UrlShortener_App_Backend_Business_IRedirectLogService_UrlShortener_App_Backend_Business_IUserAgentService_" data-uid="UrlShortener.App.Backend.Controllers.RedirectController.#ctor(UrlShortener.App.Backend.Business.IMappingsService,UrlShortener.App.Backend.Business.IRedirectLogService,UrlShortener.App.Backend.Business.IUserAgentService)">
   RedirectController(IMappingsService, IRedirectLogService, IUserAgentService)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/RedirectController.cs/#L8"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/RedirectController.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Controller responsible for handling redirection from short URLs to their corresponding long URLs.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -712,6 +718,10 @@ public class RedirectController : ControllerBase</code></pre>
 
 
 
+  <h4 class="section" id="UrlShortener_App_Backend_Controllers_RedirectController__ctor_UrlShortener_App_Backend_Business_IMappingsService_UrlShortener_App_Backend_Business_IRedirectLogService_UrlShortener_App_Backend_Business_IUserAgentService__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This controller is publicly accessible and does not require authentication.
+It also logs redirect metadata including IP address and user agent details.</p>
+</div>
 
 
 
@@ -724,10 +734,10 @@ public class RedirectController : ControllerBase</code></pre>
 
   <h3 id="UrlShortener_App_Backend_Controllers_RedirectController_RedirectToLongUrl_System_String_" data-uid="UrlShortener.App.Backend.Controllers.RedirectController.RedirectToLongUrl(System.String)">
   RedirectToLongUrl(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/RedirectController.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/RedirectController.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Redirects a short URL to its original long URL.</p>
+  <div class="markdown level1 summary"><p>Redirects a short URL path to its original long URL.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -739,14 +749,15 @@ public Task&lt;IActionResult&gt; RedirectToLongUrl(string path)</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The short URL path.</p>
+    <dd><p>The short URL path to resolve and redirect.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.iactionresult">IActionResult</a>&gt;</dt>
-    <dd><p>A redirect response to the original long URL.</p>
+    <dd><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.redirectresult">RedirectResult</a> to the original URL if found;
+otherwise, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.notfoundresult">NotFoundResult</a>.</p>
 </dd>
   </dl>
 
@@ -764,7 +775,7 @@ public Task&lt;IActionResult&gt; RedirectToLongUrl(string path)</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/RedirectController.cs/#L8" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/RedirectController.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

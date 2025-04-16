@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Interface IRedirectLogService | UrlShortener ">
       
-      
+      <meta name="description" content="Provides functionality for logging redirect events for shortened URLs.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Backend_Business_IRedirectLogService" data-uid="UrlShortener.App.Backend.Business.IRedirectLogService" class="text-break">
-Interface IRedirectLogService  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IRedirectLogService.cs/#L6"><i class="bi bi-code-slash"></i></a>
+Interface IRedirectLogService  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IRedirectLogService.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Interface IRedirectLogService  <a class="header-action link-secondary" title="Vi
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Backend.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Provides functionality for logging redirect events for shortened URLs.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -124,10 +125,10 @@ Interface IRedirectLogService  <a class="header-action link-secondary" title="Vi
 
   <h3 id="UrlShortener_App_Backend_Business_IRedirectLogService_LogRedirectAsync_UrlShortener_App_Shared_Models_UrlMapping_UrlShortener_App_Backend_Models_UserAgentApiResponse_System_String_System_String_" data-uid="UrlShortener.App.Backend.Business.IRedirectLogService.LogRedirectAsync(UrlShortener.App.Shared.Models.UrlMapping,UrlShortener.App.Backend.Models.UserAgentApiResponse,System.String,System.String)">
   LogRedirectAsync(UrlMapping, UserAgentApiResponse?, string?, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IRedirectLogService.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IRedirectLogService.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Log a redirect</p>
+  <div class="markdown level1 summary"><p>Logs a redirect event, capturing metadata such as the user's IP address, user agent, and device information.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -138,23 +139,24 @@ Interface IRedirectLogService  <a class="header-action link-secondary" title="Vi
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>urlMapping</code> <a class="xref" href="UrlShortener.App.Shared.Models.UrlMapping.html">UrlMapping</a></dt>
-    <dd><p>UrlMapping to create log for</p>
+    <dd><p>The URL mapping associated with the redirection.</p>
 </dd>
     <dt><code>userAgentApiResponse</code> <a class="xref" href="UrlShortener.App.Backend.Models.UserAgentApiResponse.html">UserAgentApiResponse</a></dt>
-    <dd><p>User agent data of the user</p>
+    <dd><p>Optional parsed user agent data, such as browser and device info.</p>
 </dd>
     <dt><code>ipAddress</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Ip address of the user</p>
+    <dd><p>Optional IP address of the user initiating the redirect.</p>
 </dd>
     <dt><code>userAgent</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>UserAgent of the users browser</p>
+    <dd><p>Optional raw user agent string of the user's browser.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></dt>
-    <dd></dd>
+    <dd><p>A task representing the asynchronous logging operation.</p>
+</dd>
   </dl>
 
 
@@ -171,7 +173,7 @@ Interface IRedirectLogService  <a class="header-action link-secondary" title="Vi
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IRedirectLogService.cs/#L6" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Business/IRedirectLogService.cs/#L9" class="edit-link">Edit this page</a>
         </div>
 
 

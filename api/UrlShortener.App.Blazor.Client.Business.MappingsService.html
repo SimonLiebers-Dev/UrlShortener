@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class MappingsService | UrlShortener ">
       
-      
+      <meta name="description" content="Implementation of  that communicates with the backend to manage URL mappings. Handles creation, retrieval, deletion, and statistics via authenticated HTTP requests.">
       <link rel="icon" href="../images/favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Blazor_Client_Business_MappingsService" data-uid="UrlShortener.App.Blazor.Client.Business.MappingsService" class="text-break">
-Class MappingsService  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class MappingsService  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,9 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
   <dl><dt>Assembly</dt><dd>UrlShortener.App.Blazor.Client.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Implementation of <a class="xref" href="UrlShortener.App.Blazor.Client.Business.IMappingsService.html">IMappingsService</a> that communicates with the backend to manage URL mappings.
+Handles creation, retrieval, deletion, and statistics via authenticated HTTP requests.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -152,6 +154,10 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h2 id="UrlShortener_App_Blazor_Client_Business_MappingsService_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Uses <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> for API calls, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstateprovider">AuthenticationStateProvider</a> for JWT access,
+and <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.navigationmanager">NavigationManager</a> for redirecting unauthorized users.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -162,10 +168,12 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_MappingsService__ctor_System_Net_Http_HttpClient_Microsoft_AspNetCore_Components_Authorization_AuthenticationStateProvider_Microsoft_AspNetCore_Components_NavigationManager_" data-uid="UrlShortener.App.Blazor.Client.Business.MappingsService.#ctor(System.Net.Http.HttpClient,Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider,Microsoft.AspNetCore.Components.NavigationManager)">
   MappingsService(HttpClient, AuthenticationStateProvider, NavigationManager)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Implementation of <a class="xref" href="UrlShortener.App.Blazor.Client.Business.IMappingsService.html">IMappingsService</a> that communicates with the backend to manage URL mappings.
+Handles creation, retrieval, deletion, and statistics via authenticated HTTP requests.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -189,6 +197,10 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
 
 
 
+  <h4 class="section" id="UrlShortener_App_Blazor_Client_Business_MappingsService__ctor_System_Net_Http_HttpClient_Microsoft_AspNetCore_Components_Authorization_AuthenticationStateProvider_Microsoft_AspNetCore_Components_NavigationManager__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Uses <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> for API calls, <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.authorization.authenticationstateprovider">AuthenticationStateProvider</a> for JWT access,
+and <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.components.navigationmanager">NavigationManager</a> for redirecting unauthorized users.</p>
+</div>
 
 
 
@@ -201,10 +213,11 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_MappingsService_CreateMapping_System_String_System_String_" data-uid="UrlShortener.App.Blazor.Client.Business.MappingsService.CreateMapping(System.String,System.String)">
   CreateMapping(string, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a new shortened URL mapping.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -214,15 +227,19 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>longUrl</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>The original long URL to shorten.</p>
+</dd>
     <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
+    <dd><p>An optional name to identify the mapping.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="UrlShortener.App.Shared.Dto.CreateMappingResponseDto.html">CreateMappingResponseDto</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>A task representing the asynchronous operation. The result contains a <a class="xref" href="UrlShortener.App.Shared.Dto.CreateMappingResponseDto.html">CreateMappingResponseDto</a>
+if creation is successful, or <code>null</code> otherwise.</p>
+</dd>
   </dl>
 
 
@@ -239,10 +256,11 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_MappingsService_DeleteMapping_UrlShortener_App_Shared_Dto_UrlMappingDto_" data-uid="UrlShortener.App.Blazor.Client.Business.MappingsService.DeleteMapping(UrlShortener.App.Shared.Dto.UrlMappingDto)">
   DeleteMapping(UrlMappingDto)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L67"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Deletes the specified URL mapping.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -252,13 +270,15 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>mapping</code> <a class="xref" href="UrlShortener.App.Shared.Dto.UrlMappingDto.html">UrlMappingDto</a></dt>
-    <dd></dd>
+    <dd><p>The mapping to delete.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>A task representing the asynchronous operation. The result is <code>true</code> if deletion succeeds; otherwise, <code>false</code>.</p>
+</dd>
   </dl>
 
 
@@ -275,10 +295,11 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_MappingsService_GetMappings" data-uid="UrlShortener.App.Blazor.Client.Business.MappingsService.GetMappings">
   GetMappings()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Retrieves all URL mappings for the currently authenticated user.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -289,7 +310,9 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="UrlShortener.App.Shared.Dto.UrlMappingDto.html">UrlMappingDto</a>&gt;&gt;</dt>
-    <dd></dd>
+    <dd><p>A task representing the asynchronous operation. The result contains a list of <a class="xref" href="UrlShortener.App.Shared.Dto.UrlMappingDto.html">UrlMappingDto</a>s,
+or <code>null</code> if retrieval fails.</p>
+</dd>
   </dl>
 
 
@@ -306,10 +329,11 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
 
   <h3 id="UrlShortener_App_Blazor_Client_Business_MappingsService_GetStats" data-uid="UrlShortener.App.Blazor.Client.Business.MappingsService.GetStats">
   GetStats()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Retrieves user statistics, including total mappings and total redirect clicks.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -320,7 +344,8 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="UrlShortener.App.Shared.Dto.UserStatsDto.html">UserStatsDto</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>A task representing the asynchronous operation. The result contains a <a class="xref" href="UrlShortener.App.Shared.Dto.UserStatsDto.html">UserStatsDto</a>, or <code>null</code> if unavailable.</p>
+</dd>
   </dl>
 
 
@@ -337,7 +362,7 @@ Class MappingsService  <a class="header-action link-secondary" title="View sourc
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Blazor/UrlShortener.App.Blazor.Client/Business/MappingsService.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
 
