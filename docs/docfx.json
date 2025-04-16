@@ -1,0 +1,49 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../",
+          "files": [
+            "**/UrlShortener.App.Backend.csproj",
+            "**/UrlShortener.App.Blazor.csproj",
+            "**/UrlShortener.App.Blazor.Client.csproj",
+            "**/UrlShortener.App.Shared.csproj"
+          ]
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}"
+        ],
+        "exclude": [
+          "_site/**"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "mysite",
+      "_appTitle": "mysite",
+      "_enableSearch": true,
+      "pdf": true
+    }
+  }
+}
