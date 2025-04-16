@@ -1,0 +1,30 @@
+@startuml Containerdiagramm
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+' uncomment the following line and comment the first to use locally
+' !include C4_Container.puml
+
+LAYOUT_LEFT_RIGHT()
+
+Person(user, "Registrierter Nutzer", "Ein registrierter Benutzer, der Kurz-URLs erstellt, verwaltet und Tracking-Daten einsehen kann.")
+Person_Ext(guest, "Externer Nutzer", "Eine Person, die auf eine Kurz-URL klickt und weitergeleitet wird. Tracking-Daten werden dabei erfasst.")
+
+System_Boundary(url_shortener, "URL-Shortener System") {
+
+    Container(frontend, "Frontend", "Blazor Server", "Stellt die Benutzeroberfläche bereit, über die Nutzer URLs kürzen, verwalten und Tracking-Daten einsehen können.")
+
+    Container(backend, "Backend", ".NET 9 - REST-API", "Verarbeitet Geschäftslogik, verwaltet Benutzer- und URL-Daten und kommuniziert mit externen Diensten.")
+
+    ContainerDb(database, "Relationale Datenbank", "Microsoft SQL Server", "Speichert Benutzerkonten, Kurz-URLs und Klick-Tracking-Daten.")
+}
+
+System_Ext(apicagent_api, "ApicAgent API", "Externer Dienst zur Analyse und Interpretation von User-Agent-Strings.")
+
+
+Rel(user, frontend, "Verwendet zur Verwaltung und Analyse von Kurz-URLs", "HTTPS")
+Rel(guest, backend, "Greift über Kurz-URL zu und wird weitergeleitet", "HTTPS")
+
+Rel(frontend, backend, "Kommuniziert mit", "HTTPS / REST API")
+Rel(backend, database, "Liest und schreibt Daten", "SQL")
+Rel(backend, apicagent_api, "Sendet User-Agent-Daten zur Analyse", "HTTPS")
+
+@enduml

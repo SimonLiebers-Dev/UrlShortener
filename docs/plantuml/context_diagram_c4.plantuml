@@ -1,0 +1,18 @@
+@startuml Kontextdiagramm
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_LEFT_RIGHT()
+
+Person(user, "Registrierter Nutzer", "Ein registrierter Benutzer, der Kurz-URLs erstellt, verwaltet und Tracking-Daten einsehen kann.")
+Person_Ext(guest, "Externer Nutzer", "Eine Person, die auf eine Kurz-URL klickt und weitergeleitet wird. Tracking-Daten werden dabei erfasst.")
+
+System(url_shortener, "URL-Shortener System", "Ermöglicht registrierten Nutzern das Kürzen von URLs, das Verwalten ihrer Links und das Einsehen von Klick-Statistiken.")
+
+System_Ext(apicagent_api, "ApicAgent API", "Externer Dienst zur Analyse und Interpretation von User-Agent-Strings.")
+
+Rel(user, url_shortener, "Verwendet zur Erstellung, Verwaltung und Analyse von Kurz-URLs", "HTTPS")
+Rel(guest, url_shortener, "Klickt auf Kurz-URLs und wird weitergeleitet", "HTTPS")
+Rel(url_shortener, apicagent_api, "Sendet User-Agent-Daten zur Analyse", "HTTPS")
+
+@enduml
