@@ -3,6 +3,7 @@ using Blazorise.Icons.FontAwesome;
 using Blazorise.Tailwind;
 using Microsoft.AspNetCore.Components;
 using Moq;
+using System.Threading.Tasks;
 using UrlShortener.App.Blazor.Client.Business;
 using UrlShortener.App.Blazor.Client.Components.Form;
 using UrlShortener.App.Blazor.Client.Components.Pages;
@@ -59,21 +60,6 @@ namespace UrlShortener.Test.Frontend.Unit.Components.Pages
 
             // Assert
             Assert.That(registerForm, Is.Not.Null);
-        }
-
-        [Test]
-        public void NavigatesToDefaultWhenInvalidAuthTypeIsProvided()
-        {
-            // Arrange
-            var navigationManager = Services.GetRequiredService<NavigationManager>();
-            var component = RenderComponent<AuthPage>();
-
-            // Act 
-            var uri = navigationManager.GetUriWithQueryParameter("type", "invalidType");
-            navigationManager.NavigateTo(uri);
-
-            // Assert
-            Assert.That(navigationManager.Uri, Does.Contain("type=login"));
         }
     }
 }

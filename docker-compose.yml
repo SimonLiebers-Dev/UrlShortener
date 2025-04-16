@@ -15,7 +15,7 @@ services:
       - urlshortener-network  
 
   urlshortener-backend:
-    image: ghcr.io/simonliebers-dev/urlshortener-backend:1.0.0
+    image: ghcr.io/simonliebers-dev/urlshortener-backend:latest
     container_name: backend
     ports:
       - "6060:6060"
@@ -29,7 +29,7 @@ services:
       - mssql-db
 
   urlshortener-frontend:
-    image: ghcr.io/simonliebers-dev/urlshortener-frontend:1.0.0
+    image: ghcr.io/simonliebers-dev/urlshortener-frontend:latest
     container_name: frontend
     ports:
       - "1010:8080"
