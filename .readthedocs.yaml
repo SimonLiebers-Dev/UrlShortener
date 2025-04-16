@@ -6,7 +6,7 @@ build:
     python: "3.9"
   jobs:
     pre_build:
-      - curl -LO https://github.com/dotnet/docfx/releases/download/v2.78.3/docfx-linux-x64-v2.78.3.zip -o docfx.zip
+      - curl -L https://github.com/dotnet/docfx/releases/download/v2.78.3/docfx-linux-x64-v2.78.3.zip -o docfx.zip
       - unzip docfx.zip -d docfx
       - ./docfx/docfx build
       - mkdir -p build/html
