@@ -1,0 +1,886 @@
+{
+  "source_base_path": "/home/runner/work/UrlShortener/UrlShortener/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.AppDbContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.AppDbContext.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.AppDbContext",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Business.IJwtTokenGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Business.IJwtTokenGenerator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Business.IJwtTokenGenerator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Business.IMappingsService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Business.IMappingsService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Business.IMappingsService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Business.IRedirectLogService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Business.IRedirectLogService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Business.IRedirectLogService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Business.IUserAgentService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Business.IUserAgentService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Business.IUserAgentService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Business.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Business.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Business",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Controllers.AuthController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Controllers.AuthController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Controllers.AuthController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Controllers.HealthCheckController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Controllers.HealthCheckController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Controllers.HealthCheckController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Controllers.MappingsController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Controllers.MappingsController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Controllers.MappingsController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Controllers.RedirectController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Controllers.RedirectController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Controllers.RedirectController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Controllers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Controllers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Controllers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Middleware.DelayMiddleware.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Middleware.DelayMiddleware.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Middleware.DelayMiddleware",
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Middleware.DelayMiddleware.yml\" sourcestartlinenumber=\"1\">Middleware to introduce a delay for authentication requests.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Middleware.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Middleware.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Middleware",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Migrations.InitialMigration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Migrations.InitialMigration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Migrations.InitialMigration",
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Backend.Migrations.InitialMigration.yml\" sourcestartlinenumber=\"1\">A base class inherited by each EF Core migration.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Migrations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Migrations.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Migrations",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Models.UserAgentApiResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Models.UserAgentApiResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Models.UserAgentApiResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Models.UserAgentClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Models.UserAgentClient.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Models.UserAgentClient",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Models.UserAgentDevice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Models.UserAgentDevice.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Models.UserAgentDevice",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Models.UserAgentOs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Models.UserAgentOs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Models.UserAgentOs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Models",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.Program.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend.Program",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Backend.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Backend.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Backend",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Api.AuthApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Api.AuthApi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Api.AuthApi",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Api.IAuthApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Api.IAuthApi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Api.IAuthApi",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Api.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Api.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Api",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Business.AppAuthenticationStateProvider",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Business.AuthService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Business.AuthService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Business.AuthService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Business.BrowserTimeProvider",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Business.IAuthService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Business.IAuthService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Business.IAuthService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Business.IMappingsService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Business.IMappingsService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Business.IMappingsService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Business.MappingsService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Business.MappingsService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Business.MappingsService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Business.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Business.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Business",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.Program.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client.Program",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Client.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Client.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Client",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.Program.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor.Program",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Blazor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Blazor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Blazor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.CreateMappingRequestDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.CreateMappingRequestDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.CreateMappingRequestDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.CreateMappingResponseDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.CreateMappingResponseDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.CreateMappingResponseDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.LoginRequestDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.LoginRequestDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.LoginRequestDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.LoginResponseDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.LoginResponseDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.LoginResponseDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.RedirectLogDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.RedirectLogDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.RedirectLogDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.RegisterErrorType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.RegisterErrorType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.RegisterErrorType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.RegisterRequestDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.RegisterRequestDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.RegisterRequestDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.RegisterResponseDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.RegisterResponseDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.RegisterResponseDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.UrlMappingDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.UrlMappingDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.UrlMappingDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.UserAgentClientDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.UserAgentClientDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.UserAgentClientDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.UserAgentDeviceDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.UserAgentDeviceDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.UserAgentDeviceDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.UserAgentInfoDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.UserAgentInfoDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.UserAgentInfoDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.UserAgentOsDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.UserAgentOsDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.UserAgentOsDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.UserStatsDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.UserStatsDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.UserStatsDto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Extensions.DtoExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Extensions.DtoExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Extensions.DtoExtensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Extensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Extensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Extensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Models.RedirectLog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Models.RedirectLog.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Models.RedirectLog",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Models.UrlMapping.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Models.UrlMapping.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Models.UrlMapping",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Models.User.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Models.User.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Models.User",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Models.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Models.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Models",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "api/toc.json"
+        },
+        ".html": {
+          "relative_path": "api/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "md/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "md/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "md/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "md/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "md/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "md/toc.json"
+        },
+        ".html": {
+          "relative_path": "md/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
