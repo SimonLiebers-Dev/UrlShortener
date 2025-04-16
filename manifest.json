@@ -822,6 +822,66 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "images/Containerdiagramm.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Containerdiagramm.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Komponentendiagramm_Backend.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Komponentendiagramm_Backend.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Komponentendiagramm_Frontend.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Komponentendiagramm_Frontend.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Kontextdiagramm.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/Kontextdiagramm.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/favicon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon.ico"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
@@ -833,20 +893,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "md/getting-started.md",
+      "source_relative_path": "md/docs.md",
       "output": {
         ".html": {
-          "relative_path": "md/getting-started.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "md/introduction.md",
-      "output": {
-        ".html": {
-          "relative_path": "md/introduction.html"
+          "relative_path": "md/docs.html"
         }
       },
       "version": ""
@@ -860,6 +910,16 @@
         },
         ".html": {
           "relative_path": "md/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "md/usage.md",
+      "output": {
+        ".html": {
+          "relative_path": "md/usage.html"
         }
       },
       "version": ""

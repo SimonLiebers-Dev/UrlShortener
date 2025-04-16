@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Dokumentation | UrlShortener </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Dokumentation | UrlShortener ">
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/docs/md/docs.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../../images/logo.png" alt="UrlShortener">
+            UrlShortener
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="dokumentation">Dokumentation</h1>
+
+<p>Dokumentation zur Projektarbeit im Fach &quot;Software-Qualitätssicherung&quot; an der TH Rosenheim (SoSe25) von Simon Liebers</p>
+<p>Der Aufbau dieser Dokumentation orientiert sich am offiziellen <a href="https://docs.arc42.org/home/">Arc42-Template</a></p>
+<h2 id="1-einleitung">1. Einleitung</h2>
+<h3 id="fachliche-anforderungen">Fachliche Anforderungen</h3>
+<p>Bei der Anwendung handelt es sich um einen URL-Shortener mit Benutzerkonten. Nutzer:innen können sich mit E-Mail-Adresse und Passwort registrieren und anschließend über ein persönliches Dashboard kurze URLs erstellen. Die erstellten Kurz-URLs werden dem jeweiligen Nutzerkonto zugeordnet und können jederzeit wieder gelöscht werden.</p>
+<p>Ein zentrales Feature der Anwendung ist das Click Tracking: Wenn eine Person auf eine Kurz-URL klickt, werden Informationen wie IP-Adresse, Gerätetyp, Betriebssystem und Browser (aus dem User-Agent) in der Datenbank gespeichert. Die Nutzerinnen und Nutzer der Anwendung können für jede Kurz-URL eine detaillierte Auflistung dieser Zugriffsdaten einsehen. Zusätzlich wird eine Zählung angezeigt, wie oft eine URL bereits aufgerufen wurde.</p>
+<h3 id="qualitätsziele">Qualitätsziele</h3>
+<p>Die Anwendung verfolgt mehrere zentrale Qualitätsziele, die sowohl die Benutzerfreundlichkeit als auch die technische Umsetzung betreffen:</p>
+<ul>
+<li><strong>Benutzerfreundlichkeit</strong>: Die Registrierung und Nutzung der Anwendung soll möglichst intuitiv und ohne technische Vorkenntnisse möglich sein.</li>
+<li><strong>Sicherheit</strong>: Der Schutz personenbezogener Daten (z. B. E-Mail-Adressen und Tracking-Informationen) hat hohe Priorität. Die Datenübertragung erfolgt verschlüsselt.</li>
+<li><strong>Wartbarkeit</strong>: Der Quellcode ist modular aufgebaut, um spätere Erweiterungen zu erleichtern.</li>
+<li><strong>Performance</strong>: Die Anwendung soll auch bei vielen gleichzeitig geklickten Links zuverlässig und performant reagieren.</li>
+</ul>
+<h3 id="stakeholder">Stakeholder</h3>
+<p>Die wesentlichen Stakeholder dieses Projekts sind:</p>
+<ul>
+<li>Studierende des Moduls Software-Qualitätssicherung an der TH Rosenheim.</li>
+<li>Lehrende/Dozenten, die das Projekt im Kontext der Lehrveranstaltung begleiten und bewerten.</li>
+</ul>
+<h2 id="2-beschränkungen">2. Beschränkungen</h2>
+<p>Im Rahmen des Projekts galten folgende Einschränkungen und Rahmenbedingungen:</p>
+<ul>
+<li><p><strong>Architekturvorgabe</strong>: Die Anwendung musste als verteiltes System umgesetzt werden, bestehend aus einem Frontend, einem Backend sowie einer persistenten Datenhaltung (Datenbank).</p>
+</li>
+<li><p><strong>Technologievorgabe</strong>: Es durften ausschließlich folgende Programmiersprachen verwendet werden:</p>
+<ul>
+<li>Java</li>
+<li>C#</li>
+<li>Python</li>
+<li>TypeScript</li>
+</ul>
+</li>
+<li><p><strong>Externe Abhängigkeiten</strong>: Eine externe API musste im Projekt integriert und genutzt werden.</p>
+</li>
+<li><p><strong>Zeitliche Einschränkung</strong>: Die Umsetzung des Projekts musste bis zur Präsentation am 24. Juni 2025 abgeschlossen sein.</p>
+</li>
+<li><p><strong>Quellcodeverwaltung</strong>: Als zentrales Repository für die Versionsverwaltung muss GitHub verwendet werden.</p>
+</li>
+</ul>
+<h2 id="3-kontext-und-umfang">3. Kontext und Umfang</h2>
+<p>TODO: C4 Modelle</p>
+<h3 id="kontextdiagramm-level-1">Kontextdiagramm (Level 1)</h3>
+<p>Das System ist ein Webservice mit direkter Interaktion durch Benutzer über den Browser. Die einzige externe Schnittstelle ist eine Third-Party-API zur Analyse von User-Agent-Strings.</p>
+<p><strong>Externe Beteiligte</strong>:</p>
+<ul>
+<li><strong>Endnutzer:innen</strong>: Interagieren über das Web-Frontend mit der Anwendung, z. B. zum Erstellen und Verwalten von Kurz-URLs.</li>
+<li><strong>Externer Dienst – ApicAgent</strong>: Wird vom Backend genutzt, um die im User-Agent enthaltenen Informationen (z. B. Betriebssystem, Gerät, Browser) strukturiert zu analysieren und zu speichern.</li>
+</ul>
+<p><img src="../images/Kontextdiagramm.png" alt="Kontextdiagramm"></p>
+<h3 id="containerdiagramm-level-2">Containerdiagramm (Level 2)</h3>
+<p>Das System besteht aus drei Haupt-Containern:</p>
+<p><strong>1. Web-Frontend (Blazor Server)</strong></p>
+<ul>
+<li>Stellt die Benutzeroberfläche bereit.</li>
+<li>Verantwortlich für Benutzerinteraktion, URL-Verwaltung und Anzeige der Tracking-Daten.</li>
+<li>Kommuniziert per HTTP-REST mit dem Backend.</li>
+</ul>
+<p><strong>2. Backend (ASP.NET Core Web API)</strong></p>
+<ul>
+<li>Beinhaltet die gesamte Geschäftslogik und Datenverarbeitung.</li>
+<li>Bietet REST-Endpunkte zur Nutzerregistrierung, URL-Verwaltung, Weiterleitung und Tracking.</li>
+<li>Ruft REST-API von <a href="https://www.apicagent.com/">ApicAgent</a> auf zur Analyse des UserAgents des Nutzers.</li>
+</ul>
+<p><strong>Datenbank (MS SQL Server)</strong></p>
+<ul>
+<li>Persistiert Benutzerkonten, Kurz-URLs und Tracking-Informationen.</li>
+<li>Wird ausschließlich vom Backend angesprochen.</li>
+</ul>
+<p><img src="../images/Containerdiagramm.png" alt="Containerdiagramm"></p>
+<h3 id="komponentendiagramm-level-3">Komponentendiagramm (Level 3)</h3>
+<p><strong>Backend-Komponenten:</strong></p>
+<p><img src="../images/Komponentendiagramm_Backend.png" alt="Komponentendiagramm Backend"></p>
+<p><strong>Frontend-Komponenten (Blazor Pages):</strong></p>
+<p><img src="../images/Komponentendiagramm_Frontend.png" alt="Komponentendiagramm Frontend"></p>
+<h2 id="4-lösungsstrategie">4. Lösungsstrategie</h2>
+<p>Für die Umsetzung der Anwendung wurde bewusst ein konsistenter Technologie-Stack auf Basis von .NET gewählt. Diese Entscheidung basiert auf mehreren Vorteilen:</p>
+<ul>
+<li><p><strong>Integrierte Entwicklung</strong>: Durch die Verwendung von Blazor Server für das Frontend und ASP.NET Core Web API für das Backend konnte die gesamte Anwendung innerhalb des .NET-Ökosystems entwickelt werden. Dies ermöglichte eine reibungslose Integration, eine einheitliche Sprache (C#) sowie eine effiziente Entwicklung.</p>
+</li>
+<li><p><strong>MSSQL</strong>: MSSQL als relationale Datenbank wurde gewählt, da es eine stabile und leistungsstarke Lösung für datenintensive Webanwendungen darstellt. Die gute Integration mit Entity Framework Core ermöglichte eine komfortable und zugleich flexible Datenzugriffsschicht.</p>
+</li>
+<li><p><strong>Entity Framework</strong>: Entity Framework Core wurde zur Abbildung des Datenmodells und für die Kommunikation mit der Datenbank verwendet. Dank der Code-First-Strategie können Datenbankmigrationen versioniert und automatisiert durchgeführt werden.</p>
+</li>
+<li><p><strong>Schichtmodell</strong>: Die Anwendung folgt einem klassischen Schichtenmodell, bei dem Präsentations-, Geschäftslogik- und Persistenzschicht klar voneinander getrennt sind. Dies erleichtert die Wartung und zukünftige Erweiterungen.</p>
+</li>
+</ul>
+<h2 id="5-baustein-sicht">5. Baustein-Sicht</h2>
+<p>Die Anwendung ist in klar getrennte Projektbereiche unterteilt, die die verschiedenen Aufgaben und Verantwortlichkeiten innerhalb des Systems abbilden. Dabei wurde auf eine modulare und wiederverwendbare Struktur geachtet, die sowohl im Backend als auch im Frontend eine saubere Trennung von Zuständigkeiten ermöglicht.</p>
+<h3 id="gemeinsame-bausteine">Gemeinsame Bausteine</h3>
+<p>Das Projekt <code>UrlShortener.App.Shared</code> enthält alle gemeinsam genutzten Modelle und DTOs, die zwischen Frontend und Backend ausgetauscht werden. Die zentrale Ablage dieser Strukturen ermöglicht eine typsichere Kommunikation innerhalb des .NET-Ökosystems.</p>
+<h3 id="backend-bausteine">Backend Bausteine</h3>
+<p>Das Backend besteht aus dem Projekt <code>UrlShortener.App.Backend</code> und ist in mehrere Module unterteilt:</p>
+<ul>
+<li><strong>Controllers:</strong> Enthält die REST-Endpunkte für Authentifizierung (AuthController), Systemstatus (HealthCheckController), URL-Verwaltung (MappingsController) und Weiterleitung (RedirectController).</li>
+<li><strong>Business</strong>: Implementiert die Geschäftslogik für Authentifizierung, Erstellung und Löschung von URLs, sowie das Tracking von Klicks inkl. API-Kommunikation mit ApicAgent.</li>
+<li><strong>Models</strong>: Enthält die Models, die von der ApicAgent REST-API per HTTP-Request zur Verfügung gestellt werden.</li>
+<li><strong>Extensions</strong>: Sammlung von statischen Hilfsklassen.</li>
+<li><strong>Middleware</strong>: Implementierung eigener Middleware, um das Verhalten der Anwendung zentral zu steuern (Zum Beispiel, um ein Delay auf eingehende Requests anzuwenden, um Brute-Force Angriffe auf den Login ineffizient zu machen).</li>
+</ul>
+<h3 id="frontend-bausteine">Frontend-Bausteine</h3>
+<p>Das Frontend besteht aus zwei Projekten:</p>
+<ul>
+<li><p>Das Projekt <code>UrlShortener.App.Blazor</code> stellt die Anwendung bereit und fungiert als Host für die Blazor Server-Komponenten.</p>
+</li>
+<li><p>Die eigentlichen UI- und Interaktionslogiken befinden sich im Projekt <code>UrlShortener.App.Blazor.Client</code>, unterteilt in folgende Bausteine:</p>
+<ul>
+<li><strong>API</strong>: Wrapper für die Kommunikation mit dem Backend via HTTP.</li>
+<li><strong>Business</strong>: Client-seitige Geschäftslogik zur Verwaltung von URLs und Anzeige der Tracking-Daten.</li>
+<li><strong>Components</strong>: Wiederverwendbare UI-Komponenten wie Formulare, Tabellen oder Dialoge.</li>
+<li><strong>Extensions</strong>: Erweiterungsmethoden und Hilfsfunktionen für die UI oder Datenverarbeitung.</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-runtime-sicht">6. Runtime-Sicht</h2>
+<p>Die Runtime-Sicht beschreibt typische Abläufe innerhalb des Systems zur Laufzeit. Dabei werden die Interaktionen zwischen Nutzer, Frontend, Backend, Datenbank und externen APIs dargestellt. Im Folgenden werden zwei zentrale Szenarien der Anwendung beispielhaft beschrieben.</p>
+<h3 id="szenario-1-nutzer-erstellt-eine-neue-kurz-url">Szenario 1: Nutzer erstellt eine neue Kurz-URL</h3>
+<ol>
+<li>Der angemeldete Nutzer öffnet die HomePage im Blazor-Frontend.</li>
+<li>Über ein Formular gibt er eine Lange URL und einen Titel ein und klickt auf „Submit“.</li>
+<li>Das Frontend ruft den REST-Endpunkt /api/mappings/create im MappingsController des Backends per POST-Request mit den eingegeben Daten auf.</li>
+<li>Das Backend validiert die Eingabe und generiert eine eindeutige Kurz-URL.</li>
+<li>Die Lange URL, die generierte Kurz-URL, der Timestamp, der Titel und die Benutzer-ID werden in der Datenbank gespeichert.</li>
+<li>Die neue URL wird dem Benutzer im Frontend angezeigt und zur Übersichtsliste hinzugefügt.</li>
+</ol>
+<h3 id="szenario-2-ein-dritter-klickt-auf-eine-kurz-url">Szenario 2: Ein Dritter klickt auf eine Kurz-URL</h3>
+<ol>
+<li>Eine Person ruft eine zuvor generierte Kurz-URL im Browser auf.</li>
+<li>Der Request erreicht den RedirectController, welcher die Kurz-URL durch den Pfad mit der Datenbank abgleicht.</li>
+<li>Wenn ein Mapping gefunden wird:
+<ul>
+<li>Das System extrahiert die IP-Adresse und den User-Agent des Clients aus dem Request-Header.</li>
+<li>Der User-Agent wird über die externe ApicAgent-API per GET-Request analysiert, um Gerät, OS und Browser zu bestimmen.</li>
+<li>Ein neuer Tracking-Eintrag wird in der Datenbank gespeichert (inkl. Zeitpunkt, IP, Gerätedaten etc.).</li>
+<li>Der Client wird mit einem HTTP-Redirect (Status 302) zur Lang-URL weitergeleitet.</li>
+</ul>
+</li>
+<li>Falls kein Mapping existiert, wird eine 404-Fehlermeldung zurückgegeben.</li>
+</ol>
+<p>Beide Szenarien zeigen, wie die verschiedenen Systemkomponenten zusammenarbeiten, um Kernfunktionalitäten wie URL-Erstellung und Tracking performant und sicher umzusetzen.</p>
+<h2 id="7-deployment-sicht">7. Deployment-Sicht</h2>
+<p>Die Anwendung wird containerisiert ausgeliefert und über eine zentrale docker-compose-Konfiguration gestartet. Sie besteht aus zwei Hauptdiensten – Backend und Frontend – die jeweils in einem eigenen Docker-Container laufen. Beide Images werden automatisch via GitHub Actions gebaut und mit der jeweils aktuellen Version veröffentlicht.</p>
+<h3 id="containerisierung">Containerisierung</h3>
+<ul>
+<li><p><strong>Backend-Container</strong>:</p>
+<ul>
+<li>Basierend auf dem offiziellen .NET 9.0 ASP.NET-Image.</li>
+<li>Enthält die REST-API sowie die Geschäftslogik.</li>
+<li>Wird über Port 6060 bereitgestellt.</li>
+<li>Nutzt eine mehrstufige Build-Pipeline (Restore, Build, Publish), um ein Image zu erzeugen.</li>
+</ul>
+</li>
+<li><p><strong>Frontend-Container</strong>:</p>
+<ul>
+<li>Ebenfalls basierend auf dem .NET 9.0 ASP.NET-Image.</li>
+<li>Hostet die Blazor-Komponenten.</li>
+<li>Stellt die Webanwendung über Ports 8080 und 8081 zur Verfügung.</li>
+</ul>
+</li>
+</ul>
+<h3 id="build--deployment">Build &amp; Deployment</h3>
+<ul>
+<li><p><strong>Buildprozess über GitHub Actions</strong>:
+Bei jeder Änderung im Repository wird automatisch ein neuer Build-Workflow ausgelöst. Dabei werden beide Images erzeugt, getaggt und veröffentlicht.</p>
+</li>
+<li><p><strong>Docker-Compose-Konfiguration</strong>:
+Alle Dienste werden konsistent über <code>docker-compose up</code> gestartet. Die Kommunikation zwischen Frontend und Backend erfolgt über ein definiertes Container-Netzwerk.</p>
+</li>
+</ul>
+<h3 id="lokale-entwicklung">Lokale Entwicklung</h3>
+<p>Für die lokale Ausführung genügt:</p>
+<pre><code class="lang-bash">docker-compose up --build
+</code></pre>
+<p>Die Anwendung ist anschließend unter den definierten Ports erreichbar. Backend und Frontend laufen unabhängig, aber koordiniert im selben Container-Netzwerk.</p>
+<h2 id="8-querschnittskonzepte">8. Querschnittskonzepte</h2>
+<h3 id="sicherheit">Sicherheit</h3>
+<p>Die Anwendung verwendet ein tokenbasiertes Authentifizierungssystem auf Basis von JWT (JSON Web Token). Nach erfolgreicher Registrierung oder Anmeldung erhält der Client ein signiertes Token, das bei allen nachfolgenden REST-Requests im HTTP-Header mitgesendet wird.</p>
+<p>Durch dieses Verfahren wird sichergestellt, dass nur authentifizierte Nutzer:innen Zugriff auf geschützte Ressourcen (z. B. eigene URLs oder Tracking-Daten) erhalten. Auf Serverseite wird jedes Token geprüft, bevor ein API-Endpunkt verarbeitet wird. Dies gewährleistet eine sichere und skalierbare Zugriffskontrolle ohne die Notwendigkeit einer serverseitigen Session-Verwaltung.</p>
+<p><strong>Zusätzliche Sicherheitsmaßnahmen</strong>:</p>
+<ul>
+<li>HTTPS-Verschlüsselung zur Absicherung der Kommunikation.</li>
+<li>Validierung von Eingaben zur Vermeidung von Injection-Angriffen.</li>
+<li>CORS-Konfiguration, um nur erlaubte Ursprünge zu akzeptieren.
+<ul>
+<li>Während der Entwicklung werden zur Vereinfachung alle Ursprünge erlaubt. Im Produktiven Einsatz sollten erlaubte Quellen noch explizit konfiguriert werden, um eine maximale Sicherheit zu gewährleisten.</li>
+</ul>
+</li>
+</ul>
+<h3 id="user-interface">User Interface</h3>
+<p>Die Benutzeroberfläche wurde mit Blazor Server entwickelt und nutzt Tailwind CSS als Styling-Framework. Tailwind ermöglicht ein konsistentes, modernes und responsives Design durch Utility-Klassen direkt im Markup. Das Resultat ist eine klar strukturierte, leicht anpassbare Oberfläche mit einem schlanken und professionellen Look.</p>
+<p>Die Anwendung besteht aus modular aufgebauten Komponenten, z. B. für Formulare, Tabellen, Buttons und Dialoge. Diese wurden als wiederverwendbare Blazor-Komponenten organisiert und sorgen für ein einheitliches Look-and-Feel innerhalb der gesamten Anwendung.</p>
+<h3 id="user-experience">User Experience</h3>
+<p>Besonderer Wert wurde auf eine intuitive und fokussierte Nutzererfahrung gelegt. Die Oberfläche ist minimalistisch gehalten und lenkt die Aufmerksamkeit auf die Kernfunktionen: URLs kürzen, verwalten und analysieren.</p>
+<p>Dank Tailwind CSS konnten UI-Elemente wie Formulareingaben, Fehlermeldungen oder Dialoge benutzerfreundlich gestaltet werden. Die Reaktivität und kurze Ladezeiten durch Blazor Server sorgen für ein flüssiges Nutzererlebnis ohne spürbare Wartezeiten.</p>
+<p><strong>Weitere UX-Merkmale</strong>:</p>
+<ul>
+<li>Eingabevalidierung direkt beim Tippen.</li>
+<li>Modale Dialoge für Trackingdaten, damit der Seitenkontext erhalten bleibt.</li>
+<li>Feedback-Mechanismen nach Nutzeraktionen (z. B. Toast-Meldungen nach erfolgreichem Speichern oder Löschen).</li>
+</ul>
+<p>Das gesamte UI/UX-Design zielt darauf ab, die Nutzung der Anwendung auch für technisch weniger erfahrene Anwender:innen so einfach und angenehm wie möglich zu machen.</p>
+<h2 id="9-architekturentscheidungen">9. Architekturentscheidungen</h2>
+<p>Die wichtigsten Entscheidungen mit Auswirkungen auf die Architektur wurden als architecture decision records (ADR) dokumentiert.</p>
+<h3 id="adr-1-entscheidung-für-eigenen-url-shortener">ADR 1: Entscheidung für eigenen URL-Shortener</h3>
+<p><strong>Status</strong>: Entschieden<br>
+<strong>Datum</strong>: 2025-03-18</p>
+<p><strong>Entscheidung</strong>:
+Ich habe mich entschieden, den URL-Shortener selbst zu implementieren, anstatt auf einen externen Dienst zurückzugreifen. Alle Kurz-URLs werden in einer eigenen Datenbank gespeichert und können von den Nutzern verwaltet werden.</p>
+<p><strong>Begründung</strong>:</p>
+<ul>
+<li>Volle Kontrolle über die URL-Verwaltung und gespeicherte Daten.</li>
+<li>Möglichkeit zur Integration zusätzlicher Funktionen wie Tracking und Analytics.</li>
+<li>Benutzer können personalisierte Kurzlinks erstellen.</li>
+<li>Flexibilität für zukünftige Erweiterungen.</li>
+</ul>
+<p><strong>Alternativen</strong>:</p>
+<ul>
+<li>Nutzung externer Dienste wie Bitly oder TinyURL.
+<ul>
+<li><strong>Vorteile</strong>: Schnellere Implementierung, keine eigene Infrastruktur nötig.</li>
+<li><strong>Nachteile</strong>: Eingeschränkte Anpassbarkeit, Abhängigkeit von Dritten, evtl. zusätzliche Kosten.</li>
+</ul>
+</li>
+</ul>
+<h3 id="adr-2-entscheidung-für-jwt-authentifizierung">ADR 2: Entscheidung für JWT-Authentifizierung</h3>
+<p><strong>Status</strong>: Entschieden<br>
+<strong>Datum</strong>: 2025-03-18</p>
+<p><strong>Entscheidung</strong>:
+Ich verwende <code>JSON Web Tokens (JWT)</code> zur Authentifizierung und Autorisierung der Nutzer. Das Token wird im lokalen Speicher des Browsers abgelegt und bei jedem Request an das Backend übermittelt.</p>
+<p><strong>Begründung</strong>:</p>
+<ul>
+<li>JWTs sind leichtgewichtig und effizient.</li>
+<li>Ermöglichen zustandslose Authentifizierung (keine Session-Daten auf dem Server nötig).</li>
+<li>Weit verbreitet, gut dokumentiert und einfach in Blazor und ASP.NET Core integrierbar.</li>
+<li>Tokenbasierte Authentifizierung ist sicher und skalierbar.</li>
+</ul>
+<p><strong>Alternativen</strong>:</p>
+<ul>
+<li>Session-basierte Authentifizierung.
+<ul>
+<li><strong>Vorteile</strong>: Einfach umsetzbar für kleine Anwendungen.</li>
+<li><strong>Nachteile</strong>: Server benötigt Speicher für Sessions, schlechter skalierbar.</li>
+</ul>
+</li>
+</ul>
+<h3 id="adr-3-entscheidung-für-sql-server-als-datenbank">ADR 3: Entscheidung für SQL Server als Datenbank</h3>
+<p><strong>Status</strong>: Entschieden<br>
+<strong>Datum</strong>: 2025-03-19</p>
+<p><strong>Entscheidung</strong>:
+Ich verwende <strong>Microsoft SQL Server</strong> als relationale Datenbank für das Backend. Diese Wahl bietet eine zuverlässige Grundlage für Transaktionen und komplexe Abfragen im Zusammenhang mit Benutzer- und URL-Daten.</p>
+<p><strong>Begründung</strong>:</p>
+<ul>
+<li>SQL Server ist stabil, performant und unterstützt ACID-Transaktionen.</li>
+<li>Nahtlose Integration mit Entity Framework Core.</li>
+<li>Persönliche Erfahrung im Umgang mit SQL Server – keine Einarbeitung nötig.</li>
+</ul>
+<p><strong>Alternativen</strong>:</p>
+<ul>
+<li>Nutzung von NoSQL-Datenbanken wie MongoDB.
+<ul>
+<li><strong>Vorteile</strong>: Besser für unstrukturierte Daten, horizontale Skalierung möglich.</li>
+<li><strong>Nachteile</strong>: Komplexe Abfragen schwieriger, keine konsistenten Transaktionen.</li>
+</ul>
+</li>
+</ul>
+<h3 id="adr-4-entscheidung-für-blazor-als-frontend-technologie">ADR 4: Entscheidung für Blazor als Frontend-Technologie</h3>
+<p><strong>Status</strong>: Entschieden<br>
+<strong>Datum</strong>: 2025-03-19</p>
+<p><strong>Entscheidung</strong>:
+Ich habe mich für <strong>Blazor</strong> als Frontend-Framework entschieden, da es die Entwicklung interaktiver Webanwendungen in C# ermöglicht und die Wiederverwendung von Code zwischen Frontend und Backend unterstützt.</p>
+<p><strong>Begründung</strong>:</p>
+<ul>
+<li>C# kann sowohl im Frontend als auch im Backend verwendet werden.</li>
+<li>Gute Integration mit ASP.NET Core.</li>
+<li>Möglichkeit, bestehende .NET-Bibliotheken zu verwenden.</li>
+<li>Kein Wechsel zu JavaScript nötig – reduziert Komplexität.</li>
+</ul>
+<p><strong>Alternativen</strong>:</p>
+<ul>
+<li>Einsatz von React oder Angular.
+<ul>
+<li><strong>Vorteile</strong>: Große Community, viele UI-Bibliotheken.</li>
+<li><strong>Nachteile</strong>: JavaScript notwendig, keine direkte .NET-Integration.</li>
+</ul>
+</li>
+</ul>
+<h3 id="adr-5-entscheidung-für-blazor-server-statt-blazor-webassembly">ADR 5: Entscheidung für Blazor Server statt Blazor WebAssembly</h3>
+<p><strong>Status</strong>: Entschieden<br>
+<strong>Datum</strong>: 2025-03-20</p>
+<p><strong>Entscheidung</strong>:
+Ich habe mich für <strong>Blazor Server</strong> als Hosting-Modell entschieden. Die Logik wird vollständig serverseitig ausgeführt, und der Client kommuniziert per SignalR-Verbindung mit dem Server.</p>
+<p><strong>Begründung</strong>:</p>
+<ul>
+<li>Höhere Sicherheit, da keine API-Requests oder Logik im Browser sichtbar sind.</li>
+<li>Schnellere Ladezeiten, da keine WebAssembly-Runtime benötigt wird.</li>
+</ul>
+<p><strong>Alternativen</strong>:</p>
+<ul>
+<li>Blazor WebAssembly
+<ul>
+<li><strong>Vorteile</strong>: Vollständig clientseitig, offlinefähig.</li>
+<li><strong>Nachteile</strong>: Logik im Browser einsehbar, längere Ladezeit.</li>
+</ul>
+</li>
+</ul>
+<h2 id="10-qualität">10. Qualität</h2>
+<h3 id="nicht-funktionale-qualitätsanforderungen-nach-iso-25010">Nicht-funktionale Qualitätsanforderungen nach ISO 25010</h3>
+<h4 id="sicherheit-1">Sicherheit</h4>
+<ul>
+<li>Authentifizierung &amp; Autorisierung: Zugriff auf geschützte Bereiche ist nur nach Login mit gültigem JWT-Token möglich.</li>
+<li>Datenverschlüsselung: Die Kommunikation zwischen Client und Server erfolgt über HTTPS.</li>
+<li>Input-Validierung: Sämtliche Benutzereingaben werden serverseitig validiert, um Angriffe wie SQL-Injection zu verhindern.</li>
+<li>Trennung der Rollen: Nicht angemeldete Benutzer haben keinerlei Zugriff auf Nutzerdaten oder Kurz-URLs.</li>
+</ul>
+<h4 id="effizienz-und-performanz">Effizienz und Performanz</h4>
+<ul>
+<li>Schnelle Antwortzeiten durch serverseitiges Rendering mit Blazor Server.</li>
+<li>Vermeidung von unnötigen Datenbankabfragen.</li>
+<li>Asynchrone Verarbeitung von Tracking-Informationen zur Entkopplung vom Benutzerfluss (Weiterleitung erfolgt sofort, Tracking im Hintergrund).</li>
+</ul>
+<h4 id="wartbarkeit">Wartbarkeit</h4>
+<ul>
+<li><p><strong>Wartbarkeit und Erweiterbarkeit</strong>:
+Die Anwendung ist in modularen Bausteinen organisiert (nach Schichtenmodell und klarer Trennung von Concerns). Gemeinsame Modelle liegen in einem Shared-Projekt, sodass Änderungen zentral vorgenommen werden können.</p>
+</li>
+<li><p><strong>Wirtschaftlichkeit</strong>:
+Durch die einheitliche Verwendung von .NET und C# über alle Ebenen hinweg kann Entwicklungs- und Wartungsaufwand minimiert werden. Zudem ist durch Dockerisierung ein einfaches Rollout möglich.</p>
+</li>
+</ul>
+<h4 id="benutzbarkeit">Benutzbarkeit</h4>
+<ul>
+<li><strong>Benutzerfreundlichkeit</strong>:
+Die Oberfläche ist minimalistisch und intuitiv gehalten. Tailwind CSS sorgt für ein einheitliches, modernes Design. Wichtige Funktionen wie das Kürzen und Löschen von URLs oder das Anzeigen von Trackingdaten sind mit wenigen Klicks erreichbar.</li>
+</ul>
+<h4 id="kompatibilität">Kompatibilität</h4>
+<ul>
+<li><p><strong>Interoperabilität und Integration</strong>:
+Die Anwendung nutzt standardisierte HTTP-REST-Schnittstellen und kann damit auch problemlos von anderen Systemen angesprochen oder erweitert werden.</p>
+</li>
+<li><p><strong>Funktionale Eignung</strong>:
+Die Kernfunktionen (Erstellen, Verwalten und Auswerten von Kurz-URLs) sind vollständig implementiert und entsprechen den Anforderungen.</p>
+</li>
+<li><p><strong>Portabilität</strong>:
+Die Anwendung läuft containerisiert über Docker und ist damit unabhängig vom Betriebssystem oder der Infrastruktur einfach auf verschiedenen Umgebungen deploybar.</p>
+</li>
+<li><p><strong>Zuverlässigkeit</strong>:
+Das System erkennt fehlerhafte Eingaben und bietet dem Benutzer entsprechendes Feedback.</p>
+</li>
+</ul>
+<h2 id="11-qualitätssichernde-maßnahmen-und-tests">11. Qualitätssichernde Maßnahmen und Tests</h2>
+<p>Die Qualität der Anwendung wurde durch verschiedene Testarten, automatisierte Analysen und CI sichergestellt. Der Fokus lag dabei sowohl auf funktionaler Korrektheit als auch auf nicht-funktionalen Aspekten wie Performance und Sicherheit.</p>
+<h3 id="unittests-backend">Unittests (Backend)</h3>
+<p>Im Projekt <code>UrlShortener.Test.Backend</code> wurden umfassende Unit-Tests für die Kernlogik des Backends erstellt. Dabei wurden u. a. folgende Bereiche abgedeckt:</p>
+<ul>
+<li>Validierung von URL-Eingaben</li>
+<li>Erzeugung und Speicherung von Kurz-URLs</li>
+<li>Authentifizierungs-Logik (z. B. Token-Handling)</li>
+<li>Trennung der Tests nach Modulen (Mapping, Auth, Tracking)</li>
+</ul>
+<h3 id="unittests-frontend">Unittests (Frontend)</h3>
+<p>Im Projekt <code>UrlShortener.Test.Frontend</code> wurden Unit-Tests für die Frontend-Komponenten durchgeführt. Dabei lag der Fokus auf:</p>
+<ul>
+<li>Validierung von Eingaben in Formularen</li>
+<li>UI-Komponentenverhalten</li>
+<li>Funktionalität der Geschäftslogik</li>
+</ul>
+<h3 id="integrationstests">Integrationstests</h3>
+<p>Das Projekt <code>UrlShortener.Test.Backend</code> enthält auch Integrationstests, die die REST-API testen. Es wurden u. a. getestet:</p>
+<ul>
+<li>Registrierung und Login</li>
+<li>Erstellen und Löschen von Kurz-URLs</li>
+<li>Zugriffsschutz über JWT</li>
+<li>Rückgabeverhalten bei fehlerhaften Requests</li>
+</ul>
+<h3 id="penetration-tests">Penetration-Tests</h3>
+<p>Im Projekt <code>UrlShortener.Test.End2End</code> wurden gezielt Sicherheitstests (PenTests) implementiert, u. a. um zu prüfen:</p>
+<ul>
+<li>Unberechtigter Zugriff auf geschützte Ressourcen</li>
+<li>Manipulation von JWTs</li>
+<li>Eingabe von potenziell schädlichem Code (Injection-Angriffe)</li>
+<li>Verhalten bei abgelaufenen oder ungültigen Tokens</li>
+</ul>
+<h3 id="end2end-tests">End2End-Tests</h3>
+<p>Ebenfalls in <code>UrlShortener.Test.End2End</code> befinden sich die End2End-Tests, mit denen komplette Nutzungsflüsse simuliert und geprüft werden. Dazu werden sowohl Backend, Frontend und eine In-Memory-Datenbank gestartet und mittels PlayWright durch das UI navigiert. Diese Tests laufen automatisiert in der CI-Pipeline (Headless) und prüfen:</p>
+<ul>
+<li>Funktionale Korrektheit des Zusammenspiels zwischen Frontend und Backend</li>
+<li>Darstellung und Zustand der UI nach typischen Aktionen</li>
+<li>Rückmeldungen bei Erfolgen und Fehlern</li>
+</ul>
+<h3 id="last-tests">Last-Tests</h3>
+<p>Die Anwendung wurde zudem mit Lasttests auf ihre Stabilität unter erhöhter Benutzeraktivität geprüft. Dabei wurde unter anderem simuliert:</p>
+<ul>
+<li>Massenerstellung von URLs</li>
+<li>Verhalten von Login/Registrierung unter Last</li>
+</ul>
+<h3 id="statische-codeanalyse">Statische Codeanalyse</h3>
+<p>Die Anwendung wird mithilfe von SonarQube regelmäßig auf Code Smells, Security Vulnerabilities, Duplikate und Testabdeckung überprüft. Die SonarQube-Auswertungen sind in den CI-Workflow integriert und liefern konkrete Hinweise zur Codequalität.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/docs/md/docs.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
