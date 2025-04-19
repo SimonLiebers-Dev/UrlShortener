@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  security-check:
+  dependency-check:
     name: Security Check
     runs-on: ubuntu-latest
 
@@ -17,19 +17,38 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: OWASP Dependency Check
+    - name: OWASP Dependency Check (Frontend)
       uses: dependency-check/Dependency-Check_Action@main
       with:
-        project: "UrlShortener.App"
-        path: "."
+        project: "UrlShortener.App.Blazor"
+        path: "./UrlShortener.App.Blazor/UrlShortener.App.Blazor"
+        out: 'reports-frontend'
         format: "HTML"
         args: >
           --failOnCVSS 7
           --enableRetired
 
-    - name: Upload Dependency Check Report
+    - name: Upload Dependency Check Report (Frontend)
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: dependency-check-report
-        path: reports/dependency-check-report.html
+        name: dependency-check-report-frontend
+        path: reports-frontend/dependency-check-report.html
+
+    - name: OWASP Dependency Check (Backend)
+      uses: dependency-check/Dependency-Check_Action@main
+      with:
+        project: "UrlShortener.App.Backend"
+        path: "./UrlShortener.App.Backend"
+        out: 'reports-backend'
+        format: "HTML"
+        args: >
+          --failOnCVSS 7
+          --enableRetired
+
+    - name: Upload Dependency Check Report (Backend)
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: dependency-check-report-backend
+        path: reports-backend/dependency-check-report.html
