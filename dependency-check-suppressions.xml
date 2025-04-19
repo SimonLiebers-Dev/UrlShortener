@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.2.xsd">
-
-    <!-- Suppress all CVEs in any of the test projects -->
-    <suppress>
-        <filePath>.*UrlShortener\.Test\..*</filePath>
-    </suppress>
-
-</suppressions>

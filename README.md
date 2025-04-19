@@ -1,6 +1,7 @@
 # UrlShortener
 
 [![CI/CD](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/cicd.yml/badge.svg?branch=main)](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/cicd.yml)
+[![Security](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/security.yml)
 [![Docker](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/docker.yml/badge.svg?branch=main)](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/docker.yml)
 [![Documentation](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/SimonLiebers-Dev/UrlShortener/actions/workflows/docs.yml)
 
