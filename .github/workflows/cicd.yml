@@ -49,7 +49,7 @@ jobs:
     - name: Build Frontend
       run: dotnet build UrlShortener.App.Blazor/UrlShortener.App.Blazor/UrlShortener.App.Blazor.csproj --configuration Release --no-restore
 
-  test-backend:
+  test:
     name: Test Application
     runs-on: ubuntu-latest
     needs: 
@@ -87,3 +87,30 @@ jobs:
 
     - name: Stop SonarScanner
       run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
+  security-check:
+    name: Security Check
+    runs-on: ubuntu-latest
+    needs: 
+        - test
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+
+    - name: OWASP Dependency Check
+      uses: dependency-check/Dependency-Check_Action@main
+      with:
+        project: "UrlShortener.App"
+        path: "."
+        format: "HTML"
+        args: >
+          --failOnCVSS 7
+          --enableRetired
