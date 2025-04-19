@@ -1,6 +1,9 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: UrlShortener.App
+  name: UrlShortener.App
+  href: api/UrlShortener.App.html
 - uid: UrlShortener.App.Backend
   name: UrlShortener.App.Backend
   href: api/UrlShortener.App.Backend.html
@@ -1320,6 +1323,9 @@ references:
   isSpec: "True"
   fullName: UrlShortener.App.Blazor.Program.Main
   nameWithType: Program.Main
+- uid: UrlShortener.App.Shared
+  name: UrlShortener.App.Shared
+  href: api/UrlShortener.App.Shared.html
 - uid: UrlShortener.App.Shared.Dto
   name: UrlShortener.App.Shared.Dto
   href: api/UrlShortener.App.Shared.Dto.html

@@ -107,7 +107,7 @@
   "api/UrlShortener.App.Backend.html": {
     "href": "api/UrlShortener.App.Backend.html",
     "title": "Namespace UrlShortener.App.Backend | UrlShortener",
-    "summary": "Namespace UrlShortener.App.Backend Classes AppDbContext Database context for the application. Program Entry point of the URL shortener web application. Configures services, middleware, authentication, and database migrations."
+    "summary": "Namespace UrlShortener.App.Backend Namespaces UrlShortener.App.Backend.Business UrlShortener.App.Backend.Controllers UrlShortener.App.Backend.Middleware UrlShortener.App.Backend.Migrations UrlShortener.App.Backend.Models Classes AppDbContext Database context for the application. Program Entry point of the URL shortener web application. Configures services, middleware, authentication, and database migrations."
   },
   "api/UrlShortener.App.Blazor.Client.Api.AuthApi.html": {
     "href": "api/UrlShortener.App.Blazor.Client.Api.AuthApi.html",
@@ -167,7 +167,7 @@
   "api/UrlShortener.App.Blazor.Client.html": {
     "href": "api/UrlShortener.App.Blazor.Client.html",
     "title": "Namespace UrlShortener.App.Blazor.Client | UrlShortener",
-    "summary": "Namespace UrlShortener.App.Blazor.Client Classes Program Entry point for the Blazor WebAssembly client application. Sets up the host and launches the app in the browser."
+    "summary": "Namespace UrlShortener.App.Blazor.Client Namespaces UrlShortener.App.Blazor.Client.Api UrlShortener.App.Blazor.Client.Business Classes Program Entry point for the Blazor WebAssembly client application. Sets up the host and launches the app in the browser."
   },
   "api/UrlShortener.App.Blazor.Program.html": {
     "href": "api/UrlShortener.App.Blazor.Program.html",
@@ -177,7 +177,7 @@
   "api/UrlShortener.App.Blazor.html": {
     "href": "api/UrlShortener.App.Blazor.html",
     "title": "Namespace UrlShortener.App.Blazor | UrlShortener",
-    "summary": "Namespace UrlShortener.App.Blazor Classes Program Entry point for the Blazor Server application. Configures services, HTTP clients, authentication, and UI frameworks, and starts the web host."
+    "summary": "Namespace UrlShortener.App.Blazor Namespaces UrlShortener.App.Blazor.Client Classes Program Entry point for the Blazor Server application. Configures services, HTTP clients, authentication, and UI frameworks, and starts the web host."
   },
   "api/UrlShortener.App.Shared.Dto.CreateMappingRequestDto.html": {
     "href": "api/UrlShortener.App.Shared.Dto.CreateMappingRequestDto.html",
@@ -283,6 +283,16 @@
     "href": "api/UrlShortener.App.Shared.Models.html",
     "title": "Namespace UrlShortener.App.Shared.Models | UrlShortener",
     "summary": "Namespace UrlShortener.App.Shared.Models Classes RedirectLog Represents a log entry for a redirection event, including metadata about the request and client environment. UrlMapping Represents a shortened URL mapping, including the original URL, its short path, metadata, and related redirect logs. User Represents a registered user in the system, including authentication credentials."
+  },
+  "api/UrlShortener.App.Shared.html": {
+    "href": "api/UrlShortener.App.Shared.html",
+    "title": "Namespace UrlShortener.App.Shared | UrlShortener",
+    "summary": "Namespace UrlShortener.App.Shared Namespaces UrlShortener.App.Shared.Dto UrlShortener.App.Shared.Extensions UrlShortener.App.Shared.Models"
+  },
+  "api/UrlShortener.App.html": {
+    "href": "api/UrlShortener.App.html",
+    "title": "Namespace UrlShortener.App | UrlShortener",
+    "summary": "Namespace UrlShortener.App Namespaces UrlShortener.App.Backend UrlShortener.App.Blazor UrlShortener.App.Shared"
   },
   "index.html": {
     "href": "index.html",
