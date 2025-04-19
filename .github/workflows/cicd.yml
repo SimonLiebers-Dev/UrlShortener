@@ -114,3 +114,9 @@ jobs:
         args: >
           --failOnCVSS 7
           --enableRetired
+
+    - name: Upload Dependency Check Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: dependency-check-report
+        path: reports/dependency-check-report.html
