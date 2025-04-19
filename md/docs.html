@@ -484,6 +484,9 @@ Das System erkennt fehlerhafte Eingaben und bietet dem Benutzer entsprechendes F
 </ul>
 <h3 id="statische-codeanalyse">Statische Codeanalyse</h3>
 <p>Die Anwendung wird mithilfe von SonarQube regelmäßig auf Code Smells, Security Vulnerabilities, Duplikate und Testabdeckung überprüft. Die SonarQube-Auswertungen sind in den CI-Workflow integriert und liefern konkrete Hinweise zur Codequalität.</p>
+<h3 id="analyse-von-abhängigkeiten">Analyse von Abhängigkeiten</h3>
+<p>Zusätzlich zu den Penetration-Tests und der statischen Codeanalyse wurde ein automatisierter <strong>OWASP Dependency Check</strong> durchgeführt. Dabei wurden sämtliche verwendeten Bibliotheken auf bekannte Schwachstellen geprüft (CVE-Datenbank).</p>
+<p>Der Dependency Check wurde in den CI-Prozess integriert, sodass Sicherheitsrisiken in Drittanbieterpaketen frühzeitig erkannt und adressiert werden können. Ziel ist es, die Angriffsfläche durch unsichere Abhängigkeiten zu minimieren und aktuelle Sicherheitsstandards einzuhalten.</p>
 
 </article>
 
