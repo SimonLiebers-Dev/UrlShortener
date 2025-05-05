@@ -52,7 +52,7 @@ Das System ist ein Webservice mit direkter Interaktion durch Benutzer über den 
 - **Endnutzer:innen**: Interagieren über das Web-Frontend mit der Anwendung, z. B. zum Erstellen und Verwalten von Kurz-URLs.
 - **Externer Dienst – ApicAgent**: Wird vom Backend genutzt, um die im User-Agent enthaltenen Informationen (z. B. Betriebssystem, Gerät, Browser) strukturiert zu analysieren und zu speichern.
 
-![Kontextdiagramm](/images/Kontextdiagramm.png)
+![Kontextdiagramm](images/Kontextdiagramm.png)
 
 ### Containerdiagramm (Level 2)
 Das System besteht aus drei Haupt-Containern:
@@ -71,17 +71,17 @@ Das System besteht aus drei Haupt-Containern:
 - Persistiert Benutzerkonten, Kurz-URLs und Tracking-Informationen.
 - Wird ausschließlich vom Backend angesprochen.
 
-![Containerdiagramm](/images/Containerdiagramm.png)
+![Containerdiagramm](images/Containerdiagramm.png)
 
 ### Komponentendiagramm (Level 3)
 
 **Backend-Komponenten:**
 
-![Komponentendiagramm Backend](/images/Komponentendiagramm_Backend.png)
+![Komponentendiagramm Backend](images/Komponentendiagramm_Backend.png)
 
 **Frontend-Komponenten (Blazor Pages):**
 
-![Komponentendiagramm Frontend](/images/Komponentendiagramm_Frontend.png)
+![Komponentendiagramm Frontend](images/Komponentendiagramm_Frontend.png)
 
 ## 4. Lösungsstrategie
 
