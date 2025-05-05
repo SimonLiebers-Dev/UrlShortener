@@ -13,7 +13,8 @@
 **UrlShortener** ist ein selbst entwickeltes Tool zum kürzen von langen URLs mit integrierter Nutzerverwaltung und detailliertem Klick-Tracking. Die AnwendunPg ermöglicht registrierten Nutzer:innen, lange URLs zu verkürzen und deren Nutzung auszuwerten. Die Architektur basiert vollständig auf dem .NET-Ökosystem und ist für den produktiven Einsatz containerisiert.
 
 📄 **Die vollständige Projektdokumentation ist verfügbar unter:**  
-👉 [https://urlshortener.readthedocs.io/](https://urlshortener.readthedocs.io/)
+👉 [ReadTheDocs](https://urlshortener.readthedocs.io/)
+👉 [GitHub Page](https://simonliebers-dev.github.io/UrlShortener/)
 
 ## Funktionen
 
