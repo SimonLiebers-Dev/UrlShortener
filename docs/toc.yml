@@ -1,4 +1,6 @@
-- name: Docs
-  href: ./
+- name: Getting Started
+  href: getting-started.md
+- name: Arc42
+  href: docs.md
 - name: API
   href: api/
