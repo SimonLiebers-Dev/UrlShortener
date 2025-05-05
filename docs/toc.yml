@@ -1,4 +1,4 @@
 - name: Docs
-  href: md/
+  href: ./
 - name: API
   href: api/

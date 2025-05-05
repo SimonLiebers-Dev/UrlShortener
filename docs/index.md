@@ -8,8 +8,8 @@ Die Anwendung wurde vollständig mit **.NET 9**, **Blazor Server** und **Entity 
 
 ## Inhalt
 
-[🧭 Verwendung](md/usage.md)  
+[🧭 Verwendung](usage.md)  
 Eine Anleitung zur Installation, Ausführung und Nutzung der Anwendung.
 
-[📐 Architekturdokumentation (arc42)](md/docs.md)  
+[📐 Architekturdokumentation (arc42)](docs.md)  
 Detaillierte Beschreibung der Softwarearchitektur mit C4-Modellen, Entwurfsentscheidungen und Qualitätssicherungsmaßnahmen.
