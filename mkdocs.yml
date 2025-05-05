@@ -15,5 +15,5 @@ theme:
 docs_dir: docs
 nav:
   - Home: index.md
-  - Getting Started: docs/usage.md
-  - Arc42: docs/arc42.md
+  - Getting Started: md/usage.md
+  - Arc42: md/arc42.md
