@@ -13,6 +13,3 @@ Eine Anleitung zur Installation, Ausführung und Nutzung der Anwendung.
 
 [📐 Architekturdokumentation (arc42)](md/docs.md)  
 Detaillierte Beschreibung der Softwarearchitektur mit C4-Modellen, Entwurfsentscheidungen und Qualitätssicherungsmaßnahmen.
-
-[🔌 API-Dokumentation](api/UrlShortener.App.Backend.html)  
-Übersicht über die REST-API-Endpunkte, deren Parameter, Rückgaben und Beispielanfragen.

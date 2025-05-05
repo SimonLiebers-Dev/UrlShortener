@@ -1,0 +1,19 @@
+site_name: UrlShortener
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+docs_dir: docs
+nav:
+  - Home: index.md
+  - Getting Started: docs/usage.md
+  - Arc42: docs/arc42.md
