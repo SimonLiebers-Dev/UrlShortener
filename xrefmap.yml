@@ -1332,6 +1332,38 @@ references:
   commentId: N:UrlShortener.App.Shared.Dto
   fullName: UrlShortener.App.Shared.Dto
   nameWithType: UrlShortener.App.Shared.Dto
+- uid: UrlShortener.App.Shared.Dto.ClickDataPointDto
+  name: ClickDataPointDto
+  href: api/UrlShortener.App.Shared.Dto.ClickDataPointDto.html
+  commentId: T:UrlShortener.App.Shared.Dto.ClickDataPointDto
+  fullName: UrlShortener.App.Shared.Dto.ClickDataPointDto
+  nameWithType: ClickDataPointDto
+- uid: UrlShortener.App.Shared.Dto.ClickDataPointDto.Clicks
+  name: Clicks
+  href: api/UrlShortener.App.Shared.Dto.ClickDataPointDto.html#UrlShortener_App_Shared_Dto_ClickDataPointDto_Clicks
+  commentId: P:UrlShortener.App.Shared.Dto.ClickDataPointDto.Clicks
+  fullName: UrlShortener.App.Shared.Dto.ClickDataPointDto.Clicks
+  nameWithType: ClickDataPointDto.Clicks
+- uid: UrlShortener.App.Shared.Dto.ClickDataPointDto.Clicks*
+  name: Clicks
+  href: api/UrlShortener.App.Shared.Dto.ClickDataPointDto.html#UrlShortener_App_Shared_Dto_ClickDataPointDto_Clicks_
+  commentId: Overload:UrlShortener.App.Shared.Dto.ClickDataPointDto.Clicks
+  isSpec: "True"
+  fullName: UrlShortener.App.Shared.Dto.ClickDataPointDto.Clicks
+  nameWithType: ClickDataPointDto.Clicks
+- uid: UrlShortener.App.Shared.Dto.ClickDataPointDto.DateTime
+  name: DateTime
+  href: api/UrlShortener.App.Shared.Dto.ClickDataPointDto.html#UrlShortener_App_Shared_Dto_ClickDataPointDto_DateTime
+  commentId: P:UrlShortener.App.Shared.Dto.ClickDataPointDto.DateTime
+  fullName: UrlShortener.App.Shared.Dto.ClickDataPointDto.DateTime
+  nameWithType: ClickDataPointDto.DateTime
+- uid: UrlShortener.App.Shared.Dto.ClickDataPointDto.DateTime*
+  name: DateTime
+  href: api/UrlShortener.App.Shared.Dto.ClickDataPointDto.html#UrlShortener_App_Shared_Dto_ClickDataPointDto_DateTime_
+  commentId: Overload:UrlShortener.App.Shared.Dto.ClickDataPointDto.DateTime
+  isSpec: "True"
+  fullName: UrlShortener.App.Shared.Dto.ClickDataPointDto.DateTime
+  nameWithType: ClickDataPointDto.DateTime
 - uid: UrlShortener.App.Shared.Dto.CreateMappingRequestDto
   name: CreateMappingRequestDto
   href: api/UrlShortener.App.Shared.Dto.CreateMappingRequestDto.html
@@ -1383,6 +1415,38 @@ references:
   isSpec: "True"
   fullName: UrlShortener.App.Shared.Dto.CreateMappingResponseDto.ShortUrl
   nameWithType: CreateMappingResponseDto.ShortUrl
+- uid: UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto
+  name: DeviceTypeDataPointDto
+  href: api/UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.html
+  commentId: T:UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto
+  fullName: UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto
+  nameWithType: DeviceTypeDataPointDto
+- uid: UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.Clicks
+  name: Clicks
+  href: api/UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.html#UrlShortener_App_Shared_Dto_DeviceTypeDataPointDto_Clicks
+  commentId: P:UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.Clicks
+  fullName: UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.Clicks
+  nameWithType: DeviceTypeDataPointDto.Clicks
+- uid: UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.Clicks*
+  name: Clicks
+  href: api/UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.html#UrlShortener_App_Shared_Dto_DeviceTypeDataPointDto_Clicks_
+  commentId: Overload:UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.Clicks
+  isSpec: "True"
+  fullName: UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.Clicks
+  nameWithType: DeviceTypeDataPointDto.Clicks
+- uid: UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.DeviceType
+  name: DeviceType
+  href: api/UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.html#UrlShortener_App_Shared_Dto_DeviceTypeDataPointDto_DeviceType
+  commentId: P:UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.DeviceType
+  fullName: UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.DeviceType
+  nameWithType: DeviceTypeDataPointDto.DeviceType
+- uid: UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.DeviceType*
+  name: DeviceType
+  href: api/UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.html#UrlShortener_App_Shared_Dto_DeviceTypeDataPointDto_DeviceType_
+  commentId: Overload:UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.DeviceType
+  isSpec: "True"
+  fullName: UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.DeviceType
+  nameWithType: DeviceTypeDataPointDto.DeviceType
 - uid: UrlShortener.App.Shared.Dto.LoginRequestDto
   name: LoginRequestDto
   href: api/UrlShortener.App.Shared.Dto.LoginRequestDto.html
@@ -1710,6 +1774,51 @@ references:
   isSpec: "True"
   fullName: UrlShortener.App.Shared.Dto.RegisterResponseDto.Success
   nameWithType: RegisterResponseDto.Success
+- uid: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto
+  name: TimeSeriesStatsDto
+  href: api/UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.html
+  commentId: T:UrlShortener.App.Shared.Dto.TimeSeriesStatsDto
+  fullName: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto
+  nameWithType: TimeSeriesStatsDto
+- uid: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.ClicksPerDay
+  name: ClicksPerDay
+  href: api/UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.html#UrlShortener_App_Shared_Dto_TimeSeriesStatsDto_ClicksPerDay
+  commentId: P:UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.ClicksPerDay
+  fullName: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.ClicksPerDay
+  nameWithType: TimeSeriesStatsDto.ClicksPerDay
+- uid: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.ClicksPerDay*
+  name: ClicksPerDay
+  href: api/UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.html#UrlShortener_App_Shared_Dto_TimeSeriesStatsDto_ClicksPerDay_
+  commentId: Overload:UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.ClicksPerDay
+  isSpec: "True"
+  fullName: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.ClicksPerDay
+  nameWithType: TimeSeriesStatsDto.ClicksPerDay
+- uid: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingId
+  name: MappingId
+  href: api/UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.html#UrlShortener_App_Shared_Dto_TimeSeriesStatsDto_MappingId
+  commentId: P:UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingId
+  fullName: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingId
+  nameWithType: TimeSeriesStatsDto.MappingId
+- uid: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingId*
+  name: MappingId
+  href: api/UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.html#UrlShortener_App_Shared_Dto_TimeSeriesStatsDto_MappingId_
+  commentId: Overload:UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingId
+  isSpec: "True"
+  fullName: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingId
+  nameWithType: TimeSeriesStatsDto.MappingId
+- uid: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingName
+  name: MappingName
+  href: api/UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.html#UrlShortener_App_Shared_Dto_TimeSeriesStatsDto_MappingName
+  commentId: P:UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingName
+  fullName: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingName
+  nameWithType: TimeSeriesStatsDto.MappingName
+- uid: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingName*
+  name: MappingName
+  href: api/UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.html#UrlShortener_App_Shared_Dto_TimeSeriesStatsDto_MappingName_
+  commentId: Overload:UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingName
+  isSpec: "True"
+  fullName: UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.MappingName
+  nameWithType: TimeSeriesStatsDto.MappingName
 - uid: UrlShortener.App.Shared.Dto.UrlMappingDto
   name: UrlMappingDto
   href: api/UrlShortener.App.Shared.Dto.UrlMappingDto.html
@@ -2058,6 +2167,19 @@ references:
   isSpec: "True"
   fullName: UrlShortener.App.Shared.Dto.UserStatsDto.Clicks
   nameWithType: UserStatsDto.Clicks
+- uid: UrlShortener.App.Shared.Dto.UserStatsDto.DeviceTypeStats
+  name: DeviceTypeStats
+  href: api/UrlShortener.App.Shared.Dto.UserStatsDto.html#UrlShortener_App_Shared_Dto_UserStatsDto_DeviceTypeStats
+  commentId: P:UrlShortener.App.Shared.Dto.UserStatsDto.DeviceTypeStats
+  fullName: UrlShortener.App.Shared.Dto.UserStatsDto.DeviceTypeStats
+  nameWithType: UserStatsDto.DeviceTypeStats
+- uid: UrlShortener.App.Shared.Dto.UserStatsDto.DeviceTypeStats*
+  name: DeviceTypeStats
+  href: api/UrlShortener.App.Shared.Dto.UserStatsDto.html#UrlShortener_App_Shared_Dto_UserStatsDto_DeviceTypeStats_
+  commentId: Overload:UrlShortener.App.Shared.Dto.UserStatsDto.DeviceTypeStats
+  isSpec: "True"
+  fullName: UrlShortener.App.Shared.Dto.UserStatsDto.DeviceTypeStats
+  nameWithType: UserStatsDto.DeviceTypeStats
 - uid: UrlShortener.App.Shared.Dto.UserStatsDto.Mappings
   name: Mappings
   href: api/UrlShortener.App.Shared.Dto.UserStatsDto.html#UrlShortener_App_Shared_Dto_UserStatsDto_Mappings
@@ -2071,6 +2193,19 @@ references:
   isSpec: "True"
   fullName: UrlShortener.App.Shared.Dto.UserStatsDto.Mappings
   nameWithType: UserStatsDto.Mappings
+- uid: UrlShortener.App.Shared.Dto.UserStatsDto.TimeSeriesStats
+  name: TimeSeriesStats
+  href: api/UrlShortener.App.Shared.Dto.UserStatsDto.html#UrlShortener_App_Shared_Dto_UserStatsDto_TimeSeriesStats
+  commentId: P:UrlShortener.App.Shared.Dto.UserStatsDto.TimeSeriesStats
+  fullName: UrlShortener.App.Shared.Dto.UserStatsDto.TimeSeriesStats
+  nameWithType: UserStatsDto.TimeSeriesStats
+- uid: UrlShortener.App.Shared.Dto.UserStatsDto.TimeSeriesStats*
+  name: TimeSeriesStats
+  href: api/UrlShortener.App.Shared.Dto.UserStatsDto.html#UrlShortener_App_Shared_Dto_UserStatsDto_TimeSeriesStats_
+  commentId: Overload:UrlShortener.App.Shared.Dto.UserStatsDto.TimeSeriesStats
+  isSpec: "True"
+  fullName: UrlShortener.App.Shared.Dto.UserStatsDto.TimeSeriesStats
+  nameWithType: UserStatsDto.TimeSeriesStats
 - uid: UrlShortener.App.Shared.Extensions
   name: UrlShortener.App.Shared.Extensions
   href: api/UrlShortener.App.Shared.Extensions.html
@@ -2083,6 +2218,22 @@ references:
   commentId: T:UrlShortener.App.Shared.Extensions.DtoExtensions
   fullName: UrlShortener.App.Shared.Extensions.DtoExtensions
   nameWithType: DtoExtensions
+- uid: UrlShortener.App.Shared.Extensions.DtoExtensions.GetStats(System.Collections.Generic.IEnumerable{UrlShortener.App.Shared.Models.UrlMapping})
+  name: GetStats(IEnumerable<UrlMapping>)
+  href: api/UrlShortener.App.Shared.Extensions.DtoExtensions.html#UrlShortener_App_Shared_Extensions_DtoExtensions_GetStats_System_Collections_Generic_IEnumerable_UrlShortener_App_Shared_Models_UrlMapping__
+  commentId: M:UrlShortener.App.Shared.Extensions.DtoExtensions.GetStats(System.Collections.Generic.IEnumerable{UrlShortener.App.Shared.Models.UrlMapping})
+  name.vb: GetStats(IEnumerable(Of UrlMapping))
+  fullName: UrlShortener.App.Shared.Extensions.DtoExtensions.GetStats(System.Collections.Generic.IEnumerable<UrlShortener.App.Shared.Models.UrlMapping>)
+  fullName.vb: UrlShortener.App.Shared.Extensions.DtoExtensions.GetStats(System.Collections.Generic.IEnumerable(Of UrlShortener.App.Shared.Models.UrlMapping))
+  nameWithType: DtoExtensions.GetStats(IEnumerable<UrlMapping>)
+  nameWithType.vb: DtoExtensions.GetStats(IEnumerable(Of UrlMapping))
+- uid: UrlShortener.App.Shared.Extensions.DtoExtensions.GetStats*
+  name: GetStats
+  href: api/UrlShortener.App.Shared.Extensions.DtoExtensions.html#UrlShortener_App_Shared_Extensions_DtoExtensions_GetStats_
+  commentId: Overload:UrlShortener.App.Shared.Extensions.DtoExtensions.GetStats
+  isSpec: "True"
+  fullName: UrlShortener.App.Shared.Extensions.DtoExtensions.GetStats
+  nameWithType: DtoExtensions.GetStats
 - uid: UrlShortener.App.Shared.Extensions.DtoExtensions.ToDto(UrlShortener.App.Shared.Models.RedirectLog)
   name: ToDto(RedirectLog)
   href: api/UrlShortener.App.Shared.Extensions.DtoExtensions.html#UrlShortener_App_Shared_Extensions_DtoExtensions_ToDto_UrlShortener_App_Shared_Models_RedirectLog_

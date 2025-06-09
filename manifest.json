@@ -516,6 +516,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.ClickDataPointDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.ClickDataPointDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.ClickDataPointDto",
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.ClickDataPointDto.yml\" sourcestartlinenumber=\"1\">Represents a data point for click statistics, including the timestamp and number of clicks.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/UrlShortener.App.Shared.Dto.CreateMappingRequestDto.yml",
       "output": {
         ".html": {
@@ -541,6 +555,20 @@
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.CreateMappingResponseDto",
       "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.CreateMappingResponseDto.yml\" sourcestartlinenumber=\"1\">Represents the response returned after successfully creating a shortened URL mapping.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto",
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.DeviceTypeDataPointDto.yml\" sourcestartlinenumber=\"1\">Represents a data transfer object for device type statistics of URL mappings.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -625,6 +653,20 @@
       "IsMRef": true,
       "Title": "UrlShortener.App.Shared.Dto.RegisterResponseDto",
       "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.RegisterResponseDto.yml\" sourcestartlinenumber=\"1\">Represents the response returned after a user registration attempt.\nIndicates whether registration was successful and, if not, the type of error encountered.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "UrlShortener.App.Shared.Dto.TimeSeriesStatsDto",
+      "Summary": "<p sourcefile=\"api/UrlShortener.App.Shared.Dto.TimeSeriesStatsDto.yml\" sourcestartlinenumber=\"1\">Represents the data transfer object for time series statistics of URL mappings.</p>\n"
     },
     {
       "type": "ManagedReference",
