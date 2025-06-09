@@ -43,12 +43,12 @@ Im Rahmen des Projekts galten folgende Einschränkungen und Rahmenbedingungen:
 - **Quellcodeverwaltung**: Als zentrales Repository für die Versionsverwaltung muss GitHub verwendet werden.
 
 ## 3. Kontext und Umfang
-TODO: C4 Modelle
 
 ### Kontextdiagramm (Level 1)
 Das System ist ein Webservice mit direkter Interaktion durch Benutzer über den Browser. Die einzige externe Schnittstelle ist eine Third-Party-API zur Analyse von User-Agent-Strings.
 
-**Externe Beteiligte**:
+**Externe Beteiligte**:         
+
 - **Endnutzer:innen**: Interagieren über das Web-Frontend mit der Anwendung, z. B. zum Erstellen und Verwalten von Kurz-URLs.
 - **Externer Dienst – ApicAgent**: Wird vom Backend genutzt, um die im User-Agent enthaltenen Informationen (z. B. Betriebssystem, Gerät, Browser) strukturiert zu analysieren und zu speichern.
 
@@ -57,17 +57,20 @@ Das System ist ein Webservice mit direkter Interaktion durch Benutzer über den 
 ### Containerdiagramm (Level 2)
 Das System besteht aus drei Haupt-Containern:
 
-**1. Web-Frontend (Blazor Server)**
+**1. Web-Frontend (Blazor Server)**       
+
 - Stellt die Benutzeroberfläche bereit.
 - Verantwortlich für Benutzerinteraktion, URL-Verwaltung und Anzeige der Tracking-Daten.
 - Kommuniziert per HTTP-REST mit dem Backend.
 
-**2. Backend (ASP.NET Core Web API)**
+**2. Backend (ASP.NET Core Web API)**           
+
 - Beinhaltet die gesamte Geschäftslogik und Datenverarbeitung.
 - Bietet REST-Endpunkte zur Nutzerregistrierung, URL-Verwaltung, Weiterleitung und Tracking.
 - Ruft REST-API von [ApicAgent](https://www.apicagent.com/) auf zur Analyse des UserAgents des Nutzers.
 
-**Datenbank (MS SQL Server)**
+**Datenbank (MS SQL Server)**      
+
 - Persistiert Benutzerkonten, Kurz-URLs und Tracking-Informationen.
 - Wird ausschließlich vom Backend angesprochen.
 
@@ -187,7 +190,8 @@ Die Anwendung verwendet ein tokenbasiertes Authentifizierungssystem auf Basis vo
 
 Durch dieses Verfahren wird sichergestellt, dass nur authentifizierte Nutzer:innen Zugriff auf geschützte Ressourcen (z. B. eigene URLs oder Tracking-Daten) erhalten. Auf Serverseite wird jedes Token geprüft, bevor ein API-Endpunkt verarbeitet wird. Dies gewährleistet eine sichere und skalierbare Zugriffskontrolle ohne die Notwendigkeit einer serverseitigen Session-Verwaltung.
 
-**Zusätzliche Sicherheitsmaßnahmen**:
+**Zusätzliche Sicherheitsmaßnahmen**:           
+
 - HTTPS-Verschlüsselung zur Absicherung der Kommunikation.
 - Validierung von Eingaben zur Vermeidung von Injection-Angriffen.
 - CORS-Konfiguration, um nur erlaubte Ursprünge zu akzeptieren.
@@ -204,6 +208,7 @@ Besonderer Wert wurde auf eine intuitive und fokussierte Nutzererfahrung gelegt.
 Dank Tailwind CSS konnten UI-Elemente wie Formulareingaben, Fehlermeldungen oder Dialoge benutzerfreundlich gestaltet werden. Die Reaktivität und kurze Ladezeiten durch Blazor Server sorgen für ein flüssiges Nutzererlebnis ohne spürbare Wartezeiten.
 
 **Weitere UX-Merkmale**:
+
 - Eingabevalidierung direkt beim Tippen.
 - Modale Dialoge für Trackingdaten, damit der Seitenkontext erhalten bleibt.
 - Feedback-Mechanismen nach Nutzeraktionen (z. B. Toast-Meldungen nach erfolgreichem Speichern oder Löschen).
@@ -222,12 +227,14 @@ Die wichtigsten Entscheidungen mit Auswirkungen auf die Architektur wurden als a
 Ich habe mich entschieden, den URL-Shortener selbst zu implementieren, anstatt auf einen externen Dienst zurückzugreifen. Alle Kurz-URLs werden in einer eigenen Datenbank gespeichert und können von den Nutzern verwaltet werden.
 
 **Begründung**:
+
 - Volle Kontrolle über die URL-Verwaltung und gespeicherte Daten.
 - Möglichkeit zur Integration zusätzlicher Funktionen wie Tracking und Analytics.
 - Benutzer können personalisierte Kurzlinks erstellen.
 - Flexibilität für zukünftige Erweiterungen.
 
 **Alternativen**:
+
 - Nutzung externer Dienste wie Bitly oder TinyURL.
     - **Vorteile**: Schnellere Implementierung, keine eigene Infrastruktur nötig.
     - **Nachteile**: Eingeschränkte Anpassbarkeit, Abhängigkeit von Dritten, evtl. zusätzliche Kosten.
@@ -241,12 +248,14 @@ Ich habe mich entschieden, den URL-Shortener selbst zu implementieren, anstatt a
 Ich verwende ``JSON Web Tokens (JWT)`` zur Authentifizierung und Autorisierung der Nutzer. Das Token wird im lokalen Speicher des Browsers abgelegt und bei jedem Request an das Backend übermittelt.
 
 **Begründung**:
+
 - JWTs sind leichtgewichtig und effizient.
 - Ermöglichen zustandslose Authentifizierung (keine Session-Daten auf dem Server nötig).
 - Weit verbreitet, gut dokumentiert und einfach in Blazor und ASP.NET Core integrierbar.
 - Tokenbasierte Authentifizierung ist sicher und skalierbar.
 
 **Alternativen**:
+
 - Session-basierte Authentifizierung.
     - **Vorteile**: Einfach umsetzbar für kleine Anwendungen.
     - **Nachteile**: Server benötigt Speicher für Sessions, schlechter skalierbar.
@@ -260,11 +269,13 @@ Ich verwende ``JSON Web Tokens (JWT)`` zur Authentifizierung und Autorisierung d
 Ich verwende **Microsoft SQL Server** als relationale Datenbank für das Backend. Diese Wahl bietet eine zuverlässige Grundlage für Transaktionen und komplexe Abfragen im Zusammenhang mit Benutzer- und URL-Daten.
 
 **Begründung**:
+
 - SQL Server ist stabil, performant und unterstützt ACID-Transaktionen.
 - Nahtlose Integration mit Entity Framework Core.
 - Persönliche Erfahrung im Umgang mit SQL Server – keine Einarbeitung nötig.
 
 **Alternativen**:
+
 - Nutzung von NoSQL-Datenbanken wie MongoDB.
     - **Vorteile**: Besser für unstrukturierte Daten, horizontale Skalierung möglich.
     - **Nachteile**: Komplexe Abfragen schwieriger, keine konsistenten Transaktionen.
@@ -278,12 +289,14 @@ Ich verwende **Microsoft SQL Server** als relationale Datenbank für das Backend
 Ich habe mich für **Blazor** als Frontend-Framework entschieden, da es die Entwicklung interaktiver Webanwendungen in C# ermöglicht und die Wiederverwendung von Code zwischen Frontend und Backend unterstützt.
 
 **Begründung**:
+
 - C# kann sowohl im Frontend als auch im Backend verwendet werden.
 - Gute Integration mit ASP.NET Core.
 - Möglichkeit, bestehende .NET-Bibliotheken zu verwenden.
 - Kein Wechsel zu JavaScript nötig – reduziert Komplexität.
 
 **Alternativen**:
+
 - Einsatz von React oder Angular.
     - **Vorteile**: Große Community, viele UI-Bibliotheken.
     - **Nachteile**: JavaScript notwendig, keine direkte .NET-Integration.
@@ -297,10 +310,12 @@ Ich habe mich für **Blazor** als Frontend-Framework entschieden, da es die Entw
 Ich habe mich für **Blazor Server** als Hosting-Modell entschieden. Die Logik wird vollständig serverseitig ausgeführt, und der Client kommuniziert per SignalR-Verbindung mit dem Server.
 
 **Begründung**:
+
 - Höhere Sicherheit, da keine API-Requests oder Logik im Browser sichtbar sind.
 - Schnellere Ladezeiten, da keine WebAssembly-Runtime benötigt wird.
 
 **Alternativen**:
+
 - Blazor WebAssembly
     - **Vorteile**: Vollständig clientseitig, offlinefähig.
     - **Nachteile**: Logik im Browser einsehbar, längere Ladezeit.
@@ -309,6 +324,7 @@ Ich habe mich für **Blazor Server** als Hosting-Modell entschieden. Die Logik w
 ### Nicht-funktionale Qualitätsanforderungen nach ISO 25010
 
 #### Sicherheit
+
 - Authentifizierung & Autorisierung: Zugriff auf geschützte Bereiche ist nur nach Login mit gültigem JWT-Token möglich.
 - Datenverschlüsselung: Die Kommunikation zwischen Client und Server erfolgt über HTTPS.
 - Input-Validierung: Sämtliche Benutzereingaben werden serverseitig validiert, um Angriffe wie SQL-Injection zu verhindern.
@@ -321,35 +337,31 @@ Ich habe mich für **Blazor Server** als Hosting-Modell entschieden. Die Logik w
 
 #### Wartbarkeit
 
-- **Wartbarkeit und Erweiterbarkeit**:
-Die Anwendung ist in modularen Bausteinen organisiert (nach Schichtenmodell und klarer Trennung von Concerns). Gemeinsame Modelle liegen in einem Shared-Projekt, sodass Änderungen zentral vorgenommen werden können.
+- **Wartbarkeit und Erweiterbarkeit**: Die Anwendung ist in modularen Bausteinen organisiert (nach Schichtenmodell und klarer Trennung von Concerns). Gemeinsame Modelle liegen in einem Shared-Projekt, sodass Änderungen zentral vorgenommen werden können.
 
-- **Wirtschaftlichkeit**:
-Durch die einheitliche Verwendung von .NET und C# über alle Ebenen hinweg kann Entwicklungs- und Wartungsaufwand minimiert werden. Zudem ist durch Dockerisierung ein einfaches Rollout möglich.
+- **Wirtschaftlichkeit**: Durch die einheitliche Verwendung von .NET und C# über alle Ebenen hinweg kann Entwicklungs- und Wartungsaufwand minimiert werden. Zudem ist durch Dockerisierung ein einfaches Rollout möglich.
 
 #### Benutzbarkeit
-- **Benutzerfreundlichkeit**:
-Die Oberfläche ist minimalistisch und intuitiv gehalten. Tailwind CSS sorgt für ein einheitliches, modernes Design. Wichtige Funktionen wie das Kürzen und Löschen von URLs oder das Anzeigen von Trackingdaten sind mit wenigen Klicks erreichbar.
+
+- **Benutzerfreundlichkeit**: Die Oberfläche ist minimalistisch und intuitiv gehalten. Tailwind CSS sorgt für ein einheitliches, modernes Design. Wichtige Funktionen wie das Kürzen und Löschen von URLs oder das Anzeigen von Trackingdaten sind mit wenigen Klicks erreichbar.
 
 #### Kompatibilität
 
-- **Interoperabilität und Integration**:
-Die Anwendung nutzt standardisierte HTTP-REST-Schnittstellen und kann damit auch problemlos von anderen Systemen angesprochen oder erweitert werden.
+- **Interoperabilität und Integration**: Die Anwendung nutzt standardisierte HTTP-REST-Schnittstellen und kann damit auch problemlos von anderen Systemen angesprochen oder erweitert werden.
 
-- **Funktionale Eignung**:
-Die Kernfunktionen (Erstellen, Verwalten und Auswerten von Kurz-URLs) sind vollständig implementiert und entsprechen den Anforderungen.
+- **Funktionale Eignung**: Die Kernfunktionen (Erstellen, Verwalten und Auswerten von Kurz-URLs) sind vollständig implementiert und entsprechen den Anforderungen.
 
 - **Portabilität**:
 Die Anwendung läuft containerisiert über Docker und ist damit unabhängig vom Betriebssystem oder der Infrastruktur einfach auf verschiedenen Umgebungen deploybar.
 
-- **Zuverlässigkeit**:
-Das System erkennt fehlerhafte Eingaben und bietet dem Benutzer entsprechendes Feedback.
+- **Zuverlässigkeit**: Das System erkennt fehlerhafte Eingaben und bietet dem Benutzer entsprechendes Feedback.
 
 ## 11. Qualitätssichernde Maßnahmen und Tests
 Die Qualität der Anwendung wurde durch verschiedene Testarten, automatisierte Analysen und CI sichergestellt. Der Fokus lag dabei sowohl auf funktionaler Korrektheit als auch auf nicht-funktionalen Aspekten wie Performance und Sicherheit.
 
 ### Unittests (Backend)
 Im Projekt ``UrlShortener.Test.Backend`` wurden umfassende Unit-Tests für die Kernlogik des Backends erstellt. Dabei wurden u. a. folgende Bereiche abgedeckt:
+
 - Validierung von URL-Eingaben
 - Erzeugung und Speicherung von Kurz-URLs
 - Authentifizierungs-Logik (z. B. Token-Handling)
@@ -357,12 +369,14 @@ Im Projekt ``UrlShortener.Test.Backend`` wurden umfassende Unit-Tests für die K
 
 ### Unittests (Frontend)
 Im Projekt ``UrlShortener.Test.Frontend`` wurden Unit-Tests für die Frontend-Komponenten durchgeführt. Dabei lag der Fokus auf:
+
 - Validierung von Eingaben in Formularen
 - UI-Komponentenverhalten
 - Funktionalität der Geschäftslogik
 
  ### Integrationstests
 Das Projekt ``UrlShortener.Test.Backend`` enthält auch Integrationstests, die die REST-API testen. Es wurden u. a. getestet:
+
 - Registrierung und Login
 - Erstellen und Löschen von Kurz-URLs
 - Zugriffsschutz über JWT
@@ -370,6 +384,7 @@ Das Projekt ``UrlShortener.Test.Backend`` enthält auch Integrationstests, die d
 
 ### Penetration-Tests
 Im Projekt ``UrlShortener.Test.End2End`` wurden gezielt Sicherheitstests (PenTests) implementiert, u. a. um zu prüfen:
+
 - Unberechtigter Zugriff auf geschützte Ressourcen
 - Manipulation von JWTs
 - Eingabe von potenziell schädlichem Code (Injection-Angriffe)
@@ -377,12 +392,14 @@ Im Projekt ``UrlShortener.Test.End2End`` wurden gezielt Sicherheitstests (PenTes
 
 ### End2End-Tests
 Ebenfalls in ``UrlShortener.Test.End2End`` befinden sich die End2End-Tests, mit denen komplette Nutzungsflüsse simuliert und geprüft werden. Dazu werden sowohl Backend, Frontend und eine In-Memory-Datenbank gestartet und mittels PlayWright durch das UI navigiert. Diese Tests laufen automatisiert in der CI-Pipeline (Headless) und prüfen:
+
 - Funktionale Korrektheit des Zusammenspiels zwischen Frontend und Backend
 - Darstellung und Zustand der UI nach typischen Aktionen
 - Rückmeldungen bei Erfolgen und Fehlern
 
 ### Last-Tests
 Die Anwendung wurde zudem mit Lasttests auf ihre Stabilität unter erhöhter Benutzeraktivität geprüft. Dabei wurde unter anderem simuliert:
+
 - Massenerstellung von URLs
 - Verhalten von Login/Registrierung unter Last
 
