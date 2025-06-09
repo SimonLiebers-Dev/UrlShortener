@@ -166,7 +166,7 @@ Class TimeSeriesStatsDto  <a class="header-action link-secondary" title="View so
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;clicksPerDay&quot;)]
-public List&lt;ClickDataPointDto&gt; ClicksPerDay { get; set; }</code></pre>
+public IEnumerable&lt;ClickDataPointDto&gt; ClicksPerDay { get; set; }</code></pre>
   </div>
 
 
@@ -175,7 +175,7 @@ public List&lt;ClickDataPointDto&gt; ClicksPerDay { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="UrlShortener.App.Shared.Dto.ClickDataPointDto.html">ClickDataPointDto</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="UrlShortener.App.Shared.Dto.ClickDataPointDto.html">ClickDataPointDto</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -232,7 +232,7 @@ public int MappingId { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;name&quot;)]
-public string MappingName { get; set; }</code></pre>
+public required string MappingName { get; set; }</code></pre>
   </div>
 
 
