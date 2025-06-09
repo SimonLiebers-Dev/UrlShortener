@@ -114,7 +114,6 @@
 </li>
 </ul>
 <h2 id="3-kontext-und-umfang">3. Kontext und Umfang</h2>
-<p>TODO: C4 Modelle</p>
 <h3 id="kontextdiagramm-level-1">Kontextdiagramm (Level 1)</h3>
 <p>Das System ist ein Webservice mit direkter Interaktion durch Benutzer über den Browser. Die einzige externe Schnittstelle ist eine Third-Party-API zur Analyse von User-Agent-Strings.</p>
 <p><strong>Externe Beteiligte</strong>:</p>
@@ -395,31 +394,25 @@ Ich habe mich für <strong>Blazor Server</strong> als Hosting-Modell entschieden
 </ul>
 <h4 id="wartbarkeit">Wartbarkeit</h4>
 <ul>
-<li><p><strong>Wartbarkeit und Erweiterbarkeit</strong>:
-Die Anwendung ist in modularen Bausteinen organisiert (nach Schichtenmodell und klarer Trennung von Concerns). Gemeinsame Modelle liegen in einem Shared-Projekt, sodass Änderungen zentral vorgenommen werden können.</p>
+<li><p><strong>Wartbarkeit und Erweiterbarkeit</strong>: Die Anwendung ist in modularen Bausteinen organisiert (nach Schichtenmodell und klarer Trennung von Concerns). Gemeinsame Modelle liegen in einem Shared-Projekt, sodass Änderungen zentral vorgenommen werden können.</p>
 </li>
-<li><p><strong>Wirtschaftlichkeit</strong>:
-Durch die einheitliche Verwendung von .NET und C# über alle Ebenen hinweg kann Entwicklungs- und Wartungsaufwand minimiert werden. Zudem ist durch Dockerisierung ein einfaches Rollout möglich.</p>
+<li><p><strong>Wirtschaftlichkeit</strong>: Durch die einheitliche Verwendung von .NET und C# über alle Ebenen hinweg kann Entwicklungs- und Wartungsaufwand minimiert werden. Zudem ist durch Dockerisierung ein einfaches Rollout möglich.</p>
 </li>
 </ul>
 <h4 id="benutzbarkeit">Benutzbarkeit</h4>
 <ul>
-<li><strong>Benutzerfreundlichkeit</strong>:
-Die Oberfläche ist minimalistisch und intuitiv gehalten. Tailwind CSS sorgt für ein einheitliches, modernes Design. Wichtige Funktionen wie das Kürzen und Löschen von URLs oder das Anzeigen von Trackingdaten sind mit wenigen Klicks erreichbar.</li>
+<li><strong>Benutzerfreundlichkeit</strong>: Die Oberfläche ist minimalistisch und intuitiv gehalten. Tailwind CSS sorgt für ein einheitliches, modernes Design. Wichtige Funktionen wie das Kürzen und Löschen von URLs oder das Anzeigen von Trackingdaten sind mit wenigen Klicks erreichbar.</li>
 </ul>
 <h4 id="kompatibilität">Kompatibilität</h4>
 <ul>
-<li><p><strong>Interoperabilität und Integration</strong>:
-Die Anwendung nutzt standardisierte HTTP-REST-Schnittstellen und kann damit auch problemlos von anderen Systemen angesprochen oder erweitert werden.</p>
+<li><p><strong>Interoperabilität und Integration</strong>: Die Anwendung nutzt standardisierte HTTP-REST-Schnittstellen und kann damit auch problemlos von anderen Systemen angesprochen oder erweitert werden.</p>
 </li>
-<li><p><strong>Funktionale Eignung</strong>:
-Die Kernfunktionen (Erstellen, Verwalten und Auswerten von Kurz-URLs) sind vollständig implementiert und entsprechen den Anforderungen.</p>
+<li><p><strong>Funktionale Eignung</strong>: Die Kernfunktionen (Erstellen, Verwalten und Auswerten von Kurz-URLs) sind vollständig implementiert und entsprechen den Anforderungen.</p>
 </li>
 <li><p><strong>Portabilität</strong>:
 Die Anwendung läuft containerisiert über Docker und ist damit unabhängig vom Betriebssystem oder der Infrastruktur einfach auf verschiedenen Umgebungen deploybar.</p>
 </li>
-<li><p><strong>Zuverlässigkeit</strong>:
-Das System erkennt fehlerhafte Eingaben und bietet dem Benutzer entsprechendes Feedback.</p>
+<li><p><strong>Zuverlässigkeit</strong>: Das System erkennt fehlerhafte Eingaben und bietet dem Benutzer entsprechendes Feedback.</p>
 </li>
 </ul>
 <h2 id="11-qualitätssichernde-maßnahmen-und-tests">11. Qualitätssichernde Maßnahmen und Tests</h2>
