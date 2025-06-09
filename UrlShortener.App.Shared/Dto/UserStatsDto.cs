@@ -11,24 +11,24 @@ namespace UrlShortener.App.Shared.Dto
         /// Gets or sets the total number of redirect clicks across all of the user's URL mappings.
         /// </summary>
         [JsonPropertyName("clicks")]
-        public int Clicks { get; set; } = 0;
+        public int Clicks { get; set; }
 
         /// <summary>
         /// Gets or sets the total number of URL mappings created by the user.
         /// </summary>
         [JsonPropertyName("mappings")]
-        public int Mappings { get; set; } = 0;
+        public int Mappings { get; set; }
 
         /// <summary>
         /// Gets or sets the statistics related to the device types used for accessing the user's URL mappings.
         /// </summary>
         [JsonPropertyName("deviceTypeStats")]
-        public List<DeviceTypeDataPointDto> DeviceTypeStats { get; set; } = [];
+        public IEnumerable<DeviceTypeDataPointDto> DeviceTypeStats { get; set; } = [];
 
         /// <summary>
         /// Gets or sets the statistics related to the time series of clicks on the user's URL mappings.
         /// </summary>
         [JsonPropertyName("timeSeriesStats")]
-        public List<TimeSeriesStatsDto> TimeSeriesStats { get; set; } = [];
+        public IEnumerable<TimeSeriesStatsDto> TimeSeriesStats { get; set; } = [];
     }
 }

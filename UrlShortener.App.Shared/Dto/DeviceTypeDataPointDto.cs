@@ -11,7 +11,7 @@ namespace UrlShortener.App.Shared.Dto
         /// Device type (e.g., "Desktop", "Mobile", "Tablet")
         /// </summary>
         [JsonPropertyName("deviceType")]
-        public string DeviceType { get; set; }
+        public required string DeviceType { get; set; }
 
         /// <summary>
         /// Number of clicks
