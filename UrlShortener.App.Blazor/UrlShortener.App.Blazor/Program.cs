@@ -1,3 +1,4 @@
+using ApexCharts;
 using Blazorise;
 using Blazorise.Icons.FontAwesome;
 using Blazorise.Tailwind;
@@ -38,6 +39,16 @@ public class Program
             })
             .AddTailwindProviders()
             .AddFontAwesomeIcons();
+
+        // Add apex charts services
+        builder.Services.AddApexCharts(e =>
+        {
+            e.GlobalOptions = new ApexChartBaseOptions
+            {
+                Debug = true,
+                Theme = new ApexCharts.Theme { Palette = PaletteType.Palette6 }
+            };
+        });
 
         // Add cascading auth state
         builder.Services.AddCascadingAuthenticationState();

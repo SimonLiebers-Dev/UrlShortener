@@ -17,7 +17,7 @@ namespace UrlShortener.App.Shared.Extensions
         /// <returns>A <see cref="UrlMappingDto"/> representing the URL mapping.</returns>
         public static UrlMappingDto ToDto(this UrlMapping urlMapping, HttpRequest httpRequest)
         {
-            return new UrlMappingDto()
+            return new UrlMappingDto
             {
                 Id = urlMapping.Id,
                 LongUrl = urlMapping.LongUrl,
@@ -36,7 +36,7 @@ namespace UrlShortener.App.Shared.Extensions
         /// <returns>A <see cref="RedirectLogDto"/> representing the redirect log.</returns>
         public static RedirectLogDto ToDto(this RedirectLog redirectLog)
         {
-            return new RedirectLogDto()
+            return new RedirectLogDto
             {
                 Id = redirectLog.Id,
                 IpAddress = redirectLog.IpAddress,
@@ -52,6 +52,49 @@ namespace UrlShortener.App.Shared.Extensions
                 OsName = redirectLog.OsName,
                 OsVersion = redirectLog.OsVersion,
                 OsFamily = redirectLog.OsFamily
+            };
+        }
+
+        /// <summary>
+        /// Converts a collection of <see cref="UrlMapping"/> entities to a <see cref="UserStatsDto"/> containing aggregated statistics.
+        /// </summary>
+        /// <param name="userMappings">List of mappings</param>
+        /// <returns>A <see cref="UserStatsDto"/> containing statistics about the user's URL mappings.</returns>
+        public static UserStatsDto GetStats(this IEnumerable<UrlMapping> userMappings)
+        {
+            var deviceTypeStats = userMappings.SelectMany(s => s.RedirectLogs)
+                    .GroupBy(log => log.DeviceType ?? "Unknown")
+                    .Select(g => new DeviceTypeDataPointDto
+                    {
+                        DeviceType = g.Key,
+                        Clicks = g.Count(),
+                    })
+                    .ToList();
+
+            var timeSeriesStats = new List<TimeSeriesStatsDto>();
+            foreach (var mapping in userMappings)
+            {
+                var item = new TimeSeriesStatsDto
+                {
+                    MappingId = mapping.Id,
+                    MappingName = mapping.Name ?? "Unknown",
+                    ClicksPerDay = [.. mapping.RedirectLogs
+                        .GroupBy(log => log.AccessedAt.Date)
+                        .Select(g => new ClickDataPointDto
+                        {
+                            DateTime = g.Key,
+                            Clicks = g.Count()
+                        })]
+                };
+                timeSeriesStats.Add(item);
+            }
+
+            return new UserStatsDto
+            {
+                Clicks = userMappings.SelectMany(s => s.RedirectLogs).Count(),
+                Mappings = userMappings.Count(),
+                DeviceTypeStats = deviceTypeStats,
+                TimeSeriesStats = timeSeriesStats
             };
         }
     }

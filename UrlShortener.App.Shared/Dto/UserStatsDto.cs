@@ -18,5 +18,17 @@ namespace UrlShortener.App.Shared.Dto
         /// </summary>
         [JsonPropertyName("mappings")]
         public int Mappings { get; set; } = 0;
+
+        /// <summary>
+        /// Gets or sets the statistics related to the device types used for accessing the user's URL mappings.
+        /// </summary>
+        [JsonPropertyName("deviceTypeStats")]
+        public List<DeviceTypeDataPointDto> DeviceTypeStats { get; set; } = [];
+
+        /// <summary>
+        /// Gets or sets the statistics related to the time series of clicks on the user's URL mappings.
+        /// </summary>
+        [JsonPropertyName("timeSeriesStats")]
+        public List<TimeSeriesStatsDto> TimeSeriesStats { get; set; } = [];
     }
 }

@@ -27,14 +27,29 @@
                     </CardTitle>
                     <Row>
                         <Column Class="text-center">
-                            <Icon Name="IconName.Link" IconSize="IconSize.Large" />
-                            <Heading Size="HeadingSize.Is5" TextColor="TextColor.Dark">Active URLs</Heading>
-                            <Paragraph TextSize="TextSize.Large">@userStats.Mappings</Paragraph>
+                            <ApexCharts.ApexChart XAxisType="ApexCharts.XAxisType.Datetime"
+                                                  TItem="ClickDataPointDto"
+                                                  Title="Clicks Over Time">
+                                @foreach (var timeStat in userStats.TimeSeriesStats)
+                                {
+                                    <ApexCharts.ApexPointSeries TItem="ClickDataPointDto"
+                                                                Items="timeStat.ClicksPerDay"
+                                                                Name="@timeStat.MappingName"
+                                                                SeriesType="ApexCharts.SeriesType.Area"
+                                                                XValue="point => point.DateTime"
+                                                                YValue="point => point.Clicks" />
+                                }
+                            </ApexCharts.ApexChart>
                         </Column>
                         <Column Class="text-center">
-                            <Icon Name="IconName.Mouse" IconSize="IconSize.Large" />
-                            <Heading Size="HeadingSize.Is5" TextColor="TextColor.Dark">Total Clicks</Heading>
-                            <Paragraph TextSize="TextSize.Large">@userStats.Clicks</Paragraph>
+                            <ApexCharts.ApexChart TItem="DeviceTypeDataPointDto"
+                                                  Title="Clicks per Device type">
+                                <ApexCharts.ApexPointSeries TItem="DeviceTypeDataPointDto"
+                                                            Items="@userStats.DeviceTypeStats"
+                                                            SeriesType="ApexCharts.SeriesType.Pie"
+                                                            XValue="point => point.DeviceType"
+                                                            YValue="point => point.Clicks" />
+                            </ApexCharts.ApexChart>
                         </Column>
                     </Row>
                 </CardBody>
@@ -72,8 +87,8 @@
                     </Validation>
                 </Validations>
                 <Button Color="Color.Primary"
-                Clicked="CreateMapping"
-                id="create-mapping-btn">
+                        Clicked="CreateMapping"
+                        id="create-mapping-btn">
                     Generate Short URL
                 </Button>
             </CardBody>
