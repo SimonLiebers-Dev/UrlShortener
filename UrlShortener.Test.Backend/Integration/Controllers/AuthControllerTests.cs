@@ -159,6 +159,38 @@ namespace UrlShortener.Test.Backend.Integration.Controllers
         }
 
         [Test]
+        [TestCase("1")]
+        [TestCase("12")]
+        [TestCase("123")]
+        [TestCase("1234")]
+        [TestCase("12345")]
+        public async Task Register_TooShortPassword_ReturnsError(string password)
+        {
+            // Arrange
+            var registerRequest = new RegisterRequestDto
+            {
+                Email = "newuser123@example.com",
+                Password = password
+            };
+
+            // Act
+            var response = await _httpClient.PostAsJsonAsync("/api/auth/register", registerRequest);
+            var result = await response.Content.ReadFromJsonAsync<RegisterResponseDto>();
+
+            // Assert
+            Assert.Multiple(() =>
+            {
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+                Assert.That(result, Is.Not.Null);
+            });
+            Assert.Multiple(() =>
+            {
+                Assert.That(result.Success, Is.False);
+                Assert.That(result.ErrorType, Is.EqualTo(RegisterErrorType.PasswordPolicyViolation));
+            });
+        }
+
+        [Test]
         public async Task Register_EmailAlreadyExists_ReturnsError()
         {
             // Arrange

@@ -58,6 +58,9 @@ namespace UrlShortener.App.Backend.Controllers
             if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
                 return BadRequest(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });
 
+            if (request.Password.Length < 6)
+                return BadRequest(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.PasswordPolicyViolation });
+
             var email = new EmailAddressAttribute();
             if (!email.IsValid(request.Email))
                 return BadRequest(new RegisterResponseDto() { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });

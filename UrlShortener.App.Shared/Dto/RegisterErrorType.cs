@@ -18,6 +18,11 @@
         /// <summary>
         /// The provided email address is already associated with an existing user.
         /// </summary>
-        EmailAlreadyExists
+        EmailAlreadyExists,
+
+        /// <summary>
+        /// The provided password does not meet the required security policy, such as length or complexity.
+        /// </summary>
+        PasswordPolicyViolation,
     }
 }
