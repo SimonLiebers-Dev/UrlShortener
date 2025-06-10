@@ -25,7 +25,7 @@ namespace UrlShortener.Test.Backend.Unit.Utils
             var numberOfEntries = 10;
 
             // Act
-            var logs = InvokePrivateRedirectLogGenerator(user, mapping, from, to, numberOfEntries);
+            var logs = InvokePrivateRedirectLogGenerator(mapping, from, to, numberOfEntries);
 
             // Assert
             Assert.That(logs, Is.Not.Empty, "The generated log list should not be empty.");
@@ -46,11 +46,11 @@ namespace UrlShortener.Test.Backend.Unit.Utils
         }
 
         // Helper to invoke private method via reflection
-        private static List<RedirectLog> InvokePrivateRedirectLogGenerator(User user, UrlMapping mapping, DateTime from, DateTime to, int numberOfEntries)
+        private static List<RedirectLog> InvokePrivateRedirectLogGenerator(UrlMapping mapping, DateTime from, DateTime to, int numberOfEntries)
         {
             var method = typeof(DataSeeder).GetMethod("GetDemoRedirectLogs", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
 
-            return method?.Invoke(null, [user, mapping, from, to, numberOfEntries]) as List<RedirectLog>
+            return method?.Invoke(null, [mapping, from, to, numberOfEntries]) as List<RedirectLog>
                 ?? throw new InvalidOperationException("Unable to invoke GetDemoRedirectLogs.");
         }
     }
