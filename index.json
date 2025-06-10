@@ -217,7 +217,7 @@
   "api/UrlShortener.App.Shared.Dto.RegisterErrorType.html": {
     "href": "api/UrlShortener.App.Shared.Dto.RegisterErrorType.html",
     "title": "Enum RegisterErrorType | UrlShortener",
-    "summary": "Enum RegisterErrorType Namespace UrlShortener.App.Shared.Dto Assembly UrlShortener.App.Shared.dll Represents the possible error types that can occur during user registration. public enum RegisterErrorType Fields EmailAlreadyExists = 2 The provided email address is already associated with an existing user. MissingEmailOrPassword = 1 The registration request was missing an email address or password. None = 0 No error occurred. Registration was successful."
+    "summary": "Enum RegisterErrorType Namespace UrlShortener.App.Shared.Dto Assembly UrlShortener.App.Shared.dll Represents the possible error types that can occur during user registration. public enum RegisterErrorType Fields EmailAlreadyExists = 2 The provided email address is already associated with an existing user. MissingEmailOrPassword = 1 The registration request was missing an email address or password. None = 0 No error occurred. Registration was successful. PasswordPolicyViolation = 3 The provided password does not meet the required security policy, such as length or complexity."
   },
   "api/UrlShortener.App.Shared.Dto.RegisterRequestDto.html": {
     "href": "api/UrlShortener.App.Shared.Dto.RegisterRequestDto.html",

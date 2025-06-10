@@ -1710,6 +1710,12 @@ references:
   commentId: F:UrlShortener.App.Shared.Dto.RegisterErrorType.None
   fullName: UrlShortener.App.Shared.Dto.RegisterErrorType.None
   nameWithType: RegisterErrorType.None
+- uid: UrlShortener.App.Shared.Dto.RegisterErrorType.PasswordPolicyViolation
+  name: PasswordPolicyViolation
+  href: api/UrlShortener.App.Shared.Dto.RegisterErrorType.html#UrlShortener_App_Shared_Dto_RegisterErrorType_PasswordPolicyViolation
+  commentId: F:UrlShortener.App.Shared.Dto.RegisterErrorType.PasswordPolicyViolation
+  fullName: UrlShortener.App.Shared.Dto.RegisterErrorType.PasswordPolicyViolation
+  nameWithType: RegisterErrorType.PasswordPolicyViolation
 - uid: UrlShortener.App.Shared.Dto.RegisterRequestDto
   name: RegisterRequestDto
   href: api/UrlShortener.App.Shared.Dto.RegisterRequestDto.html
