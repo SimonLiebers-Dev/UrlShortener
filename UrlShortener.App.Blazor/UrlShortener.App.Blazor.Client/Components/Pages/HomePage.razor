@@ -18,7 +18,7 @@
 
 <AuthorizeView>
     <LoadingIndicator @ref="loadingIndicator" id="mappings-loading-indicator">
-        @if (userStats != null)
+        @if (userStats != null && userStats.TimeSeriesStats.Any() && userStats.DeviceTypeStats.Any())
         {
             <Card Class="p-4 mt-4">
                 <CardBody>
@@ -29,13 +29,14 @@
                         <Column Class="text-center">
                             <ApexCharts.ApexChart XAxisType="ApexCharts.XAxisType.Datetime"
                                                   TItem="ClickDataPointDto"
-                                                  Title="Clicks Over Time">
+                                                  Title="Clicks Over Time"
+                                                  Height="@("400px")">
                                 @foreach (var timeStat in userStats.TimeSeriesStats)
                                 {
                                     <ApexCharts.ApexPointSeries TItem="ClickDataPointDto"
                                                                 Items="timeStat.ClicksPerDay"
                                                                 Name="@timeStat.MappingName"
-                                                                SeriesType="ApexCharts.SeriesType.Area"
+                                                                SeriesType="ApexCharts.SeriesType.Line"
                                                                 XValue="point => point.DateTime"
                                                                 YValue="point => point.Clicks" />
                                 }
@@ -43,7 +44,8 @@
                         </Column>
                         <Column Class="text-center">
                             <ApexCharts.ApexChart TItem="DeviceTypeDataPointDto"
-                                                  Title="Clicks per Device type">
+                                                  Title="Clicks per Device type"
+                                                  Height="@("400px")">
                                 <ApexCharts.ApexPointSeries TItem="DeviceTypeDataPointDto"
                                                             Items="@userStats.DeviceTypeStats"
                                                             SeriesType="ApexCharts.SeriesType.Pie"
@@ -94,47 +96,50 @@
             </CardBody>
         </Card>
 
-        <Card Class="p-4 mt-4">
-            <CardBody>
-                <CardTitle Size="4">
-                    Active URLs
-                </CardTitle>
-                <Row id="mappings-wrapper">
-                    @foreach (var mapping in userMappings)
-                    {
-                        <Column Class="md-4">
-                            <Card Class="mb-3 mapping-card">
-                                <CardBody>
-                                    <Heading Size="HeadingSize.Is5">@mapping.Name</Heading>
-                                    <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
-                                        <Strong Style="white-space: nowrap;">Short URL:</Strong>
-                                        <Anchor To="@mapping.ShortUrl" Class="truncate" Target="Target.Blank">@mapping.ShortUrl</Anchor>
-                                    </Row>
-                                    <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
-                                        <Strong Style="white-space: nowrap;">Original URL:</Strong>
-                                        <Anchor To="@mapping.ShortUrl" Class="truncate" Target="Target.Blank">@mapping.LongUrl</Anchor>
-                                    </Row>
-                                    <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
-                                        <Strong Style="white-space: nowrap;">Created:</Strong>
-                                        <Text>@GetMappingCreatedTime(mapping)</Text>
-                                    </Row>
-                                    <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
-                                        <Strong Style="white-space: nowrap;">Clicks:</Strong>
-                                        <Text>@mapping.RedirectLogs.Count</Text>
-                                    </Row>
-                                    <Button Color="Color.Primary" Margin="Margin.Is2.FromTop" Clicked="() => SelectMapping(mapping)" Class="mapping-details-btn">
-                                        Details <Icon Class="ml-1" Name="IconName.ArrowRight" />
-                                    </Button>
-                                    <Button Color="Color.Secondary" Margin="Margin.Is2.FromTop" Clicked="() => DeleteMapping(mapping)" Class="mapping-delete-btn">
-                                        Delete
-                                    </Button>
-                                </CardBody>
-                            </Card>
-                        </Column>
-                    }
-                </Row>
-            </CardBody>
-        </Card>
+        @if (userMappings != null && userMappings.Any())
+        {
+            <Card Class="p-4 mt-4">
+                <CardBody>
+                    <CardTitle Size="4">
+                        Active URLs
+                    </CardTitle>
+                    <Row id="mappings-wrapper">
+                        @foreach (var mapping in userMappings)
+                        {
+                            <Column Class="md-4">
+                                <Card Class="mb-3 mapping-card">
+                                    <CardBody>
+                                        <Heading Size="HeadingSize.Is5">@mapping.Name</Heading>
+                                        <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                            <Strong Style="white-space: nowrap;">Short URL:</Strong>
+                                            <Anchor To="@mapping.ShortUrl" Class="truncate" Target="Target.Blank">@mapping.ShortUrl</Anchor>
+                                        </Row>
+                                        <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                            <Strong Style="white-space: nowrap;">Original URL:</Strong>
+                                            <Anchor To="@mapping.ShortUrl" Class="truncate" Target="Target.Blank">@mapping.LongUrl</Anchor>
+                                        </Row>
+                                        <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                            <Strong Style="white-space: nowrap;">Created:</Strong>
+                                            <Text>@GetMappingCreatedTime(mapping)</Text>
+                                        </Row>
+                                        <Row Flex="Flex.NoWrap" Gap="Gap.Is1" Margin="Margin.Is0" TextColor="TextColor.Dark">
+                                            <Strong Style="white-space: nowrap;">Clicks:</Strong>
+                                            <Text>@mapping.RedirectLogs.Count</Text>
+                                        </Row>
+                                        <Button Color="Color.Primary" Margin="Margin.Is2.FromTop" Clicked="() => SelectMapping(mapping)" Class="mapping-details-btn">
+                                            Details <Icon Class="ml-1" Name="IconName.ArrowRight" />
+                                        </Button>
+                                        <Button Color="Color.Secondary" Margin="Margin.Is2.FromTop" Clicked="() => DeleteMapping(mapping)" Class="mapping-delete-btn">
+                                            Delete
+                                        </Button>
+                                    </CardBody>
+                                </Card>
+                            </Column>
+                        }
+                    </Row>
+                </CardBody>
+            </Card>
+        }
     </LoadingIndicator>
 
     <MappingDetailsModal @bind-UrlMapping="@selectedUrlMapping" />

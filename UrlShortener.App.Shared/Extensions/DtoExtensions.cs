@@ -84,7 +84,7 @@ namespace UrlShortener.App.Shared.Extensions
                         {
                             DateTime = g.Key,
                             Clicks = g.Count()
-                        })]
+                        }).OrderBy(g => g.DateTime)]
                 };
                 timeSeriesStats.Add(item);
             }

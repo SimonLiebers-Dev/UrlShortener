@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection.Metadata;
 using System.Text;
+using System.Threading;
 using UrlShortener.App.Backend.Business;
 using UrlShortener.App.Backend.Middleware;
+using UrlShortener.App.Backend.Utils;
 
 namespace UrlShortener.App.Backend
 {
@@ -43,8 +46,16 @@ namespace UrlShortener.App.Backend
 
             // Add Db connection
             string connectionString = builder.Configuration.GetConnectionString("MsSql")!;
-            builder.Services.AddDbContext<AppDbContext>(options =>
-                    options.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<AppDbContext>(options => options
+                    .UseSqlServer(connectionString)
+                    .UseSeeding((context, _) =>
+                    {
+                        DataSeeder.Seed(context);
+                    })
+                    .UseAsyncSeeding(async (context, _, cancellationToken) =>
+                    {
+                        await DataSeeder.SeedAsync(context, cancellationToken);
+                    }));
 
             // Add jwt token generator
             builder.Services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
