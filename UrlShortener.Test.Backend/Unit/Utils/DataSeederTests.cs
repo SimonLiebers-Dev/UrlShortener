@@ -15,13 +15,13 @@ namespace UrlShortener.Test.Backend.Unit.Utils
             {
                 Id = 1,
                 Path = "abc123",
-                CreatedAt = new DateTime(2025, 5, 1),
+                CreatedAt = new DateTime(2025, 5, 1, 0, 0, 0, DateTimeKind.Utc),
                 User = user.Email,
                 RedirectLogs = []
             };
 
-            var from = new DateTime(2025, 5, 1);
-            var to = new DateTime(2025, 6, 1);
+            var from = new DateTime(2025, 5, 1, 0, 0, 0, DateTimeKind.Utc);
+            var to = new DateTime(2025, 6, 1, 0, 0, 0, DateTimeKind.Utc);
             var numberOfEntries = 10;
 
             // Act

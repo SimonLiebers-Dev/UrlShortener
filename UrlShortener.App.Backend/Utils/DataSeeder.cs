@@ -3,7 +3,7 @@ using UrlShortener.App.Shared.Models;
 
 namespace UrlShortener.App.Backend.Utils
 {
-    internal class DataSeeder
+    internal static class DataSeeder
     {
         private static User GetDemoUser(string email, string password)
         {
@@ -20,7 +20,7 @@ namespace UrlShortener.App.Backend.Utils
         {
             var mapping1 = new UrlMapping()
             {
-                CreatedAt = new DateTime(2025, 4, 1),
+                CreatedAt = new DateTime(2025, 4, 1, 0, 0, 0, DateTimeKind.Utc),
                 LongUrl = "https://sonarcloud.io/project/overview?id=SimonLiebers-Dev_UrlShortener",
                 Name = "SonarCloud",
                 Path = "12345",
@@ -30,7 +30,7 @@ namespace UrlShortener.App.Backend.Utils
 
             var mapping2 = new UrlMapping()
             {
-                CreatedAt = new DateTime(2025, 5, 1),
+                CreatedAt = new DateTime(2025, 5, 1, 0, 0, 0, DateTimeKind.Utc),
                 LongUrl = "https://github.com/SimonLiebers-Dev/UrlShortener",
                 Name = "GitHub",
                 Path = "23456",
@@ -40,7 +40,7 @@ namespace UrlShortener.App.Backend.Utils
 
             var mapping3 = new UrlMapping()
             {
-                CreatedAt = new DateTime(2025, 6, 1),
+                CreatedAt = new DateTime(2025, 6, 1, 0, 0, 0, DateTimeKind.Utc),
                 LongUrl = "https://urlshortener.readthedocs.io/en/latest/",
                 Name = "ReadTheDocs",
                 Path = "34567",
@@ -51,13 +51,13 @@ namespace UrlShortener.App.Backend.Utils
             return [mapping1, mapping2, mapping3];
         }
 
-        private static List<RedirectLog> GetDemoRedirectLogs(User user, UrlMapping urlMapping, DateTime fromDate, DateTime toDate, int numberOfEntries = 5)
+        private static List<RedirectLog> GetDemoRedirectLogs(UrlMapping urlMapping, DateTime fromDate, DateTime toDate, int numberOfEntries = 5)
         {
             var random = new Random();
             var logs = new List<RedirectLog>();
 
             // Sample data pools (same as before)
-            string[] ipAddresses = { "192.168.1.1", "10.0.0.5", "172.16.0.10", "203.0.113.42" };
+            string[] ipAddresses = { "Dummy IP 1", "Dummy IP 2", "Dummy IP 3", "Dummy IP 4" };
             string[] userAgents = { "Mozilla/5.0", "Chrome/113.0", "Safari/537.36", "Edge/91.0" };
             string[] browserFamilies = { "Chrome", "Firefox", "Edge", "Safari" };
             string[] clientEngines = { "Blink", "Gecko", "WebKit" };
@@ -128,7 +128,7 @@ namespace UrlShortener.App.Backend.Utils
             var demoLogs = new List<RedirectLog>();
             foreach (var mapping in demoMappings)
             {
-                var mappingLogs = GetDemoRedirectLogs(demoUser, mapping, mapping.CreatedAt, new DateTime(2025, 6, 20));
+                var mappingLogs = GetDemoRedirectLogs(mapping, mapping.CreatedAt, new DateTime(2025, 6, 20, 0, 0, 0, DateTimeKind.Utc));
                 demoLogs.AddRange(mappingLogs);
             }
             context.Set<RedirectLog>().AddRange(demoLogs);
@@ -159,7 +159,7 @@ namespace UrlShortener.App.Backend.Utils
             var demoLogs = new List<RedirectLog>();
             foreach (var mapping in demoMappings)
             {
-                var mappingLogs = GetDemoRedirectLogs(demoUser, mapping, mapping.CreatedAt, new DateTime(2025, 6, 20));
+                var mappingLogs = GetDemoRedirectLogs(mapping, mapping.CreatedAt, new DateTime(2025, 6, 20, 0, 0, 0, DateTimeKind.Utc));
                 demoLogs.AddRange(mappingLogs);
             }
             context.Set<RedirectLog>().AddRange(demoLogs);
