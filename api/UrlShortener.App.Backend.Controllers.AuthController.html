@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Backend_Controllers_AuthController" data-uid="UrlShortener.App.Backend.Controllers.AuthController" class="text-break">
-Class AuthController  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L17"><i class="bi bi-code-slash"></i></a>
+Class AuthController  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -104,6 +104,7 @@ Class AuthController  <a class="header-action link-secondary" title="View source
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Route(&quot;api/auth&quot;)]
 [ApiController]
+[EnableRateLimiting(&quot;fixed&quot;)]
 public class AuthController : ControllerBase</code></pre>
   </div>
 
@@ -686,9 +687,9 @@ public class AuthController : ControllerBase</code></pre>
 
   <a id="UrlShortener_App_Backend_Controllers_AuthController__ctor_" data-uid="UrlShortener.App.Backend.Controllers.AuthController.#ctor*"></a>
 
-  <h3 id="UrlShortener_App_Backend_Controllers_AuthController__ctor_UrlShortener_App_Backend_Business_IJwtTokenGenerator_UrlShortener_App_Backend_AppDbContext_" data-uid="UrlShortener.App.Backend.Controllers.AuthController.#ctor(UrlShortener.App.Backend.Business.IJwtTokenGenerator,UrlShortener.App.Backend.AppDbContext)">
-  AuthController(IJwtTokenGenerator, AppDbContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <h3 id="UrlShortener_App_Backend_Controllers_AuthController__ctor_Microsoft_Extensions_Logging_ILogger_UrlShortener_App_Backend_Controllers_AuthController__UrlShortener_App_Backend_Business_IJwtTokenGenerator_UrlShortener_App_Backend_AppDbContext_" data-uid="UrlShortener.App.Backend.Controllers.AuthController.#ctor(Microsoft.Extensions.Logging.ILogger{UrlShortener.App.Backend.Controllers.AuthController},UrlShortener.App.Backend.Business.IJwtTokenGenerator,UrlShortener.App.Backend.AppDbContext)">
+  AuthController(ILogger&lt;AuthController&gt;, IJwtTokenGenerator, AppDbContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Controller responsible for user authentication, including login and registration endpoints.</p>
@@ -696,11 +697,13 @@ public class AuthController : ControllerBase</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AuthController(IJwtTokenGenerator JwtTokenGenerator, AppDbContext DbContext)</code></pre>
+    <pre><code class="lang-csharp hljs">public AuthController(ILogger&lt;AuthController&gt; Logger, IJwtTokenGenerator JwtTokenGenerator, AppDbContext DbContext)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>Logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="UrlShortener.App.Backend.Controllers.AuthController.html">AuthController</a>&gt;</dt>
+    <dd></dd>
     <dt><code>JwtTokenGenerator</code> <a class="xref" href="UrlShortener.App.Backend.Business.IJwtTokenGenerator.html">IJwtTokenGenerator</a></dt>
     <dd></dd>
     <dt><code>DbContext</code> <a class="xref" href="UrlShortener.App.Backend.AppDbContext.html">AppDbContext</a></dt>
@@ -714,7 +717,7 @@ public class AuthController : ControllerBase</code></pre>
 
 
 
-  <h4 class="section" id="UrlShortener_App_Backend_Controllers_AuthController__ctor_UrlShortener_App_Backend_Business_IJwtTokenGenerator_UrlShortener_App_Backend_AppDbContext__remarks">Remarks</h4>
+  <h4 class="section" id="UrlShortener_App_Backend_Controllers_AuthController__ctor_Microsoft_Extensions_Logging_ILogger_UrlShortener_App_Backend_Controllers_AuthController__UrlShortener_App_Backend_Business_IJwtTokenGenerator_UrlShortener_App_Backend_AppDbContext__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>Relies on <a class="xref" href="UrlShortener.App.Backend.Business.IJwtTokenGenerator.html">IJwtTokenGenerator</a> for JWT creation and <a class="xref" href="UrlShortener.App.Backend.AppDbContext.html">AppDbContext</a> for user persistence.</p>
 </div>
 
@@ -729,7 +732,7 @@ public class AuthController : ControllerBase</code></pre>
 
   <h3 id="UrlShortener_App_Backend_Controllers_AuthController_Login_UrlShortener_App_Shared_Dto_LoginRequestDto_" data-uid="UrlShortener.App.Backend.Controllers.AuthController.Login(UrlShortener.App.Shared.Dto.LoginRequestDto)">
   Login(LoginRequestDto)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Authenticates a user and returns a JWT token if credentials are valid.</p>
@@ -770,7 +773,7 @@ or <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnet
 
   <h3 id="UrlShortener_App_Backend_Controllers_AuthController_Register_UrlShortener_App_Shared_Dto_RegisterRequestDto_" data-uid="UrlShortener.App.Backend.Controllers.AuthController.Register(UrlShortener.App.Shared.Dto.RegisterRequestDto)">
   Register(RegisterRequestDto)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Registers a new user and stores their credentials securely.</p>
@@ -811,7 +814,7 @@ or a <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspn
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L17" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/AuthController.cs/#L18" class="edit-link">Edit this page</a>
         </div>
 
 

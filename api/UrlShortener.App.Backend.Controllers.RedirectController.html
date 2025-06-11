@@ -688,8 +688,8 @@ It also logs redirect metadata including IP address and user agent details.</p>
 
   <a id="UrlShortener_App_Backend_Controllers_RedirectController__ctor_" data-uid="UrlShortener.App.Backend.Controllers.RedirectController.#ctor*"></a>
 
-  <h3 id="UrlShortener_App_Backend_Controllers_RedirectController__ctor_UrlShortener_App_Backend_Business_IMappingsService_UrlShortener_App_Backend_Business_IRedirectLogService_UrlShortener_App_Backend_Business_IUserAgentService_" data-uid="UrlShortener.App.Backend.Controllers.RedirectController.#ctor(UrlShortener.App.Backend.Business.IMappingsService,UrlShortener.App.Backend.Business.IRedirectLogService,UrlShortener.App.Backend.Business.IUserAgentService)">
-  RedirectController(IMappingsService, IRedirectLogService, IUserAgentService)
+  <h3 id="UrlShortener_App_Backend_Controllers_RedirectController__ctor_Microsoft_Extensions_Logging_ILogger_UrlShortener_App_Backend_Controllers_RedirectController__UrlShortener_App_Backend_Business_IMappingsService_UrlShortener_App_Backend_Business_IRedirectLogService_UrlShortener_App_Backend_Business_IUserAgentService_" data-uid="UrlShortener.App.Backend.Controllers.RedirectController.#ctor(Microsoft.Extensions.Logging.ILogger{UrlShortener.App.Backend.Controllers.RedirectController},UrlShortener.App.Backend.Business.IMappingsService,UrlShortener.App.Backend.Business.IRedirectLogService,UrlShortener.App.Backend.Business.IUserAgentService)">
+  RedirectController(ILogger&lt;RedirectController&gt;, IMappingsService, IRedirectLogService, IUserAgentService)
   <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/RedirectController.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -698,11 +698,13 @@ It also logs redirect metadata including IP address and user agent details.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RedirectController(IMappingsService MappingsService, IRedirectLogService RedirectLogService, IUserAgentService UserAgentService)</code></pre>
+    <pre><code class="lang-csharp hljs">public RedirectController(ILogger&lt;RedirectController&gt; Logger, IMappingsService MappingsService, IRedirectLogService RedirectLogService, IUserAgentService UserAgentService)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>Logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="UrlShortener.App.Backend.Controllers.RedirectController.html">RedirectController</a>&gt;</dt>
+    <dd></dd>
     <dt><code>MappingsService</code> <a class="xref" href="UrlShortener.App.Backend.Business.IMappingsService.html">IMappingsService</a></dt>
     <dd></dd>
     <dt><code>RedirectLogService</code> <a class="xref" href="UrlShortener.App.Backend.Business.IRedirectLogService.html">IRedirectLogService</a></dt>
@@ -718,7 +720,7 @@ It also logs redirect metadata including IP address and user agent details.</p>
 
 
 
-  <h4 class="section" id="UrlShortener_App_Backend_Controllers_RedirectController__ctor_UrlShortener_App_Backend_Business_IMappingsService_UrlShortener_App_Backend_Business_IRedirectLogService_UrlShortener_App_Backend_Business_IUserAgentService__remarks">Remarks</h4>
+  <h4 class="section" id="UrlShortener_App_Backend_Controllers_RedirectController__ctor_Microsoft_Extensions_Logging_ILogger_UrlShortener_App_Backend_Controllers_RedirectController__UrlShortener_App_Backend_Business_IMappingsService_UrlShortener_App_Backend_Business_IRedirectLogService_UrlShortener_App_Backend_Business_IUserAgentService__remarks">Remarks</h4>
   <div class="markdown level1 remarks"><p>This controller is publicly accessible and does not require authentication.
 It also logs redirect metadata including IP address and user agent details.</p>
 </div>

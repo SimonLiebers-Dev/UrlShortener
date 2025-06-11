@@ -89,7 +89,7 @@
 
 
   <h1 id="UrlShortener_App_Backend_Controllers_MappingsController" data-uid="UrlShortener.App.Backend.Controllers.MappingsController" class="text-break">
-Class MappingsController  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L13"><i class="bi bi-code-slash"></i></a>
+Class MappingsController  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -105,6 +105,7 @@ Allows users to create, retrieve, delete, and view statistics for their shortene
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[ApiController]
 [Route(&quot;api/mappings&quot;)]
+[EnableRateLimiting(&quot;fixed&quot;)]
 [Authorize]
 public class MappingsController : ControllerBase</code></pre>
   </div>
@@ -685,9 +686,9 @@ public class MappingsController : ControllerBase</code></pre>
 
   <a id="UrlShortener_App_Backend_Controllers_MappingsController__ctor_" data-uid="UrlShortener.App.Backend.Controllers.MappingsController.#ctor*"></a>
 
-  <h3 id="UrlShortener_App_Backend_Controllers_MappingsController__ctor_UrlShortener_App_Backend_Business_IMappingsService_" data-uid="UrlShortener.App.Backend.Controllers.MappingsController.#ctor(UrlShortener.App.Backend.Business.IMappingsService)">
-  MappingsController(IMappingsService)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <h3 id="UrlShortener_App_Backend_Controllers_MappingsController__ctor_Microsoft_Extensions_Logging_ILogger_UrlShortener_App_Backend_Controllers_MappingsController__UrlShortener_App_Backend_Business_IMappingsService_" data-uid="UrlShortener.App.Backend.Controllers.MappingsController.#ctor(Microsoft.Extensions.Logging.ILogger{UrlShortener.App.Backend.Controllers.MappingsController},UrlShortener.App.Backend.Business.IMappingsService)">
+  MappingsController(ILogger&lt;MappingsController&gt;, IMappingsService)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Controller responsible for managing URL mappings for authenticated users.
@@ -696,11 +697,13 @@ Allows users to create, retrieve, delete, and view statistics for their shortene
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MappingsController(IMappingsService MappingsService)</code></pre>
+    <pre><code class="lang-csharp hljs">public MappingsController(ILogger&lt;MappingsController&gt; Logger, IMappingsService MappingsService)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>Logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="UrlShortener.App.Backend.Controllers.MappingsController.html">MappingsController</a>&gt;</dt>
+    <dd></dd>
     <dt><code>MappingsService</code> <a class="xref" href="UrlShortener.App.Backend.Business.IMappingsService.html">IMappingsService</a></dt>
     <dd></dd>
   </dl>
@@ -724,7 +727,7 @@ Allows users to create, retrieve, delete, and view statistics for their shortene
 
   <h3 id="UrlShortener_App_Backend_Controllers_MappingsController_CreateMapping_UrlShortener_App_Shared_Dto_CreateMappingRequestDto_" data-uid="UrlShortener.App.Backend.Controllers.MappingsController.CreateMapping(UrlShortener.App.Shared.Dto.CreateMappingRequestDto)">
   CreateMapping(CreateMappingRequestDto)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Creates a new URL mapping (shortens a URL).</p>
@@ -765,7 +768,7 @@ or <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnet
 
   <h3 id="UrlShortener_App_Backend_Controllers_MappingsController_DeleteMapping_System_Int32_" data-uid="UrlShortener.App.Backend.Controllers.MappingsController.DeleteMapping(System.Int32)">
   DeleteMapping(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L124"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Deletes a specific URL mapping by ID.</p>
@@ -806,7 +809,7 @@ or <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnet
 
   <h3 id="UrlShortener_App_Backend_Controllers_MappingsController_GetMappings" data-uid="UrlShortener.App.Backend.Controllers.MappingsController.GetMappings">
   GetMappings()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves all URL mappings for the authenticated user.</p>
@@ -840,7 +843,7 @@ public Task&lt;IActionResult&gt; GetMappings()</code></pre>
 
   <h3 id="UrlShortener_App_Backend_Controllers_MappingsController_GetStats" data-uid="UrlShortener.App.Backend.Controllers.MappingsController.GetStats">
   GetStats()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L159"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Retrieves statistics for the authenticated user, such as total number of mappings and total clicks.</p>
@@ -874,7 +877,7 @@ public Task&lt;IActionResult&gt; GetStats()</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L13" class="edit-link">Edit this page</a>
+          <a href="https://github.com/SimonLiebers-Dev/UrlShortener/blob/main/UrlShortener.App.Backend/Controllers/MappingsController.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

@@ -241,15 +241,15 @@ references:
   commentId: T:UrlShortener.App.Backend.Controllers.AuthController
   fullName: UrlShortener.App.Backend.Controllers.AuthController
   nameWithType: AuthController
-- uid: UrlShortener.App.Backend.Controllers.AuthController.#ctor(UrlShortener.App.Backend.Business.IJwtTokenGenerator,UrlShortener.App.Backend.AppDbContext)
-  name: AuthController(IJwtTokenGenerator, AppDbContext)
-  href: api/UrlShortener.App.Backend.Controllers.AuthController.html#UrlShortener_App_Backend_Controllers_AuthController__ctor_UrlShortener_App_Backend_Business_IJwtTokenGenerator_UrlShortener_App_Backend_AppDbContext_
-  commentId: M:UrlShortener.App.Backend.Controllers.AuthController.#ctor(UrlShortener.App.Backend.Business.IJwtTokenGenerator,UrlShortener.App.Backend.AppDbContext)
-  name.vb: New(IJwtTokenGenerator, AppDbContext)
-  fullName: UrlShortener.App.Backend.Controllers.AuthController.AuthController(UrlShortener.App.Backend.Business.IJwtTokenGenerator, UrlShortener.App.Backend.AppDbContext)
-  fullName.vb: UrlShortener.App.Backend.Controllers.AuthController.New(UrlShortener.App.Backend.Business.IJwtTokenGenerator, UrlShortener.App.Backend.AppDbContext)
-  nameWithType: AuthController.AuthController(IJwtTokenGenerator, AppDbContext)
-  nameWithType.vb: AuthController.New(IJwtTokenGenerator, AppDbContext)
+- uid: UrlShortener.App.Backend.Controllers.AuthController.#ctor(Microsoft.Extensions.Logging.ILogger{UrlShortener.App.Backend.Controllers.AuthController},UrlShortener.App.Backend.Business.IJwtTokenGenerator,UrlShortener.App.Backend.AppDbContext)
+  name: AuthController(ILogger<AuthController>, IJwtTokenGenerator, AppDbContext)
+  href: api/UrlShortener.App.Backend.Controllers.AuthController.html#UrlShortener_App_Backend_Controllers_AuthController__ctor_Microsoft_Extensions_Logging_ILogger_UrlShortener_App_Backend_Controllers_AuthController__UrlShortener_App_Backend_Business_IJwtTokenGenerator_UrlShortener_App_Backend_AppDbContext_
+  commentId: M:UrlShortener.App.Backend.Controllers.AuthController.#ctor(Microsoft.Extensions.Logging.ILogger{UrlShortener.App.Backend.Controllers.AuthController},UrlShortener.App.Backend.Business.IJwtTokenGenerator,UrlShortener.App.Backend.AppDbContext)
+  name.vb: New(ILogger(Of AuthController), IJwtTokenGenerator, AppDbContext)
+  fullName: UrlShortener.App.Backend.Controllers.AuthController.AuthController(Microsoft.Extensions.Logging.ILogger<UrlShortener.App.Backend.Controllers.AuthController>, UrlShortener.App.Backend.Business.IJwtTokenGenerator, UrlShortener.App.Backend.AppDbContext)
+  fullName.vb: UrlShortener.App.Backend.Controllers.AuthController.New(Microsoft.Extensions.Logging.ILogger(Of UrlShortener.App.Backend.Controllers.AuthController), UrlShortener.App.Backend.Business.IJwtTokenGenerator, UrlShortener.App.Backend.AppDbContext)
+  nameWithType: AuthController.AuthController(ILogger<AuthController>, IJwtTokenGenerator, AppDbContext)
+  nameWithType.vb: AuthController.New(ILogger(Of AuthController), IJwtTokenGenerator, AppDbContext)
 - uid: UrlShortener.App.Backend.Controllers.AuthController.#ctor*
   name: AuthController
   href: api/UrlShortener.App.Backend.Controllers.AuthController.html#UrlShortener_App_Backend_Controllers_AuthController__ctor_
@@ -311,15 +311,15 @@ references:
   commentId: T:UrlShortener.App.Backend.Controllers.MappingsController
   fullName: UrlShortener.App.Backend.Controllers.MappingsController
   nameWithType: MappingsController
-- uid: UrlShortener.App.Backend.Controllers.MappingsController.#ctor(UrlShortener.App.Backend.Business.IMappingsService)
-  name: MappingsController(IMappingsService)
-  href: api/UrlShortener.App.Backend.Controllers.MappingsController.html#UrlShortener_App_Backend_Controllers_MappingsController__ctor_UrlShortener_App_Backend_Business_IMappingsService_
-  commentId: M:UrlShortener.App.Backend.Controllers.MappingsController.#ctor(UrlShortener.App.Backend.Business.IMappingsService)
-  name.vb: New(IMappingsService)
-  fullName: UrlShortener.App.Backend.Controllers.MappingsController.MappingsController(UrlShortener.App.Backend.Business.IMappingsService)
-  fullName.vb: UrlShortener.App.Backend.Controllers.MappingsController.New(UrlShortener.App.Backend.Business.IMappingsService)
-  nameWithType: MappingsController.MappingsController(IMappingsService)
-  nameWithType.vb: MappingsController.New(IMappingsService)
+- uid: UrlShortener.App.Backend.Controllers.MappingsController.#ctor(Microsoft.Extensions.Logging.ILogger{UrlShortener.App.Backend.Controllers.MappingsController},UrlShortener.App.Backend.Business.IMappingsService)
+  name: MappingsController(ILogger<MappingsController>, IMappingsService)
+  href: api/UrlShortener.App.Backend.Controllers.MappingsController.html#UrlShortener_App_Backend_Controllers_MappingsController__ctor_Microsoft_Extensions_Logging_ILogger_UrlShortener_App_Backend_Controllers_MappingsController__UrlShortener_App_Backend_Business_IMappingsService_
+  commentId: M:UrlShortener.App.Backend.Controllers.MappingsController.#ctor(Microsoft.Extensions.Logging.ILogger{UrlShortener.App.Backend.Controllers.MappingsController},UrlShortener.App.Backend.Business.IMappingsService)
+  name.vb: New(ILogger(Of MappingsController), IMappingsService)
+  fullName: UrlShortener.App.Backend.Controllers.MappingsController.MappingsController(Microsoft.Extensions.Logging.ILogger<UrlShortener.App.Backend.Controllers.MappingsController>, UrlShortener.App.Backend.Business.IMappingsService)
+  fullName.vb: UrlShortener.App.Backend.Controllers.MappingsController.New(Microsoft.Extensions.Logging.ILogger(Of UrlShortener.App.Backend.Controllers.MappingsController), UrlShortener.App.Backend.Business.IMappingsService)
+  nameWithType: MappingsController.MappingsController(ILogger<MappingsController>, IMappingsService)
+  nameWithType.vb: MappingsController.New(ILogger(Of MappingsController), IMappingsService)
 - uid: UrlShortener.App.Backend.Controllers.MappingsController.#ctor*
   name: MappingsController
   href: api/UrlShortener.App.Backend.Controllers.MappingsController.html#UrlShortener_App_Backend_Controllers_MappingsController__ctor_
@@ -391,15 +391,15 @@ references:
   commentId: T:UrlShortener.App.Backend.Controllers.RedirectController
   fullName: UrlShortener.App.Backend.Controllers.RedirectController
   nameWithType: RedirectController
-- uid: UrlShortener.App.Backend.Controllers.RedirectController.#ctor(UrlShortener.App.Backend.Business.IMappingsService,UrlShortener.App.Backend.Business.IRedirectLogService,UrlShortener.App.Backend.Business.IUserAgentService)
-  name: RedirectController(IMappingsService, IRedirectLogService, IUserAgentService)
-  href: api/UrlShortener.App.Backend.Controllers.RedirectController.html#UrlShortener_App_Backend_Controllers_RedirectController__ctor_UrlShortener_App_Backend_Business_IMappingsService_UrlShortener_App_Backend_Business_IRedirectLogService_UrlShortener_App_Backend_Business_IUserAgentService_
-  commentId: M:UrlShortener.App.Backend.Controllers.RedirectController.#ctor(UrlShortener.App.Backend.Business.IMappingsService,UrlShortener.App.Backend.Business.IRedirectLogService,UrlShortener.App.Backend.Business.IUserAgentService)
-  name.vb: New(IMappingsService, IRedirectLogService, IUserAgentService)
-  fullName: UrlShortener.App.Backend.Controllers.RedirectController.RedirectController(UrlShortener.App.Backend.Business.IMappingsService, UrlShortener.App.Backend.Business.IRedirectLogService, UrlShortener.App.Backend.Business.IUserAgentService)
-  fullName.vb: UrlShortener.App.Backend.Controllers.RedirectController.New(UrlShortener.App.Backend.Business.IMappingsService, UrlShortener.App.Backend.Business.IRedirectLogService, UrlShortener.App.Backend.Business.IUserAgentService)
-  nameWithType: RedirectController.RedirectController(IMappingsService, IRedirectLogService, IUserAgentService)
-  nameWithType.vb: RedirectController.New(IMappingsService, IRedirectLogService, IUserAgentService)
+- uid: UrlShortener.App.Backend.Controllers.RedirectController.#ctor(Microsoft.Extensions.Logging.ILogger{UrlShortener.App.Backend.Controllers.RedirectController},UrlShortener.App.Backend.Business.IMappingsService,UrlShortener.App.Backend.Business.IRedirectLogService,UrlShortener.App.Backend.Business.IUserAgentService)
+  name: RedirectController(ILogger<RedirectController>, IMappingsService, IRedirectLogService, IUserAgentService)
+  href: api/UrlShortener.App.Backend.Controllers.RedirectController.html#UrlShortener_App_Backend_Controllers_RedirectController__ctor_Microsoft_Extensions_Logging_ILogger_UrlShortener_App_Backend_Controllers_RedirectController__UrlShortener_App_Backend_Business_IMappingsService_UrlShortener_App_Backend_Business_IRedirectLogService_UrlShortener_App_Backend_Business_IUserAgentService_
+  commentId: M:UrlShortener.App.Backend.Controllers.RedirectController.#ctor(Microsoft.Extensions.Logging.ILogger{UrlShortener.App.Backend.Controllers.RedirectController},UrlShortener.App.Backend.Business.IMappingsService,UrlShortener.App.Backend.Business.IRedirectLogService,UrlShortener.App.Backend.Business.IUserAgentService)
+  name.vb: New(ILogger(Of RedirectController), IMappingsService, IRedirectLogService, IUserAgentService)
+  fullName: UrlShortener.App.Backend.Controllers.RedirectController.RedirectController(Microsoft.Extensions.Logging.ILogger<UrlShortener.App.Backend.Controllers.RedirectController>, UrlShortener.App.Backend.Business.IMappingsService, UrlShortener.App.Backend.Business.IRedirectLogService, UrlShortener.App.Backend.Business.IUserAgentService)
+  fullName.vb: UrlShortener.App.Backend.Controllers.RedirectController.New(Microsoft.Extensions.Logging.ILogger(Of UrlShortener.App.Backend.Controllers.RedirectController), UrlShortener.App.Backend.Business.IMappingsService, UrlShortener.App.Backend.Business.IRedirectLogService, UrlShortener.App.Backend.Business.IUserAgentService)
+  nameWithType: RedirectController.RedirectController(ILogger<RedirectController>, IMappingsService, IRedirectLogService, IUserAgentService)
+  nameWithType.vb: RedirectController.New(ILogger(Of RedirectController), IMappingsService, IRedirectLogService, IUserAgentService)
 - uid: UrlShortener.App.Backend.Controllers.RedirectController.#ctor*
   name: RedirectController
   href: api/UrlShortener.App.Backend.Controllers.RedirectController.html#UrlShortener_App_Backend_Controllers_RedirectController__ctor_
