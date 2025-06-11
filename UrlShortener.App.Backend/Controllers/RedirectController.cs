@@ -15,7 +15,7 @@ namespace UrlShortener.App.Backend.Controllers
     [ApiController]
     [Route("/")]
     [AllowAnonymous]
-    public class RedirectController(IMappingsService MappingsService, IRedirectLogService RedirectLogService, IUserAgentService UserAgentService) : ControllerBase
+    public class RedirectController(ILogger<RedirectController> Logger, IMappingsService MappingsService, IRedirectLogService RedirectLogService, IUserAgentService UserAgentService) : ControllerBase
     {
         /// <summary>
         /// Redirects a short URL path to its original long URL.
@@ -34,6 +34,8 @@ namespace UrlShortener.App.Backend.Controllers
             // If the mapping is not found, return a 404 Not Found response
             if (urlMapping == null)
                 return NotFound();
+
+            Logger.LogInformation("RedirectToLongUrl(path={Path}, longUrl={LongUrl})", path, urlMapping.LongUrl);
 
             // Get the IP address of the user from the request
             var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString();

@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading;
+using System.Threading.RateLimiting;
 using UrlShortener.App.Backend.Business;
 using UrlShortener.App.Backend.Middleware;
 using UrlShortener.App.Backend.Utils;
@@ -16,6 +17,16 @@ namespace UrlShortener.App.Backend
     /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Defines the rate limit for requests per window.
+        /// </summary>
+        private const int PERMIT_LIMIT_PER_WINDOW = 50;
+
+        /// <summary>
+        /// Defines the time window in seconds for rate limiting.
+        /// </summary>
+        private const int WINDOW_SECONDS = 10;
+
         /// <summary>
         /// Protected constructor to prevent instantiation.
         /// </summary>
@@ -43,6 +54,21 @@ namespace UrlShortener.App.Backend
             // Configure logging
             builder.Logging.AddConsole();
             builder.Logging.SetMinimumLevel(LogLevel.Information);
+
+            // Add rate limiting
+            builder.Services.AddRateLimiter(options =>
+            {
+                options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+                options.AddPolicy("fixed", httpContext =>
+                    RateLimitPartition.GetFixedWindowLimiter(
+                        partitionKey: httpContext.Connection.RemoteIpAddress?.ToString(),
+                        factory: _ => new FixedWindowRateLimiterOptions
+                        {
+                            PermitLimit = PERMIT_LIMIT_PER_WINDOW,
+                            Window = TimeSpan.FromSeconds(WINDOW_SECONDS)
+                        }));
+            });
 
             // Add Db connection
             string connectionString = builder.Configuration.GetConnectionString("MsSql")!;
@@ -134,7 +160,11 @@ namespace UrlShortener.App.Backend
             // Allow any origin
             app.UseCors("AllowAnyOrigin");
 
+            // Enable https redirection
             app.UseHttpsRedirection();
+
+            // Enable rate limiting
+            app.UseRateLimiter();
 
             // Add authentication and authorization
             app.UseAuthentication();
