@@ -37,7 +37,7 @@
                                                                 Items="timeStat.ClicksPerDay"
                                                                 Name="@timeStat.MappingName"
                                                                 SeriesType="ApexCharts.SeriesType.Line"
-                                                                XValue="point => point.DateTime"
+                                                                XValue="point => TimeProvider.ToLocalDateTime(point.DateTime)"
                                                                 YValue="point => point.Clicks" />
                                 }
                             </ApexCharts.ApexChart>
