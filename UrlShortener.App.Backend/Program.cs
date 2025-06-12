@@ -111,7 +111,12 @@ namespace UrlShortener.App.Backend
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
                         ValidAudience = builder.Configuration["JwtSettings:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(key)
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        LifetimeValidator = (notBefore, expires, _, _) =>
+                        {
+                            // Allow tokens with a lifetime of 1 hour
+                            return expires.HasValue && expires.Value > DateTime.UtcNow.AddHours(-1);
+                        }
                     };
                 });
 

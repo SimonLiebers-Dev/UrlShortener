@@ -29,14 +29,19 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
                 Password = "TestPassword"
             };
 
-            var response = await _httpClient.PostAsJsonAsync("/api/auth/login", loginRequest);
+            var uri = new Uri("/api/auth/login", UriKind.Relative);
+            var response = await _httpClient.PostAsJsonAsync(uri, loginRequest);
 
             if (!response.IsSuccessStatusCode)
+            {
                 throw new Exception("Login failed");
+            }
 
             var loginData = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
             if (loginData == null || loginData.Token == null)
+            {
                 throw new Exception("No token received");
+            }
 
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", loginData.Token);
         }
@@ -45,6 +50,7 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
         public void Test_CreateMapping_WithValidRequests()
         {
             // Arrange
+            var uri = new Uri("/api/mappings/create", UriKind.Relative);
             var scenario = Scenario.Create("create_mapping", async context =>
             {
                 var createRequest = new CreateMappingRequestDto
@@ -53,7 +59,7 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
                     LongUrl = $"https://example.com/{context.InvocationNumber}"
                 };
 
-                var response = await _httpClient.PostAsJsonAsync("/api/mappings/create", createRequest);
+                var response = await _httpClient.PostAsJsonAsync(uri, createRequest);
 
                 return response.StatusCode switch
                 {
@@ -78,9 +84,10 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
         public void Test_GetMappings()
         {
             // Arrange
+            var uri = new Uri("/api/mappings/all", UriKind.Relative);
             var scenario = Scenario.Create("get_mappings", async context =>
             {
-                var response = await _httpClient.GetAsync("/api/mappings/all");
+                var response = await _httpClient.GetAsync(uri);
 
                 return response.StatusCode switch
                 {
@@ -105,9 +112,10 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
         public void Test_GetStats()
         {
             // Arrange
+            var uri = new Uri("/api/mappings/stats", UriKind.Relative);
             var scenario = Scenario.Create("get_stats", async context =>
             {
-                var response = await _httpClient.GetAsync("/api/mappings/stats");
+                var response = await _httpClient.GetAsync(uri);
 
                 return response.StatusCode switch
                 {

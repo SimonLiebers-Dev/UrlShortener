@@ -78,20 +78,28 @@ namespace UrlShortener.App.Backend.Controllers
 
             // Check if mail and password set
             if (string.IsNullOrWhiteSpace(request.Email) || string.IsNullOrWhiteSpace(request.Password))
+            {
                 return BadRequest(new RegisterResponseDto { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });
+            }
 
             // Check if password length is long enough
             if (request.Password.Length < 6)
+            {
                 return BadRequest(new RegisterResponseDto { Success = false, ErrorType = RegisterErrorType.PasswordPolicyViolation });
+            }
 
             // Validate email format
             var email = new EmailAddressAttribute();
-            if (request.Email.Contains(" ") || request.Email.Length > MAX_EMAIL_LEN || !email.IsValid(request.Email))
+            if (request.Email.Any(char.IsWhiteSpace) || request.Email.Length > MAX_EMAIL_LEN || !email.IsValid(request.Email))
+            {
                 return BadRequest(new RegisterResponseDto { Success = false, ErrorType = RegisterErrorType.MissingEmailOrPassword });
+            }
 
             // Check if email already exists
             if (await DbContext.Users.AnyAsync(u => u.Email == request.Email))
+            {
                 return Conflict(new RegisterResponseDto { Success = false, ErrorType = RegisterErrorType.EmailAlreadyExists });
+            }
 
             // Generate salt and password hash
             string salt = PasswordUtils.GenerateSalt();

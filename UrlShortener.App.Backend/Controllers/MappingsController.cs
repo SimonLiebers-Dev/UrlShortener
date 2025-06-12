@@ -19,7 +19,7 @@ namespace UrlShortener.App.Backend.Controllers
     public class MappingsController(ILogger<MappingsController> Logger, IMappingsService MappingsService) : ControllerBase
     {
         private const string UserNotFoundMessage = "User not found";
-        private HtmlSanitizer _sanitizer = new HtmlSanitizer();
+        private readonly HtmlSanitizer _sanitizer = new();
 
         /// <summary>
         /// Creates a new URL mapping (shortens a URL).
