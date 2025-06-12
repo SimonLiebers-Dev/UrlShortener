@@ -16,17 +16,13 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
         protected override List<User> TestUsers => TestData.GetDefaultTestUsers();
 
         [OneTimeSetUp]
-        public void Setup()
+        public async Task SetupAsync()
         {
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri(BackendTest.Url)
             };
-        }
 
-        [Test]
-        public async Task Test_CreateMapping_WithValidRequests()
-        {
             var loginRequest = new LoginRequest
             {
                 Email = "test@gmail.com",
@@ -43,7 +39,11 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
                 throw new Exception("No token received");
 
             _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", loginData.Token);
+        }
 
+        [Test]
+        public void Test_CreateMapping_WithValidRequests()
+        {
             // Arrange
             var scenario = Scenario.Create("create_mapping", async context =>
             {
@@ -75,27 +75,9 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
         }
 
         [Test]
-        public async Task Test_GetMappings()
+        public void Test_GetMappings()
         {
             // Arrange
-
-            var loginRequest = new LoginRequest
-            {
-                Email = "test@gmail.com",
-                Password = "TestPassword"
-            };
-
-            var response = await _httpClient.PostAsJsonAsync("/api/auth/login", loginRequest);
-
-            if (!response.IsSuccessStatusCode)
-                throw new Exception("Login failed");
-
-            var loginData = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
-            if (loginData == null || loginData.Token == null)
-                throw new Exception("No token received");
-
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", loginData.Token);
-
             var scenario = Scenario.Create("get_mappings", async context =>
             {
                 var response = await _httpClient.GetAsync("/api/mappings/all");
@@ -120,26 +102,9 @@ namespace UrlShortener.Test.End2End.Tests.LoadTests
         }
 
         [Test]
-        public async Task Test_GetStats()
+        public void Test_GetStats()
         {
             // Arrange
-            var loginRequest = new LoginRequest
-            {
-                Email = "test@gmail.com",
-                Password = "TestPassword"
-            };
-
-            var response = await _httpClient.PostAsJsonAsync("/api/auth/login", loginRequest);
-
-            if (!response.IsSuccessStatusCode)
-                throw new Exception("Login failed");
-
-            var loginData = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
-            if (loginData == null || loginData.Token == null)
-                throw new Exception("No token received");
-
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", loginData.Token);
-
             var scenario = Scenario.Create("get_stats", async context =>
             {
                 var response = await _httpClient.GetAsync("/api/mappings/stats");
