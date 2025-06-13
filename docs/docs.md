@@ -374,7 +374,7 @@ Im Projekt ``UrlShortener.Test.Frontend`` wurden Unit-Tests für die Frontend-Ko
 - UI-Komponentenverhalten
 - Funktionalität der Geschäftslogik
 
- ### Integrationstests
+### Integrationstests
 Das Projekt ``UrlShortener.Test.Backend`` enthält auch Integrationstests, die die REST-API testen. Es wurden u. a. getestet:
 
 - Registrierung und Login
