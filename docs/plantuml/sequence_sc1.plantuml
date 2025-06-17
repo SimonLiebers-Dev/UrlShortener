@@ -1,0 +1,30 @@
+@startuml sc1
+actor "Angemeldeter Nutzer" as User
+
+participant "Blazor-Frontend" as Frontend
+participant "Backend" as Backend
+
+database "SQL-Datenbank" as DB
+
+User -> Frontend : Seite aufrufen (HomePage)
+activate Frontend
+User -> Frontend : URL + Titel eingeben\nund „Submit“ klicken
+
+Frontend -> Backend : POST /api/mappings/create\nmit URL, Titel, Token
+activate Backend
+
+Backend -> DB : Speichern:\n[Lang-URL, Kurz-URL, Titel,\nBenutzer-ID, Timestamp]
+deactivate DB
+
+Backend -> Frontend : Rückgabe Kurz-URL + Metadaten
+deactivate Backend
+
+Frontend -> Backend : GET /api/mappings/all
+activate Backend
+
+Backend -> DB : Lade alle Mappings für Benutzer
+Backend -> Frontend : Rückgabe URL-Liste und Statistiken
+deactivate Backend
+
+Frontend -> User : Zeige neue URLs und Statistiken in aktualisierter Übersicht
+@enduml

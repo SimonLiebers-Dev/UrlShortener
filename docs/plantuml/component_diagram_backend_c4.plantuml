@@ -10,14 +10,21 @@ System_Ext(apicagent_api, "ApicAgent API", "Externer Dienst zur Analyse und Inte
 
 Container_Boundary(backend, "Backend") {
     
-    Component(auth, "AuthController", "ASP.NET Core Controller", "Verwaltet Login, Registrierung und Tokenvergabe.")
-    Component(mappings, "MappingsController", "ASP.NET Core Controller", "Ermöglicht das Erstellen, Abrufen und Löschen von Kurz-URLs.")
-    Component(redirect, "RedirectController", "ASP.NET Core Controller", "Verarbeitet Aufrufe von Kurz-URLs und löst Tracking aus.")
-    
-    Component(dataaccess, "AppDbContext", "Entity Framework Core", "Zugriff auf Benutzer-, URL- und Trackingdaten in der Datenbank.")
-    Component(mappingsservice, "MappingsService", "C# Service", "Zugriff auf CRUD-Operations für URL-Daten.")
-    Component(redirectlogservice, "RedirectLogService", "C# Service", "Ermöglicht das Erstellen von Tracking-Logs.")
-    Component(useragentservice, "UserAgentService", "C# Service", "Analysiert User-Agent-Strings.")
+    Boundary(controllers, "Controllers"){
+        Component(auth, "AuthController", "ASP.NET Core Controller", "Verwaltet Login, Registrierung und Tokenvergabe.")
+        Component(mappings, "MappingsController", "ASP.NET Core Controller", "Ermöglicht das Erstellen, Abrufen und Löschen von Kurz-URLs.")
+        Component(redirect, "RedirectController", "ASP.NET Core Controller", "Verarbeitet Aufrufe von Kurz-URLs und löst Tracking aus.")
+    }
+
+    Boundary(services, "Business") {
+        Component(mappingsservice, "MappingsService", "C# Service", "Zugriff auf CRUD-Operations für URL-Daten.")
+        Component(redirectlogservice, "RedirectLogService", "C# Service", "Ermöglicht das Erstellen von Tracking-Logs.")
+        Component(useragentservice, "UserAgentService", "C# Service", "Analysiert User-Agent-Strings.")
+    }
+
+    Boundary(access, "Data Access"){
+        Component(dataaccess, "AppDbContext", "Entity Framework Core", "Zugriff auf Benutzer-, URL- und Trackingdaten in der Datenbank.")
+    }
 
     Rel(auth, dataaccess, "Liest und schreibt Nutzer")
     Rel(mappings, mappingsservice, "Verwendet")

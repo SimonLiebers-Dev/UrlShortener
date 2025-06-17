@@ -6,19 +6,24 @@ LAYOUT_LEFT_RIGHT()
 
 ' Externe Container
 Container(backend, "Backend", ".NET 9 – REST-API", "Stellt REST-Endpunkte für Authentifizierung, URL-Verwaltung und Tracking bereit.")
-ContainerDb(db, "Relationale Datenbank", "Microsoft SQL Server", "Speichert Benutzerkonten, Kurz-URLs und Klick-Tracking-Daten.")
 
 Container_Boundary(frontend, "Frontend") {
 
-    Component(authPage, "AuthPage", "Blazor Page", "Zeigt Login oder Registrierung an, je nach Kontext.")
-    Component(loginForm, "LoginForm", "Blazor Component", "Formular zur Anmeldung mit E-Mail und Passwort.")
-    Component(registerForm, "RegisterForm", "Blazor Component", "Formular zur Registrierung eines neuen Nutzers.")
-    Component(homePage, "HomePage", "Blazor Page", "Dashboard nach dem Login. Übersicht und Verwaltung von Kurz-URLs.")
+    Boundary(ui, "UI"){
+        Component(authPage, "AuthPage", "Blazor Page", "Zeigt Login oder Registrierung an, je nach Kontext.")
+        Component(loginForm, "LoginForm", "Blazor Component", "Formular zur Anmeldung mit E-Mail und Passwort.")
+        Component(registerForm, "RegisterForm", "Blazor Component", "Formular zur Registrierung eines neuen Nutzers.")
+        Component(homePage, "HomePage", "Blazor Page", "Dashboard nach dem Login. Übersicht und Verwaltung von Kurz-URLs.")
+    }
 
-    Component(authService, "AuthService", "C# Service", "Kapselt Authentifizierungslogik im Frontend.")
-    Component(mappingsService, "MappingsService", "C# Service", "Ruft URL-bezogene Daten direkt vom Backend ab.")
+    Boundary(business, "Business"){
+        Component(authService, "AuthService", "C# Service", "Kapselt Authentifizierungslogik im Frontend.")
+        Component(mappingsService, "MappingsService", "C# Service", "Ruft URL-bezogene Daten direkt vom Backend ab.")
+    }
     
-    Component(authApi, "AuthApi", "API-Wrapper", "Kommuniziert mit dem Auth-Controller im Backend.")
+    Boundary(dataAccess, "Data Access"){
+        Component(authApi, "AuthApi", "API-Wrapper", "Kommuniziert mit dem Auth-Controller im Backend.")
+    }
 
     ' Interne Beziehungen im Frontend
     Rel(authPage, loginForm, "Bindet ein (wenn Login gewählt)")
@@ -33,6 +38,5 @@ Container_Boundary(frontend, "Frontend") {
 
 ' Externe Beziehungen
 Rel(authApi, backend, "Sendet Login- und Registrierungsdaten", "JSON/HTTPS")
-Rel(backend, db, "Liest und schreibt Daten", "SQL")
 
 @enduml

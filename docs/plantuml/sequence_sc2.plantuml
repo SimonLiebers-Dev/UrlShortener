@@ -1,0 +1,29 @@
+@startuml sc2
+actor "Externer Nutzer" as User
+
+participant "Browser" as Client
+participant "Backend" as Backend
+database "SQL-Datenbank" as DB
+participant "ApicAgent\n(externe API)" as ApicAgent
+
+User -> Client : Klick auf Kurz-URL (z. B. /abc123)
+Client -> Backend : GET /abc123
+activate Backend
+
+Backend -> DB : Suche Mapping für Kürzel "abc123"
+alt Mapping gefunden
+  Backend -> ApicAgent : UserAgent aus HTTP-Header auswerten
+  activate ApicAgent
+  ApicAgent --> Backend : UserAgent-Daten (z. B. Browser, OS)
+  deactivate ApicAgent
+
+  Backend -> DB : Speichere Trackingdaten\n(Timestamp, IP, Gerätedaten)
+  Backend -> Client : HTTP 302 Redirect → Lange URL
+else Kein Mapping gefunden
+  Backend -> Client : HTTP 404 Not Found
+end
+deactivate Backend
+
+Client -> User : Weiterleitung zur langen URL oder Fehlermeldung
+
+@enduml
