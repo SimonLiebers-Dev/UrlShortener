@@ -962,6 +962,26 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "images/sc1.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/sc1.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/sc2.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/sc2.png"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {

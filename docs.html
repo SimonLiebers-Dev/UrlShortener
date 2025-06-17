@@ -75,7 +75,7 @@
 
 <p>Dokumentation zur Projektarbeit im Fach &quot;Software-Qualitätssicherung&quot; an der TH Rosenheim (SoSe25) von Simon Liebers</p>
 <p>Der Aufbau dieser Dokumentation orientiert sich am offiziellen <a href="https://docs.arc42.org/home/">Arc42-Template</a></p>
-<h2 id="1-einleitung">1. Einleitung</h2>
+<h2 id="1-einführung-und-ziele">1. Einführung und Ziele</h2>
 <h3 id="fachliche-anforderungen">Fachliche Anforderungen</h3>
 <p>Bei der Anwendung handelt es sich um einen URL-Shortener mit Benutzerkonten. Nutzer:innen können sich mit E-Mail-Adresse und Passwort registrieren und anschließend über ein persönliches Dashboard kurze URLs erstellen. Die erstellten Kurz-URLs werden dem jeweiligen Nutzerkonto zugeordnet und können jederzeit wieder gelöscht werden.</p>
 <p>Ein zentrales Feature der Anwendung ist das Click Tracking: Wenn eine Person auf eine Kurz-URL klickt, werden Informationen wie IP-Adresse, Gerätetyp, Betriebssystem und Browser (aus dem User-Agent) in der Datenbank gespeichert. Die Nutzerinnen und Nutzer der Anwendung können für jede Kurz-URL eine detaillierte Auflistung dieser Zugriffsdaten einsehen. Zusätzlich wird eine Zählung angezeigt, wie oft eine URL bereits aufgerufen wurde.</p>
@@ -93,7 +93,7 @@
 <li>Studierende des Moduls Software-Qualitätssicherung an der TH Rosenheim.</li>
 <li>Lehrende/Dozenten, die das Projekt im Kontext der Lehrveranstaltung begleiten und bewerten.</li>
 </ul>
-<h2 id="2-beschränkungen">2. Beschränkungen</h2>
+<h2 id="2-randbedingungen">2. Randbedingungen</h2>
 <p>Im Rahmen des Projekts galten folgende Einschränkungen und Rahmenbedingungen:</p>
 <ul>
 <li><p><strong>Architekturvorgabe</strong>: Die Anwendung musste als verteiltes System umgesetzt werden, bestehend aus einem Frontend, einem Backend sowie einer persistenten Datenhaltung (Datenbank).</p>
@@ -113,40 +113,14 @@
 <li><p><strong>Quellcodeverwaltung</strong>: Als zentrales Repository für die Versionsverwaltung muss GitHub verwendet werden.</p>
 </li>
 </ul>
-<h2 id="3-kontext-und-umfang">3. Kontext und Umfang</h2>
-<h3 id="kontextdiagramm-level-1">Kontextdiagramm (Level 1)</h3>
+<h2 id="3-kontextabgrenzung">3. Kontextabgrenzung</h2>
 <p>Das System ist ein Webservice mit direkter Interaktion durch Benutzer über den Browser. Die einzige externe Schnittstelle ist eine Third-Party-API zur Analyse von User-Agent-Strings.</p>
 <p><strong>Externe Beteiligte</strong>:</p>
 <ul>
-<li><strong>Endnutzer:innen</strong>: Interagieren über das Web-Frontend mit der Anwendung, z. B. zum Erstellen und Verwalten von Kurz-URLs.</li>
+<li><strong>Endnutzer:innen</strong>: Interagieren über das Web-Frontend mit der Anwendung, z. B. zum Erstellen und Verwalten von Kurz-URLs. Oder klicken auf eine generierte URL, um weitergeleitet zu werden.</li>
 <li><strong>Externer Dienst – ApicAgent</strong>: Wird vom Backend genutzt, um die im User-Agent enthaltenen Informationen (z. B. Betriebssystem, Gerät, Browser) strukturiert zu analysieren und zu speichern.</li>
 </ul>
 <p><img src="images/Kontextdiagramm.png" alt="Kontextdiagramm"></p>
-<h3 id="containerdiagramm-level-2">Containerdiagramm (Level 2)</h3>
-<p>Das System besteht aus drei Haupt-Containern:</p>
-<p><strong>1. Web-Frontend (Blazor Server)</strong></p>
-<ul>
-<li>Stellt die Benutzeroberfläche bereit.</li>
-<li>Verantwortlich für Benutzerinteraktion, URL-Verwaltung und Anzeige der Tracking-Daten.</li>
-<li>Kommuniziert per HTTP-REST mit dem Backend.</li>
-</ul>
-<p><strong>2. Backend (ASP.NET Core Web API)</strong></p>
-<ul>
-<li>Beinhaltet die gesamte Geschäftslogik und Datenverarbeitung.</li>
-<li>Bietet REST-Endpunkte zur Nutzerregistrierung, URL-Verwaltung, Weiterleitung und Tracking.</li>
-<li>Ruft REST-API von <a href="https://www.apicagent.com/">ApicAgent</a> auf zur Analyse des UserAgents des Nutzers.</li>
-</ul>
-<p><strong>Datenbank (MS SQL Server)</strong></p>
-<ul>
-<li>Persistiert Benutzerkonten, Kurz-URLs und Tracking-Informationen.</li>
-<li>Wird ausschließlich vom Backend angesprochen.</li>
-</ul>
-<p><img src="images/Containerdiagramm.png" alt="Containerdiagramm"></p>
-<h3 id="komponentendiagramm-level-3">Komponentendiagramm (Level 3)</h3>
-<p><strong>Backend-Komponenten:</strong></p>
-<p><img src="images/Komponentendiagramm_Backend.png" alt="Komponentendiagramm Backend"></p>
-<p><strong>Frontend-Komponenten (Blazor Pages):</strong></p>
-<p><img src="images/Komponentendiagramm_Frontend.png" alt="Komponentendiagramm Frontend"></p>
 <h2 id="4-lösungsstrategie">4. Lösungsstrategie</h2>
 <p>Für die Umsetzung der Anwendung wurde bewusst ein konsistenter Technologie-Stack auf Basis von .NET gewählt. Diese Entscheidung basiert auf mehreren Vorteilen:</p>
 <ul>
@@ -168,10 +142,13 @@
 <ul>
 <li><strong>Controllers:</strong> Enthält die REST-Endpunkte für Authentifizierung (AuthController), Systemstatus (HealthCheckController), URL-Verwaltung (MappingsController) und Weiterleitung (RedirectController).</li>
 <li><strong>Business</strong>: Implementiert die Geschäftslogik für Authentifizierung, Erstellung und Löschung von URLs, sowie das Tracking von Klicks inkl. API-Kommunikation mit ApicAgent.</li>
+<li><strong>Data Access</strong>: Implementiert den Zugriff auf die Datenbank</li>
 <li><strong>Models</strong>: Enthält die Models, die von der ApicAgent REST-API per HTTP-Request zur Verfügung gestellt werden.</li>
 <li><strong>Extensions</strong>: Sammlung von statischen Hilfsklassen.</li>
 <li><strong>Middleware</strong>: Implementierung eigener Middleware, um das Verhalten der Anwendung zentral zu steuern (Zum Beispiel, um ein Delay auf eingehende Requests anzuwenden, um Brute-Force Angriffe auf den Login ineffizient zu machen).</li>
 </ul>
+<p>Zentrale Komponenten (Controller, Business Logic, Data Access) werden hier genauer erklärt:
+<img src="images/Komponentendiagramm_Backend.png" alt="Komponentendiagramm Backend"></p>
 <h3 id="frontend-bausteine">Frontend-Bausteine</h3>
 <p>Das Frontend besteht aus zwei Projekten:</p>
 <ul>
@@ -181,11 +158,13 @@
 <ul>
 <li><strong>API</strong>: Wrapper für die Kommunikation mit dem Backend via HTTP.</li>
 <li><strong>Business</strong>: Client-seitige Geschäftslogik zur Verwaltung von URLs und Anzeige der Tracking-Daten.</li>
-<li><strong>Components</strong>: Wiederverwendbare UI-Komponenten wie Formulare, Tabellen oder Dialoge.</li>
+<li><strong>Components</strong>: UI-Komponenten wie Formulare, Tabellen oder Dialoge.</li>
 <li><strong>Extensions</strong>: Erweiterungsmethoden und Hilfsfunktionen für die UI oder Datenverarbeitung.</li>
 </ul>
 </li>
 </ul>
+<p>Zentrale Komponenten (Components/UI, Business Logic, Data Access) werden hier genauer erklärt:
+<img src="images/Komponentendiagramm_Frontend.png" alt="Komponentendiagramm Frontend"></p>
 <h2 id="6-runtime-sicht">6. Runtime-Sicht</h2>
 <p>Die Runtime-Sicht beschreibt typische Abläufe innerhalb des Systems zur Laufzeit. Dabei werden die Interaktionen zwischen Nutzer, Frontend, Backend, Datenbank und externen APIs dargestellt. Im Folgenden werden zwei zentrale Szenarien der Anwendung beispielhaft beschrieben.</p>
 <h3 id="szenario-1-nutzer-erstellt-eine-neue-kurz-url">Szenario 1: Nutzer erstellt eine neue Kurz-URL</h3>
@@ -195,8 +174,9 @@
 <li>Das Frontend ruft den REST-Endpunkt /api/mappings/create im MappingsController des Backends per POST-Request mit den eingegeben Daten auf.</li>
 <li>Das Backend validiert die Eingabe und generiert eine eindeutige Kurz-URL.</li>
 <li>Die Lange URL, die generierte Kurz-URL, der Timestamp, der Titel und die Benutzer-ID werden in der Datenbank gespeichert.</li>
-<li>Die neue URL wird dem Benutzer im Frontend angezeigt und zur Übersichtsliste hinzugefügt.</li>
+<li>Die neue URL wird dem Benutzer im Frontend angezeigt und zur Übersichtsliste hinzugefügt. Außerdem werden Statistiken angezeigt.</li>
 </ol>
+<p><img src="images/sc1.png" alt="Sequenzdiagramm 1"></p>
 <h3 id="szenario-2-ein-dritter-klickt-auf-eine-kurz-url">Szenario 2: Ein Dritter klickt auf eine Kurz-URL</h3>
 <ol>
 <li>Eine Person ruft eine zuvor generierte Kurz-URL im Browser auf.</li>
@@ -211,24 +191,30 @@
 </li>
 <li>Falls kein Mapping existiert, wird eine 404-Fehlermeldung zurückgegeben.</li>
 </ol>
-<p>Beide Szenarien zeigen, wie die verschiedenen Systemkomponenten zusammenarbeiten, um Kernfunktionalitäten wie URL-Erstellung und Tracking performant und sicher umzusetzen.</p>
-<h2 id="7-deployment-sicht">7. Deployment-Sicht</h2>
-<p>Die Anwendung wird containerisiert ausgeliefert und über eine zentrale docker-compose-Konfiguration gestartet. Sie besteht aus zwei Hauptdiensten – Backend und Frontend – die jeweils in einem eigenen Docker-Container laufen. Beide Images werden automatisch via GitHub Actions gebaut und mit der jeweils aktuellen Version veröffentlicht.</p>
-<h3 id="containerisierung">Containerisierung</h3>
+<p><img src="images/sc2.png" alt="Sequenzdiagramm 2"></p>
+<p>Beide Szenarien zeigen, wie die verschiedenen Systemkomponenten zusammenarbeiten, um Kernfunktionalitäten wie URL-Erstellung und umzusetzen.</p>
+<h2 id="7-verteilungssicht">7. Verteilungssicht</h2>
+<p>Die Anwendung wird containerisiert ausgeliefert und über eine zentrale docker-compose-Konfiguration gestartet. Sie besteht aus drei Hauptdiensten – Backend, Frontend und Datenbank – die jeweils in einem eigenen Docker-Container laufen. Images von Frontend und Backend werden automatisch via GitHub Actions gebaut und mit der jeweils aktuellen Version veröffentlicht.</p>
+<p><img src="images/Containerdiagramm.png" alt="Containerdiagramm"></p>
 <ul>
 <li><p><strong>Backend-Container</strong>:</p>
 <ul>
-<li>Basierend auf dem offiziellen .NET 9.0 ASP.NET-Image.</li>
-<li>Enthält die REST-API sowie die Geschäftslogik.</li>
-<li>Wird über Port 6060 bereitgestellt.</li>
-<li>Nutzt eine mehrstufige Build-Pipeline (Restore, Build, Publish), um ein Image zu erzeugen.</li>
+<li>Beinhaltet die gesamte Geschäftslogik und Datenverarbeitung.</li>
+<li>Bietet REST-Endpunkte zur Nutzerregistrierung, URL-Verwaltung, Weiterleitung und Tracking.</li>
+<li>Ruft REST-API von <a href="https://www.apicagent.com/">ApicAgent</a> auf zur Analyse des UserAgents des Nutzers.</li>
 </ul>
 </li>
 <li><p><strong>Frontend-Container</strong>:</p>
 <ul>
-<li>Ebenfalls basierend auf dem .NET 9.0 ASP.NET-Image.</li>
-<li>Hostet die Blazor-Komponenten.</li>
-<li>Stellt die Webanwendung über Ports 8080 und 8081 zur Verfügung.</li>
+<li>Stellt die Benutzeroberfläche bereit.</li>
+<li>Verantwortlich für Benutzerinteraktion, URL-Verwaltung und Anzeige der Tracking-Daten.</li>
+<li>Kommuniziert per HTTP-REST mit dem Backend.</li>
+</ul>
+</li>
+<li><p><strong>Datenbank (MS SQL Server)</strong></p>
+<ul>
+<li>Persistiert Benutzerkonten, Kurz-URLs und Tracking-Informationen.</li>
+<li>Wird ausschließlich vom Backend angesprochen.</li>
 </ul>
 </li>
 </ul>
@@ -245,7 +231,6 @@ Alle Dienste werden konsistent über <code>docker-compose up</code> gestartet. D
 <p>Für die lokale Ausführung genügt:</p>
 <pre><code class="lang-bash">docker-compose up --build
 </code></pre>
-<p>Die Anwendung ist anschließend unter den definierten Ports erreichbar. Backend und Frontend laufen unabhängig, aber koordiniert im selben Container-Netzwerk.</p>
 <h2 id="8-querschnittskonzepte">8. Querschnittskonzepte</h2>
 <h3 id="sicherheit">Sicherheit</h3>
 <p>Die Anwendung verwendet ein tokenbasiertes Authentifizierungssystem auf Basis von JWT (JSON Web Token). Nach erfolgreicher Registrierung oder Anmeldung erhält der Client ein signiertes Token, das bei allen nachfolgenden REST-Requests im HTTP-Header mitgesendet wird.</p>
@@ -273,8 +258,62 @@ Alle Dienste werden konsistent über <code>docker-compose up</code> gestartet. D
 <li>Feedback-Mechanismen nach Nutzeraktionen (z. B. Toast-Meldungen nach erfolgreichem Speichern oder Löschen).</li>
 </ul>
 <p>Das gesamte UI/UX-Design zielt darauf ab, die Nutzung der Anwendung auch für technisch weniger erfahrene Anwender:innen so einfach und angenehm wie möglich zu machen.</p>
+<h3 id="qualitätssichernde-maßnahmen-und-tests">Qualitätssichernde Maßnahmen und Tests</h3>
+<p>Die Qualität der Anwendung wurde durch verschiedene Testarten, automatisierte Analysen und CI sichergestellt. Der Fokus lag dabei sowohl auf funktionaler Korrektheit als auch auf nicht-funktionalen Aspekten wie Performance und Sicherheit.</p>
+<h4 id="unittests-backend">Unittests (Backend)</h4>
+<p>Im Projekt <code>UrlShortener.Test.Backend</code> wurden umfassende Unit-Tests für die Kernlogik des Backends erstellt. Dabei wurden u. a. folgende Bereiche abgedeckt:</p>
+<ul>
+<li>Validierung von URL-Eingaben</li>
+<li>Erzeugung und Speicherung von Kurz-URLs</li>
+<li>Authentifizierungs-Logik (z. B. Token-Handling)</li>
+<li>Trennung der Tests nach Modulen (Mapping, Auth, Tracking)</li>
+</ul>
+<h4 id="unittests-frontend">Unittests (Frontend)</h4>
+<p>Im Projekt <code>UrlShortener.Test.Frontend</code> wurden Unit-Tests für die Frontend-Komponenten durchgeführt. Dabei lag der Fokus auf:</p>
+<ul>
+<li>Validierung von Eingaben in Formularen</li>
+<li>UI-Komponentenverhalten</li>
+<li>Funktionalität der Geschäftslogik</li>
+</ul>
+<h4 id="unittests-shared">Unittests (Shared)</h4>
+<p>Im Projekt <code>UrlShortener.Test.Shared</code> wurden Unit-Tests für die geteilten DTO-Klassen und Extension-Methoden durchgeführt.</p>
+<h4 id="integrationstests">Integrationstests</h4>
+<p>Das Projekt <code>UrlShortener.Test.Backend</code> enthält auch Integrationstests, die die REST-API testen. Es wurden u. a. getestet:</p>
+<ul>
+<li>Registrierung und Login</li>
+<li>Erstellen und Löschen von Kurz-URLs</li>
+<li>Zugriffsschutz über JWT</li>
+<li>Rückgabeverhalten bei fehlerhaften Requests</li>
+</ul>
+<h4 id="penetration-tests">Penetration-Tests</h4>
+<p>Im Projekt <code>UrlShortener.Test.End2End</code> wurden gezielt Sicherheitstests (PenTests) implementiert, u. a. um zu prüfen:</p>
+<ul>
+<li>Unberechtigter Zugriff auf geschützte Ressourcen</li>
+<li>Manipulation von JWTs</li>
+<li>Eingabe von potenziell schädlichem Code (Injection-Angriffe)</li>
+<li>Verhalten bei abgelaufenen oder ungültigen Tokens</li>
+</ul>
+<h4 id="end2end-tests">End2End-Tests</h4>
+<p>Ebenfalls in <code>UrlShortener.Test.End2End</code> befinden sich die End2End-Tests, mit denen komplette Nutzungsflüsse simuliert und geprüft werden. Dazu werden sowohl Backend, Frontend und eine In-Memory-Datenbank gestartet und mittels PlayWright durch das UI navigiert. Diese Tests laufen automatisiert in der CI-Pipeline (Headless) und prüfen:</p>
+<ul>
+<li>Funktionale Korrektheit des Zusammenspiels zwischen Frontend und Backend</li>
+<li>Darstellung und Zustand der UI nach typischen Aktionen</li>
+<li>Rückmeldungen bei Erfolgen und Fehlern</li>
+</ul>
+<h4 id="last-tests">Last-Tests</h4>
+<p>Die Anwendung wurde zudem mit Lasttests auf ihre Stabilität unter erhöhter Benutzeraktivität geprüft. Dabei wurde unter anderem simuliert:</p>
+<ul>
+<li>Massenerstellung von URLs</li>
+<li>Verhalten von Login/Registrierung unter Last</li>
+<li>Rate-Limiting</li>
+</ul>
+<h4 id="statische-codeanalyse">Statische Codeanalyse</h4>
+<p>Die Anwendung wird mithilfe von SonarQube regelmäßig auf Code Smells, Security Vulnerabilities, Duplikate und Testabdeckung überprüft. Die SonarQube-Auswertungen sind in den CI-Workflow integriert und liefern konkrete Hinweise zur Codequalität.</p>
+<h4 id="analyse-von-abhängigkeiten">Analyse von Abhängigkeiten</h4>
+<p>Zusätzlich zu den Penetration-Tests und der statischen Codeanalyse wurde ein automatisierter <strong>OWASP Dependency Check</strong> durchgeführt. Dabei wurden sämtliche verwendeten Bibliotheken auf bekannte Schwachstellen geprüft (CVE-Datenbank).</p>
+<p>Der Dependency Check wurde in den CI-Prozess integriert, sodass Sicherheitsrisiken in Drittanbieterpaketen frühzeitig erkannt und adressiert werden können. Ziel ist es, die Angriffsfläche durch unsichere Abhängigkeiten zu minimieren und aktuelle Sicherheitsstandards einzuhalten.</p>
 <h2 id="9-architekturentscheidungen">9. Architekturentscheidungen</h2>
-<p>Die wichtigsten Entscheidungen mit Auswirkungen auf die Architektur wurden als architecture decision records (ADR) dokumentiert.</p>
+<p>Die wichtigsten Entscheidungen mit Auswirkungen auf die Architektur wurden als Architecture Decision Records (ADR) dokumentiert.</p>
 <h3 id="adr-1-entscheidung-für-eigenen-url-shortener">ADR 1: Entscheidung für eigenen URL-Shortener</h3>
 <p><strong>Status</strong>: Entschieden<br>
 <strong>Datum</strong>: 2025-03-18</p>
@@ -377,8 +416,8 @@ Ich habe mich für <strong>Blazor Server</strong> als Hosting-Modell entschieden
 </ul>
 </li>
 </ul>
-<h2 id="10-qualität">10. Qualität</h2>
-<h3 id="nicht-funktionale-qualitätsanforderungen-nach-iso-25010">Nicht-funktionale Qualitätsanforderungen nach ISO 25010</h3>
+<h2 id="10-qualitätsanforderungen">10. Qualitätsanforderungen</h2>
+<h3 id="nicht-funktionale-qualitätsanforderungen">Nicht-funktionale Qualitätsanforderungen</h3>
 <h4 id="sicherheit-1">Sicherheit</h4>
 <ul>
 <li>Authentifizierung &amp; Autorisierung: Zugriff auf geschützte Bereiche ist nur nach Login mit gültigem JWT-Token möglich.</li>
@@ -415,57 +454,130 @@ Die Anwendung läuft containerisiert über Docker und ist damit unabhängig vom 
 <li><p><strong>Zuverlässigkeit</strong>: Das System erkennt fehlerhafte Eingaben und bietet dem Benutzer entsprechendes Feedback.</p>
 </li>
 </ul>
-<h2 id="11-qualitätssichernde-maßnahmen-und-tests">11. Qualitätssichernde Maßnahmen und Tests</h2>
-<p>Die Qualität der Anwendung wurde durch verschiedene Testarten, automatisierte Analysen und CI sichergestellt. Der Fokus lag dabei sowohl auf funktionaler Korrektheit als auch auf nicht-funktionalen Aspekten wie Performance und Sicherheit.</p>
-<h3 id="unittests-backend">Unittests (Backend)</h3>
-<p>Im Projekt <code>UrlShortener.Test.Backend</code> wurden umfassende Unit-Tests für die Kernlogik des Backends erstellt. Dabei wurden u. a. folgende Bereiche abgedeckt:</p>
+<h2 id="11-risiken-und-technische-schulden">11. Risiken und Technische Schulden</h2>
+<h3 id="risiken">Risiken</h3>
+<h4 id="1-abhängigkeit-von-apicagent-als-drittanbieter">1. Abhängigkeit von ApicAgent als Drittanbieter</h4>
+<p>Die Analyse der User-Agent-Daten erfolgt über die kostenlose API von ApicAgent. Diese unterliegt Nutzungseinschränkungen und ist bei intensiver oder kommerzieller Nutzung kostenpflichtig.</p>
 <ul>
-<li>Validierung von URL-Eingaben</li>
-<li>Erzeugung und Speicherung von Kurz-URLs</li>
-<li>Authentifizierungs-Logik (z. B. Token-Handling)</li>
-<li>Trennung der Tests nach Modulen (Mapping, Auth, Tracking)</li>
+<li>Auswirkungen: Potenzielle Kosten bei Skalierung; Risiko der Dienstabschaltung oder API-Änderungen.</li>
+<li>Empfohlene Maßnahme: Alternative Lösungen, Vertrag mit SLA im echten Betrieb</li>
 </ul>
-<h3 id="unittests-frontend">Unittests (Frontend)</h3>
-<p>Im Projekt <code>UrlShortener.Test.Frontend</code> wurden Unit-Tests für die Frontend-Komponenten durchgeführt. Dabei lag der Fokus auf:</p>
+<h4 id="2-kein-caching-bei-häufig-verwendeten-kurz-urls">2. Kein Caching bei häufig verwendeten Kurz-URLs</h4>
+<p>Jede Weiterleitung einer Kurz-URL löst eine Datenbankabfrage aus, selbst bei sehr häufig genutzten URLs.</p>
 <ul>
-<li>Validierung von Eingaben in Formularen</li>
-<li>UI-Komponentenverhalten</li>
-<li>Funktionalität der Geschäftslogik</li>
+<li>Auswirkungen: Mögliche Performance-Probleme bei hoher Last (Hotspot-Links).</li>
+<li>Empfohlene Maßnahme: Einführung eines In-Memory-Cachings (z. B. Redis) für Kurz-URLs.</li>
 </ul>
-<h3 id="integrationstests">Integrationstests</h3>
-<p>Das Projekt <code>UrlShortener.Test.Backend</code> enthält auch Integrationstests, die die REST-API testen. Es wurden u. a. getestet:</p>
+<h4 id="3-fehlendes-rate-limiting-für-apicagent-requests">3. Fehlendes Rate-Limiting für ApicAgent-Requests</h4>
+<p>Jeder Klick auf eine Kurz-URL löst direkt einen API-Call aus. Bei hoher Zugriffszahl kann dies zu Blockierungen oder Rate-Limits führen.</p>
 <ul>
-<li>Registrierung und Login</li>
-<li>Erstellen und Löschen von Kurz-URLs</li>
-<li>Zugriffsschutz über JWT</li>
-<li>Rückgabeverhalten bei fehlerhaften Requests</li>
+<li>Auswirkungen: Tracking-Funktion kann zeitweise ausfallen.</li>
+<li>Empfohlene Maßnahme: Asynchrone Verarbeitung mit Warteschlange.</li>
 </ul>
-<h3 id="penetration-tests">Penetration-Tests</h3>
-<p>Im Projekt <code>UrlShortener.Test.End2End</code> wurden gezielt Sicherheitstests (PenTests) implementiert, u. a. um zu prüfen:</p>
+<h3 id="technische-schulden">Technische Schulden</h3>
+<h4 id="1-fehlender-refresh-token-mechanismus-bei-jwt-authentifizierung">1. Fehlender Refresh-Token-Mechanismus bei JWT-Authentifizierung</h4>
+<p>Aktuell verfällt das JWT nach Ablauf (60 Minuten) ohne Möglichkeit zur Erneuerung. Benutzer:innen müssen sich neu einloggen, was die Usability verschlechtert.</p>
 <ul>
-<li>Unberechtigter Zugriff auf geschützte Ressourcen</li>
-<li>Manipulation von JWTs</li>
-<li>Eingabe von potenziell schädlichem Code (Injection-Angriffe)</li>
-<li>Verhalten bei abgelaufenen oder ungültigen Tokens</li>
+<li>Auswirkungen: Schlechte Nutzererfahrung, insbesondere bei längerem Arbeiten im Dashboard.</li>
+<li>Empfohlene Maßnahme: Einführung eines Refresh-Token-Workflows, um Tokens serverseitig erneuern zu können.</li>
 </ul>
-<h3 id="end2end-tests">End2End-Tests</h3>
-<p>Ebenfalls in <code>UrlShortener.Test.End2End</code> befinden sich die End2End-Tests, mit denen komplette Nutzungsflüsse simuliert und geprüft werden. Dazu werden sowohl Backend, Frontend und eine In-Memory-Datenbank gestartet und mittels PlayWright durch das UI navigiert. Diese Tests laufen automatisiert in der CI-Pipeline (Headless) und prüfen:</p>
+<h4 id="2-fehlende-invalidierung-des-jwt-tokens-nach-dem-logout">2. Fehlende Invalidierung des JWT-Tokens nach dem Logout</h4>
+<p>Aktuell wird die Logout-Funktionalität nur auf der Frontend-Seite behandelt. Der Token wird hier einfach aus dem Browser-Storage gelöscht und die Anwendung refresht. Dadurch wird der Nutzer ausgeloggt. Der Token bleibt jedoch weiterhin valide.</p>
 <ul>
-<li>Funktionale Korrektheit des Zusammenspiels zwischen Frontend und Backend</li>
-<li>Darstellung und Zustand der UI nach typischen Aktionen</li>
-<li>Rückmeldungen bei Erfolgen und Fehlern</li>
+<li>Auswirkungen: Bad Practice. Nicht mehr verwendete Token, sollten aus Sicherheitsgründen invalidiert werden.</li>
+<li>Empfohlene Maßnahme: Einführung eines Logout-Endpunkts im Auth-Controller, der einen Token invalidiert.</li>
 </ul>
-<h3 id="last-tests">Last-Tests</h3>
-<p>Die Anwendung wurde zudem mit Lasttests auf ihre Stabilität unter erhöhter Benutzeraktivität geprüft. Dabei wurde unter anderem simuliert:</p>
-<ul>
-<li>Massenerstellung von URLs</li>
-<li>Verhalten von Login/Registrierung unter Last</li>
-</ul>
-<h3 id="statische-codeanalyse">Statische Codeanalyse</h3>
-<p>Die Anwendung wird mithilfe von SonarQube regelmäßig auf Code Smells, Security Vulnerabilities, Duplikate und Testabdeckung überprüft. Die SonarQube-Auswertungen sind in den CI-Workflow integriert und liefern konkrete Hinweise zur Codequalität.</p>
-<h3 id="analyse-von-abhängigkeiten">Analyse von Abhängigkeiten</h3>
-<p>Zusätzlich zu den Penetration-Tests und der statischen Codeanalyse wurde ein automatisierter <strong>OWASP Dependency Check</strong> durchgeführt. Dabei wurden sämtliche verwendeten Bibliotheken auf bekannte Schwachstellen geprüft (CVE-Datenbank).</p>
-<p>Der Dependency Check wurde in den CI-Prozess integriert, sodass Sicherheitsrisiken in Drittanbieterpaketen frühzeitig erkannt und adressiert werden können. Ziel ist es, die Angriffsfläche durch unsichere Abhängigkeiten zu minimieren und aktuelle Sicherheitsstandards einzuhalten.</p>
+<h2 id="12-glossar">12. Glossar</h2>
+<table>
+<thead>
+<tr>
+<th>Begriff</th>
+<th>Erklärung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ADR</strong></td>
+<td><em>Architecture Decision Record</em> – Dokumentation einer wichtigen Architekturentscheidung</td>
+</tr>
+<tr>
+<td><strong>API</strong></td>
+<td><em>Application Programming Interface</em> – Schnittstelle zur Kommunikation zwischen Systemen</td>
+</tr>
+<tr>
+<td><strong>CI/CD</strong></td>
+<td><em>Continuous Integration / Continuous Deployment</em> – Automatisierter Build- und Deployment-Prozess</td>
+</tr>
+<tr>
+<td><strong>CORS</strong></td>
+<td><em>Cross-Origin Resource Sharing</em> – Sicherheitsmechanismus im Browser für Webanfragen über Domain-Grenzen hinweg</td>
+</tr>
+<tr>
+<td><strong>DTO</strong></td>
+<td><em>Data Transfer Object</em> – Objekt zur Übertragung von Daten zwischen Systemkomponenten oder -schichten</td>
+</tr>
+<tr>
+<td><strong>EF Core</strong></td>
+<td><em>Entity Framework Core</em> – Objekt-Relationaler Mapper für .NET zur Datenbankkommunikation</td>
+</tr>
+<tr>
+<td><strong>HTTP</strong></td>
+<td><em>Hypertext Transfer Protocol</em> – Protokoll für die Kommunikation im Web</td>
+</tr>
+<tr>
+<td><strong>JWT</strong></td>
+<td><em>JSON Web Token</em> – Token zur Authentifizierung und Autorisierung</td>
+</tr>
+<tr>
+<td><strong>MS SQL Server</strong></td>
+<td>Microsofts relationales Datenbankmanagementsystem – verwendet zur persistenten Speicherung</td>
+</tr>
+<tr>
+<td><strong>REST</strong></td>
+<td><em>Representational State Transfer</em> – Architekturstil für webbasierte APIs</td>
+</tr>
+<tr>
+<td><strong>UI</strong></td>
+<td><em>User Interface</em> – Benutzerschnittstelle / Benutzeroberfläche</td>
+</tr>
+<tr>
+<td><strong>UX</strong></td>
+<td><em>User Experience</em> – Nutzererlebnis im Umgang mit einer Anwendung</td>
+</tr>
+<tr>
+<td><strong>URL</strong></td>
+<td><em>Uniform Resource Locator</em> – Eindeutige Adresse zur Identifikation einer Ressource im Web</td>
+</tr>
+<tr>
+<td><strong>Blazor</strong></td>
+<td>Web-Framework von Microsoft zur Entwicklung interaktiver Benutzeroberflächen mit C#</td>
+</tr>
+<tr>
+<td><strong>ApicAgent</strong></td>
+<td>Externer Dienst zur Analyse von User-Agent-Strings zur Geräte-, OS- und Browser-Erkennung</td>
+</tr>
+<tr>
+<td><strong>Docker</strong></td>
+<td>Plattform zur Containerisierung von Anwendungen, um sie konsistent und portabel auszuführen</td>
+</tr>
+<tr>
+<td><strong>GitHub Actions</strong></td>
+<td>CI/CD-System von GitHub zur Automatisierung von Build- und Deploymentprozessen</td>
+</tr>
+<tr>
+<td><strong>Playwright</strong></td>
+<td>Automatisierungsframework zur Durchführung von End-to-End-Tests über UI-Interaktion</td>
+</tr>
+<tr>
+<td><strong>OWASP</strong></td>
+<td><em>Open Worldwide Application Security Project</em> – Projekt zur Verbesserung der Softwaresicherheit</td>
+</tr>
+<tr>
+<td><strong>Rate-Limiting</strong></td>
+<td>Technik zur Begrenzung von Anfragen an eine Schnittstelle, um Missbrauch oder Überlastung zu verhindern</td>
+</tr>
+</tbody>
+</table>
 
 </article>
 
