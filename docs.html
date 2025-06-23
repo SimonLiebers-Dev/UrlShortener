@@ -192,7 +192,7 @@
 <li>Falls kein Mapping existiert, wird eine 404-Fehlermeldung zurückgegeben.</li>
 </ol>
 <p><img src="images/sc2.png" alt="Sequenzdiagramm 2"></p>
-<p>Beide Szenarien zeigen, wie die verschiedenen Systemkomponenten zusammenarbeiten, um Kernfunktionalitäten wie URL-Erstellung und umzusetzen.</p>
+<p>Beide Szenarien zeigen, wie die verschiedenen Systemkomponenten zusammenarbeiten, um Kernfunktionalitäten wie URL-Erstellung umzusetzen.</p>
 <h2 id="7-verteilungssicht">7. Verteilungssicht</h2>
 <p>Die Anwendung wird containerisiert ausgeliefert und über eine zentrale docker-compose-Konfiguration gestartet. Sie besteht aus drei Hauptdiensten – Backend, Frontend und Datenbank – die jeweils in einem eigenen Docker-Container laufen. Images von Frontend und Backend werden automatisch via GitHub Actions gebaut und mit der jeweils aktuellen Version veröffentlicht.</p>
 <p><img src="images/Containerdiagramm.png" alt="Containerdiagramm"></p>
@@ -429,7 +429,6 @@ Ich habe mich für <strong>Blazor Server</strong> als Hosting-Modell entschieden
 <ul>
 <li>Schnelle Antwortzeiten durch serverseitiges Rendering mit Blazor Server.</li>
 <li>Vermeidung von unnötigen Datenbankabfragen.</li>
-<li>Asynchrone Verarbeitung von Tracking-Informationen zur Entkopplung vom Benutzerfluss (Weiterleitung erfolgt sofort, Tracking im Hintergrund).</li>
 </ul>
 <h4 id="wartbarkeit">Wartbarkeit</h4>
 <ul>
