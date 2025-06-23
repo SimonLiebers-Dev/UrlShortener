@@ -126,7 +126,7 @@ Die Runtime-Sicht beschreibt typische Abläufe innerhalb des Systems zur Laufzei
 
 ![Sequenzdiagramm 2](images/sc2.png)
 
-Beide Szenarien zeigen, wie die verschiedenen Systemkomponenten zusammenarbeiten, um Kernfunktionalitäten wie URL-Erstellung und umzusetzen.
+Beide Szenarien zeigen, wie die verschiedenen Systemkomponenten zusammenarbeiten, um Kernfunktionalitäten wie URL-Erstellung umzusetzen.
 
 ## 7. Verteilungssicht
 Die Anwendung wird containerisiert ausgeliefert und über eine zentrale docker-compose-Konfiguration gestartet. Sie besteht aus drei Hauptdiensten – Backend, Frontend und Datenbank – die jeweils in einem eigenen Docker-Container laufen. Images von Frontend und Backend werden automatisch via GitHub Actions gebaut und mit der jeweils aktuellen Version veröffentlicht.
@@ -374,7 +374,6 @@ Ich habe mich für **Blazor Server** als Hosting-Modell entschieden. Die Logik w
 #### Effizienz und Performanz
 - Schnelle Antwortzeiten durch serverseitiges Rendering mit Blazor Server.
 - Vermeidung von unnötigen Datenbankabfragen.
-- Asynchrone Verarbeitung von Tracking-Informationen zur Entkopplung vom Benutzerfluss (Weiterleitung erfolgt sofort, Tracking im Hintergrund).
 
 #### Wartbarkeit
 
